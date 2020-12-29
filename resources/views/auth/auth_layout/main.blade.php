@@ -19,14 +19,25 @@
 @yield('customcss')
 <style type="text/css">
   form.example input[type=text] {
-    padding:7px 50px 7px 40px;
+    padding:7px 20px 7px 20px;
     font-size: 17px;
     border: 1px solid grey;
     float: left;
     width: 80%;
     background:white;
   }
-
+p{
+  font-size:13px;
+}
+#footer li a{
+  font-size:13px;
+}
+#footer .footer-top .footer-info p{
+  font-size:13px;
+}
+.list-group li{
+  font-size:13px;
+}
   form.example button {
     float: left;
     width: 20%;
@@ -50,7 +61,7 @@
   }
   form.example1 input[type=text] 
   {
-    padding:7px 50px 7px 40px;
+    padding:7px 20px 7px 20px;
     font-size: 17px;
     border: 1px solid grey;
     float: left;

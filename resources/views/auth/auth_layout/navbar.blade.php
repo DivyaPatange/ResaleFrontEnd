@@ -10,7 +10,9 @@
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
-      <nav class="nav-menu float-right d-none d-lg-block">
+      <nav class="nav-menu float-right d-none d-lg-block" style="top: 20px;
+    position: absolute;
+    right: 30px;">
         <ul>
           <li>
             <form class="example1" action="">
