@@ -25,7 +25,7 @@
               <button type="submit"><i class="fa fa-search"></i></button>
             </form>
           </li>
-          <!-- <li><button type="button" class="btn btn-warning ml-3">Post Free Add</button></li> -->
+          <li><button type="button" class="btn btn-warning ml-3">Post Free Add</button></li>
           @guest
             @if (Route::has('login'))
               <li><a href="{{ url('/login') }}" class="m-0 p-0"><button type="button" class="btn btn-danger ml-3">Login</button></a>
