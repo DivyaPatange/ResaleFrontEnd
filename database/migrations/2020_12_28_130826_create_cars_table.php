@@ -21,7 +21,7 @@ class CreateCarsTable extends Migration
             $table->foreign('brand_id')->references('id')->on('brands');
             $table->unsignedInteger('model_id');
             $table->foreign('model_id')->references('id')->on('models');
-            $table->string('varient');
+            $table->string('price');
             $table->string('year_of_registration');
             $table->string('fuel');
             $table->string('transmission');
