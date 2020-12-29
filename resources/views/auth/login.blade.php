@@ -108,7 +108,7 @@
 	 justify-content: space-between;
 	 align-items: center;
 	 width: auto;
-	margin: 36px 0px 56px 0px;
+	margin: 25px 0px 28px 0px;
 }
  .passcode-wrapper input {
 	 width: 50px;
@@ -197,11 +197,11 @@
             </div>
             
             <!-- Modal body -->
-            <div class="modal-body text-center p-5">
+            <div class="modal-body text-center p-4">
              <h5>Login With Phone</h5>
-              <img src="{{ asset('assets/img/telephone.png') }}" class="img-fluid" ><br><br>
-               <p>We Send To Text You The OTP To Authanticate<br> Your Account.</p><br>
-                <form id="mobile-auth" class="mt-4 mb-5" method="POST">
+              <img src="{{ asset('assets/img/telephone.png') }}" class="img-fluid" ><br>
+               <p>We Send To Text You The OTP To Authanticate<br> Your Account.</p>
+                <form id="mobile-auth" class="mt-4" method="POST">
                   <div class="form-group">
                     <label for="">Enter Name:</label>
                     <input type="text" class="form-control" id="name" placeholder="Enter Name"  name="name"><br>
@@ -243,7 +243,7 @@
             </div>
             
             <!-- Modal body -->
-            <div class="modal-body text-center p-5">
+            <div class="modal-body text-center p-4">
              <h5>OTP Verification</h5>
              <img src="{{ asset('assets/img/pincode (1).png') }}" class="img-fluid" ><br><br>
                <p>A text message with a 6-digit verification <br>code was just send to your <br>mobile number.</p><br>
@@ -264,6 +264,7 @@
             <div id="referral_name"></div>
     			
     			</form><br>
+          
 		       </div>
                <p>A one time password send to your mobile number.</p>
             </div>
@@ -385,12 +386,12 @@ function onFocusEvent(index) {
     var name = $("#name").val();
     var mobile_no = $("input[name=phone-number]").val();
     var filter = /^\d*(?:\.\d{1,2})?$/;
-    alert(name);
+    // alert(name);
     // console.log(name='');
-    // if(name='')
-    // {
-    //   $("#nameErr").removeClass("hidden");
-    // }
+    if(name=="" || name==null)
+    {
+      $("#nameErr").removeClass("hidden");
+    }
     if (filter.test(mobile_no)) {
       if(mobile_no.length==10){
             // alert("valid");
@@ -440,39 +441,7 @@ function onFocusEvent(index) {
 
 });
 
-$(".otp-verify").click(function(e){
-    e.preventDefault();
-    var name = $("input[name=hidden_name]").val();
-    var mobile_no = $("input[name=hidden_no]").val();
-    var otp1 = $("#codeBox1").val();
-    var otp2 = $("#codeBox2").val();
-    var otp3 = $("#codeBox3").val();
-    var otp4 = $("#codeBox4").val();
-    alert(otp1);
-    // if((otp1='') && (otp2='') && (otp3='') && (otp4=''))
-    // {
-    //   $("#otpErr").removeClass("hidden");
-    // }
-    // else{
-    //   $.ajax({
-    //   type:'POST',
-    //   url:"{{ route('otp.save') }}",
-    //   data:{name:name, mobile_no:mobile_no, otp1:otp1, otp2:otp2, otp3:otp3, otp4:otp4},
-    //   success:function(data){
-    //     if(data.error)
-    //     {
-    //       toastr.error('Error','Please Check OTP');
-    //     }
-    //     else{
-    //       toastr.success('Success','OTP is verified');
-    //     }
-          
 
-    //   }
-
-    //   });
-    // }
-});
 </script>
 </body>
 

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\MobileController;
+use App\Http\Controllers\AdController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,5 @@ Route::get('auth/facebook', [FacebookController::class, 'redirectToFacebook']);
 Route::get('auth/facebook/callback', [FacebookController::class, 'handleFacebookCallback']);
 Route::post('/submitMobileNo', [MobileController::class, 'save'])->name('mobileNo.submit');
 Route::post('/otpSubmit', [MobileController::class, 'otpSave'])->name('otp.save');
+Route::get('/post-ad', [AdController::class, 'index'])->name('post-ad');
+Route::get('/post-ad-form/{id}', [AdController::class, 'postAdForm'])->name('post-ad-form');

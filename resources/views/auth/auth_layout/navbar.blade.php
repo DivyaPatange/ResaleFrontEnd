@@ -23,7 +23,7 @@
               <button type="submit"><i class="fa fa-search"></i></button>
             </form>
           </li>
-          <li><button type="button" class="btn btn-warning ml-3">Post Free Add</button></li>
+          <!-- <li><button type="button" class="btn btn-warning ml-3">Post Free Add</button></li> -->
           @guest
             @if (Route::has('login'))
               <li><a href="{{ url('/login') }}" class="m-0 p-0"><button type="button" class="btn btn-danger ml-3">Login</button></a>
@@ -32,10 +32,15 @@
           @else 
           <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }}
+                <i class="fa fa-user-circle-o" style="font-size:22px;">&nbsp;</i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <a class="dropdown-item text-dark">{{ Auth::user()->name }}</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item text-dark" href="{{ route('post-ad') }}" >
+                {{ __('Post an Ad') }}
+              </a>
+              <a class="dropdown-item text-dark" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}
               </a>
               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -46,6 +51,6 @@
           @endguest
         </ul>
       </nav><!-- .nav-menu -->
-
+      <div class="clearfix"></div>
     </div>
   </header>
