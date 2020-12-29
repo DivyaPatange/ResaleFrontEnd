@@ -2191,8 +2191,7 @@ section {
 --------------------------------------------------------------*/
 #footer {
   
-    background:#093999;
-    padding:4px;
+    
     color: #fff;
     font-size: 14px;
 
@@ -2247,10 +2246,10 @@ section {
 }
 
 #footer .footer-top {
-  background: #0d2735;
+  background: #234a82;
   border-top: 1px solid #17455e;
   border-bottom: 1px solid #123649;
-  padding: 60px 0 30px 0;
+  padding: 10px 0 10px 0;
 }
 
 #footer .footer-top .footer-info {
