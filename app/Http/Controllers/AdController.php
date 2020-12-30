@@ -69,4 +69,10 @@ class AdController extends Controller
         $carPost->location = $request->location;
         $carPost->save();
     }
+
+    public function submitCarAd(Request $request)
+    {
+        $file = $request->files;
+        dd($file);
+    }
 }

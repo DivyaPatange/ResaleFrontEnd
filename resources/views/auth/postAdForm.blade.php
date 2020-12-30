@@ -1,7 +1,34 @@
 @extends('auth.auth_layout.main')
-@section('title', 'Index')
+@section('title', 'Post Ad')
 @section('customcss')
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<style>
+input[type="file"] {
+  display: block;
+}
+.imageThumb {
+  max-height: 75px;
+  border: 2px solid;
+  padding: 1px;
+  cursor: pointer;
+}
+.pip {
+  display: inline-block;
+  margin: 10px 10px 0 0;
+}
+.img-delete {
+  display: block;
+  background: #444;
+  border: 1px solid black;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+.img-delete:hover {
+  background: white;
+  color: black;
+}
+</style>
 @endsection
 @section('content')
 
@@ -100,6 +127,12 @@
                         <input type="textarea" class="form-control" id="description"  name="description">
                     </div>
                     <div class="form-group">
+                        <label>Photos <span class="text-danger">*</span></label>
+                        <input type="file" id="multiple_files" name="files[]" multiple />
+                    </span>
+                    </div>
+                    <div class=></div>
+                    <div class="form-group">
                         <label>Price <span class="text-danger">*</span></label>
                         <input type="textarea" class="form-control" id="price"  name="price">
                     </div>
@@ -135,5 +168,34 @@
 </div>
 @endsection
 @section('customjs')
-
+<script>
+$(document).ready(function() {
+  if (window.File && window.FileList && window.FileReader) {
+    $("#multiple_files").on("change", function(e) {
+        
+      var multiple_files = e.target.files,
+        filesLength = multiple_files.length;
+      for (var i = 0; i < filesLength; i++) {
+        var val = $(this).val();
+        var f = multiple_files[i]
+        var fileReader = new FileReader();
+        fileReader.onload = (function(e) {
+          var file = e.target;
+          $("<span class=\"pip\">" +
+            "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+            "<br/><span class=\"img-delete\">Remove</span>" +
+            "<br/><span class=\"text-dark\">"+val+"</span>" +
+            "</span>").insertAfter("#multiple_files");
+          $(".img-delete").click(function(){
+            $(this).parent(".pip").remove();
+          });
+        });
+        fileReader.readAsDataURL(f);
+      }
+    });
+  } else {
+    alert("|Sorry, | Your browser doesn't support to File API")
+  }
+});
+</script>
 @endsection
