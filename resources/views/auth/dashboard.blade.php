@@ -11,10 +11,14 @@
             <div class="col-lg-4">
                 <div class="icon-box">
                     <div class="container p-0">
+                        <?php
+                            $categories = DB::table('categories')->where('status', 1)->get();
+                        ?>
                         <ul class="list-group text-left">
-                            <li class="list-group-item p-2">First item</li>
-                            <li class="list-group-item p-2">Second item</li>
-                            <li class="list-group-item p-2">Third item</li>
+                            @foreach($categories as $c)
+                            <li class="list-group-item p-2"><img src="{{  URL::asset('categoryIcon/' . $c->category_icon) }}" alt="" width="25px">&nbsp;&nbsp;&nbsp;<a href="#">{{ $c->category_name }}<i class="fa fa-angle-double-right float-right" aria-hidden="true"></i></a></li>
+                            <div class="clearfix"></div>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
