@@ -18,13 +18,13 @@ h4{
 <div class="container">
     <div class="row">
         <div class="col-md-2"></div>
-        <div class="col-md-8">
+        <div class="col-md-8 mb-5">
             <h4 class="text-center mt-3  mb-3">POST YOUR ADD</h4>
             <div class="card pb-4">
                 <div class="card-header"><b>SELECTED CATEGORY</b>
                 <p>Properties/For Sale: Houses & Apartments</p>
                 </div>
-                <div class="card-body p-5"><b>FILL DETAILS</b>
+                <div class="card-body p-4"><b>FILL DETAILS</b>
                 <form>
                     <div class="form-group mt-4">
                         <label>Type <span class="text-danger">*</span></label><br>
@@ -199,7 +199,7 @@ h4{
                             <option>5</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-danger">POST NOW</button>
+                    <button type="submit" class="btn btn-danger float-right">POST NOW</button>
                 </form>
                 </div> 
                 <!-- <div class="card-footer">Footer</div> -->
