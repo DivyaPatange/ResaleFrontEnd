@@ -1,17 +1,7 @@
 @extends('auth.auth_layout.main')
 @section('title', 'Index')
 @section('customcss')
-<style>
-.form-group label{
-    font-size: 13px;
-}
-.form-group input{
-    font-size: 13px;
-}
-h4{
-    font-family: 'IcoFont';
-}
-</style>
+
 @endsection
 @section('content')
 
