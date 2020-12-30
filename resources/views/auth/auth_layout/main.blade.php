@@ -127,6 +127,7 @@ p{
 
   @include('auth.auth_layout.scripts')
   @yield('customjs')
+  
 </body>
 
 </html>

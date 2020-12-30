@@ -23,6 +23,9 @@ Route::get('/', function () {
 Route::get('/product_detail', function () {
     return view('auth.product_detail');
 });
+Route::get('/postAdForm1', function () {
+    return view('auth.postAdForm1');
+});
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
