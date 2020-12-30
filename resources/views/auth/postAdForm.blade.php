@@ -1,86 +1,110 @@
 @extends('auth.auth_layout.main')
-@section('title', 'Post Ad')
+@section('title', 'Index')
 @section('customcss')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
-input[type="file"] {
-  display: block;
+.form-group label{
+    font-size: 13px;
 }
-.imageThumb {
-  max-height: 75px;
-  border: 2px solid;
-  padding: 1px;
+.form-group input{
+    font-size: 13px;
+}
+h4{
+    font-family: 'IcoFont';
+    color: #094296;
+} 
+body{
+    background-color:#0d569f26;
+}
+.form-row{
+    font-size:13px;
+}
+.form-check-label{
+    font-size:13px;
+}
+.form-control{
+    font-size:13px;
+}
+.element {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid grey;
+    padding: 20px;
+    margin:10px;
+}
+i.fa-camera {
+  margin: 10px;
   cursor: pointer;
+  font-size: 30px;
 }
-.pip {
-  display: inline-block;
-  margin: 10px 10px 0 0;
-}
-.img-delete {
-  display: block;
-  background: #444;
-  border: 1px solid black;
-  color: white;
-  text-align: center;
-  cursor: pointer;
-}
-.img-delete:hover {
-  background: white;
-  color: black;
+i:hover {
+  opacity: 0.6;
 }
 </style>
 @endsection
 @section('content')
 
-<div class="container">
+<div class="container-fluid pl-0">
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8 mb-5">
-            <h4 class="text-center mt-3  mb-3">POST YOUR ADD</h4>
-            <div class="card pb-4">
-                <div class="card-header"><b>SELECTED CATEGORY</b>
-                <p>ResaleAutos (Cars)/Cars</p>
-                </div>
-                <div class="card-body p-4"><b>FILL DETAILS</b>
+        <div class="col-md-7">
+        <div class="card m-md-5">
+            <div class="card-body">
+                <h4 class="card-title mb-3">The best way to sell your Car</h4>
+                <p class="card-text">List your vehicle for FREE</p>
+                <!-- <p>All Categories</p> -->
+                <form id="upload_form">
+    <div class="p_file">
+        <div class="icon">X</div>
+        <input type="file" name="userfile1" size="40"  class="required"  />
+    </div>
+</form>
                 <form>
-                    <div class="form-group mt-4">
-                        <label>Brand <span class="text-danger">*</span></label>
-                        <select class="form-control" id="brand" name="brand">
-                            <option>Select Brand</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                    <label>Your Brand <span class="text-danger">*<span></label>
+                    <select id="car" class="form-control" name="car">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
                     </div>
-                    <div class="form-group mt-4">
+                    <div class="form-group col-md-6">
+                    <label>Your Model <span class="text-danger">*<span></label>
+                    <input type="text" class="form-control" id="your_model" name="your_model">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
                         <label>Year <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="year" placeholder="Year" name="year">
                     </div>
-                    <div class="form-group mt-4">
-                        <label>Fule <span class="text-danger">*</span></label><br>
+                    <div class="form-group col-md-6">
+                        <label>KMS Driven</label>
+                        <input type="text" class="form-control" id="driven" name="driven">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                        <label>Fuel Type<span class="text-danger">*</span></label><br>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                            <label class="form-check-label" for="inlineRadio1">CNG & Hybrids</label>
+                            <input class="form-check-input" type="radio" name="petrol" id="petrol" value="option1">
+                            <label class="form-check-label" for="inlineRadio1">Petrol</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                            <label class="form-check-label" for="inlineRadio2">Diesel</label>
+                            <input class="form-check-input" type="radio" name="cng" id="cng" value="option2">
+                            <label class="form-check-label" for="inlineRadio2">CNG</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                            <input class="form-check-input" type="radio" name="diesel" id="diesel" value="option3">
+                            <label class="form-check-label" for="inlineRadio3">Diesel</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="electric" id="electric" value="option3">
                             <label class="form-check-label" for="inlineRadio3">Electric</label>
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                            <label class="form-check-label" for="inlineRadio3">LPG</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                            <label class="form-check-label" for="inlineRadio3">Petrol</label>
-                        </div>
                     </div>
-                    <div class="form-group mt-4">
+                    <div class="form-group">
                         <label>Transmission <span class="text-danger">*</span></label><br>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
@@ -91,11 +115,7 @@ input[type="file"] {
                             <label class="form-check-label" for="inlineRadio2">Manual</label>
                         </div>
                     </div>
-                    <div class="form-group mt-4">
-                        <label>KM/driven <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control" id="km_driven" name="km_driven">
-                    </div>
-                    <div class="form-group mt-4">
+                    <div class="form-group">
                         <label>No. of Owners <span class="text-danger">*</span></label><br>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="Options1" id="inlineRadio1" value="option1">
@@ -118,90 +138,101 @@ input[type="file"] {
                             <label class="form-check-label" for="inlineRadio3">4+</label>
                         </div>
                     </div>
-                    <div class="form-group mt-4">
+                    <div class="form-group">
                         <label>Ad title <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="ad_title" placeholder="(e.g. brand, model, age, type)" name="ad_title">
                     </div>
-                    <div class="form-group mt-4">
+                    <div class="form-group">
                         <label>Description <span class="text-danger">*</span></label>
                         <input type="textarea" class="form-control" id="description"  name="description">
                     </div>
-<<<<<<< HEAD
-                    <div class="form-group">
-                        <label>Photos <span class="text-danger">*</span></label>
-                        <input type="file" id="multiple_files" name="files[]" multiple />
-                    </span>
+                    <div class="form-froup">
+                    <label>Photos <span class="text-danger">*</span></label>
                     </div>
-                    <div class=></div>
-                    <div class="form-group">
-=======
-                    <div class="form-group mt-4">
->>>>>>> f7d7753345f707776c9ad19ffc328a02e929e971
-                        <label>Price <span class="text-danger">*</span></label>
-                        <input type="textarea" class="form-control" id="price"  name="price">
-                    </div>
-                    <div class="form-group mt-4">
-                        <label>State<span class="text-danger">*</span></label>
-                        <select class="form-control" id="state" name="state">
-                            <option>Select State</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                    <div class="input-group hdtuto control-group lst increment" >
+
+      <input type="file" name="filenames[]" class="myfrm form-control">
+
+      <div class="input-group-btn"> 
+
+        <button class="btn btn-success" type="button"><i class="fldemo glyphicon glyphicon-plus"></i>Add</button>
+
+      </div>
+
+    </div>
+
+    <div class="clone hide">
+
+      <div class="hdtuto control-group lst input-group" style="margin-top:10px">
+
+        <input type="file" name="filenames[]" class="myfrm form-control">
+
+        <div class="input-group-btn"> 
+
+          <button class="btn btn-danger" type="button"><i class="fldemo glyphicon glyphicon-remove"></i> Remove</button>
+
+        </div>
+
+      </div>
+
+    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                        <label for="inputCity">City</label>
+                        <input type="text" class="form-control" id="city" name="city">
+                        </div>
+                        <div class="form-group col-md-4">
+                        <label>State</label>
+                        <select id="state" class="form-control" name="state">
+                            <option selected>Choose...</option>
+                            <option>...</option>
                         </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                        <label>Zip</label>
+                        <input type="text" class="form-control" id="inputZip">
+                        </div>
                     </div>
-                    <div class="form-group mt-4">
-                        <label>City <span class="text-danger">*</span></label>
-                        <select class="form-control" id="city" name="city">
-                            <option>Select City</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
+                    <hr>
+                    <div class="form-group">
+                        <h6>Expected Selling</h6>
+                        <p>Price</p>
+                        <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-rupee"></i></div>
+                        </div>
+                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Price">
                     </div>
-                    
-                    <button type="submit" class="btn btn-danger float-right">POST NOW</button>
-                   
-                </form>
-                </div> 
-                <!-- <div class="card-footer">Footer</div> -->
+                    </div>
+                     
+                <button type="submit" class="btn btn-primary">Post Your Add</button>
+            </form>
+            </div>
             </div>
         </div>
-        <div class="col-md-2"></div>
-        </div>
+        <div class="col-md-5"></div>
     </div>
 </div>
 @endsection
 @section('customjs')
 <script>
-$(document).ready(function() {
-  if (window.File && window.FileList && window.FileReader) {
-    $("#multiple_files").on("change", function(e) {
-        
-      var multiple_files = e.target.files,
-        filesLength = multiple_files.length;
-      for (var i = 0; i < filesLength; i++) {
-        var val = $(this).val();
-        var f = multiple_files[i]
-        var fileReader = new FileReader();
-        fileReader.onload = (function(e) {
-          var file = e.target;
-          $("<span class=\"pip\">" +
-            "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
-            "<br/><span class=\"img-delete\">Remove</span>" +
-            "<br/><span class=\"text-dark\">"+val+"</span>" +
-            "</span>").insertAfter("#multiple_files");
-          $(".img-delete").click(function(){
-            $(this).parent(".pip").remove();
-          });
-        });
-        fileReader.readAsDataURL(f);
-      }
-    });
-  } else {
-    alert("|Sorry, | Your browser doesn't support to File API")
-  }
-});
-</script>
+ $('body')
+    .delegate('#upload_form input[type="file"]', 'change', inputChanged)
+    .delegate('#upload_form .icon', 'click', removeField);
+
+function inputChanged() {
+
+    $current_count = $('#upload_form input[type="file"]').length;
+    $next_count = $current_count + 1;
+    $(this).closest('.p_file').after(
+            '<div class="p_file" ><div class="icon">X</div>' +
+            '<input type="file" name="userfile'
+            + $next_count + '" size="40" /></div>');
+}
+
+function removeField(){
+    $(this).closest('.p_file').remove();
+    return false;
+}
+    </script>
 @endsection
