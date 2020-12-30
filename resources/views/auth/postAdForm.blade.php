@@ -34,13 +34,53 @@ body{
     padding: 20px;
     margin:10px;
 }
-i.fa-camera {
-  margin: 10px;
-  cursor: pointer;
-  font-size: 30px;
+#upload_form{
+    /* display:inline-flex; */
 }
-i:hover {
-  opacity: 0.6;
+.filelabel {
+    width: 120px;
+    border: 2px dashed grey;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 5px;
+    transition: border 300ms ease;
+    cursor: pointer;
+    text-align: center;
+    margin: 6px;
+    position:relative;
+}
+.icon{
+    position: absolute;
+    /* left: 0%; */
+    right: 0%;
+    top: -13%;
+    border-radius: 50%;
+    background: black;
+    width: 21px;
+    color: white;
+}
+.filelabel i {
+    display: block;
+    font-size: 30px;
+    padding-bottom: 5px;
+}
+.filelabel i,
+.filelabel .title {
+  color: grey;
+  transition: 200ms color;
+}
+.filelabel:hover {
+  border: 2px solid #1665c4;
+}
+.filelabel:hover i,
+.filelabel:hover .title {
+  color: #1665c4;
+}
+#FileInput{
+    display:none;
+}
+.hidden{
+    display:none;
 }
 </style>
 @endsection
@@ -54,13 +94,8 @@ i:hover {
                 <h4 class="card-title mb-3">The best way to sell your Car</h4>
                 <p class="card-text">List your vehicle for FREE</p>
                 <!-- <p>All Categories</p> -->
-                <form id="upload_form">
-    <div class="p_file">
-        <div class="icon">X</div>
-        <input type="file" name="userfile1" size="40"  class="required"  />
-    </div>
-</form>
-                <form>
+                <form method="POST" action="{{ route('cars.submit') }}" enctype="multipart/form-data">
+                @csrf
                 <div class="form-row">
                     <div class="form-group col-md-6">
                     <label>Your Brand <span class="text-danger">*<span></label>
@@ -149,33 +184,23 @@ i:hover {
                     <div class="form-froup">
                     <label>Photos <span class="text-danger">*</span></label>
                     </div>
-                    <div class="input-group hdtuto control-group lst increment" >
+                    <div id="upload_form">
+                    <label class="filelabel p_file">
+                        <div class="icon">X</div>
+                        <i class="fa fa-paperclip">
+                        </i>
+                        <img  id="frame1" width="100px" height="100px" class="hidden">
+                        <span class="title1">
+                            Add File
+                        </span>
+                        <input class="FileUpload1" id="FileInput" name="userfile[]" type="file"/>
+                    </label>
 
-      <input type="file" name="filenames[]" class="myfrm form-control">
-
-      <div class="input-group-btn"> 
-
-        <button class="btn btn-success" type="button"><i class="fldemo glyphicon glyphicon-plus"></i>Add</button>
-
-      </div>
-
-    </div>
-
-    <div class="clone hide">
-
-      <div class="hdtuto control-group lst input-group" style="margin-top:10px">
-
-        <input type="file" name="filenames[]" class="myfrm form-control">
-
-        <div class="input-group-btn"> 
-
-          <button class="btn btn-danger" type="button"><i class="fldemo glyphicon glyphicon-remove"></i> Remove</button>
-
-        </div>
-
-      </div>
-
-    </div>
+                    <!-- <div class="p_file">
+        <div class="icon">X</div>
+        <input type="file" name="userfile1" size="3"  class="required"  />
+    </div> -->
+                    </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                         <label for="inputCity">City</label>
@@ -216,23 +241,105 @@ i:hover {
 @endsection
 @section('customjs')
 <script>
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#blah').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]); // convert to base64 string
+  }
+}
  $('body')
     .delegate('#upload_form input[type="file"]', 'change', inputChanged)
     .delegate('#upload_form .icon', 'click', removeField);
 
-function inputChanged() {
-
+function inputChanged(e) {
+    
     $current_count = $('#upload_form input[type="file"]').length;
     $next_count = $current_count + 1;
+    var labelVal = $(".title"+$current_count).text();
+    var oldfileName = $(this).val();
+    $(".filelabel .title").text(labelVal);
+    fileName = e.target.value.split( '\\' ).pop();
+    if (oldfileName == fileName) {return false;}
+    var extension = fileName.split('.').pop();
+    if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+                $(".filelabel i").remove();
+                $('#frame'+$current_count).removeClass("hidden");
+                $('#frame'+$current_count).attr('src', URL.createObjectURL(e.target.files[0]));
+                $(".filelabel i, .filelabel .title").css({'color':'#208440'});
+                $(".filelabel").css({'border':' 2px solid #208440'});
+            }
+            if(fileName ){
+                if (fileName.length > 10){
+                    $(".filelabel .title"+$current_count).text(fileName.slice(0,4)+'...'+extension);
+                }
+                else{
+                    $(".filelabel .title"+$current_count).text(fileName);
+                }
+            }
+            else{
+                $(".filelabel .title").text(labelVal);
+            }
     $(this).closest('.p_file').after(
-            '<div class="p_file" ><div class="icon">X</div>' +
-            '<input type="file" name="userfile'
-            + $next_count + '" size="40" /></div>');
+            '<label class="filelabel p_file"><div class="icon">X</div>' +
+            '<i class="fa fa-paperclip"></i>' +
+            '<img  id="frame'+$next_count+'" width="100px" height="100px" class="hidden">'+
+            '<span class="title'+$next_count+'">Add File</span>' +
+            '<input class="FileUpload1" id="FileInput" name="userfile[]" type="file"/></label>');
+           
 }
 
 function removeField(){
     $(this).closest('.p_file').remove();
     return false;
 }
+
+// $(".FileUpload1").closest("label").on('change',function (e) {
+//     var labelVal = $(".title").text();
+//     var oldfileName = $(this).val();
+    
+//     fileName = e.target.value.split( '\\' ).pop();
+//     if (oldfileName == fileName) {return false;}
+//     var extension = fileName.split('.').pop();
+//     console.log(extension);
+
+//             if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+//                 $(".filelabel i").removeClass().addClass('fa fa-file-image-o');
+//                 $(".filelabel i, .filelabel .title").css({'color':'#208440'});
+//                 $(".filelabel").css({'border':' 2px solid #208440'});
+//             }
+//             else if(extension == 'pdf'){
+//                 $(".filelabel i").removeClass().addClass('fa fa-file-pdf-o');
+//                 $(".filelabel i, .filelabel .title").css({'color':'red'});
+//                 $(".filelabel").css({'border':' 2px solid red'});
+
+//             }
+//   else if(extension == 'doc' || extension == 'docx'){
+//             $(".filelabel i").removeClass().addClass('fa fa-file-word-o');
+//             $(".filelabel i, .filelabel .title").css({'color':'#2388df'});
+//             $(".filelabel").css({'border':' 2px solid #2388df'});
+//         }
+//             else{
+//                 $(".filelabel i").removeClass().addClass('fa fa-file-o');
+//                 $(".filelabel i, .filelabel .title").css({'color':'black'});
+//                 $(".filelabel").css({'border':' 2px solid black'});
+//             }
+
+//             if(fileName ){
+//                 if (fileName.length > 10){
+//                     $(".filelabel .title").text(fileName.slice(0,4)+'...'+extension);
+//                 }
+//                 else{
+//                     $(".filelabel .title").text(fileName);
+//                 }
+//             }
+//             else{
+//                 $(".filelabel .title").text(labelVal);
+//             }
+//         });
     </script>
 @endsection

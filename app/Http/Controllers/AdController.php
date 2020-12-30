@@ -72,7 +72,7 @@ class AdController extends Controller
 
     public function submitCarAd(Request $request)
     {
-        $file = $request->files;
+        $file = $request->userfile;
         dd($file);
     }
 }
