@@ -19,6 +19,9 @@ class AdController extends Controller
     public function storeCarPost(Request $request)
     {
         $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'mobile_no' => 'required',
             'brand_name' => 'required',
             'model_name' => 'required',
             'year_of_registration' => 'required',
@@ -44,7 +47,7 @@ class AdController extends Controller
         $carPost->ad_title = $request->ad_title;
         $carPost->description = $request->description;
         $carPost->price = $request->price;
-        $files = [];
+        // $files = $request->userfile;
 
         if($request->hasfile('photos'))
 
@@ -63,10 +66,11 @@ class AdController extends Controller
             }
 
          }
-        $carPost->photos = $files;
+        $carPost->photos = implode(",", $files);
         $carPost->state_id = $request->state_name;
         $carPost->city_id = $request->city_name;
         $carPost->location = $request->location;
+        $carPost->user_id = Auth::user()->id;
         $carPost->save();
     }
 

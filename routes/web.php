@@ -19,7 +19,7 @@ use App\Http\Controllers\AdController;
 
 Route::get('/', function () {
     return view('auth.dashboard');
-});
+})->name('dashboard');
 Route::get('/product_detail', function () {
     return view('auth.product_detail');
 });

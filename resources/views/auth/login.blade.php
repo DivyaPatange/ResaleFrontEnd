@@ -76,6 +76,9 @@
     border-bottom: 2px solid #007bff;
    
 }
+.modal-backdrop.show{
+  opacity:0;
+}
 /*.mybutton{*/
     
 /*    color: black;*/

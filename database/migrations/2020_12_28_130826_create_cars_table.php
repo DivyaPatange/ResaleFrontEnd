@@ -16,7 +16,7 @@ class CreateCarsTable extends Migration
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->nullable();
             $table->unsignedInteger('brand_id');
             $table->foreign('brand_id')->references('id')->on('brands');
             $table->unsignedInteger('model_id');
@@ -35,6 +35,9 @@ class CreateCarsTable extends Migration
             $table->unsignedInteger('city_id');
             $table->foreign('city_id')->references('id')->on('cities');
             $table->string('location');
+            $table->string('name');
+            $table->string('email');
+            $table->string('mobile_no');
             $table->timestamps();
         });
     }

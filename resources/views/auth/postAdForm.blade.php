@@ -187,13 +187,14 @@ body{
                     <div id="upload_form">
                     <label class="filelabel p_file">
                         <div class="icon">X</div>
-                        <i class="fa fa-paperclip">
+                        <i class="fa fa-paperclip" id="icon1">
                         </i>
-                        <img  id="frame1" width="100px" height="100px" class="hidden">
+                        
                         <span class="title1">
                             Add File
                         </span>
-                        <input class="FileUpload1" id="FileInput" name="userfile[]" type="file"/>
+                        <input class="FileUpload1" id="FileInput" name="photos[]" type="file"/>
+                        <img  id="frame1" width="100px" height="100px" class="hidden">
                     </label>
 
                     <!-- <div class="p_file">
@@ -259,23 +260,31 @@ function readURL(input) {
 function inputChanged(e) {
     
     $current_count = $('#upload_form input[type="file"]').length;
+    // console.log($current_count);
     $next_count = $current_count + 1;
     var labelVal = $(".title"+$current_count).text();
     var oldfileName = $(this).val();
+    
+    console.log(oldfileName);
     $(".filelabel .title").text(labelVal);
     fileName = e.target.value.split( '\\' ).pop();
     if (oldfileName == fileName) {return false;}
-    var extension = fileName.split('.').pop();
-    if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
-                $(".filelabel i").remove();
-                $('#frame'+$current_count).removeClass("hidden");
-                $('#frame'+$current_count).attr('src', URL.createObjectURL(e.target.files[0]));
+            var className = $(this).attr("class");
+            console.log(className);
+            var lastChar = className.slice(-1);
+            var inc  = 1 + +lastChar;
+            console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
+            var extension = fileName.split('.').pop();
+            if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+                $(".filelabel #icon"+lastChar).remove();
+                $('#frame'+lastChar).removeClass("hidden");
+                $('#frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
                 $(".filelabel i, .filelabel .title").css({'color':'#208440'});
                 $(".filelabel").css({'border':' 2px solid #208440'});
             }
             if(fileName ){
                 if (fileName.length > 10){
-                    $(".filelabel .title"+$current_count).text(fileName.slice(0,4)+'...'+extension);
+                    $(".filelabel .title"+lastChar).text(fileName.slice(0,4)+'...'+extension);
                 }
                 else{
                     $(".filelabel .title"+$current_count).text(fileName);
@@ -284,12 +293,18 @@ function inputChanged(e) {
             else{
                 $(".filelabel .title").text(labelVal);
             }
-    $(this).closest('.p_file').after(
+            
+            if($(".FileUpload"+inc).length > 0) {
+                console.log('exist');
+            }else{
+            $(this).closest('.p_file').after(
             '<label class="filelabel p_file"><div class="icon">X</div>' +
-            '<i class="fa fa-paperclip"></i>' +
-            '<img  id="frame'+$next_count+'" width="100px" height="100px" class="hidden">'+
+            '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
             '<span class="title'+$next_count+'">Add File</span>' +
-            '<input class="FileUpload1" id="FileInput" name="userfile[]" type="file"/></label>');
+            '<input class="FileUpload'+$next_count+'" id="FileInput" name="photos[]" type="file"/>'+
+            '<img  id="frame'+$next_count+'" width="100px" height="100px" class="hidden">'+
+            '</label>');
+            }
            
 }
 
