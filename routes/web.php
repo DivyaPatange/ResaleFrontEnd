@@ -38,4 +38,6 @@ Route::post('/submitMobileNo', [MobileController::class, 'save'])->name('mobileN
 Route::post('/otpSubmit', [MobileController::class, 'otpSave'])->name('otp.save');
 Route::get('/post-ad', [AdController::class, 'index'])->name('post-ad');
 Route::get('/post-ad-form/{id}', [AdController::class, 'postAdForm'])->name('post-ad-form');
-Route::post('/submitCarAd', [AdController::class, 'submitCarAd'])->name('cars.submit');
+Route::get('/get-model-list', [AdController::class, 'getModelList']);
+Route::get('/get-city-list', [AdController::class, 'getCityList']);
+Route::post('/save-car-post', [AdController::class, 'saveCarPost']);

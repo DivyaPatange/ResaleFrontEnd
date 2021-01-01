@@ -11,5 +11,5 @@ class Car extends Model
 
     protected $table = "cars";
 
-    protected $fillable = ['brand_id', 'model_id', 'varient', 'year_of_registration', 'fuel', 'transmission', 'km_driven', 'no_of_owners', 'ad_title', 'description', 'photos', 'state_id', 'city_id', 'location', 'user_id'];
+    protected $fillable = ['user_id','brand_id', 'model_id', 'price', 'year_of_registration', 'fuel_type', 'transmission', 'kms_driven', 'no_of_owners', 'ad_title', 'description', 'photos', 'state_id', 'city_id', 'pin_code', 'address', 'name', 'email', 'mobile_no'];
 }
