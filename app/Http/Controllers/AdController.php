@@ -35,6 +35,36 @@ class AdController extends Controller
                 $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
             }
+            if($subCategory->sub_category == "Sedan")
+            {
+                $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
+                return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
+            }
+            if($subCategory->sub_category == "Hatchbag")
+            {
+                $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
+                return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
+            }
+            if($subCategory->sub_category == "SUV")
+            {
+                $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
+                return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
+            }
+            if($subCategory->sub_category == "Mini Suv")
+            {
+                $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
+                return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
+            }
+            if($subCategory->sub_category == "Traveller")
+            {
+                $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
+                return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
+            }
+            if($subCategory->sub_category == "Scooters")
+            {
+                $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
+                return view('auth.bike', compact('subCategory', 'brand', 'state'));
+            }
         }
         else{
             return Redirect::back();

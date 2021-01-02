@@ -125,7 +125,7 @@
                   <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Year of Registration<span class="text-danger">*</span></label>
-                        <input type="month" class="form-control @error('year_of_registration') is-invalid @enderror" id="year_of_registration" placeholder="Year" name="year_of_registration">
+                        <input type="month" class="form-control @error('year_of_registration') is-invalid @enderror" id="year_of_registration" placeholder="Year" name="year_of_registration" value="{{ old('year_of_registration') }}">
                         @error('year_of_registration')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -134,7 +134,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label>KMS Driven</label>
-                        <input type="text" class="form-control @error('kms_driven') is-invalid @enderror" id="kms_driven" name="kms_driven">
+                        <input type="text" class="form-control @error('kms_driven') is-invalid @enderror" id="kms_driven" name="kms_driven" value="{{ old('kms_driven') }}">
                         @error('kms_driven')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -214,7 +214,7 @@
                     </div>
                     <div class="form-group">
                       <label>Ad title <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control @error('ad_title') is-invalid @enderror" id="ad_title" placeholder="(e.g. brand, model, age, type)" name="ad_title">
+                      <input type="text" class="form-control @error('ad_title') is-invalid @enderror" id="ad_title" placeholder="(e.g. brand, model, age, type)" name="ad_title" value="{{ old('ad_title') }}">
                       @error('ad_title')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -223,7 +223,7 @@
                     </div>
                     <div class="form-group">
                       <label>Description <span class="text-danger">*</span></label>
-                      <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description"></textarea>
+                      <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }</textarea>
                       @error('description')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -304,7 +304,7 @@
                         <div class="input-group-prepend">
                           <div class="input-group-text"><i class="fa fa-rupee"></i></div>
                           </div>
-                          <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Price" name="price">
+                          <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Price" name="price" value="{{ old('price') }}">
                          </div>
                          @error('price')
                             <span class="invalid-feedback" role="alert">
