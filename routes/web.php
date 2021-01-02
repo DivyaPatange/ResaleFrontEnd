@@ -41,3 +41,4 @@ Route::get('/post-ad-form/{id}', [AdController::class, 'postAdForm'])->name('pos
 Route::get('/get-model-list', [AdController::class, 'getModelList']);
 Route::get('/get-city-list', [AdController::class, 'getCityList']);
 Route::post('/save-car-post', [AdController::class, 'saveCarPost']);
+Route::get('/single-post-detail/{id}', [AdController::class, 'getSinglePostDetail'])->name('single.post.ad');

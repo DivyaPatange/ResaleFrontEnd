@@ -121,12 +121,12 @@ class AdController extends Controller
         $carPost->mobile_no = $request->mobile_no;
         $carPost->sub_category_id = $request->sub_category_id;
         $carPost->save();
-        return redirect('/');
+        return redirect()->route('single.post.ad', $carPost->id);
     }
 
-    public function submitCarAd(Request $request)
+    public function getSinglePostDetail($id)
     {
-        $file = $request->userfile;
-        dd($file);
+        $singlePost = Car::findorfail($id);
+        return view('auth.product_detail', compact('singlePost'));
     }
 }
