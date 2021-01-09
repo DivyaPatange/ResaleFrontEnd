@@ -65,7 +65,7 @@ a:hover {
 }
 
 .link-a {
-  color: #ffffff;
+  color: #595959;
   text-decoration: none;
 }
 
@@ -311,22 +311,24 @@ a:hover {
 
 /*------/ Title /------*/
 .title-wrap {
-  padding-bottom:30px;
+  padding-bottom:10px;
+  font-family: 'Ionicons';
 }
 
 .title-a {
-  font-size: 2.6rem;
+  font-size: 25px;
   font-weight: 600;
 }
 
 .title-link {
   font-size: 1.2rem;
   font-weight: 300;
-  padding-top: 1.2rem;
+  
 }
 
 .title-link a {
-  color: #313131;
+  color:#114a88;
+  font-weight: 600;
 }
 
 .title-link span {
@@ -416,7 +418,7 @@ a:hover {
 }
 
 .owl-theme .owl-dots .owl-dot.active span {
-  background-color: #2eca6a;
+  background-color: #ffa500;
   width: 35px;
 }
 
@@ -597,9 +599,11 @@ a:hover {
 }
 
 .btn.btn-b-n {
-  background-color:orange;
-  color:black;
+  background-color: #2973ba;
+    color: white;
   border-radius: 5;
+  font-size: 11px;
+    width: 130px;
 }
 
 .btn.btn-b-n:hover {
@@ -612,14 +616,23 @@ a:hover {
 --------------------------------------------------------------*/
 .navbar-default {
   transition: all .5s ease-in-out;
-  background-color: #114a88;
-  padding-top:10px;
-  padding-bottom:10px;
+  background-color: #f3f3f3;
+  padding-top:0px;
+  padding-bottom:0px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   box-shadow: 1px 2px 15px rgba(100, 100, 100, 0.3);
+  }
+.input-group-text {
+    
+    padding: 0px 10px 0px 10px;
+    font-size: 11px;
+    color: white;
+    background-color: #2973ba;
 }
-
+.form-control{
+    height:35px;
+}
 .navbar-default .nav-search {
   color: #000000;
   font-size: 1.5rem;
@@ -708,8 +721,8 @@ a:hover {
 
 .navbar-default.navbar-reduce {
   transition: all .5s ease-in-out;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .navbar-default.navbar-reduce .nav-link {
@@ -1336,10 +1349,10 @@ a:hover {
 }
 
 .price-a {
-  color: #ffffff;
-  padding: .6rem .8rem;
-  border: 2px solid #2eca6a;
-  border-radius: 50px;
+  color: #595959;
+  padding: 5px;
+  border: 2px solid #114a88;
+  border-radius: 5px;
   text-transform: uppercase;
   letter-spacing: 0.030em;
 }
@@ -2138,6 +2151,8 @@ a:hover {
   padding-top: 10px;
   margin-top: 60px;
   background: #f3f3f3;
+  font-family: 'Ionicons';
+  font-size: 14px;
 }
 
 .section-footer ul {

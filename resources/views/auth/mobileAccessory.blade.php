@@ -92,134 +92,33 @@
           <div class="col-sm-12">
             <div class="row">
               <div class="col-md-6">
-                <form method="POST" action="{{ url('save-car-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
+                <form method="POST" action="{{ url('save-mobileAccessory-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
                 @csrf 
                 <input type="hidden" name="sub_category_id"  value="{{ $subCategory->id }}">
                   <div class="form-row">
-                    <div class="form-group col-md-6">
-                    <label>Brand Name<span class="text-danger">*<span></label>
-                    <select id="brand_name" class="form-control @error('brand_name') is-invalid @enderror" name="brand_name">
+                    <div class="form-group col-md-12">
+                    <label>Accessory Type<span class="text-danger">*<span></label>
+                    <select id="accessory_type" class="form-control @error('accessory_type') is-invalid @enderror" name="accessory_type">
                         <option value="">Choose...</option>
-                        @foreach($brand as $b)
-                        <option value="{{ $b->id }}" @if (old('brand_name') == $b->id) selected="selected" @endif>{{ $b->brand_name }}</option>
+                        @foreach($type as $t)
+                        <option value="{{ $t->id }}" @if (old('accessory_type') == $t->id) selected="selected" @endif>{{ $t->type_name }}</option>
                         @endforeach
                     </select>
-                    @error('brand_name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                    </div>
-                    <div class="form-group col-md-6">
-                    <label>Model Name<span class="text-danger">*<span></label>
-                    <select id="model_name" class="form-control @error('model_name') is-invalid @enderror" name="model_name">
-
-                    </select>
-                    @error('model_name')
+                    @error('accessory_type')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                     </div>
                   </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label>Year of Registration<span class="text-danger">*</span></label>
-                        <input type="month" class="form-control @error('year_of_registration') is-invalid @enderror" id="year_of_registration" placeholder="Year" name="year_of_registration" value="{{ old('year_of_registration') }}">
-                        @error('year_of_registration')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>KMS Driven</label>
-                        <input type="text" class="form-control @error('kms_driven') is-invalid @enderror" id="kms_driven" name="kms_driven" value="{{ old('kms_driven') }}">
-                        @error('kms_driven')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label>Fuel Type<span class="text-danger">*</span></label><br>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="fuel_type" id="Petrol" value="Petrol" @if(old('fuel_type') == "Petrol") checked @endif>
-                        <label class="form-check-label" for="Petrol">Petrol</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="fuel_type" id="CNG" value="CNG" @if(old('fuel_type') == "CNG") checked @endif>
-                        <label class="form-check-label" for="CNG">CNG</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="fuel_type" id="Diesel" value="Diesel" @if(old('fuel_type') == "Diesel") checked @endif>
-                        <label class="form-check-label" for="Diesel">Diesel</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="fuel_type" id="Electric" value="Electric" @if(old('fuel_type') == "Electric") checked @endif>
-                        <label class="form-check-label" for="Electric">Electric</label>
-                    </div>
-                    <br>
-                    @error('fuel_type')
-                        <span class="text-danger" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                    </div>
                     <div class="form-group">
-                      <label>Transmission <span class="text-danger">*</span></label><br>
-                      <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="transmission" id="Automatic" value="Automatic" @if(old('transmission') == "Automatic") checked @endif>
-                          <label class="form-check-label" for="Automatic">Automatic</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="transmission" id="Manual" value="Manual" @if(old('transmission') == "Manual") checked @endif>
-                          <label class="form-check-label" for="Manual">Manual</label>
-                      </div>
-                      <br>
-                      @error('transmission')
-                        <span class="text-danger" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                      @enderror
-                    </div>
-                    <div class="form-group">
-                      <label>No. of Owners <span class="text-danger">*</span></label><br>
-                      <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="no_of_owners" id="inlineRadio1" value="1st" @if(old('no_of_owners') == "1st") checked @endif>
-                          <label class="form-check-label" for="inlineRadio1">1st</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="no_of_owners" id="inlineRadio2" value="2nd" @if(old('no_of_owners') == "2nd") checked @endif>
-                          <label class="form-check-label" for="inlineRadio2">2nd</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="no_of_owners" id="inlineRadio3" value="3rd" @if(old('no_of_owners') == "3rd") checked @endif>
-                          <label class="form-check-label" for="inlineRadio3">3rd</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="no_of_owners" id="inlineRadio4" value="4th" @if(old('no_of_owners') == "4th") checked @endif>
-                          <label class="form-check-label" for="inlineRadio4">4th</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="no_of_owners" id="inlineRadio5" value="4+" @if(old('no_of_owners') == "4+") checked @endif>
-                          <label class="form-check-label" for="inlineRadio5">4+</label>
-                      </div>
-                      @error('no_of_owners')
-                        <span class="text-danger" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                      @enderror
-                    </div>
-                    <div class="form-group">
-                      <label>Ad title <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control @error('ad_title') is-invalid @enderror" id="ad_title" placeholder="(e.g. brand, model, age, type)" name="ad_title" value="{{ old('ad_title') }}">
-                      @error('ad_title')
+                        <label>Ad title <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control @error('ad_title') is-invalid @enderror" id="ad_title" placeholder="(e.g. brand, model, age, type)" name="ad_title" value="{{ old('ad_title') }}">
+                        @error('ad_title')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
-                    @enderror
+                        @enderror
                     </div>
                     <div class="form-group">
                       <label>Description <span class="text-danger">*</span></label>
@@ -517,7 +416,7 @@ function removeField(){
         $("#model_name").empty();
         $("#model_name").append('<option>Select Model Name</option>');
         $.each(res,function(key,value){
-          $("#model_name").append('<option value="'+key+'">'+value+'</option>');
+          $("#model_name").append('<option value="'+key+'" >'+value+'</option>');
         });
       
       }else{

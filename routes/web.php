@@ -42,3 +42,7 @@ Route::get('/get-model-list', [AdController::class, 'getModelList']);
 Route::get('/get-city-list', [AdController::class, 'getCityList']);
 Route::post('/save-car-post', [AdController::class, 'saveCarPost']);
 Route::get('/single-post-detail/{id}', [AdController::class, 'getSinglePostDetail'])->name('single.post.ad');
+Route::post('/save-bike-post', [AdController::class, 'saveBikePost']);
+Route::post('/save-mobilePhone-post', [AdController::class, 'saveMobilePhonePost']);
+Route::post('/save-mobileAccessory-post', [AdController::class, 'saveMobileAccessory']);
+Route::post('/save-tablets-post', [AdController::class, 'saveTabletsPost']);

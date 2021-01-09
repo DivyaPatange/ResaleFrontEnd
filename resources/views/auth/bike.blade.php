@@ -93,14 +93,15 @@
         <div class="col-sm-12">
         <div class="row">
             <div class="col-md-6">
-            <form method="POST"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
+            <form method="POST"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;" action="{{ url('save-bike-post') }}">
+            @csrf
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label>Brand Name<span class="text-danger">*<span></label>
                         <select id="brand_name" class="form-control @error('brand_name') is-invalid @enderror" name="brand_name">
                             <option value="">Choose...</option>
                             @foreach($brand as $b)
-                            <option value="{{ $b->id }}">{{ $b->brand_name }}</option>
+                            <option value="{{ $b->id }}" @if (old('brand_name') == $b->id) selected="selected" @endif>{{ $b->brand_name }}</option>
                             @endforeach
                         </select>
                         @error('brand_name')
@@ -113,7 +114,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Year of Registration <span class="text-danger">*</span></label>
-                        <input type="month" class="form-control @error('year_of_registration') is-invalid @enderror" id="year_of_registration" placeholder="Year of Registration" name="year_of_registration">
+                        <input type="month" class="form-control @error('year_of_registration') is-invalid @enderror" id="year_of_registration" placeholder="Year of Registration" name="year_of_registration" value="{{ old('year_of_registration') }}">
                         @error('year_of_registration')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -122,7 +123,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label>Kms driven<span class="text-danger">*</span></label>
-                        <input type="number" class="form-control @error('kms_driven') is-invalid @enderror" id="kms_driven" name="kms_driven">
+                        <input type="number" class="form-control @error('kms_driven') is-invalid @enderror" id="kms_driven" name="kms_driven" value="{{ old('kms_driven') }}">
                         @error('kms_driven')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -132,7 +133,7 @@
                 </div>
                 <div class="form-group">
                     <label>Ad title <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control @error('ad_title') is-invalid @enderror" id="ad_title" name="ad_title">
+                    <input type="text" class="form-control @error('ad_title') is-invalid @enderror" id="ad_title" name="ad_title" value="{{ old('ad_title') }}">
                     @error('ad_title')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -141,7 +142,7 @@
                 </div>
                 <div class="form-group">
                     <label>Description <span class="text-danger">*</span></label>
-                    <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description"></textarea>
+                    <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
                     @error('description')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -177,7 +178,7 @@
                             <select id="state" class="form-control @error('state') is-invalid @enderror" name="state">
                                 <option value="">Choose...</option>
                                 @foreach($state as $s)
-                                <option value="{{ $s->id }}">{{ $s->state_name }}</option>
+                                <option value="{{ $s->id }}" @if (old('state') == $s->id) selected="selected" @endif>{{ $s->state_name }}</option>
                                 @endforeach
                             </select>
                             @error('state')
@@ -199,7 +200,7 @@
                         </div>
                         <div class="form-group col-md-6">
                         <label>Pin Code</label><span class="text-danger">*</span></label>
-                        <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code">
+                        <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code" value="{{ old('pin_code') }}">
                         @error('pin_code')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -208,7 +209,7 @@
                         </div>
                         <div class="form-group col-md-6">
                         <label>Address</label><span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address">
+                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
                         @error('address')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -224,7 +225,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text"><i class="fa fa-rupee"></i></div>
                         </div>
-                        <input type="number" class="form-control @error('price') is-invalid @enderror" id="inlineFormInputGroup" name="price" placeholder="Price">
+                        <input type="number" class="form-control @error('price') is-invalid @enderror" id="inlineFormInputGroup" name="price" placeholder="Price" value="{{ old('price') }}">
                     </div>
                     @error('price')
                         <span class="invalid-feedback" role="alert">
@@ -424,30 +425,30 @@ function removeField(){
 </script>
 
 <script type=text/javascript>
-  $('#brand_name').change(function(){
-  var brandID = $(this).val();  
-//   alert(brandID);
-  if(brandID){
-    $.ajax({
-      type:"GET",
-      url:"{{url('/get-model-list')}}?brand_id="+brandID,
-      success:function(res){        
-      if(res){
-        $("#model_name").empty();
-        $("#model_name").append('<option>Select Model Name</option>');
-        $.each(res,function(key,value){
-          $("#model_name").append('<option value="'+key+'">'+value+'</option>');
-        });
+//   $('#brand_name').change(function(){
+//   var brandID = $(this).val();  
+// //   alert(brandID);
+//   if(brandID){
+//     $.ajax({
+//       type:"GET",
+//       url:"{{url('/get-model-list')}}?brand_id="+brandID,
+//       success:function(res){        
+//       if(res){
+//         $("#model_name").empty();
+//         $("#model_name").append('<option>Select Model Name</option>');
+//         $.each(res,function(key,value){
+//           $("#model_name").append('<option value="'+key+'">'+value+'</option>');
+//         });
       
-      }else{
-        $("#model_name").empty();
-      }
-      }
-    });
-  }else{
-    $("#model_name").empty();
-  }   
-  });
+//       }else{
+//         $("#model_name").empty();
+//       }
+//       }
+//     });
+//   }else{
+//     $("#model_name").empty();
+//   }   
+//   });
 
   $('#state').change(function(){
   var stateID = $(this).val();  
