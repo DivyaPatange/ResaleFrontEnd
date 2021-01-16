@@ -16,7 +16,7 @@
   display: block;
   background-color: inherit;
   color: black;
-  padding: 22px 16px;
+  padding: 12px 16px;
   width: 100%;
   border: none;
   outline: none;

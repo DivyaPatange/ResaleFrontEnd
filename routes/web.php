@@ -26,6 +26,9 @@ Route::get('/product_detail', function () {
 Route::get('/postAdForm1', function () {
     return view('auth.postAdForm1');
 });
+Route::get('/sidebar', function () {
+    return view('auth.sidebar');
+})->name('sidebar');
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

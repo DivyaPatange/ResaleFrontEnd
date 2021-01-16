@@ -11,16 +11,22 @@ class MobileController extends Controller
     public function save(Request $request)
     {
         $otp = mt_rand(1000,9999);
-        $newUser = User::create([
-            'name' => $request->name,
-            'mobile_no' => $request->mobile_no,
-            'otp' => $otp,
-            'status' => 0,
-        ]);
+        $user = User::where('mobile_no', $request->mobile_no)->first();
+        if(empty($user)){
+            $newUser = User::create([
+                'name' => $request->name,
+                'mobile_no' => $request->mobile_no,
+                'otp' => $otp,
+                'status' => 0,
+            ]);
+        }
+        else{
+            $newUser = User::where('mobile_no', $request->mobile_no)->update(["name" => $request->name, "status" => 0, "otp" => $otp]);
+        }
         $message = "Dear+Customer,+please+use+the+code+".$otp."+to+verify+your+resale99+account.";
         $number = $request->mobile_no;
         // dd($this->sendSms($message,$number));
-        // $this->sendSms($message,$number);
+        $this->sendSms($message,$number);
         $output = '';
         $output .= '<input type="hidden" name="hidden_no" id="hidden_no" value="'.$number.'">'. 
                     '<input type="hidden" name="hidden_name" id="hidden_name" value="'.$request->name.'">';

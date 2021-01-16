@@ -57,20 +57,20 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-6">
-          <div class="credits">
-           <div class="copyright-footer">
-            <p class="copyright color-text-a">
-              &copy; Copyright
-              <span class="color-a">Resale99.com</span> All Rights Reserved.
-            </p>
-          </div>
-          </div>
-      </div>
-      <div class="col-md-6 text-right">
-          Designed by <a href="">Technologies Pvt.Ltd Nagpure</a>
-      </div>
-    </div>
+    <!--<div class="row">-->
+    <!--  <div class="col-md-6">-->
+    <!--      <div class="credits">-->
+    <!--       <div class="copyright-footer">-->
+    <!--        <p class="copyright color-text-a">-->
+    <!--          &copy; Copyright-->
+    <!--          <span class="color-a">Resale99.com</span> All Rights Reserved.-->
+    <!--        </p>-->
+    <!--      </div>-->
+    <!--      </div>-->
+    <!--  </div>-->
+    <!--  <div class="col-md-6 text-right">-->
+    <!--      Designed by <a href="">Technologies Pvt.Ltd Nagpure</a>-->
+    <!--  </div>-->
+    <!--</div>-->
   </div>
 </section>

@@ -13,14 +13,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   @yield('customcss')
   <style type="text/css">
-    .myimg
-    {
-        width:100%;
-        height:300px;
-    }
-    .card-header-a .card-title-a {
-    font-size: 25px;
-}
+/*    .myimg*/
+/*    {*/
+/*        width:100%;*/
+/*        height:300px;*/
+/*    }*/
+/*    .card-header-a .card-title-a {*/
+/*    font-size: 25px;*/
+/*}*/
+
+
+  
 
   </style>
   
@@ -42,7 +45,7 @@
         <div class="row m-3  p-5" style="border: 1px solid #114a88;">
           <p>Please Provide Your Mobile Number Or Email To
               Login / Sign Up On Resale99.</p>
-          <div class="col-md-12 m-3">
+          <div class="col-md-12 mb-3">
             <!-- <div class="form-group" id="myDIV">
               <div class="input-group">
                 <input type="text" class="form-control" id="phone" placeholder="Contineu With Phone">
@@ -57,7 +60,7 @@
               </a>
           
           </div>
-          <div class="col-md-12 text-center m-3">
+          <div class="col-md-12 text-center mb-3">
             
             <a href="{{ url('/auth/facebook') }}">
                 <button type="button" class="btn btn-outline-primary btn-block">
@@ -65,7 +68,7 @@
              </a>
             
           </div>
-          <div class="col-md-12 text-center m-3">
+          <div class="col-md-12 text-center mb-3">
             <a href="{{ url('/auth/google') }}">
                 <button type="button" class="btn btn-outline-primary btn-block">
                   <img src="assets/img/google.png" class="img-fluid pr-5" ></i>Continue With Google</button>
@@ -77,7 +80,7 @@
         </div>
       
     </div>
-  </div><!-- End Property Search Section -->>
+  </div><!-- End Property Search Section -->
 
   <!-- ======= Header/Navbar ======= -->
   @include('auth.auth_layout.navbar')
