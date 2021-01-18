@@ -96,6 +96,11 @@ class AdController extends Controller
                 $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 return view('auth.tv', compact('subCategory', 'type', 'state'));
             }
+            if($subCategory->sub_category == "PG & Guest Houses")
+            {
+                $cities = City::where('status', 1)->get();
+                return view('auth.realEstate', compact('subCategory', 'cities', 'state'));
+            }
         }
         else{
             return Redirect::back();
@@ -151,6 +156,7 @@ class AdController extends Controller
         $carPost->ad_title = $request->ad_title;
         $carPost->description = $request->description;
         $carPost->price = $request->price;
+        $carPost->car_varient = $request->car_varient;
         // $files = $request->userfile;
         // dd($request->photos);
         if($request->hasfile('photos'))
@@ -180,6 +186,8 @@ class AdController extends Controller
         $carPost->name = $request->name;
         $carPost->email = $request->email;
         $carPost->mobile_no = $request->mobile_no;
+        $carPost->colour = $request->colour;
+        $carPost->insurance = $request->insurance;
         $carPost->sub_category_id = $request->sub_category_id;
         $carPost->save();
         return redirect()->route('single.post.ad', $carPost->id);
