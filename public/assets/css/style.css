@@ -196,11 +196,12 @@ a:hover {
   top: 15px;
   left: 0;
 }
-.list-group-item{
+/*.list-group-item{*/
 
-    border-inline-start-color:#114a88;
-    border-inline-start-width: 4px;
-  }
+    /*border-inline-start-color:#114a88;*/
+    /*border-inline-start-width: 4px;*/
+/*  }*/
+  
   .list-group-item:hover{
 
     border-inline-start-color:#f75b00;

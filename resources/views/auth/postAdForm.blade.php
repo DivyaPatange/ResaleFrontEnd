@@ -91,12 +91,12 @@
         <div class="row mt-5">
           <div class="col-sm-12">
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-8">
                 <form method="POST" action="{{ url('save-car-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
                 @csrf 
                 <input type="hidden" name="sub_category_id"  value="{{ $subCategory->id }}">
                   <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                     <label>Brand Name<span class="text-danger">*<span></label>
                     <select id="brand_name" class="form-control @error('brand_name') is-invalid @enderror" name="brand_name">
                         <option value="">Choose...</option>
@@ -110,12 +110,23 @@
                         </span>
                     @enderror
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                     <label>Model Name<span class="text-danger">*<span></label>
                     <select id="model_name" class="form-control @error('model_name') is-invalid @enderror" name="model_name">
 
                     </select>
                     @error('model_name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    </div>
+                    <div class="form-group col-md-4">
+                    <label>Car Varient<span class="text-danger">*<span></label>
+                    <select id="car_varient" class="form-control @error('car_varient') is-invalid @enderror" name="car_varient">
+
+                    </select>
+                    @error('car_varient')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -143,41 +154,52 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label>Fuel Type<span class="text-danger">*</span></label><br>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="fuel_type" id="Petrol" value="Petrol" @if(old('fuel_type') == "Petrol") checked @endif>
-                        <label class="form-check-label" for="Petrol">Petrol</label>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Fuel Type<span class="text-danger">*</span>
+                            </label>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="fuel_type" id="Petrol" value="Petrol" @if(old('fuel_type') == "Petrol") checked @endif>
+                                <label class="form-check-label" for="Petrol">Petrol</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="fuel_type" id="CNG" value="CNG" @if(old('fuel_type') == "CNG") checked @endif>
+                                <label class="form-check-label" for="CNG">CNG</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="fuel_type" id="Diesel" value="Diesel" @if(old('fuel_type') == "Diesel") checked @endif>
+                                <label class="form-check-label" for="Diesel">Diesel</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="fuel_type" id="Electric" value="Electric" @if(old('fuel_type') == "Electric") checked @endif>
+                                <label class="form-check-label" for="Electric">Electric</label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="fuel_type" id="CNG" value="CNG" @if(old('fuel_type') == "CNG") checked @endif>
-                        <label class="form-check-label" for="CNG">CNG</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="fuel_type" id="Diesel" value="Diesel" @if(old('fuel_type') == "Diesel") checked @endif>
-                        <label class="form-check-label" for="Diesel">Diesel</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="fuel_type" id="Electric" value="Electric" @if(old('fuel_type') == "Electric") checked @endif>
-                        <label class="form-check-label" for="Electric">Electric</label>
-                    </div>
-                    <br>
                     @error('fuel_type')
                         <span class="text-danger" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                    </div>
-                    <div class="form-group">
-                      <label>Transmission <span class="text-danger">*</span></label><br>
-                      <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="transmission" id="Automatic" value="Automatic" @if(old('transmission') == "Automatic") checked @endif>
-                          <label class="form-check-label" for="Automatic">Automatic</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="transmission" id="Manual" value="Manual" @if(old('transmission') == "Manual") checked @endif>
-                          <label class="form-check-label" for="Manual">Manual</label>
-                      </div>
-                      <br>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Transmission <span class="text-danger">*</span></label>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="transmission" id="Automatic" value="Automatic" @if(old('transmission') == "Automatic") checked @endif>
+                                  <label class="form-check-label" for="Automatic">Automatic</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="transmission" id="Manual" value="Manual" @if(old('transmission') == "Manual") checked @endif>
+                                  <label class="form-check-label" for="Manual">Manual</label>
+                            </div>
+                        </div>
+                     </div>
                       @error('transmission')
                         <span class="text-danger" role="alert">
                             <strong>{{ $message }}</strong>
@@ -185,26 +207,33 @@
                       @enderror
                     </div>
                     <div class="form-group">
-                      <label>No. of Owners <span class="text-danger">*</span></label><br>
-                      <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="no_of_owners" id="inlineRadio1" value="1st" @if(old('no_of_owners') == "1st") checked @endif>
-                          <label class="form-check-label" for="inlineRadio1">1st</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="no_of_owners" id="inlineRadio2" value="2nd" @if(old('no_of_owners') == "2nd") checked @endif>
-                          <label class="form-check-label" for="inlineRadio2">2nd</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="no_of_owners" id="inlineRadio3" value="3rd" @if(old('no_of_owners') == "3rd") checked @endif>
-                          <label class="form-check-label" for="inlineRadio3">3rd</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="no_of_owners" id="inlineRadio4" value="4th" @if(old('no_of_owners') == "4th") checked @endif>
-                          <label class="form-check-label" for="inlineRadio4">4th</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="no_of_owners" id="inlineRadio5" value="4+" @if(old('no_of_owners') == "4+") checked @endif>
-                          <label class="form-check-label" for="inlineRadio5">4+</label>
+                        <div class="row">
+                            <div class="col-md-3">
+                              <label>No. of Owners <span class="text-danger">*</span>
+                              </label>
+                            </div>
+                            <div class="col-md-9">
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="no_of_owners" id="inlineRadio1" value="1st" @if(old('no_of_owners') == "1st") checked @endif>
+                                  <label class="form-check-label" for="inlineRadio1">1st</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="no_of_owners" id="inlineRadio2" value="2nd" @if(old('no_of_owners') == "2nd") checked @endif>
+                                  <label class="form-check-label" for="inlineRadio2">2nd</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="no_of_owners" id="inlineRadio3" value="3rd" @if(old('no_of_owners') == "3rd") checked @endif>
+                                  <label class="form-check-label" for="inlineRadio3">3rd</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="no_of_owners" id="inlineRadio4" value="4th" @if(old('no_of_owners') == "4th") checked @endif>
+                                  <label class="form-check-label" for="inlineRadio4">4th</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="no_of_owners" id="inlineRadio5" value="4+" @if(old('no_of_owners') == "4+") checked @endif>
+                                  <label class="form-check-label" for="inlineRadio5">4+</label>
+                              </div>
+                            </div>
                       </div>
                       @error('no_of_owners')
                         <span class="text-danger" role="alert">
@@ -230,7 +259,7 @@
                         </span>
                       @enderror
                     </div>
-                    <div class="form-froup">
+                    <div class="form-group">
                       <label>Photos <span class="text-danger">*</span></label>
                     </div>
                     <div id="upload_form">
@@ -252,7 +281,85 @@
                         </span>
                     @enderror
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group mb-3 col-md-6">
+                            <label>Colour<span class="text-danger">*</span></label>
+                            <input type="text" name="colour" class="form-control @error('colour') is-invalid @enderror" value="{{ old('colour') }}">
+                            @error('colour')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        </div>
+                        <div class="form-group mb-3 col-md-6">
+                            <label>Insurance<span class="text-danger">*</span></label>
+                            <input type="text" name="insurance" class="form-control @error('insurance') is-invalid @enderror" value="{{ old('insurance') }}">
+                            @error('insurance')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <h6>Expected Selling</h6>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label>Price</label><span class="text-danger">*</span>
+                                </label>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fa fa-rupee"></i></div>
+                                    </div>
+                                    <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Price" name="price" value="{{ old('price') }}">
+                                </div>
+                            </div>
+                        </div>
+                         @error('price')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                    <hr>
+                    <div class="form-group">
+                        <h6>Fill User Details</h6>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4 mb-3">
+                      <label>Name<span class="text-danger">*</span></label>
+                      <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"  name="name" value="{{ Auth::user()->name }}">
+                      @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group col-md-4 mb-3">
+                      <label>Email<span class="text-danger">*</span></label>
+                      <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"  name="email" value="{{ Auth::user()->email }}">
+                      @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    </div>
+                    <div class="form-group mb-3">
+                      <label>Mobile Number<span class="text-danger">*</span></label>
+                      <input type="text" class="form-control @error('mobile_no') is-invalid @enderror" id="mobile_no"  name="mobile_no" value="{{ Auth::user()->mobile_no }}">
+                      @error('mobile_no')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
                             <label>State</label><span class="text-danger">*</span></label>
                             <select id="state" class="form-control @error('state') is-invalid @enderror" name="state">
                                 <option value="">Choose...</option>
@@ -266,12 +373,23 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="inputCity">City</label><span class="text-danger">*</span></label>
                             <select class="form-control @error('city') is-invalid @enderror" id="city" name="city">
                             
                             </select>
                             @error('city')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputLocality">Locality</label><span class="text-danger">*</span></label>
+                            <select class="form-control @error('locality') is-invalid @enderror" id="locality" name="locality">
+                            
+                            </select>
+                            @error('locality')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -296,57 +414,10 @@
                         @enderror
                         </div>
                     </div>
-                    <hr>
-                    <div class="form-group">
-                        <h6>Expected Selling</h6>
-                        <label>Price</label><span class="text-danger">*</span></label>
-                        <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text"><i class="fa fa-rupee"></i></div>
-                          </div>
-                          <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Price" name="price" value="{{ old('price') }}">
-                         </div>
-                         @error('price')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                    <hr>
-                    <div class="form-group">
-                      <h6>fill User Details</h6>
-                      <label>Name<span class="text-danger">*</span></label>
-                      <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"  name="name" value="{{ Auth::user()->name }}">
-                      @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                      <label>Email<span class="text-danger">*</span></label>
-                      <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"  name="email" value="{{ Auth::user()->email }}">
-                      @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                    </div>
-                    <div class="form-group mb-3">
-                      <label>Mobile Number<span class="text-danger">*</span></label>
-                      <input type="text" class="form-control @error('mobile_no') is-invalid @enderror" id="mobile_no"  name="mobile_no" value="{{ Auth::user()->mobile_no }}">
-                      @error('mobile_no')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
                     <button type="submit" class="btn btn-primary">Post Your Add</button>
                 </form>
               </div>
-              <div class="col-md-3"></div>
-              <div class="col-md-3 section-md-t3">
+              <div class="col-md-4 section-md-t3">
                 <div class="icon-box section-b2">
                   <div class="icon-box-icon">
                     <span class="ion-ios-paper-plane"></span>

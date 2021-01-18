@@ -9,6 +9,13 @@
           <!--<span class="color-b">Resale99.com</span>-->
           <img src="{{ asset('assets/img/logo/2-removebg-preview.png') }}" class="" style="height: 70px;width: 170px;">
           </a>
+            <!--<a href="#" data-toggle="sidebar-colapse" class="bg-dark d-flex align-items-center">-->
+            <!--    <div class="d-flex  justify-content-start align-items-center">-->
+            <!--        <span id="collapse-icon" class="fa fa-2x mr-3"></span>-->
+            <!--        <span id="collapse-text" class="menu-collapsed">Collapse</span>-->
+            <!--    </div>-->
+            <!--</a>-->
+          
       <button type="button" class="btn btn-link nav-search navbar-toggle-box-collapse d-none" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-expanded="false">
         <span class="fa fa-search" aria-hidden="true"></span>
       </button>
@@ -24,7 +31,9 @@
                 <input type="text" class="form-control" id="product" placeholder="Product" style="padding: 0px 30px 0px 30px;font-size:12px">
                 <!--<div class="input-group-prepend">-->
                 <div class="input-group-prepend">
-                  <div class="input-group-text"><i class="fa fa-search"></i></div>
+                  <div class="input-group-text"><i class="fa fa-search">
+                      
+                  </i></div>
                 </div>
               </div>
             </form>
@@ -39,17 +48,15 @@
         <button type="button" class="btn btn-b-n navbar-toggle-box-collapse  d-md-block mr-4" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-expanded="false">
           login / Register
           <!-- <span class="fa fa-user" aria-hidden="true"></span> -->
-        </button>
-        <a href="#"> 
-        <span class="fa fa-mobile" aria-hidden="true" style="color: #114aa5;
-         font-size: 40px;"></span> </a>
-       
+        </button><a href="#"> 
+            <span class="fa fa-mobile" aria-hidden="true" style="color: #114aa5;
+             font-size: 40px;"></span> </a>
         @endif
         @else 
         <a href="{{ route('post-ad') }}"><button type="button" class="btn btn-b-n   d-md-block mr-2" >
-       Post Free Ad
-        </button></a>
-        <li class="nav-item dropdown">
+           Post Free Ad
+            </button></a>
+        <li class="nav-item dropdown list-unstyled">
           <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
               <i class="fa fa-user-circle-o" style="font-size:22px;">&nbsp;</i>
           </a>
@@ -68,5 +75,6 @@
           </div>
         </li>
         @endguest
+        </ul>
     </div>
   </nav>
