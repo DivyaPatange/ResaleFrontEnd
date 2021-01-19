@@ -101,8 +101,8 @@
                   <label>Property Type<span class="text-danger">*<span></label>
                   <select id="property_type" class="form-control @error('property_type') is-invalid @enderror" name="property_type">
                     <option value="">Choose...</option>
-                    <option value="Flat">Flat</option>
-                    <option value="Apartment">Apartment</option>
+                    <option value="Flat" @if(old('property_type') == "Flat") Selected @endif>Flat</option>
+                    <option value="Apartment" @if(old('property_type') == "Apartment") Selected @endif>Apartment</option>
                   </select>
                   @error('property_type')
                     <span class="invalid-feedback" role="alert">
@@ -114,10 +114,10 @@
                   <label>Property For<span class="text-danger">*<span></label>
                   <select id="property_for" class="form-control @error('property_for') is-invalid @enderror" name="property_for">
                     <option value="">Choose...</option>
-                    <option value="Sale">Sale</option>
-                    <option value="Rent">Rent</option>
-                    <option value="PG">PG</option>
-                    <option value="Hostel">Hostel</option>
+                    <option value="Sale" @if(old('property_for') == "Sale") Selected @endif>Sale</option>
+                    <option value="Rent" @if(old('property_for') == "Rent") Selected @endif >Rent</option>
+                    <option value="PG" @if(old('property_for') == "PG") Selected @endif>PG</option>
+                    <option value="Hostel" @if(old('property_for') == "Hostel") Selected @endif>Hostel</option>
                   </select>
                   @error('property_for')
                     <span class="invalid-feedback" role="alert">
@@ -130,7 +130,7 @@
                   <select id="property_location" class="form-control @error('property_location') is-invalid @enderror" name="property_location">
                     <option value="">Choose Location...</option>
                     @foreach($cities as $c)
-                    <option value="{{ $c->id }}">{{ $c->city_name }}</option>
+                    <option value="{{ $c->id }}" @if(old('property_location') == $c->id) Selected @endif>{{ $c->city_name }}</option>
                     @endforeach
                   </select>
                   @error('property_location')
@@ -241,12 +241,13 @@
                     </div>
                   </div>
                 </div>
-                @error('no_of_owners')
+                @error('bathroom')
                   <span class="text-danger" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
                 @enderror
               </div>
+              <hr>
               <div class="form-group">
                 <h6>Floor</h6>
               </div>
@@ -338,8 +339,8 @@
                   <label for="">Transaction Type <span class="text-danger">*</span></label>
                   <select name="transaction_type" id="transaction_type" class="form-control @error('transaction_type') invalid-feedback @enderror">
                     <option value="">-Select Transaction Type-</option>
-                    <option value="New Property">New Property</option>
-                    <option value="Resale Property">Resale Property</option>
+                    <option value="New Property" @if(old('transaction_type') == "New Property") Selected @endif>New Property</option>
+                    <option value="Resale Property" @if(old('transaction_type') == "Resale Property") Selected @endif>Resale Property</option>
                   </select>
                   @error('transaction_type')
                     <span class="invalid-feedback" role="alert">
@@ -351,8 +352,8 @@
                   <label for="">Possession Status <span class="text-danger">*</span></label>
                   <select name="possession_status" id="possession_status" class="form-control @error('possession_status') invalid-feedback @enderror">
                     <option value="">-Select Possession Status-</option>
-                    <option value="Under Construction">Under Construction</option>
-                    <option value="Ready to Move">Ready to Move</option>
+                    <option value="Under Construction" @if(old('possession_status') == "Under Construction") Selected @endif>Under Construction</option>
+                    <option value="Ready to Move" @if(old('possession_status') == "Ready to Move") Selected @endif>Ready to Move</option>
                   </select>
                   @error('possession_status')
                     <span class="invalid-feedback" role="alert">
@@ -379,6 +380,7 @@
                   @enderror
                 </div>
               </div>
+              <hr>
               <div class="form-group">
                 <h6>Price Details</h6>
               </div>
@@ -414,7 +416,7 @@
                     </div>
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="radio" name="price_include" id="Club Membersip" value="Club Membersip" @if(old('price_include') == "Club Membersip") checked @endif>
-                      <label class="form-check-label" for="Club Membersip">2</label>
+                      <label class="form-check-label" for="Club Membersip">Club Membersip</label>
                     </div>
                   </div>
                 </div>
@@ -444,6 +446,7 @@
                   @enderror
                 </div>
               </div>
+              <hr>
               <div class="form-group">
                 <label>Photos <span class="text-danger">*</span></label>
               </div>
@@ -509,6 +512,7 @@
                   </span>
                 @enderror
               </div> 
+              <hr>
               <div class="form-group">
                 <h6>Additional Feature</h6>
               </div>
@@ -517,11 +521,11 @@
                   <label for="">Rooms <span class="text-danger">*</span></label>
                   <select name="rooms" id="rooms" class="form-control @error('rooms') invalid-feedback @enderror">
                     <option value="">-Select Rooms-</option>
-                    <option value="Pooja Room">Pooja Room</option>
-                    <option value="Store Room">Store Room</option>
-                    <option value="Study Room">Study Room</option>
-                    <option value="Servant Room">Servant Room</option>
-                    <option value="None of these">None of these</option>
+                    <option value="Pooja Room" @if(old('rooms') == "Pooja Room") Selected @endif >Pooja Room</option>
+                    <option value="Store Room" @if(old('rooms') == "Store Room") Selected @endif>Store Room</option>
+                    <option value="Study Room" @if(old('rooms') == "Study Room") Selected @endif>Study Room</option>
+                    <option value="Servant Room" @if(old('rooms') == "Servant Room") Selected @endif>Servant Room</option>
+                    <option value="None of these" @if(old('rooms') == "None of these") Selected @endif>None of these</option>
                   </select>
                   @error('rooms')
                   <span class="invalid-feedback" role="alert">
@@ -533,14 +537,14 @@
                   <label for="">Facing <span class="text-danger">*</span></label>
                   <select name="facing" id="facing" class="form-control @error('facing') invalid-feedback @enderror">
                     <option value="">-Select Facing-</option>
-                    <option value="East">East</option>
-                    <option value="West">West</option>
-                    <option value="North">North</option>
-                    <option value="South">South</option>
-                    <option value="North East">North East</option>
-                    <option value="North West">North West</option>
-                    <option value="South East">South East</option>
-                    <option value="South West">South West</option>
+                    <option value="East" @if(old('facing') == "East") Selected @endif>East</option>
+                    <option value="West" @if(old('facing') == "West") Selected @endif>West</option>
+                    <option value="North" @if(old('facing') == "North") Selected @endif>North</option>
+                    <option value="South" @if(old('facing') == "South") Selected @endif>South</option>
+                    <option value="North East" @if(old('facing') == "North East") Selected @endif>North East</option>
+                    <option value="North West" @if(old('facing') == "North West") Selected @endif>North West</option>
+                    <option value="South East" @if(old('facing') == "South East") Selected @endif>South East</option>
+                    <option value="South West" @if(old('facing') == "South West") Selected @endif>South West</option>
                   </select>
                   @error('facing')
                   <span class="invalid-feedback" role="alert">
@@ -552,10 +556,10 @@
                   <label for="">Overlooking <span class="text-danger">*</span></label>
                   <select name="overlooking" id="overlooking" class="form-control @error('overlooking') invalid-feedback @enderror">
                     <option value="">-Select Overlooking-</option>
-                    <option value="Garden Park">Garden Park</option>
-                    <option value="Pool">Pool</option>
-                    <option value="Main Road">Main Road</option>
-                    <option value="Not Available">Not Available</option>
+                    <option value="Garden Park" @if(old('overlooking') == "Garden Park") Selected @endif>Garden Park</option>
+                    <option value="Pool" @if(old('overlooking') == "Pool") Selected @endif>Pool</option>
+                    <option value="Main Road" @if(old('overlooking') == "Main Road") Selected @endif>Main Road</option>
+                    <option value="Not Available" @if(old('overlooking') == "Not Available") Selected @endif>Not Available</option>
                   </select>
                   @error('overlooking')
                   <span class="invalid-feedback" role="alert">
@@ -567,9 +571,9 @@
                   <label for="">Car Parking <span class="text-danger">*</span></label>
                   <select name="car_parking" id="car_parking" class="form-control @error('car_parking') invalid-feedback @enderror">
                     <option value="">-Select Car Parking-</option>
-                    <option value="Covered">Covered</option>
-                    <option value="Open">Open</option>
-                    <option value="None">None</option>
+                    <option value="Covered" @if(old('car_parking') == "Covered") Selected @endif>Covered</option>
+                    <option value="Open" @if(old('car_parking') == "Open") Selected @endif>Open</option>
+                    <option value="None" @if(old('car_parking') == "None") Selected @endif>None</option>
                   </select>
                   @error('car_parking')
                   <span class="invalid-feedback" role="alert">
@@ -605,8 +609,8 @@
               </div>
               <div class="form-group">
                 <label for="">Area Registration No. (Optional)</label>
-                <input type="text" name="registration_no" class="form-control @error('registration_no') invalid-feedback @enderror" value="{{ old('registration_no') }}">
-                @error('registration_no')
+                <input type="text" name="area_registration_no" class="form-control @error('area_registration_no') invalid-feedback @enderror" value="{{ old('area_registration_no') }}">
+                @error('area_registration_no')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
@@ -617,11 +621,11 @@
                   <label for="">Status of Water</label>
                   <select name="status_of_water" id="status_of_water" class="form-control @error('status_of_water') invalid-feedback @enderror">
                     <option value="">-Select Status of Water-</option>
-                    <option value="24 hrs">24 hrs</option>
-                    <option value="12 hrs">12 hrs</option>
-                    <option value="6 hrs">6 hrs</option>
-                    <option value="2 hrs">2 hrs</option>
-                    <option value="1 hrs">1 hrs</option>
+                    <option value="24 hrs" @if(old('status_of_water') == "24 hrs") Selected @endif>24 hrs</option>
+                    <option value="12 hrs" @if(old('status_of_water') == "12 hrs") Selected @endif>12 hrs</option>
+                    <option value="6 hrs" @if(old('status_of_water') == "6 hrs") Selected @endif>6 hrs</option>
+                    <option value="2 hrs" @if(old('status_of_water') == "2 hrs") Selected @endif>2 hrs</option>
+                    <option value="1 hrs" @if(old('status_of_water') == "1 hrs") Selected @endif>1 hrs</option>
                   </select>
                   @error('status_of_water')
                   <span class="invalid-feedback" role="alert">
@@ -633,11 +637,11 @@
                   <label for="">Status of Electricity</label>
                   <select name="status_of_electricity" id="status_of_electricity" class="form-control @error('status_of_electricity') invalid-feedback @enderror">
                     <option value="">-Select Status of Electricity-</option>
-                    <option value="No Power Cut">No Power Cut</option>
-                    <option value="less than 3 hrs">less than 3 hrs</option>
-                    <option value="2 to 4 hrs Power Cut">2 to 4 hrs Power Cut</option>
-                    <option value="4 to 6 hrs Power Cut">4 to 6 hrs Power Cut</option>
-                    <option value="above 6 hrs Power Cut">above 6 hrs Power Cut</option>
+                    <option value="No Power Cut" @if(old('status_of_electricity') == "No Power Cut") Selected @endif>No Power Cut</option>
+                    <option value="less than 3 hrs" @if(old('status_of_electricity') == "less than 3 hrs") Selected @endif>less than 3 hrs</option>
+                    <option value="2 to 4 hrs Power Cut" @if(old('status_of_electricity') == "2 to 4 hrs Power Cut") Selected @endif>2 to 4 hrs Power Cut</option>
+                    <option value="4 to 6 hrs Power Cut" @if(old('status_of_electricity') == "4 to 6 hrs Power Cut") Selected @endif>4 to 6 hrs Power Cut</option>
+                    <option value="above 6 hrs Power Cut" @if(old('status_of_electricity') == "above 6 hrs Power Cut") Selected @endif>above 6 hrs Power Cut</option>
                   </select>
                   @error('status_of_electricity')
                   <span class="invalid-feedback" role="alert">
@@ -649,40 +653,10 @@
                   <label for="">Ownership Approval</label>
                   <select name="ownership_approval" id="ownership_approval" class="form-control @error('ownership_approval') invalid-feedback @enderror">
                     <option value="">-Select Ownership Approval-</option>
-                    <option value="Freehold">Freehold</option>
-                    <option value="Leasehold">Leasehold</option>
-                    <option value="Power of Attorney">Power of Attorney</option>
-                    <option value="Co-Operative Society">Co-Operative Society</option>
-                  </select>
-                  @error('ownership_approval')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="">Ownership Approval</label>
-                  <select name="ownership_approval" id="ownership_approval" class="form-control @error('ownership_approval') invalid-feedback @enderror">
-                    <option value="">-Select Ownership Approval-</option>
-                    <option value="Freehold">Freehold</option>
-                    <option value="Leasehold">Leasehold</option>
-                    <option value="Power of Attorney">Power of Attorney</option>
-                    <option value="Co-Operative Society">Co-Operative Society</option>
-                  </select>
-                  @error('ownership_approval')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="">Ownership Approval</label>
-                  <select name="ownership_approval" id="ownership_approval" class="form-control @error('ownership_approval') invalid-feedback @enderror">
-                    <option value="">-Select Ownership Approval-</option>
-                    <option value="Freehold">Freehold</option>
-                    <option value="Leasehold">Leasehold</option>
-                    <option value="Power of Attorney">Power of Attorney</option>
-                    <option value="Co-Operative Society">Co-Operative Society</option>
+                    <option value="Freehold" @if(old('ownership_approval') == "Freehold") Selected @endif>Freehold</option>
+                    <option value="Leasehold" @if(old('ownership_approval') == "Leasehold") Selected @endif>Leasehold</option>
+                    <option value="Power of Attorney" @if(old('ownership_approval') == "Power of Attorney") Selected @endif>Power of Attorney</option>
+                    <option value="Co-Operative Society" @if(old('ownership_approval') == "Co-Operative Society") Selected @endif>Co-Operative Society</option>
                   </select>
                   @error('ownership_approval')
                   <span class="invalid-feedback" role="alert">
@@ -694,11 +668,11 @@
                   <label for="">Approved By</label>
                   <select name="approved_by" id="approved_by" class="form-control @error('approved_by') invalid-feedback @enderror">
                     <option value="">-Select Approved By-</option>
-                    <option value="Metropolitan Region">Metropolitan Region</option>
-                    <option value="Development Authority">Development Authority</option>
-                    <option value="Developer">Developer</option>
-                    <option value="RWA/ Co-Operative Housing Society">RWA/ Co-Operative Housing Society</option>
-                    <option value="City Muncipal Corporation">City Muncipal Corporation</option>
+                    <option value="Metropolitan Region" @if(old('approved_by') == "Metropolitan Region") Selected @endif>Metropolitan Region</option>
+                    <option value="Development Authority" @if(old('approved_by') == "Development Authority") Selected @endif>Development Authority</option>
+                    <option value="Developer" @if(old('approved_by') == "Developer") Selected @endif>Developer</option>
+                    <option value="RWA/ Co-Operative Housing Society" @if(old('approved_by') == "RWA/ Co-Operative Housing Society") Selected @endif>RWA/ Co-Operative Housing Society</option>
+                    <option value="City Muncipal Corporation" @if(old('approved_by') == "City Muncipal Corporation") Selected @endif>City Muncipal Corporation</option>
                   </select>
                   @error('approved_by')
                   <span class="invalid-feedback" role="alert">
@@ -707,6 +681,7 @@
                   @enderror
                 </div>
               </div>
+              <hr>
               <div class="form-group">
                 <h6>Flooring & Aminities</h6>
               </div>
@@ -715,15 +690,15 @@
                   <label for="">Flooring</label>
                   <select name="flooring" id="flooring" class="form-control @error('flooring') invalid-feedback @enderror">
                     <option value="">-Select Flooring-</option>
-                    <option value="Ceramic Tiles">Ceramic Tiles</option>
-                    <option value="Marble">Marble</option>
-                    <option value="Mosaic">Mosaic</option>
-                    <option value="Vetrified">Vetrified</option>
-                    <option value="Granite">Granite</option>
-                    <option value="Marbonite">Marbonite</option>
-                    <option value="Normal Tiles">Normal Tiles</option>
-                    <option value="Kota Stone">Kota Stone</option>
-                    <option value="Wooden">Wooden</option>
+                    <option value="Ceramic Tiles" @if(old('flooring') == "Ceramic Tiles") Selected @endif>Ceramic Tiles</option>
+                    <option value="Marble" @if(old('flooring') == "Marble") Selected @endif>Marble</option>
+                    <option value="Mosaic" @if(old('flooring') == "Mosaic") Selected @endif>Mosaic</option>
+                    <option value="Vetrified" @if(old('flooring') == "Vetrified") Selected @endif>Vetrified</option>
+                    <option value="Granite" @if(old('flooring') == "Granite") Selected @endif>Granite</option>
+                    <option value="Marbonite" @if(old('flooring') == "Marbonite") Selected @endif>Marbonite</option>
+                    <option value="Normal Tiles" @if(old('flooring') == "Normal Tiles") Selected @endif>Normal Tiles</option>
+                    <option value="Kota Stone" @if(old('flooring') == "Kota Stone") Selected @endif>Kota Stone</option>
+                    <option value="Wooden" @if(old('flooring') == "Wooden") Selected @endif>Wooden</option>
                   </select>
                   @error('flooring')
                     <span class="invalid-feedback" role="alert">
@@ -735,119 +710,76 @@
                   <label for="">Aminities</label>
                   <select name="aminities" id="aminities" class="form-control @error('aminities') invalid-feedback @enderror">
                     <option value="">-Select Aminities-</option>
-                    <option value="Air Conditioner">Air Conditioner</option>
-                    <option value="Banquet Hall">Banquet Hall</option>
-                    <option value="Bar/Lounge">Bar/Lounge</option>
-                    <option value="Cafeteria Food Court">Cafeteria Food Court</option>
-                    <option value="Club House">Club House</option>
-                    <option value="Conference Room">Conference Room</option>
-                    <option value="DTH Television Facility">DTH Television Facility</option>
-                    <option value="Gymnasium">Gymnasium</option>
-                    <option value="Intercom Facility">Intercom Facility</option>
-                    <option value="Internet Wi-Fi Facility">Internet Wi-Fi Facility</option>
-                    <option value="Jogging & Strolling Track">Jogging & Strolling Track</option>
-                    <option value="Laundary Services">Laundary Services</option>
-                    <option value="Lift">Lift</option>
-                    <option value="Maintenance Staff">Maintenance Staff</option>
-                    <option value="Outdoor Tennis Court">Outdoor Tennis Court</option>
-                    <option value="Park">Park</option>
-                    <option value="Pipe Gas">Pipe Gas</option>
-                    <option value="Power Back Up">Power Back Up</option>
-                    <option value="Private Terrace">Private Terrace</option>
-                    <option value="Garden">Garden</option>
-                    <option value="RO Water System">RO Water System</option>
-                    <option value="Rain Water Harvesting">Rain Water Harvesting</option>
-                    <option value="Reserve Parking Security">Reserve Parking Security</option>
-                    <option value="Services/ Goods Lift">Services/ Goods Lift</option>
-                    <option value="Swimming Pool">Swimming Pool</option>
-                    <option value="Vastu Compliment">Vastu Compliment</option>
-                    <option value="Visitors Parking">Visitors Parking</option>
-                    <option value="Waste Disposal">Waste Disposal</option>
-                    <option value="Water Storage">Water Storage</option>
+                    <option value="Air Conditioner" @if(old('aminities') == "Air Conditioner") Selected @endif>Air Conditioner</option>
+                    <option value="Banquet Hall" @if(old('aminities') == "Banquet Hall") Selected @endif>Banquet Hall</option>
+                    <option value="Bar/Lounge" @if(old('aminities') == "Bar/Lounge") Selected @endif>Bar/Lounge</option>
+                    <option value="Cafeteria Food Court" @if(old('aminities') == "Cafeteria Food Court") Selected @endif>Cafeteria Food Court</option>
+                    <option value="Club House" @if(old('aminities') == "Club House") Selected @endif>Club House</option>
+                    <option value="Conference Room" @if(old('aminities') == "Conference Room") Selected @endif>Conference Room</option>
+                    <option value="DTH Television Facility" @if(old('aminities') == "DTH Television Facility") Selected @endif>DTH Television Facility</option>
+                    <option value="Gymnasium" @if(old('aminities') == "Gymnasium") Selected @endif>Gymnasium</option>
+                    <option value="Intercom Facility" @if(old('aminities') == "Intercom Facility") Selected @endif>Intercom Facility</option>
+                    <option value="Internet Wi-Fi Facility" @if(old('aminities') == "Internet Wi-Fi Facility") Selected @endif>Internet Wi-Fi Facility</option>
+                    <option value="Jogging & Strolling Track" @if(old('aminities') == "Jogging & Strolling Track") Selected @endif>Jogging & Strolling Track</option>
+                    <option value="Laundary Services" @if(old('aminities') == "Laundary Services") Selected @endif>Laundary Services</option>
+                    <option value="Lift" @if(old('aminities') == "Lift") Selected @endif>Lift</option>
+                    <option value="Maintenance Staff" @if(old('aminities') == "Maintenance Staff") Selected @endif>Maintenance Staff</option>
+                    <option value="Outdoor Tennis Court" @if(old('aminities') == "Outdoor Tennis Court") Selected @endif>Outdoor Tennis Court</option>
+                    <option value="Park" @if(old('aminities') == "Park") Selected @endif>Park</option>
+                    <option value="Pipe Gas" @if(old('aminities') == "Pipe Gas") Selected @endif>Pipe Gas</option>
+                    <option value="Power Back Up" @if(old('aminities') == "Power Back Up") Selected @endif>Power Back Up</option>
+                    <option value="Private Terrace" @if(old('aminities') == "Private Terrace") Selected @endif>Private Terrace</option>
+                    <option value="Garden" @if(old('aminities') == "Garden") Selected @endif>Garden</option>
+                    <option value="RO Water System" @if(old('aminities') == "RO Water System") Selected @endif>RO Water System</option>
+                    <option value="Rain Water Harvesting" @if(old('aminities') == "Rain Water Harvesting") Selected @endif>Rain Water Harvesting</option>
+                    <option value="Reserve Parking Security" @if(old('aminities') == "Reserve Parking Security") Selected @endif>Reserve Parking Security</option>
+                    <option value="Services/ Goods Lift" @if(old('aminities') == "Services/ Goods Lift") Selected @endif>Services/ Goods Lift</option>
+                    <option value="Swimming Pool" @if(old('aminities') == "Swimming Pool") Selected @endif>Swimming Pool</option>
+                    <option value="Vastu Compliment" @if(old('aminities') == "Vastu Compliment") Selected @endif>Vastu Compliment</option>
+                    <option value="Visitors Parking" @if(old('aminities') == "Visitors Parking") Selected @endif>Visitors Parking</option>
+                    <option value="Waste Disposal" @if(old('aminities') == "Waste Disposal") Selected @endif>Waste Disposal</option>
+                    <option value="Water Storage" @if(old('aminities') == "Water Storage") Selected @endif>Water Storage</option>
                   </select>
-                  @error('flooring')
+                  @error('aminities')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                     </span>
                   @enderror
                 </div>
               </div>
-                <div class="form-row">
-                    <div class="form-group mb-3 col-md-6">
-                        <label>Colour<span class="text-danger">*</span></label>
-                        <input type="text" name="colour" class="form-control @error('colour') is-invalid @enderror" value="{{ old('colour') }}">
-                        @error('colour')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                    </div>
-                    <div class="form-group mb-3 col-md-6">
-                        <label>Insurance<span class="text-danger">*</span></label>
-                        <input type="text" name="insurance" class="form-control @error('insurance') is-invalid @enderror" value="{{ old('insurance') }}">
-                        @error('insurance')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                    </div>
-                </div>
-                <hr>
-                <div class="form-group">
-                    <h6>Expected Selling</h6>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label>Price</label><span class="text-danger">*</span>
-                            </label>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text"><i class="fa fa-rupee"></i></div>
-                                </div>
-                                <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Price" name="price" value="{{ old('price') }}">
-                            </div>
-                        </div>
-                    </div>
-                      @error('price')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                 <hr>
                 <div class="form-group">
                     <h6>Fill User Details</h6>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-4 mb-3">
-                  <label>Name<span class="text-danger">*</span></label>
-                  <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"  name="name" value="{{ Auth::user()->name }}">
-                  @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-                <div class="form-group col-md-4 mb-3">
-                  <label>Email<span class="text-danger">*</span></label>
-                  <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"  name="email" value="{{ Auth::user()->email }}">
-                  @error('email')
+                  <div class="form-group col-md-4 mb-3">
+                    <label>Name<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"  name="name" value="{{ Auth::user()->name }}">
+                    @error('name')
                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                      <strong>{{ $message }}</strong>
                     </span>
-                @enderror
-                </div>
-                <div class="form-group mb-3">
-                  <label>Mobile Number<span class="text-danger">*</span></label>
-                  <input type="text" class="form-control @error('mobile_no') is-invalid @enderror" id="mobile_no"  name="mobile_no" value="{{ Auth::user()->mobile_no }}">
-                  @error('mobile_no')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
                     @enderror
-                </div>
+                  </div>
+                  <div class="form-group col-md-4 mb-3">
+                    <label>Email<span class="text-danger">*</span></label>
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"  name="email" value="{{ Auth::user()->email }}">
+                    @error('email')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                  <div class="form-group col-md-4 mb-3">
+                    <label>Mobile Number<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control @error('mobile_no') is-invalid @enderror" id="mobile_no"  name="mobile_no" value="{{ Auth::user()->mobile_no }}">
+                    @error('mobile_no')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
                 </div>
                 
                 <div class="form-row">
@@ -889,7 +821,7 @@
                     </div>
                     <div class="form-group col-md-6">
                     <label>Pin Code</label><span class="text-danger">*</span></label>
-                    <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code">
+                    <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code" value="{{ old('pin_code') }}">
                     @error('pin_code')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -898,7 +830,7 @@
                     </div>
                     <div class="form-group col-md-6">
                     <label>Address</label><span class="text-danger">*</span></label>
-                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address">
+                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
                     @error('address')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

@@ -26,7 +26,7 @@ class MobileController extends Controller
         $message = "Dear+Customer,+please+use+the+code+".$otp."+to+verify+your+resale99+account.";
         $number = $request->mobile_no;
         // dd($this->sendSms($message,$number));
-        $this->sendSms($message,$number);
+        // $this->sendSms($message,$number);
         $output = '';
         $output .= '<input type="hidden" name="hidden_no" id="hidden_no" value="'.$number.'">'. 
                     '<input type="hidden" name="hidden_name" id="hidden_name" value="'.$request->name.'">';

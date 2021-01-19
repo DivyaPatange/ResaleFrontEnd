@@ -12,6 +12,8 @@ use App\Models\State;
 use App\Models\City;
 use App\Models\Car;
 use App\Models\Type;
+use App\Models\RealEstate;
+use App\Models\MobilePhone;
 
 class AdController extends Controller
 {
@@ -96,11 +98,13 @@ class AdController extends Controller
                 $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 return view('auth.tv', compact('subCategory', 'type', 'state'));
             }
-            if($subCategory->sub_category == "PG & Guest Houses")
+            // dd($subCategory);
+            if(($subCategory->sub_category == "PG & Guest Houses") || ($subCategory->sub_category == "Property for Rent / Lease") || ($subCategory->sub_category == "Property for Sale"))
             {
                 $cities = City::where('status', 1)->get();
                 return view('auth.realEstate', compact('subCategory', 'cities', 'state'));
             }
+
         }
         else{
             return Redirect::back();
@@ -188,9 +192,102 @@ class AdController extends Controller
         $carPost->mobile_no = $request->mobile_no;
         $carPost->colour = $request->colour;
         $carPost->insurance = $request->insurance;
+        $carPost->locality_id = $request->locality;
         $carPost->sub_category_id = $request->sub_category_id;
         $carPost->save();
         return redirect()->route('single.post.ad', $carPost->id);
+    }
+
+    public function saveRealEstatePost(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'mobile_no' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            // 'locality' => 'required',
+            'pin_code' => 'required',
+            'address' => 'required',
+            'property_type' => 'required',
+            'property_for' => 'required',
+            'property_location' => 'required',
+            'total_price' => 'required',
+            'price_per_sq_ft' => 'required',
+            'photos' => 'required',
+            'ad_title' => 'required',
+            'description' => 'required',
+        ]);
+        $realEstate = new RealEstate();
+        $realEstate->property_type = $request->property_type;
+        $realEstate->property_for = $request->property_for;
+        $realEstate->property_location = $request->property_location;
+        $realEstate->bedroom = $request->bedroom;
+        $realEstate->balcony = $request->balcony;
+        $realEstate->bathroom = $request->bathroom;
+        $realEstate->property_floor_no = $request->property_floor_no;
+        $realEstate->no_of_floor = $request->no_of_floor;
+        $realEstate->furnishing = $request->furnishing;
+        $realEstate->super_build_up_area = $request->super_build_up_area;
+        $realEstate->carpet_area = $request->carpet_area;
+        $realEstate->build_up_area = $request->build_up_area;
+        $realEstate->transaction_type = $request->transaction_type;
+        $realEstate->possession_status = $request->possession_status;
+        $realEstate->age_of_construction = $request->age_of_construction;
+        $realEstate->available_from = $request->available_from;
+        $realEstate->total_price = $request->total_price;
+        $realEstate->price_per_sq_ft = $request->price_per_sq_ft;
+        $realEstate->price_include = $request->price_include;
+        $realEstate->booking_amount_charges = $request->booking_amount_charges;
+        $realEstate->maintenance_charges = $request->maintenance_charges;
+        $realEstate->ad_title = $request->ad_title;
+        $realEstate->description = $request->description;
+        // $files = $request->userfile;
+        // dd($request->photos);
+        if($request->hasfile('photos'))
+
+         {
+
+            foreach($request->file('photos') as $file)
+
+            {
+
+                $name = time().rand(1,100).'.'.$file->extension();
+
+                $file->move(public_path('adPhotos'), $name);  
+
+                $files[] = $name;  
+
+            }
+            // dd($files);
+
+         }
+        $realEstate->photos = implode(",", $files);
+        $realEstate->listed_by = $request->listed_by;
+        $realEstate->rooms = $request->rooms;
+        $realEstate->facing = $request->facing;
+        $realEstate->overlooking = $request->overlooking;
+        $realEstate->car_parking = $request->car_parking;
+        $realEstate->multiple_flat = $request->multiple_flat;
+        $realEstate->area_registration_no = $request->area_registration_no;
+        $realEstate->status_of_water = $request->status_of_water;
+        $realEstate->status_of_electricity = $request->status_of_electricity;
+        $realEstate->ownership_approval = $request->ownership_approval;
+        $realEstate->approved_by = $request->approved_by;
+        $realEstate->flooring = $request->flooring;
+        $realEstate->aminities = $request->aminities;
+        $realEstate->state_id = $request->state;
+        $realEstate->city_id = $request->city;
+        $realEstate->locality_id = $request->locality;
+        $realEstate->pin_code = $request->pin_code;
+        $realEstate->address = $request->address;
+        $realEstate->user_id = $request->user_id;
+        $realEstate->name = $request->name;
+        $realEstate->email = $request->email;
+        $realEstate->mobile_no = $request->mobile_no;
+        $realEstate->sub_category_id = $request->sub_category_id;
+        $realEstate->save();
+        return Redirect::back();
     }
 
     public function getSinglePostDetail($id)
@@ -278,10 +375,10 @@ class AdController extends Controller
             'pin_code' => 'required',
             'address' => 'required',
         ]);
-        $mobilePost = new Car();
+        $mobilePost = new MobilePhone();
         $mobilePost->brand_id = $request->brand_name;
         $mobilePost->model_id = $request->model_name;
-        $mobilePost->year_of_registration = $request->year_of_purchase;
+        $mobilePost->year_of_purchase = $request->year_of_purchase;
         $mobilePost->physical_condition = $request->physical_condition;
         $mobilePost->ad_title = $request->ad_title;
         $mobilePost->description = $request->description;
@@ -309,6 +406,7 @@ class AdController extends Controller
         $mobilePost->photos = implode(",", $files);
         $mobilePost->state_id = $request->state;
         $mobilePost->city_id = $request->city;
+        $mobilePost->locality_id = $request->locality;
         $mobilePost->pin_code = $request->pin_code;
         $mobilePost->address = $request->address;
         $mobilePost->user_id = $request->user_id;
@@ -316,8 +414,14 @@ class AdController extends Controller
         $mobilePost->email = $request->email;
         $mobilePost->mobile_no = $request->mobile_no;
         $mobilePost->sub_category_id = $request->sub_category_id;
+        $mobilePost->user_type = $request->user_type;
+        $mobilePost->firm_name = $request->first_name;
+        $mobilePost->gst_no = $request->gst_no;
+        $mobilePost->invoice = $request->invoice;
+        $mobilePost->additional_accessory = $request->additional_accessory;
+        $mobilePost->damages_and_functional_issues = $request->damages_and_functional_issues;
         $mobilePost->save();
-        return redirect()->route('single.post.ad', $mobilePost->id);
+        return Redirect::back();
     }
 
     public function saveMobileAccessory(Request $request)
