@@ -14,6 +14,10 @@ use App\Models\Car;
 use App\Models\Type;
 use App\Models\RealEstate;
 use App\Models\MobilePhone;
+use App\Models\MobileTablet;
+use App\Models\MobileAccessory;
+use App\Models\Job;
+use DB;
 
 class AdController extends Controller
 {
@@ -33,36 +37,37 @@ class AdController extends Controller
         $state = State::where('status', 1)->get();
         if($subCategory->status == 1)
         {
-            if($subCategory->sub_category == "Cars")
+            if(($subCategory->sub_category == "Cars") || ($subCategory->sub_category == "Other Vehicles") || ($subCategory->sub_category == "Spare Parts - Accessories"))
             {
                 $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-                return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
+                $carVarient = DB::table('car_varients')->where('sub_category_id', $subCategory->id)->get();
+                return view('auth.postAdForm', compact('subCategory', 'brand', 'state', 'carVarient'));
             }
-            if($subCategory->sub_category == "Sedan")
-            {
-                $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-                return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
-            }
-            if($subCategory->sub_category == "Hatchbag")
-            {
-                $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-                return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
-            }
-            if($subCategory->sub_category == "SUV")
-            {
-                $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-                return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
-            }
-            if($subCategory->sub_category == "Mini Suv")
-            {
-                $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-                return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
-            }
-            if($subCategory->sub_category == "Traveller")
-            {
-                $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-                return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
-            }
+            // if($subCategory->sub_category == "Sedan")
+            // {
+            //     $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
+            //     return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
+            // }
+            // if($subCategory->sub_category == "Hatchbag")
+            // {
+            //     $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
+            //     return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
+            // }
+            // if($subCategory->sub_category == "SUV")
+            // {
+            //     $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
+            //     return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
+            // }
+            // if($subCategory->sub_category == "Mini Suv")
+            // {
+            //     $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
+            //     return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
+            // }
+            // if($subCategory->sub_category == "Traveller")
+            // {
+            //     $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
+            //     return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
+            // }
             if($subCategory->sub_category == "Scooters")
             {
                 $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
@@ -73,10 +78,10 @@ class AdController extends Controller
                 $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 return view('auth.bike', compact('subCategory', 'brand', 'state'));
             }
-            if($subCategory->sub_category == "Bicycles")
+            if(($subCategory->sub_category == "Sales & Marketing") || ($subCategory->sub_category == "Data Entry & Back Office Executive"))
             {
                 $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-                return view('auth.bike', compact('subCategory', 'brand', 'state'));
+                return view('auth.jobs', compact('subCategory', 'brand', 'state'));
             }
             if($subCategory->sub_category == "Mobile Phones")
             {
@@ -90,8 +95,8 @@ class AdController extends Controller
             }
             if($subCategory->sub_category == "Tablets")
             {
-                $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-                return view('auth.tablets', compact('subCategory', 'brand', 'state'));
+                $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
+                return view('auth.tablets', compact('subCategory', 'type', 'state'));
             }
             if($subCategory->sub_category == "TV / LCD / LED Audio to Video")
             {
@@ -125,6 +130,13 @@ class AdController extends Controller
         $city = City::where("state_id", $request->state_id)->where('status', 1)
         ->pluck("city_name","id");
         return response()->json($city);
+    }
+
+    public function getBrandList(Request $request)
+    {
+        $brand = DB::table('type_brands')->where('type_id', $request->type_id)->where('status', 1)
+        ->pluck("type_brand_name", "id");
+        return response()->json($brand);
     }
 
     public function saveCarPost(Request $request)
@@ -195,7 +207,7 @@ class AdController extends Controller
         $carPost->locality_id = $request->locality;
         $carPost->sub_category_id = $request->sub_category_id;
         $carPost->save();
-        return redirect()->route('single.post.ad', $carPost->id);
+        return redirect()->route('single.post.ad', $carPost->id)->with('success', 'Car Post Added Successfully!');
     }
 
     public function saveRealEstatePost(Request $request)
@@ -287,7 +299,7 @@ class AdController extends Controller
         $realEstate->mobile_no = $request->mobile_no;
         $realEstate->sub_category_id = $request->sub_category_id;
         $realEstate->save();
-        return Redirect::back();
+        return Redirect::back()->with('success', 'Properties Post Added Successfully!');
     }
 
     public function getSinglePostDetail($id)
@@ -421,7 +433,7 @@ class AdController extends Controller
         $mobilePost->additional_accessory = $request->additional_accessory;
         $mobilePost->damages_and_functional_issues = $request->damages_and_functional_issues;
         $mobilePost->save();
-        return Redirect::back();
+        return Redirect::back()->with('success', 'Mobile Phone Post Added Successfully!');
     }
 
     public function saveMobileAccessory(Request $request)
@@ -431,6 +443,8 @@ class AdController extends Controller
             'email' => 'required',
             'mobile_no' => 'required',
             'accessory_type' => 'required',
+            // 'brand_name' => 'required',
+            'condition' => 'required',
             'ad_title' => 'required',
             'description' => 'required',
             'price' => 'required',
@@ -440,8 +454,10 @@ class AdController extends Controller
             'pin_code' => 'required',
             'address' => 'required',
         ]);
-        $mobileAccessory = new Car();
-        $mobileAccessory->accessory_type = $request->accessory_type;
+        $mobileAccessory = new MobileAccessory();
+        $mobileAccessory->type_id = $request->accessory_type;
+        $mobileAccessory->type_brand_id = $request->brand_name;
+        $mobileAccessory->condition = $request->condition;
         $mobileAccessory->ad_title = $request->ad_title;
         $mobileAccessory->description = $request->description;
         $mobileAccessory->price = $request->price;
@@ -475,8 +491,10 @@ class AdController extends Controller
         $mobileAccessory->email = $request->email;
         $mobileAccessory->mobile_no = $request->mobile_no;
         $mobileAccessory->sub_category_id = $request->sub_category_id;
+        $mobileAccessory->user_type = $request->user_type;
+        $mobileAccessory->gst_no = $request->gst_no;
         $mobileAccessory->save();
-        return redirect()->route('single.post.ad', $mobileAccessory->id);
+        return Redirect::back()->with('success', 'Mobile Accessory Post Added Successfully!');
     }
 
     public function saveTabletsPost(Request $request)
@@ -485,8 +503,8 @@ class AdController extends Controller
             'name' => 'required',
             'email' => 'required',
             'mobile_no' => 'required',
+            'type_name' => 'required',
             'brand_name' => 'required',
-            'year_of_purchase' => 'required',
             'physical_condition' => 'required',
             'ad_title' => 'required',
             'description' => 'required',
@@ -497,9 +515,9 @@ class AdController extends Controller
             'pin_code' => 'required',
             'address' => 'required',
         ]);
-        $tablet = new Car();
-        $tablet->brand_id = $request->brand_name;
-        $tablet->year_of_registration = $request->year_of_purchase;
+        $tablet = new MobileTablet();
+        $tablet->type_id = $request->type_name;
+        $tablet->type_brand_id = $request->brand_name;
         $tablet->physical_condition = $request->physical_condition;
         $tablet->ad_title = $request->ad_title;
         $tablet->description = $request->description;
@@ -523,7 +541,7 @@ class AdController extends Controller
             }
             // dd($files);
 
-         }
+        }
         $tablet->photos = implode(",", $files);
         $tablet->state_id = $request->state;
         $tablet->city_id = $request->city;
@@ -534,7 +552,71 @@ class AdController extends Controller
         $tablet->email = $request->email;
         $tablet->mobile_no = $request->mobile_no;
         $tablet->sub_category_id = $request->sub_category_id;
+        $tablet->user_type = $request->user_type;
+        $tablet->gst_no = $request->gst_no;
         $tablet->save();
-        return redirect()->route('single.post.ad', $tablet->id);
+        return Redirect::back()->with('success', 'Tablet Post Added Successfully!');
     }
+
+    public function saveJobsPost(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'mobile_no' => 'required',
+            'job_title' => 'required',
+            'job_type' => 'required',
+            'salary_period' => 'required',
+            'company_name' => 'required',
+            'job_description' => 'required',
+            'photos' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'pin_code' => 'required',
+            'address' => 'required',
+        ]);
+        $job = new Job();
+        $job->job_title = $request->job_title;
+        $job->job_type = $request->job_type;
+        $job->salary_period = $request->salary_period;
+        $job->position = $request->position;
+        $job->min_monthly_salary = $request->min_monthly_salary;
+        $job->max_monthly_salary = $request->max_monthly_salary;
+        $job->min_experience = $request->min_experience; 
+        $job->max_experience = $request->max_experience;  
+        $job->company_name = $request->company_name;
+        $job->job_description = $request->job_description;
+        // $files = $request->userfile;
+        // dd($request->photos);
+        if($request->hasfile('photos'))
+
+         {
+
+            foreach($request->file('photos') as $file)
+
+            {
+
+                $name = time().rand(1,100).'.'.$file->extension();
+
+                $file->move(public_path('adPhotos'), $name);  
+
+                $files[] = $name;  
+
+            }
+            // dd($files);
+
+        }
+        $job->photos = implode(",", $files);
+        $job->state_id = $request->state;
+        $job->city_id = $request->city;
+        $job->pin_code = $request->pin_code;
+        $job->address = $request->address;
+        $job->user_id = $request->user_id;
+        $job->name = $request->name;
+        $job->email = $request->email;
+        $job->mobile_no = $request->mobile_no;
+        $job->sub_category_id = $request->sub_category_id;
+        $job->save();
+        return Redirect::back()->with('success', 'Job Post Added Successfully!');
+    }                                                                                  
 }

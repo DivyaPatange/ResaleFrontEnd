@@ -1,5 +1,5 @@
 @extends('auth.auth_layout.main')
-@section('title', 'Mobile Accessory')
+@section('title', 'Jpbs')
 @section('customcss')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
@@ -90,82 +90,145 @@
 <section class="contact">
   <div class="container">
     <div class="row mt-3">
-      <div class="col-md-12">
-        @if ($message = Session::get('success'))
-        <div class="alert alert-success" role="alert">
-          <button type="button" class="close" data-dismiss="alert">×</button>	
-          <strong>{{ $message }}</strong>
+        <div class="col-md-12">
+            @if ($message = Session::get('success'))
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="close" data-dismiss="alert">×</button>	
+                    <strong>{{ $message }}</strong>
+            </div>
+            @endif
         </div>
-        @endif
-      </div>
     </div>
     <div class="row mt-5">
       <div class="col-sm-12">
         <div class="row">
           <div class="col-md-8">
-            <form method="POST" action="{{ url('save-mobileAccessory-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
+            <form method="POST" action="{{ url('save-jobs-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
             @csrf 
               <input type="hidden" name="sub_category_id"  value="{{ $subCategory->id }}">
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="accessory_type">Accessory Type <span class="text-danger">*</span></label>
-                  <select name="accessory_type" id="accessory_type" class="form-control @error('accessory_type') invalid-feedback @enderror">
-                    <option value="">-Select Type-</option>
-                    @foreach($type as $t)
-                    <option value="{{ $t->id }}" @if(old('accessory_type') == $t->id) selected @endif>{{ $t->type_name }}</option>
-                    @endforeach
-                  </select>
-                  @error('accessory_type')
+                  <label for="job_title">Job Title <span class="text-danger">*</span></label>
+                  <input type="text" name="job_title" class="form-control @error('job_title') invalid-feedback @enderror" value="{{ old('job_title') }}">
+                  @error('job_title')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
                   @enderror
                 </div>
                 <div class="form-group col-md-6">
-                  <label>Brand Name<span class="text-danger">*<span></label>
-                  <select id="brand_name" class="form-control @error('brand_name') is-invalid @enderror" name="brand_name">
-                    <option value="">Choose Brand...</option>
+                  <label>Job Type<span class="text-danger">*<span></label>
+                  <select id="job_type" class="form-control @error('job_type') is-invalid @enderror" name="job_type">
+                    <option value="">Choose Job Type...</option>
+                    <option value="Contract" @if(old('job_title') == "Contract") Selected @endif>Contract</option>
+                    <option value="Full Time" @if(old('job_title') == "Full Time") Selected @endif>Full Time</option>
+                    <option value="Part Time" @if(old('job_title') == "Part Time") Selected @endif>Part Time</option>
+                    <option value="Work From Home" @if(old('job_title') == "Work From Home") Selected @endif>Work From Home</option>
+                    <option value="Internship" @if(old('job_title') == "Internship") Selected @endif>Internship</option>
+                    <option value="Work Abroad" @if(old('job_title') == "Work Abroad") Selected @endif>Work Abroad</option>
                   </select>
-                  @error('brand_name')
+                  @error('job_type')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
                   @enderror
                 </div>
+                <div class="form-group col-md-6">
+                    <label>Salary Period<span class="text-danger">*<span></label>
+                    <select id="salary_period" class="form-control @error('salary_period') is-invalid @enderror" name="salary_period">
+                        <option value="">-Select Salary Period-</option>
+                        <option value="Hourly" @if(old('salary_period') == "Hourly") Selected @endif>Hourly</option>
+                        <option value="Monthly" @if(old('salary_period') == "Monthly") Selected @endif>Monthly</option>
+                        <option value="Weekly" @if(old('salary_period') == "Weekly") Selected @endif>Weekly</option>
+                        <option value="Yearly" @if(old('salary_period') == "Yearly") Selected @endif>Yearly</option>
+                    </select>
+                    @error('salary_period')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Position (Role)<span class="text-danger">*<span></label>
+                    <select id="position" class="form-control @error('position') is-invalid @enderror" name="position">
+                        <option value="">-Select Position-</option>
+                    </select>
+                    @error('position')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
               </div>
               <div class="form-group">
                 <div class="row">
-                  <div class="col-md-4">
-                    <label>Condition <span class="text-danger">*</span></label>
-                  </div>
-                  <div class="col-md-8">
-                    <select class="form-control @error('condition') is-invalid @enderror" id="condition" name="condition">
-                      <option value="">-Select Condition-</option>
-                      <option value="Excellent" @if (old('physical_condition') == "Excellent") selected="selected" @endif>Excellent</option>
-                      <option value="Good" @if (old('physical_condition') == "Good") selected="selected" @endif>Good</option>
-                      <option value="Fair" @if (old('physical_condition') == "Fair") selected="selected" @endif>Fair</option>
-                    </select>
-                  </div>
+                    <div class="col-md-4">
+                        <label for="">Monthly Salary</label>                                                                                                                                                                                                                                                                       
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><small>Min</small></div>
+                        </div>
+                        <input type="number" class="form-control @error('min_monthly_salary') is-invalid @enderror"  name="min_monthly_salary" value="{{ old('min_monthly_salary') }}" min="1000">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><small>Max</small></div>
+                            </div>
+                            <input type="number" class="form-control @error('max_monthly_salary') is-invalid @enderror"  name="max_monthly_salary" value="{{ old('max_monthly_salary') }}" max="100000">
+                        </div>
+                    </div>
                 </div>
-                @error('condition')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-                @enderror
               </div>
               <div class="form-group">
-                <label>Ad title <span class="text-danger">*</span></label>
-                <input type="text" class="form-control @error('ad_title') is-invalid @enderror" id="ad_title" placeholder="(e.g. brand, model, age, type)" name="ad_title" value="{{ old('ad_title') }}">
-                @error('ad_title')
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="">Experience</label>                                                                                                                                                                                                                                                                       
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><small>Min</small></div>
+                            </div>
+                            <select class="form-control @error('min_experience') is-invalid @enderror"  name="min_experience">
+                                <option value="">-Select Experience-</option>
+                                @for($i=0; $i < 20; $i++)
+                                <option value="{{ $i }}" @if(old('min_experience') == $i) selected @endif>{{ $i }}</option>                                                                              
+                                @endfor
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><small>Max</small></div>
+                            </div>
+                            <select class="form-control @error('max_experience') is-invalid @enderror"  name="max_experience">
+                                <option value="">-Select Experience-</option>
+                                @for($i=2; $i < 22; $i++)
+                                <option value="{{ $i }}" @if(old('max_experience') == $i) selected @endif>{{ $i }}</option>                                                                              
+                                @endfor
+                            </select>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Company Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control @error('company_name') is-invalid @enderror" id="company_name" name="company_name" value="{{ old('company_name') }}">
+                @error('company_name')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
               </div>
               <div class="form-group">
-                <label>Description <span class="text-danger">*</span></label>
-                <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
-                @error('description')
+                <label>Job Description <span class="text-danger">*</span></label>
+                <textarea class="form-control @error('job_description') is-invalid @enderror" id="job_description"  name="job_description">{{ old('job_description') }}</textarea>
+                @error('job_description')
                   <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                   </span>
@@ -192,29 +255,6 @@
                       <strong>{{ $message }}</strong>
                   </span>
               @enderror
-              <div class="form-group">
-                <h6>Expected Selling</h6>
-              </div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-3">
-                    <label>Price</label><span class="text-danger">*</span></label>
-                  </div>
-                  <div class="col-md-9">
-                    <div class="input-group mb-2">
-                      <div class="input-group-prepend">
-                        <div class="input-group-text"><i class="fa fa-rupee"></i></div>
-                      </div>
-                      <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Price" name="price" value="{{ old('price') }}">
-                    </div>
-                  </div>
-                </div>
-                @error('price')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-              </div>
               <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
               <hr>
               <div class="form-group">
@@ -305,45 +345,6 @@
                   @enderror
                 </div>
               </div>
-              <hr>
-              <div class="form-group">
-                <h6>Additional Details</h6>
-              </div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-6">
-                    <label for="">Are You?</label>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="user_type" id="Individual" value="Individual" @if(old('user_type') == "Individual") checked @endif>
-                      <label class="form-check-label" for="Individual">Individual</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="user_type" id="Dealer" value="Dealer" @if(old('user_type') == "Dealer") checked @endif>
-                      <label class="form-check-label" for="Dealer">Dealer</label>
-                    </div>
-                  </div>
-                </div>
-                @error('user_type')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="">GST No.</label>
-                </div>
-                <div class="form-group col-md-6">
-                  <input type="text" name="gst_no" class="form-control @error('gst_no') invalid-feedback @enderror" value="{{ old('gst_no') }}">
-                </div>
-              </div>
-              @error('gst_no')
-              <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-              </span>
-              @enderror
               <button type="submit" class="btn btn-primary">Post Your Add</button>
             </form>
           </div>

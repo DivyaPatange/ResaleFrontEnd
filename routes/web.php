@@ -16,6 +16,29 @@ use App\Http\Controllers\AdController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/clear-cache', function () {
+    $exitCode = Artisan::call('config:clear');
+    $exitCode = Artisan::call('cache:clear');
+    $exitCode = Artisan::call('config:cache');
+    return 'DONE'; //Return anything
+});
+
+Route::get('/migrate', function () {
+    $exitCode = Artisan::call('migrate');
+    return 'DONE'; //Return anything
+});
+
+Route::get('/routeList', function () {
+    $exitCode = Artisan::call('route:list');
+    return Artisan::output(); //Return anything
+});
+
+Route::get('/seed', function () {
+    $exitCode = Artisan::call('db:seed');
+    return 'DONE'; //Return anything
+});
+
+
 
 Route::get('/', function () {
     return view('auth.dashboard');
@@ -41,8 +64,13 @@ Route::post('/submitMobileNo', [MobileController::class, 'save'])->name('mobileN
 Route::post('/otpSubmit', [MobileController::class, 'otpSave'])->name('otp.save');
 Route::get('/post-ad', [AdController::class, 'index'])->name('post-ad');
 Route::get('/post-ad-form/{id}', [AdController::class, 'postAdForm'])->name('post-ad-form');
+
+// Ajax Route
 Route::get('/get-model-list', [AdController::class, 'getModelList']);
 Route::get('/get-city-list', [AdController::class, 'getCityList']);
+Route::get('/get-brand-list', [AdController::class, 'getBrandList']);
+
+// Save Car Post
 Route::post('/save-car-post', [AdController::class, 'saveCarPost']);
 Route::get('/single-post-detail/{id}', [AdController::class, 'getSinglePostDetail'])->name('single.post.ad');
 
@@ -50,5 +78,9 @@ Route::get('/single-post-detail/{id}', [AdController::class, 'getSinglePostDetai
 Route::post('/save-real-estate-post', [AdController::class, 'saveRealEstatePost']);
 Route::post('/save-bike-post', [AdController::class, 'saveBikePost']);
 Route::post('/save-mobilePhone-post', [AdController::class, 'saveMobilePhonePost']);
+// Save Mobile Accessory Post
 Route::post('/save-mobileAccessory-post', [AdController::class, 'saveMobileAccessory']);
+// Save Tablets Post
 Route::post('/save-tablets-post', [AdController::class, 'saveTabletsPost']);
+// Save Jobs Post
+Route::post('/save-jobs-post', [AdController::class, 'saveJobsPost']);

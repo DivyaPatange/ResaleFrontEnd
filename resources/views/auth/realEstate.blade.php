@@ -1,5 +1,5 @@
 @extends('auth.auth_layout.main')
-@section('title', 'Index')
+@section('title', 'Properties')
 @section('customcss')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
@@ -89,6 +89,16 @@
 <!-- ======= Contact Single ======= -->
 <section class="contact">
   <div class="container">
+    <div class="row mt-3">
+      <div class="col-md-12">
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success" role="alert">
+          <button type="button" class="close" data-dismiss="alert">×</button>	
+          <strong>{{ $message }}</strong>
+        </div>                                                                                          
+        @endif
+      </div>
+    </div>
     <div class="row mt-5">
       <div class="col-sm-12">
         <div class="row">

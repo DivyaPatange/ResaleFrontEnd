@@ -1,5 +1,5 @@
 @extends('auth.auth_layout.main')
-@section('title', 'Index')
+@section('title', 'Mobile Phones')
 @section('customcss')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
@@ -89,6 +89,16 @@
 <!-- ======= Contact Single ======= -->
 <section class="contact">
   <div class="container">
+    <div class="row mt-3">
+      <div class="col-md-12">
+          @if ($message = Session::get('success'))
+          <div class="alert alert-success" role="alert">
+              <button type="button" class="close" data-dismiss="alert">×</button>	
+                  <strong>{{ $message }}</strong>
+          </div>
+          @endif
+      </div>
+    </div>
     <div class="row mt-5">
       <div class="col-sm-12">
         <div class="row">
@@ -313,11 +323,11 @@
                     </div>
                     <div class="col-md-6">
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="user_type" id="Individual" value="Individual" @if(old('multiple_flat') == "Individual") checked @endif>
+                        <input class="form-check-input" type="radio" name="user_type" id="Individual" value="Individual" @if(old('user_type') == "Individual") checked @endif>
                         <label class="form-check-label" for="Individual">Individual</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="user_type" id="Dealer" value="Dealer" @if(old('multiple_flat') == "Dealer") checked @endif>
+                        <input class="form-check-input" type="radio" name="user_type" id="Dealer" value="Dealer" @if(old('user_type') == "Dealer") checked @endif>
                         <label class="form-check-label" for="Dealer">Dealer</label>
                       </div>
                     </div>

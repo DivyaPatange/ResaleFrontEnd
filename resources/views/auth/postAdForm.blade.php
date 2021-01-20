@@ -1,5 +1,5 @@
 @extends('auth.auth_layout.main')
-@section('title', 'Index')
+@section('title', 'Cars')
 @section('customcss')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
@@ -88,6 +88,16 @@
     <!-- ======= Contact Single ======= -->
     <section class="contact">
       <div class="container">
+        <div class="row mt-3">
+          <div class="col-md-12">
+              @if ($message = Session::get('success'))
+              <div class="alert alert-success" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">×</button>	
+                      <strong>{{ $message }}</strong>
+              </div>
+              @endif
+          </div>
+        </div>
         <div class="row mt-5">
           <div class="col-sm-12">
             <div class="row">
@@ -124,7 +134,10 @@
                     <div class="form-group col-md-4">
                     <label>Car Varient<span class="text-danger">*<span></label>
                     <select id="car_varient" class="form-control @error('car_varient') is-invalid @enderror" name="car_varient">
-
+                      <option value="">-Select Car Varient-</option>
+                      @foreach($carVarient as $c)
+                      <option value="{{ $c->id }}">{{ $c->car_varient }}</option>
+                      @endforeach
                     </select>
                     @error('car_varient')
                         <span class="invalid-feedback" role="alert">
@@ -347,7 +360,7 @@
                         </span>
                     @enderror
                     </div>
-                    <div class="form-group mb-3">
+                    <div class="form-group col-md-4 mb-3">
                       <label>Mobile Number<span class="text-danger">*</span></label>
                       <input type="text" class="form-control @error('mobile_no') is-invalid @enderror" id="mobile_no"  name="mobile_no" value="{{ Auth::user()->mobile_no }}">
                       @error('mobile_no')
