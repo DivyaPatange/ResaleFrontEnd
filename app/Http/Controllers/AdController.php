@@ -17,6 +17,9 @@ use App\Models\MobilePhone;
 use App\Models\MobileTablet;
 use App\Models\MobileAccessory;
 use App\Models\Job;
+use App\Models\Bike;
+use App\Models\SparePart;
+use App\Models\TV;
 use DB;
 
 class AdController extends Controller
@@ -68,15 +71,16 @@ class AdController extends Controller
             //     $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
             //     return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
             // }
-            if($subCategory->sub_category == "Scooters")
+            // dd($subCategory);
+            if(($subCategory->sub_category == "Motorcycles") || ($subCategory->sub_category == "Scooters"))
             {
                 $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 return view('auth.bike', compact('subCategory', 'brand', 'state'));
             }
-            if($subCategory->sub_category == "Motorcycles")
+            if($subCategory->sub_category == "Spare Parts")
             {
-                $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-                return view('auth.bike', compact('subCategory', 'brand', 'state'));
+                $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
+                return view('auth.spareParts', compact('subCategory', 'type', 'state'));
             }
             if(($subCategory->sub_category == "Sales & Marketing") || ($subCategory->sub_category == "Data Entry & Back Office Executive"))
             {
@@ -130,6 +134,13 @@ class AdController extends Controller
         $city = City::where("state_id", $request->state_id)->where('status', 1)
         ->pluck("city_name","id");
         return response()->json($city);
+    }
+
+    public function getCarVarient(Request $request)
+    {
+        $carVarient = DB::table('car_varients')->where("model_id", $request->model_id)
+        ->pluck("car_varient","id");
+        return response()->json($carVarient);
     }
 
     public function getBrandList(Request $request)
@@ -315,6 +326,7 @@ class AdController extends Controller
             'email' => 'required',
             'mobile_no' => 'required',
             'brand_name' => 'required',
+            // 'model_name' => 'required',
             'year_of_registration' => 'required',
             'kms_driven' => 'required',
             'ad_title' => 'required',
@@ -327,8 +339,9 @@ class AdController extends Controller
             'address' => 'required',
         ]);
 
-        $bikePost = new Car();
+        $bikePost = new Bike();
         $bikePost->brand_id = $request->brand_name;
+        $bikePost->model_id = $request->model_name;
         $bikePost->year_of_registration = $request->year_of_registration;
         $bikePost->kms_driven = $request->kms_driven;
         $bikePost->ad_title = $request->ad_title;
@@ -357,6 +370,7 @@ class AdController extends Controller
         $bikePost->photos = implode(",", $files);
         $bikePost->state_id = $request->state;
         $bikePost->city_id = $request->city;
+        $bikePost->locality_id = $request->locality;
         $bikePost->pin_code = $request->pin_code;
         $bikePost->address = $request->address;
         $bikePost->user_id = $request->user_id;
@@ -365,7 +379,7 @@ class AdController extends Controller
         $bikePost->mobile_no = $request->mobile_no;
         $bikePost->sub_category_id = $request->sub_category_id;
         $bikePost->save();
-        return redirect()->route('single.post.ad', $bikePost->id);
+        return Redirect::back()->with('success', 'Post Added Successfully!');
     }
 
     public function saveMobilePhonePost(Request $request)
@@ -485,6 +499,7 @@ class AdController extends Controller
         $mobileAccessory->state_id = $request->state;
         $mobileAccessory->city_id = $request->city;
         $mobileAccessory->pin_code = $request->pin_code;
+        $mobileAccessory->locality_id = $request->locality;
         $mobileAccessory->address = $request->address;
         $mobileAccessory->user_id = $request->user_id;
         $mobileAccessory->name = $request->name;
@@ -618,5 +633,121 @@ class AdController extends Controller
         $job->sub_category_id = $request->sub_category_id;
         $job->save();
         return Redirect::back()->with('success', 'Job Post Added Successfully!');
-    }                                                                                  
+    }    
+    
+    public function saveSparePartsPost(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'mobile_no' => 'required',
+            'product_type' => 'required',
+            'ad_title' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'photos' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'pin_code' => 'required',
+            'address' => 'required',
+        ]);
+        $sparePart = new SparePart();
+        $sparePart->type_id = $request->product_type;
+        $sparePart->ad_title = $request->ad_title;
+        $sparePart->description = $request->description;
+        $sparePart->price = $request->price;
+        // $files = $request->userfile;
+        // dd($request->photos);
+        if($request->hasfile('photos'))
+
+         {
+
+            foreach($request->file('photos') as $file)
+
+            {
+
+                $name = time().rand(1,100).'.'.$file->extension();
+
+                $file->move(public_path('adPhotos'), $name);  
+
+                $files[] = $name;  
+
+            }
+            // dd($files);
+
+         }
+        $sparePart->photos = implode(",", $files);
+        $sparePart->state_id = $request->state;
+        $sparePart->city_id = $request->city;
+        $sparePart->pin_code = $request->pin_code;
+        $sparePart->address = $request->address;
+        $sparePart->user_id = $request->user_id;
+        $sparePart->name = $request->name;
+        $sparePart->email = $request->email;
+        $sparePart->mobile_no = $request->mobile_no;
+        $sparePart->sub_category_id = $request->sub_category_id;
+        $sparePart->locality_id = $request->locality;
+        $sparePart->save();
+        return Redirect::back()->with('success', 'Post Added Successfully!');
+    }
+
+    public function saveTVPost(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'mobile_no' => 'required',
+            'product_type' => 'required',
+            'ad_title' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'photos' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'pin_code' => 'required',
+            'address' => 'required',
+        ]);
+        $tv = new TV();
+        $tv->type_id = $request->product_type;
+        $tv->type_brand_id = $request->brand_name;
+        $tv->condition = $request->condition;
+        $tv->ad_title = $request->ad_title;
+        $tv->description = $request->description;
+        $tv->price = $request->price;
+        // $files = $request->userfile;
+        // dd($request->photos);
+        if($request->hasfile('photos'))
+
+         {
+
+            foreach($request->file('photos') as $file)
+
+            {
+
+                $name = time().rand(1,100).'.'.$file->extension();
+
+                $file->move(public_path('adPhotos'), $name);  
+
+                $files[] = $name;  
+
+            }
+            // dd($files);
+
+         }
+        $tv->photos = implode(",", $files);
+        $tv->state_id = $request->state;
+        $tv->city_id = $request->city;
+        $tv->pin_code = $request->pin_code;
+        $tv->address = $request->address;
+        $tv->user_id = $request->user_id;
+        $tv->name = $request->name;
+        $tv->email = $request->email;
+        $tv->mobile_no = $request->mobile_no;
+        $tv->sub_category_id = $request->sub_category_id;
+        $tv->locality_id = $request->locality;
+        $tv->user_type = $request->user_type;
+        $tv->gst_no = $request->gst_no;
+        $tv->save();
+        return Redirect::back()->with('success', 'Post Added Successfully!');
+    }
 }

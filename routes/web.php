@@ -69,6 +69,7 @@ Route::get('/post-ad-form/{id}', [AdController::class, 'postAdForm'])->name('pos
 Route::get('/get-model-list', [AdController::class, 'getModelList']);
 Route::get('/get-city-list', [AdController::class, 'getCityList']);
 Route::get('/get-brand-list', [AdController::class, 'getBrandList']);
+Route::get('/get-car-varient-list', [AdController::class, 'getCarVarient']);
 
 // Save Car Post
 Route::post('/save-car-post', [AdController::class, 'saveCarPost']);
@@ -84,3 +85,5 @@ Route::post('/save-mobileAccessory-post', [AdController::class, 'saveMobileAcces
 Route::post('/save-tablets-post', [AdController::class, 'saveTabletsPost']);
 // Save Jobs Post
 Route::post('/save-jobs-post', [AdController::class, 'saveJobsPost']);
+Route::post('/save-spareParts-post', [AdController::class, 'saveSparePartsPost']);
+Route::post('/save-tv-post', [AdController::class, 'saveTVPost']);
