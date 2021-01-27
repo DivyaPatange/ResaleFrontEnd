@@ -596,5 +596,30 @@ function removeField(){
     $("#city").empty();
   }   
   });
+
+  $('#city').change(function(){
+  var cityID = $(this).val();  
+//   alert(brandID);
+  if(cityID){
+    $.ajax({
+      type:"GET",
+      url:"{{url('/get-locality-list')}}?city_id="+cityID,
+      success:function(res){        
+      if(res){
+        $("#locality").empty();
+        $("#locality").append('<option>Select Locality</option>');
+        $.each(res,function(key,value){
+          $("#locality").append('<option value="'+key+'">'+value+'</option>');
+        });
+      
+      }else{
+        $("#locality").empty();
+      }
+      }
+    });
+  }else{
+    $("#locality").empty();
+  }   
+  });
 </script>
 @endsection

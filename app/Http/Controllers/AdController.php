@@ -20,6 +20,7 @@ use App\Models\Job;
 use App\Models\Bike;
 use App\Models\SparePart;
 use App\Models\TV;
+use App\Models\CommercialVehicle;
 use DB;
 
 class AdController extends Controller
@@ -45,6 +46,11 @@ class AdController extends Controller
                 $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 $carVarient = DB::table('car_varients')->where('sub_category_id', $subCategory->id)->get();
                 return view('auth.postAdForm', compact('subCategory', 'brand', 'state', 'carVarient'));
+            }
+            if($subCategory->sub_category == "Commercial Vehicles")
+            {
+                $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
+                return view('auth.commercialVehicle', compact('subCategory', 'type', 'state'));
             }
             // if($subCategory->sub_category == "Sedan")
             // {
@@ -134,6 +140,13 @@ class AdController extends Controller
         $city = City::where("state_id", $request->state_id)->where('status', 1)
         ->pluck("city_name","id");
         return response()->json($city);
+    }
+
+    public function getLocalityList(Request $request)
+    {
+        $locality = DB::table('localities')->where("city_id", $request->city_id)
+        ->pluck("locality","id");
+        return response()->json($locality);
     }
 
     public function getCarVarient(Request $request)
@@ -379,6 +392,72 @@ class AdController extends Controller
         $bikePost->mobile_no = $request->mobile_no;
         $bikePost->sub_category_id = $request->sub_category_id;
         $bikePost->save();
+        return Redirect::back()->with('success', 'Post Added Successfully!');
+    }
+
+    public function saveCommercialVehiclePost(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'mobile_no' => 'required',
+            'vehicle_type' => 'required',
+            'brand_name' => 'required',
+            // 'model_name' => 'required',
+            'year_of_registration' => 'required',
+            'kms_driven' => 'required',
+            'ad_title' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'photos' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'pin_code' => 'required',
+            'address' => 'required',
+        ]);
+
+        $vehicle = new CommercialVehicle();
+        $vehicle->type_id = $request->vehicle_type;
+        $vehicle->type_brand_id = $request->brand_name;
+        $vehicle->year_of_registration = $request->year_of_registration;
+        $vehicle->kms_driven = $request->kms_driven;
+        $vehicle->ad_title = $request->ad_title;
+        $vehicle->description = $request->description;
+        $vehicle->price = $request->price;
+        // $files = $request->userfile;
+        // dd($request->photos);
+        if($request->hasfile('photos'))
+
+         {
+
+            foreach($request->file('photos') as $file)
+
+            {
+
+                $name = time().rand(1,100).'.'.$file->extension();
+
+                $file->move(public_path('adPhotos'), $name);  
+
+                $files[] = $name;  
+
+            }
+            // dd($files);
+
+         }
+        $vehicle->photos = implode(",", $files);
+        $vehicle->state_id = $request->state;
+        $vehicle->city_id = $request->city;
+        $vehicle->locality_id = $request->locality;
+        $vehicle->pin_code = $request->pin_code;
+        $vehicle->address = $request->address;
+        $vehicle->user_id = $request->user_id;
+        $vehicle->name = $request->name;
+        $vehicle->email = $request->email;
+        $vehicle->mobile_no = $request->mobile_no;
+        $vehicle->sub_category_id = $request->sub_category_id;
+        $vehicle->user_type = $request->user_type;
+        $vehicle->gst_no = $request->gst_no;
+        $vehicle->save();
         return Redirect::back()->with('success', 'Post Added Successfully!');
     }
 

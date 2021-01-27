@@ -1,5 +1,5 @@
 @extends('auth.auth_layout.main')
-@section('title', 'Mobile Accessory')
+@section('title', 'Commercial Vehicle')
 @section('customcss')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
@@ -103,19 +103,19 @@
       <div class="col-sm-12">
         <div class="row">
           <div class="col-md-8">
-            <form method="POST" action="{{ url('save-mobileAccessory-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
+            <form method="POST" action="{{ url('save-commercialVehicle-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
             @csrf 
               <input type="hidden" name="sub_category_id"  value="{{ $subCategory->id }}">
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="accessory_type">Accessory Type <span class="text-danger">*</span></label>
-                  <select name="accessory_type" id="accessory_type" class="form-control @error('accessory_type') invalid-feedback @enderror">
+                  <label for="accessory_type">Vehicle Type <span class="text-danger">*</span></label>
+                  <select name="vehicle_type" id="accessory_type" class="form-control @error('vehicle_type') invalid-feedback @enderror">
                     <option value="">-Select Type-</option>
                     @foreach($type as $t)
-                    <option value="{{ $t->id }}" @if(old('accessory_type') == $t->id) selected @endif>{{ $t->type_name }}</option>
+                    <option value="{{ $t->id }}" @if(old('vehicle_type') == $t->id) selected @endif>{{ $t->type_name }}</option>
                     @endforeach
                   </select>
-                  @error('accessory_type')
+                  @error('vehicle_type')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
@@ -133,25 +133,25 @@
                   @enderror
                 </div>
               </div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-4">
-                    <label>Condition <span class="text-danger">*</span></label>
-                  </div>
-                  <div class="col-md-8">
-                    <select class="form-control @error('condition') is-invalid @enderror" id="condition" name="condition">
-                      <option value="">-Select Condition-</option>
-                      <option value="Excellent" @if (old('physical_condition') == "Excellent") selected="selected" @endif>Excellent</option>
-                      <option value="Good" @if (old('physical_condition') == "Good") selected="selected" @endif>Good</option>
-                      <option value="Fair" @if (old('physical_condition') == "Fair") selected="selected" @endif>Fair</option>
-                    </select>
-                  </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Year of Registration<span class="text-danger">*</span></label>
+                    <input type="month" class="form-control @error('year_of_registration') is-invalid @enderror" id="year_of_registration" placeholder="Year" name="year_of_registration" value="{{ old('year_of_registration') }}">
+                    @error('year_of_registration')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
-                @error('condition')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-                @enderror
+                <div class="form-group col-md-6">
+                    <label>KMS Driven</label>
+                    <input type="text" class="form-control @error('kms_driven') is-invalid @enderror" id="kms_driven" name="kms_driven" value="{{ old('kms_driven') }}">
+                    @error('kms_driven')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
               </div>
               <div class="form-group">
                 <label>Ad title <span class="text-danger">*</span></label>
@@ -172,7 +172,7 @@
                 @enderror
               </div>
               <div class="form-froup">
-                <label>Photos <span class="text-danger">*</span></label>
+                <label>Photos <span class="text-danger">*</span></label>&nbsp;<small class="text-muted">(Upload upto 20 Photos)</small>
               </div>
               <div id="upload_form">
                 <label class="filelabel p_file">
@@ -566,7 +566,7 @@ function removeField(){
       success:function(res){        
       if(res){
         $("#locality").empty();
-        $("#locality").append('<option>Select Locality</option>');
+        $("#locality").append('<option value="">Select Locality</option>');
         $.each(res,function(key,value){
           $("#locality").append('<option value="'+key+'">'+value+'</option>');
         });

@@ -68,6 +68,7 @@ Route::get('/post-ad-form/{id}', [AdController::class, 'postAdForm'])->name('pos
 // Ajax Route
 Route::get('/get-model-list', [AdController::class, 'getModelList']);
 Route::get('/get-city-list', [AdController::class, 'getCityList']);
+Route::get('/get-locality-list', [AdController::class, 'getLocalityList']);
 Route::get('/get-brand-list', [AdController::class, 'getBrandList']);
 Route::get('/get-car-varient-list', [AdController::class, 'getCarVarient']);
 
@@ -87,3 +88,5 @@ Route::post('/save-tablets-post', [AdController::class, 'saveTabletsPost']);
 Route::post('/save-jobs-post', [AdController::class, 'saveJobsPost']);
 Route::post('/save-spareParts-post', [AdController::class, 'saveSparePartsPost']);
 Route::post('/save-tv-post', [AdController::class, 'saveTVPost']);
+Route::post('/save-commercialVehicle-post', [AdController::class, 'saveCommercialVehiclePost']);
+
