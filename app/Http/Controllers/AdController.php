@@ -52,6 +52,11 @@ class AdController extends Controller
                 $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 return view('auth.commercialVehicle', compact('subCategory', 'type', 'state'));
             }
+            if($subCategory->sub_category == "Sofa & Dining")
+            {
+                $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
+                return view('auth.furniture', compact('subCategory', 'type', 'state'));
+            }
             // if($subCategory->sub_category == "Sedan")
             // {
             //     $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
@@ -771,6 +776,66 @@ class AdController extends Controller
     }
 
     public function saveTVPost(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'mobile_no' => 'required',
+            'product_type' => 'required',
+            'ad_title' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'photos' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'pin_code' => 'required',
+            'address' => 'required',
+        ]);
+        $tv = new TV();
+        $tv->type_id = $request->product_type;
+        $tv->type_brand_id = $request->brand_name;
+        $tv->condition = $request->condition;
+        $tv->ad_title = $request->ad_title;
+        $tv->description = $request->description;
+        $tv->price = $request->price;
+        // $files = $request->userfile;
+        // dd($request->photos);
+        if($request->hasfile('photos'))
+
+         {
+
+            foreach($request->file('photos') as $file)
+
+            {
+
+                $name = time().rand(1,100).'.'.$file->extension();
+
+                $file->move(public_path('adPhotos'), $name);  
+
+                $files[] = $name;  
+
+            }
+            // dd($files);
+
+         }
+        $tv->photos = implode(",", $files);
+        $tv->state_id = $request->state;
+        $tv->city_id = $request->city;
+        $tv->pin_code = $request->pin_code;
+        $tv->address = $request->address;
+        $tv->user_id = $request->user_id;
+        $tv->name = $request->name;
+        $tv->email = $request->email;
+        $tv->mobile_no = $request->mobile_no;
+        $tv->sub_category_id = $request->sub_category_id;
+        $tv->locality_id = $request->locality;
+        $tv->user_type = $request->user_type;
+        $tv->gst_no = $request->gst_no;
+        $tv->save();
+        return Redirect::back()->with('success', 'Post Added Successfully!');
+    }
+
+    public function saveFurniturePost(Request $request)
     {
         $request->validate([
             'name' => 'required',

@@ -89,4 +89,5 @@ Route::post('/save-jobs-post', [AdController::class, 'saveJobsPost']);
 Route::post('/save-spareParts-post', [AdController::class, 'saveSparePartsPost']);
 Route::post('/save-tv-post', [AdController::class, 'saveTVPost']);
 Route::post('/save-commercialVehicle-post', [AdController::class, 'saveCommercialVehiclePost']);
+Route::post('/save-furniture-post', [AdController::class, 'saveFurniturePost']);
 
