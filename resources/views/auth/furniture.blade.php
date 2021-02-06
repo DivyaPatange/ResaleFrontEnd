@@ -116,7 +116,7 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="furniture_type">Furniture Type <span class="text-danger">*</span></label>
-                  <select name="furniture_type" id="furniture_type" class="form-control @error('furniture_type') invalid-feedback @enderror">
+                  <select name="furniture_type" id="furniture_type" class="form-control @error('furniture_type') is-invalid @enderror">
                     <option value="">-Select Type-</option>
                     @foreach($type as $t)
                     <option value="{{ $t->id }}" @if(old('vehicle_type') == $t->id) selected @endif>{{ $t->type_name }}</option>
@@ -345,7 +345,7 @@
                 </span>
                 @enderror
               </div>
-              <div class="form-row">
+              <div class="form-row hidden" id="showDiv">
                 <div class="form-group col-md-6">
                   <label for="">GST No.</label>
                 </div>
@@ -594,5 +594,19 @@ function removeField(){
     $("#locality").empty();
   }   
   });
+
+$(document).ready(function() {
+  $("input[name$='user_type']").click(function() {
+      var test = $(this).val();
+      if(test=="Individual")
+      {
+        $("#showDiv").hide();
+      }
+      if(test=="Dealer")
+      {
+        $("#showDiv").show();
+      }
+  })
+})
 </script>
 @endsection

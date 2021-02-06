@@ -21,6 +21,7 @@ use App\Models\Bike;
 use App\Models\SparePart;
 use App\Models\TV;
 use App\Models\CommercialVehicle;
+use App\Models\Furniture;
 use DB;
 
 class AdController extends Controller
@@ -841,7 +842,8 @@ class AdController extends Controller
             'name' => 'required',
             'email' => 'required',
             'mobile_no' => 'required',
-            'product_type' => 'required',
+            // 'furniture_type' => 'required',
+            // 'brand_name' => 'required',
             'ad_title' => 'required',
             'description' => 'required',
             'price' => 'required',
@@ -851,13 +853,14 @@ class AdController extends Controller
             'pin_code' => 'required',
             'address' => 'required',
         ]);
-        $tv = new TV();
-        $tv->type_id = $request->product_type;
-        $tv->type_brand_id = $request->brand_name;
-        $tv->condition = $request->condition;
-        $tv->ad_title = $request->ad_title;
-        $tv->description = $request->description;
-        $tv->price = $request->price;
+        $furniture = new Furniture();
+        $furniture->type_id = $request->furniture_type;
+        $furniture->type_brand_id = $request->brand_name;
+        $furniture->condition = $request->condition;
+        $furniture->age = $request->age;
+        $furniture->ad_title = $request->ad_title;
+        $furniture->description = $request->description;
+        $furniture->price = $request->price;
         // $files = $request->userfile;
         // dd($request->photos);
         if($request->hasfile('photos'))
@@ -878,20 +881,20 @@ class AdController extends Controller
             // dd($files);
 
          }
-        $tv->photos = implode(",", $files);
-        $tv->state_id = $request->state;
-        $tv->city_id = $request->city;
-        $tv->pin_code = $request->pin_code;
-        $tv->address = $request->address;
-        $tv->user_id = $request->user_id;
-        $tv->name = $request->name;
-        $tv->email = $request->email;
-        $tv->mobile_no = $request->mobile_no;
-        $tv->sub_category_id = $request->sub_category_id;
-        $tv->locality_id = $request->locality;
-        $tv->user_type = $request->user_type;
-        $tv->gst_no = $request->gst_no;
-        $tv->save();
+        $furniture->photos = implode(",", $files);
+        $furniture->state_id = $request->state;
+        $furniture->city_id = $request->city;
+        $furniture->pin_code = $request->pin_code;
+        $furniture->address = $request->address;
+        $furniture->user_id = $request->user_id;
+        $furniture->name = $request->name;
+        $furniture->email = $request->email;
+        $furniture->mobile_no = $request->mobile_no;
+        $furniture->sub_category_id = $request->sub_category_id;
+        $furniture->locality_id = $request->locality;
+        $furniture->user_type = $request->user_type;
+        $furniture->gst_no = $request->gst_no;
+        $furniture->save();
         return Redirect::back()->with('success', 'Post Added Successfully!');
     }
 }

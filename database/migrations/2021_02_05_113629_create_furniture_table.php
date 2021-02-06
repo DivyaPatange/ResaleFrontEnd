@@ -17,6 +17,8 @@ class CreateFurnitureTable extends Migration
             $table->id();
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedInteger('category_id')->nullable();
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->unsignedInteger('sub_category_id');
             $table->foreign('sub_category_id')->references('id')->on('sub_categories');
             $table->unsignedInteger('type_id')->nullable();
