@@ -22,19 +22,21 @@
   margin:10px;
 }
 #upload_form{
-    /* display:inline-flex; */
+  display:inline-flex;
+  flex-wrap:wrap;
 }
 .filelabel {
-    width: 120px;
-    border: 2px dashed grey;
-    border-radius: 5px;
-    display: inline-block;
-    padding: 5px;
-    transition: border 300ms ease;
-    cursor: pointer;
-    text-align: center;
-    margin: 6px;
-    position:relative;
+  width: 110px;
+  height:110px;
+  border: 2px dashed grey;
+  border-radius: 5px;
+  /* display: inline-block; */
+  padding: 5px;
+  transition: border 300ms ease;
+  cursor: pointer;
+  text-align: center;
+  margin: 6px;
+  position:relative;
 }
 .icon{
     position: absolute;
@@ -106,6 +108,7 @@
             <form method="POST" action="{{ url('save-commercialVehicle-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
             @csrf 
               <input type="hidden" name="sub_category_id"  value="{{ $subCategory->id }}">
+              <input type="hidden" name="category_id" value="{{ $category->id }}">
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="accessory_type">Vehicle Type <span class="text-danger">*</span></label>
@@ -184,7 +187,7 @@
                       Add File
                   </span>
                   <input class="FileUpload1" id="FileInput" name="photos[]" type="file"/>
-                  <img  id="frame1" width="100px" height="100px" class="hidden">
+                  <img  id="frame1" class="hidden" style="max-width: 90px; max-height: 70px;">
                 </label>
               </div>
               @error('photos')
@@ -331,12 +334,14 @@
                 </span>
                 @enderror
               </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="">GST No.</label>
-                </div>
-                <div class="form-group col-md-6">
-                  <input type="text" name="gst_no" class="form-control @error('gst_no') invalid-feedback @enderror" value="{{ old('gst_no') }}">
+              <div class="form-row hidden" id="showDiv">
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="">GST No.</label>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="text" name="gst_no" class="form-control @error('gst_no') invalid-feedback @enderror" value="{{ old('gst_no') }}">
+                  </div>
                 </div>
               </div>
               @error('gst_no')
@@ -493,7 +498,7 @@ function inputChanged(e) {
             '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
             '<span class="title'+$next_count+'">Add File</span>' +
             '<input class="FileUpload'+$next_count+'" id="FileInput" name="photos[]" type="file"/>'+
-            '<img  id="frame'+$next_count+'" width="100px" height="100px" class="hidden">'+
+            '<img  id="frame'+$next_count+'" class="hidden" style="max-width: 90px; max-height: 70px;">'+
             '</label>');
             }
            
@@ -580,5 +585,19 @@ function removeField(){
     $("#locality").empty();
   }   
   });
+
+  $(document).ready(function() {
+  $("input[name$='user_type']").click(function() {
+      var test = $(this).val();
+      if(test=="Individual")
+      {
+        $("#showDiv").hide();
+      }
+      if(test=="Dealer")
+      {
+        $("#showDiv").show();
+      }
+  })
+})
 </script>
 @endsection

@@ -113,6 +113,7 @@
             <form method="POST" action="{{ url('save-furniture-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
             @csrf 
               <input type="hidden" name="sub_category_id"  value="{{ $subCategory->id }}">
+              <input type="hidden" name="category_id" value="{{ $category->id }}">
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="furniture_type">Furniture Type <span class="text-danger">*</span></label>
@@ -346,11 +347,13 @@
                 @enderror
               </div>
               <div class="form-row hidden" id="showDiv">
-                <div class="form-group col-md-6">
-                  <label for="">GST No.</label>
-                </div>
-                <div class="form-group col-md-6">
-                  <input type="text" name="gst_no" class="form-control @error('gst_no') invalid-feedback @enderror" value="{{ old('gst_no') }}">
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="">GST No.</label>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="text" name="gst_no" class="form-control @error('gst_no') invalid-feedback @enderror" value="{{ old('gst_no') }}">
+                  </div>
                 </div>
               </div>
               @error('gst_no')

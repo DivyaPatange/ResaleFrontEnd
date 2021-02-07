@@ -22,19 +22,21 @@
   margin:10px;
 }
 #upload_form{
-    /* display:inline-flex; */
+  display:inline-flex;
+  flex-wrap:wrap;
 }
 .filelabel {
-    width: 120px;
-    border: 2px dashed grey;
-    border-radius: 5px;
-    display: inline-block;
-    padding: 5px;
-    transition: border 300ms ease;
-    cursor: pointer;
-    text-align: center;
-    margin: 6px;
-    position:relative;
+  width: 110px;
+  height:110px;
+  border: 2px dashed grey;
+  border-radius: 5px;
+  /* display: inline-block; */
+  padding: 5px;
+  transition: border 300ms ease;
+  cursor: pointer;
+  text-align: center;
+  margin: 6px;
+  position:relative;
 }
 .icon{
     position: absolute;
@@ -106,6 +108,7 @@
             <form method="POST" action="{{ url('save-mobilePhone-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
             @csrf 
             <input type="hidden" name="sub_category_id"  value="{{ $subCategory->id }}">
+            <input type="hidden" name="category_id" value="{{ $category->id }}">
               <div class="form-row">
                 <div class="form-group col-md-6">
                 <label>Brand Name<span class="text-danger">*<span></label>
@@ -189,7 +192,7 @@
                         Add File
                     </span>
                     <input class="FileUpload1" id="FileInput" name="photos[]" type="file"/>
-                    <img  id="frame1" width="100px" height="100px" class="hidden">
+                    <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                   </label>
                 </div>
                 @error('photos')
@@ -338,7 +341,8 @@
                   </span>
                   @enderror
                 </div>
-                <div class="form-row">
+                <div class="form-row hidden" id="showDiv">
+                  <div class="row">
                   <div class="form-group col-md-4">
                     <label for="">Firm Name</label>
                     <input type="text" class="form-control @error('firm_name') invalid-feedback @enderror" name="firm_name" value="{{ old('firm_name') }}">
@@ -365,6 +369,7 @@
                       <strong>{{ $message }}</strong>
                     </span>
                     @enderror
+                  </div>
                   </div>
                 </div>
                 <div class="form-group">
@@ -534,7 +539,7 @@ function inputChanged(e) {
             '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
             '<span class="title'+$next_count+'">Add File</span>' +
             '<input class="FileUpload'+$next_count+'" id="FileInput" name="photos[]" type="file"/>'+
-            '<img  id="frame'+$next_count+'" width="100px" height="100px" class="hidden">'+
+            '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
             '</label>');
             }
            
@@ -621,5 +626,19 @@ function removeField(){
     $("#locality").empty();
   }   
   });
+
+$(document).ready(function() {
+  $("input[name$='user_type']").click(function() {
+      var test = $(this).val();
+      if(test=="Individual")
+      {
+        $("#showDiv").hide();
+      }
+      if(test=="Dealer")
+      {
+        $("#showDiv").show();
+      }
+  })
+})
 </script>
 @endsection

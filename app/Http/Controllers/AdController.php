@@ -40,90 +40,67 @@ class AdController extends Controller
     {
         $subCategory = SubCategory::findorfail($id);
         $state = State::where('status', 1)->get();
+        $category = Category::where('id', $subCategory->category_id)->where('status', 1)->first();
         if($subCategory->status == 1)
         {
             if(($subCategory->sub_category == "Cars") || ($subCategory->sub_category == "Other Vehicles") || ($subCategory->sub_category == "Spare Parts - Accessories"))
             {
                 $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 $carVarient = DB::table('car_varients')->where('sub_category_id', $subCategory->id)->get();
-                return view('auth.postAdForm', compact('subCategory', 'brand', 'state', 'carVarient'));
+                return view('auth.postAdForm', compact('subCategory', 'brand', 'state', 'carVarient', 'category'));
             }
             if($subCategory->sub_category == "Commercial Vehicles")
             {
                 $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-                return view('auth.commercialVehicle', compact('subCategory', 'type', 'state'));
+                return view('auth.commercialVehicle', compact('subCategory', 'type', 'state', 'category'));
             }
-            if($subCategory->sub_category == "Sofa & Dining")
+            if(($subCategory->sub_category == "Sofa & Dining") || ($subCategory->sub_category == "Beds & Wordrobes") || ($subCategory->sub_category == "Home Decor & Gardening") || ($subCategory->sub_category == "Kids Furniture") || ($subCategory->sub_category == "Other House Hold Items"))
             {
                 $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-                return view('auth.furniture', compact('subCategory', 'type', 'state'));
+                return view('auth.furniture', compact('subCategory', 'type', 'state', 'category'));
             }
-            // if($subCategory->sub_category == "Sedan")
-            // {
-            //     $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-            //     return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
-            // }
-            // if($subCategory->sub_category == "Hatchbag")
-            // {
-            //     $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-            //     return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
-            // }
-            // if($subCategory->sub_category == "SUV")
-            // {
-            //     $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-            //     return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
-            // }
-            // if($subCategory->sub_category == "Mini Suv")
-            // {
-            //     $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-            //     return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
-            // }
-            // if($subCategory->sub_category == "Traveller")
-            // {
-            //     $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-            //     return view('auth.postAdForm', compact('subCategory', 'brand', 'state'));
-            // }
-            // dd($subCategory);
-            if(($subCategory->sub_category == "Motorcycles") || ($subCategory->sub_category == "Scooters"))
+            if(($subCategory->sub_category == "Motorcycles") || ($subCategory->sub_category == "Scooters") || ($subCategory->sub_category == "Bicycles"))
             {
                 $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-                return view('auth.bike', compact('subCategory', 'brand', 'state'));
+                return view('auth.bike', compact('subCategory', 'brand', 'state', 'category'));
             }
             if($subCategory->sub_category == "Spare Parts")
             {
                 $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-                return view('auth.spareParts', compact('subCategory', 'type', 'state'));
+                return view('auth.spareParts', compact('subCategory', 'type', 'state', 'category'));
             }
             if(($subCategory->sub_category == "Sales & Marketing") || ($subCategory->sub_category == "Data Entry & Back Office Executive"))
             {
                 $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-                return view('auth.jobs', compact('subCategory', 'brand', 'state'));
+                return view('auth.jobs', compact('subCategory', 'brand', 'state', 'category'));
             }
             if($subCategory->sub_category == "Mobile Phones")
             {
                 $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-                return view('auth.mobilePhones', compact('subCategory', 'brand', 'state'));
+                return view('auth.mobilePhones', compact('subCategory', 'brand', 'state', 'category'));
             }
             if($subCategory->sub_category == "Accessories")
             {
                 $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-                return view('auth.mobileAccessory', compact('subCategory', 'type', 'state'));
+                return view('auth.mobileAccessory', compact('subCategory', 'type', 'state', 'category'));
             }
             if($subCategory->sub_category == "Tablets")
             {
                 $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-                return view('auth.tablets', compact('subCategory', 'type', 'state'));
+                return view('auth.tablets', compact('subCategory', 'type', 'state', 'category'));
             }
-            if($subCategory->sub_category == "TV / LCD / LED Audio to Video")
+            if(($subCategory->sub_category == "TV / LCD / LED Audio to Video") || ($subCategory->sub_category == "Kitchen & Home Appliances") || ($subCategory->sub_category == "Computers & Laptops") || 
+                ($subCategory->sub_category == "Cameras & Lenses") || ($subCategory->sub_category == "Games & Entertainment") || ($subCategory->sub_category == "Fridge") || ($subCategory->sub_category == "Computer Accessories") || 
+                ($subCategory->sub_category == "Hard Disk, Printer & Monitor") || ($subCategory->sub_category == "ACs & Cooler") || ($subCategory->sub_category == "Washing Machine"))
             {
                 $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-                return view('auth.tv', compact('subCategory', 'type', 'state'));
+                return view('auth.tv', compact('subCategory', 'type', 'state', 'category'));
             }
             // dd($subCategory);
             if(($subCategory->sub_category == "PG & Guest Houses") || ($subCategory->sub_category == "Property for Rent / Lease") || ($subCategory->sub_category == "Property for Sale"))
             {
                 $cities = City::where('status', 1)->get();
-                return view('auth.realEstate', compact('subCategory', 'cities', 'state'));
+                return view('auth.realEstate', compact('subCategory', 'cities', 'state', 'category'));
             }
 
         }
@@ -235,6 +212,7 @@ class AdController extends Controller
         $carPost->colour = $request->colour;
         $carPost->insurance = $request->insurance;
         $carPost->locality_id = $request->locality;
+        $carPost->category_id = $request->category_id;
         $carPost->sub_category_id = $request->sub_category_id;
         $carPost->save();
         return redirect()->route('single.post.ad', $carPost->id)->with('success', 'Car Post Added Successfully!');
@@ -327,6 +305,7 @@ class AdController extends Controller
         $realEstate->name = $request->name;
         $realEstate->email = $request->email;
         $realEstate->mobile_no = $request->mobile_no;
+        $realEstate->category_id = $request->category_id;
         $realEstate->sub_category_id = $request->sub_category_id;
         $realEstate->save();
         return Redirect::back()->with('success', 'Properties Post Added Successfully!');
@@ -396,6 +375,7 @@ class AdController extends Controller
         $bikePost->name = $request->name;
         $bikePost->email = $request->email;
         $bikePost->mobile_no = $request->mobile_no;
+        $bikePost->category_id = $request->category_id;
         $bikePost->sub_category_id = $request->sub_category_id;
         $bikePost->save();
         return Redirect::back()->with('success', 'Post Added Successfully!');
@@ -460,6 +440,7 @@ class AdController extends Controller
         $vehicle->name = $request->name;
         $vehicle->email = $request->email;
         $vehicle->mobile_no = $request->mobile_no;
+        $vehicle->category_id = $request->category_id;
         $vehicle->sub_category_id = $request->sub_category_id;
         $vehicle->user_type = $request->user_type;
         $vehicle->gst_no = $request->gst_no;
@@ -524,6 +505,7 @@ class AdController extends Controller
         $mobilePost->name = $request->name;
         $mobilePost->email = $request->email;
         $mobilePost->mobile_no = $request->mobile_no;
+        $mobilePost->category_id = $request->category_id;
         $mobilePost->sub_category_id = $request->sub_category_id;
         $mobilePost->user_type = $request->user_type;
         $mobilePost->firm_name = $request->first_name;
@@ -590,6 +572,7 @@ class AdController extends Controller
         $mobileAccessory->name = $request->name;
         $mobileAccessory->email = $request->email;
         $mobileAccessory->mobile_no = $request->mobile_no;
+        $mobileAccessory->category_id = $request->category_id;
         $mobileAccessory->sub_category_id = $request->sub_category_id;
         $mobileAccessory->user_type = $request->user_type;
         $mobileAccessory->gst_no = $request->gst_no;
@@ -651,6 +634,7 @@ class AdController extends Controller
         $tablet->name = $request->name;
         $tablet->email = $request->email;
         $tablet->mobile_no = $request->mobile_no;
+        $tablet->category_id = $request->category_id;
         $tablet->sub_category_id = $request->sub_category_id;
         $tablet->user_type = $request->user_type;
         $tablet->gst_no = $request->gst_no;
@@ -715,6 +699,7 @@ class AdController extends Controller
         $job->name = $request->name;
         $job->email = $request->email;
         $job->mobile_no = $request->mobile_no;
+        $job->category_id = $request->category_id;
         $job->sub_category_id = $request->sub_category_id;
         $job->save();
         return Redirect::back()->with('success', 'Job Post Added Successfully!');
@@ -770,6 +755,7 @@ class AdController extends Controller
         $sparePart->name = $request->name;
         $sparePart->email = $request->email;
         $sparePart->mobile_no = $request->mobile_no;
+        $sparePart->category_id = $request->category_id;
         $sparePart->sub_category_id = $request->sub_category_id;
         $sparePart->locality_id = $request->locality;
         $sparePart->save();
@@ -828,6 +814,7 @@ class AdController extends Controller
         $tv->name = $request->name;
         $tv->email = $request->email;
         $tv->mobile_no = $request->mobile_no;
+        $tv->category_id = $request->category_id;
         $tv->sub_category_id = $request->sub_category_id;
         $tv->locality_id = $request->locality;
         $tv->user_type = $request->user_type;
@@ -890,6 +877,7 @@ class AdController extends Controller
         $furniture->name = $request->name;
         $furniture->email = $request->email;
         $furniture->mobile_no = $request->mobile_no;
+        $furniture->category_id = $request->category_id;
         $furniture->sub_category_id = $request->sub_category_id;
         $furniture->locality_id = $request->locality;
         $furniture->user_type = $request->user_type;
