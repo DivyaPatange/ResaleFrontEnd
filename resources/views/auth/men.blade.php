@@ -1,5 +1,5 @@
 @extends('auth.auth_layout.main')
-@section('title', 'Furniture')
+@section('title', 'Fashion')
 @section('customcss')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
@@ -116,25 +116,25 @@
               <input type="hidden" name="category_id" value="{{ $category->id }}">
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="furniture_type">Furniture Type <span class="text-danger">*</span></label>
-                  <select name="furniture_type" id="furniture_type" class="form-control @error('furniture_type') is-invalid @enderror">
+                  <label for="clothing_type">Clothing Type <span class="text-danger">*</span></label>
+                  <select name="clothing_type" id="clothing_type" class="form-control @error('clothing_type') is-invalid @enderror">
                     <option value="">-Select Type-</option>
                     @foreach($type as $t)
-                    <option value="{{ $t->id }}" @if(old('furniture_type') == $t->id) selected @endif>{{ $t->type_name }}</option>
+                    <option value="{{ $t->id }}" @if(old('clothing_type') == $t->id) selected @endif>{{ $t->type_name }}</option>
                     @endforeach
                   </select>
-                  @error('furniture_type')
+                  @error('clothing_type')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
                   @enderror
                 </div>
                 <div class="form-group col-md-6">
-                  <label>Brand Name<span class="text-danger">*<span></label>
-                  <select id="brand_name" class="form-control @error('brand_name') is-invalid @enderror" name="brand_name">
-                    <option value="">Choose Brand...</option>
+                  <label>Size<span class="text-danger">*<span></label>
+                  <select id="size" class="form-control @error('size') is-invalid @enderror" name="size">
+                    <option value="">Choose Size...</option>
                   </select>
-                  @error('brand_name')
+                  @error('size')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
@@ -185,7 +185,7 @@
                 @enderror
               </div>
               <div class="form-group">
-                <label>Photos <span class="text-danger">*</span></label>&nbsp;<small class="text-muted">(Upload upto 12 Photos)</small>
+                <label>Photos <span class="text-danger">*</span></label>&nbsp;<small class="text-muted">(Upload upto 15 Photos)</small>
               </div>
               <div class="form-group">
               <div id="upload_form">

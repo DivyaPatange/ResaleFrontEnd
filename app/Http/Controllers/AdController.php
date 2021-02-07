@@ -102,6 +102,18 @@ class AdController extends Controller
                 $cities = City::where('status', 1)->get();
                 return view('auth.realEstate', compact('subCategory', 'cities', 'state', 'category'));
             }
+            if(($subCategory->sub_category == "Men") || ($subCategory->sub_category == "Women") || ($subCategory->sub_category == "Kids"))
+            {
+                $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
+                $cities = City::where('status', 1)->get();
+                return view('auth.men', compact('subCategory', 'cities', 'state', 'category', 'type'));
+            }
+            if(($subCategory->sub_category == "Pet Clinics") || ($subCategory->sub_category == "Fishes & Aquarium") || ($subCategory->sub_category == "Pet Food") || ($subCategory->sub_category == "Pet Accessories") || ($subCategory->sub_category == "Other Pets") || ($subCategory->sub_category == "Pet Training & Grooming"))
+            {
+                $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
+                $cities = City::where('status', 1)->get();
+                return view('auth.pet', compact('subCategory', 'cities', 'state', 'category', 'type'));
+            }
 
         }
         else{

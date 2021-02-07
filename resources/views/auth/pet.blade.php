@@ -1,5 +1,5 @@
 @extends('auth.auth_layout.main')
-@section('title', 'Furniture')
+@section('title', 'Pets')
 @section('customcss')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
@@ -114,57 +114,26 @@
             @csrf 
               <input type="hidden" name="sub_category_id"  value="{{ $subCategory->id }}">
               <input type="hidden" name="category_id" value="{{ $category->id }}">
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="furniture_type">Furniture Type <span class="text-danger">*</span></label>
-                  <select name="furniture_type" id="furniture_type" class="form-control @error('furniture_type') is-invalid @enderror">
-                    <option value="">-Select Type-</option>
-                    @foreach($type as $t)
-                    <option value="{{ $t->id }}" @if(old('furniture_type') == $t->id) selected @endif>{{ $t->type_name }}</option>
-                    @endforeach
-                  </select>
-                  @error('furniture_type')
+              <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="pet_type">Pet Type <span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-8">
+                        <select name="pet_type" id="pet_type" class="form-control @error('pet_type') is-invalid @enderror">
+                            <option value="">-Select Type-</option>
+                            @foreach($type as $t)
+                            <option value="{{ $t->id }}" @if(old('pet_type') == $t->id) selected @endif>{{ $t->type_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                
+                @error('pet_type')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
                   @enderror
-                </div>
-                <div class="form-group col-md-6">
-                  <label>Brand Name<span class="text-danger">*<span></label>
-                  <select id="brand_name" class="form-control @error('brand_name') is-invalid @enderror" name="brand_name">
-                    <option value="">Choose Brand...</option>
-                  </select>
-                  @error('brand_name')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label>Condition<span class="text-danger">*</span></label>
-                    <select name="condition" id="condition" class="form-control @error('condition') is-invalid @enderror">
-                        <option value="">-Select Condition-</option>
-                        <option value="Excellent" @if(old('condition') == "Excellent") Selected @endif>Excellent</option>
-                        <option value="Good" @if(old('condition') == "Good") Selected @endif>Good</option>
-                        <option value="Fair" @if(old('condition') == "Fair") Selected @endif>Fair</option>
-                    </select>
-                    @error('condition')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-                <div class="form-group col-md-6">
-                    <label>Age</label>
-                    <input type="text" class="form-control @error('age') is-invalid @enderror" id="age" name="age" value="{{ old('age') }}">
-                    @error('age')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
               </div>
               <div class="form-group">
                 <label>Ad title <span class="text-danger">*</span></label>
@@ -185,7 +154,7 @@
                 @enderror
               </div>
               <div class="form-group">
-                <label>Photos <span class="text-danger">*</span></label>&nbsp;<small class="text-muted">(Upload upto 12 Photos)</small>
+                <label>Photos <span class="text-danger">*</span></label>&nbsp;<small class="text-muted">(Upload upto 15 Photos)</small>
               </div>
               <div class="form-group">
               <div id="upload_form">
