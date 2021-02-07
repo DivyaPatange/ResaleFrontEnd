@@ -136,62 +136,165 @@
                     $category = DB::table('categories')->where('status', 1)->limit(4)->get();
                 ?>
                 @foreach($category as $cat)
-                <div class="container">
-                    <div class="row mt-4">
-                        <div class="col-md-12">
-                            <div class="title-wrap d-flex justify-content-between">
-                                <div class="title-box">
-                                   <h5 class="title-a">{{ $cat->category_name }} Post</h5>
-                                </div>
-                                <?php
-                                    if($cat->category_name == "Auto Cars")
-                                    {
-                                        $cars = DB::table('cars')->where('category_id', $cat->id)->limit(4)->get();
-                                        // dd($cars);
-                                    }
-                                ?>
-                                <div class="title-link">
-                                    <h5>
-                                        <a href="all_product.php">Show All
-                                        <span class="ion-ios-arrow-forward"></span>
-                                        </a>
-                                    </h5>
+                
+                @if($cat->category_name == "Auto Cars")
+                    <?php
+                        $cars = DB::table('cars')->where('category_id', $cat->id)->limit(4)->get();
+                    ?>
+                    @if(count($cars) > 0)
+                    <div class="container">
+                        <div class="row mt-4">
+                            <div class="col-md-12">
+                                <div class="title-wrap d-flex justify-content-between">
+                                    <div class="title-box">
+                                    <h5 class="title-a">{{ $cat->category_name }} Post</h5>
+                                    </div>
+                                    <div class="title-link">
+                                        <h5>
+                                            <a href="all_product.php">Show All
+                                            <span class="ion-ios-arrow-forward"></span>
+                                            </a>
+                                        </h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                @if($cat->category_name == "Auto Cars")
-                <div class="container">
-                    <div class="row">   
-                        @foreach($cars as $car)     
-                        <?php
-                            $carPhoto = explode(",", $car->photos);
-                        ?>               
-                        <div class="col-md-3 mb-3">
-                            <div class="card border-secondary">
-                                <div class="card-header bg-transparent border-secondary ">
-                                     <img class="img-fluid myimg" src="{{  URL::asset('adPhotos/' . $carPhoto[0]) }}">
+                        <div class="row">   
+                            @foreach($cars as $car)     
+                            <?php
+                                $carPhoto = explode(",", $car->photos);
+                            ?>               
+                            <div class="col-md-3 mb-3">
+                                <div class="card border-secondary">
+                                    <div class="card-header bg-transparent border-secondary ">
+                                        <img class="img-fluid myimg" src="{{  URL::asset('adPhotos/' . $carPhoto[0]) }}">
+                                    </div>
+                                    <div class="card-body text-secondary ">
+                                        <div class="card-body p-0" style="font-size:13px">
+                                            <p class="card-text m-0">{{ $car->ad_title }}
+                                            <br />{{ $car->description }}</p>
+                                        <a href="{{ url('product_detail') }}" class="">Click here to view
+                                            <span class="ion-ios-arrow-forward"></span>
+                                        </a>
+                                        <p class="card-text m-0"> Price | <i class="fa fa-inr"></i> {{ $car->price }}</p>
+                                        </div>
+                                    </div>
+                                    <!--<div class="card-footer bg-transparent border-secondary"style="font-size:13px">-->
+                                    
+                                    <!--   rent | $ 12.000</span>-->
+                                    <!--</div>-->
                                 </div>
-                                <div class="card-body text-secondary ">
-                                    <div class="card-body p-0" style="font-size:13px">
-                                        <p class="card-text m-0">{{ $car->ad_title }}
-                                        <br />{{ $car->description }}</p>
-                                       <a href="{{ url('product_detail') }}" class="">Click here to view
-                                        <span class="ion-ios-arrow-forward"></span>
-                                       </a>
-                                       <p class="card-text m-0"> Price | <i class="fa fa-inr"></i> {{ $car->price }}</p>
+                            </div> 
+                            @endforeach   
+                        </div>
+                    </div>
+                    @endif
+                @endif
+                @if($cat->category_name == "Properties")
+                    <?php 
+                        $properties = DB::table('real_estates')->where('category_id', $cat->id)->limit(4)->get();
+                    ?>
+                    @if(count($properties) > 0)
+                    <div class="container">
+                        <div class="row mt-4">
+                            <div class="col-md-12">
+                                <div class="title-wrap d-flex justify-content-between">
+                                    <div class="title-box">
+                                    <h5 class="title-a">{{ $cat->category_name }} Post</h5>
+                                    </div>
+                                    <div class="title-link">
+                                        <h5>
+                                            <a href="all_product.php">Show All
+                                            <span class="ion-ios-arrow-forward"></span>
+                                            </a>
+                                        </h5>
                                     </div>
                                 </div>
-                                <!--<div class="card-footer bg-transparent border-secondary"style="font-size:13px">-->
-                                  
-                                <!--   rent | $ 12.000</span>-->
-                                <!--</div>-->
                             </div>
-                        </div> 
-                        @endforeach   
+                        </div>
+                        <div class="row">   
+                            @foreach($properties as $property)     
+                            <?php
+                                $propertyPhoto = explode(",", $property->photos);
+                            ?>               
+                            <div class="col-md-3 mb-3">
+                                <div class="card border-secondary">
+                                    <div class="card-header bg-transparent border-secondary ">
+                                        <img class="img-fluid myimg" src="{{  URL::asset('adPhotos/' . $propertyPhoto[0]) }}">
+                                    </div>
+                                    <div class="card-body text-secondary ">
+                                        <div class="card-body p-0" style="font-size:13px">
+                                            <p class="card-text m-0">{{ $property->ad_title }}
+                                            <br />{{ $property->description }}</p>
+                                        <a href="{{ url('product_detail') }}" class="">Click here to view
+                                            <span class="ion-ios-arrow-forward"></span>
+                                        </a>
+                                        <p class="card-text m-0"> Price | <i class="fa fa-inr"></i> {{ $property->price }}</p>
+                                        </div>
+                                    </div>
+                                    <!--<div class="card-footer bg-transparent border-secondary"style="font-size:13px">-->
+                                    
+                                    <!--   rent | $ 12.000</span>-->
+                                    <!--</div>-->
+                                </div>
+                            </div> 
+                            @endforeach   
+                        </div>
                     </div>
-                </div>
+                    @endif
+                @endif
+                @if($cat->category_name == "Mobiles")
+                    <?php 
+                        $mobiles = DB::table('mobile_phones')->where('category_id', $cat->id)->limit(4)->get();
+                    ?>
+                    @if(count($mobiles) > 0)
+                    <div class="container">
+                        <div class="row mt-4">
+                            <div class="col-md-12">
+                                <div class="title-wrap d-flex justify-content-between">
+                                    <div class="title-box">
+                                    <h5 class="title-a">{{ $cat->category_name }} Post</h5>
+                                    </div>
+                                    <div class="title-link">
+                                        <h5>
+                                            <a href="all_product.php">Show All
+                                            <span class="ion-ios-arrow-forward"></span>
+                                            </a>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">   
+                            @foreach($mobiles as $mobile)     
+                            <?php
+                                $mobilePhoto = explode(",", $mobile->photos);
+                            ?>               
+                            <div class="col-md-3 mb-3">
+                                <div class="card border-secondary">
+                                    <div class="card-header bg-transparent border-secondary ">
+                                        <img class="img-fluid myimg" src="{{  URL::asset('adPhotos/' . $mobilePhoto[0]) }}">
+                                    </div>
+                                    <div class="card-body text-secondary ">
+                                        <div class="card-body p-0" style="font-size:13px">
+                                            <p class="card-text m-0">{{ $mobile->ad_title }}
+                                            <br />{{ $mobile->description }}</p>
+                                        <a href="{{ url('product_detail') }}" class="">Click here to view
+                                            <span class="ion-ios-arrow-forward"></span>
+                                        </a>
+                                        <p class="card-text m-0"> Price | <i class="fa fa-inr"></i> {{ $mobile->price }}</p>
+                                        </div>
+                                    </div>
+                                    <!--<div class="card-footer bg-transparent border-secondary"style="font-size:13px">-->
+                                    
+                                    <!--   rent | $ 12.000</span>-->
+                                    <!--</div>-->
+                                </div>
+                            </div> 
+                            @endforeach   
+                        </div>
+                    </div>
+                    @endif
                 @endif
                 @endforeach
             </div><!-- Main Col END -->
