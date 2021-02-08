@@ -1,5 +1,5 @@
 @extends('auth.auth_layout.main')
-@section('title', 'Car Post')
+@section('title', 'Mobile Phone Post')
 @section('customcss')
 
 @endsection
@@ -48,70 +48,66 @@
                     <li class="d-flex justify-content-between">
                       <strong>Brand Name:</strong>
                       <?php
-                        $brand = DB::table('brands')->where('id', $singlePost->brand_id)->first();
+                        $brand = DB::table('brands')->where('id', $singlePost->brand_id)->where('status', 1)->first();
                       ?>
-                      <span>{{ $brand->brand_name }}</span>
+                      <span>@if(!empty($brand)){{ $brand->brand_name }}@endif</span>
                     </li>
                     @endif
                     @if($singlePost->model_id)
                     <li class="d-flex justify-content-between">
                       <strong>Model Name:</strong>
                       <?php
-                        $modelName = DB::table('models')->where('id', $singlePost->model_id)->first();
+                        $modelName = DB::table('models')->where('id', $singlePost->model_id)->where('status', 1)->first();
                       ?>
-                      <span>{{ $modelName->model_name }}</span>
+                      <span>@if(!empty($modelName)){{ $modelName->model_name }} @endif</span>
                     </li>
                     @endif
-                    @if($singlePost->year_of_registration)
+                    @if($singlePost->year_of_purchase)
                     <li class="d-flex justify-content-between">
-                      <strong>Year of Registration:</strong>
-                      <span>{{ $singlePost->year_of_registration }}</span>
+                      <strong>Year of Purchase:</strong>
+                      <span>{{ $singlePost->year_of_purchase }}</span>
                     </li>
                     @endif
-                    @if($singlePost->fuel_type)
+                    @if($singlePost->physical_condition)
                     <li class="d-flex justify-content-between">
-                      <strong>Fuel Type:</strong>
-                      <span>{{ $singlePost->fuel_type }}</span>
+                      <strong>Physical Condition:</strong>
+                      <span>{{ $singlePost->physical_condition }}</span>
                     </li>
                     @endif
-                    @if($singlePost->transmission)
+                    @if($singlePost->additional_accessory)
                     <li class="d-flex justify-content-between">
-                      <strong>Transmission:</strong>
-                      <span>{{ $singlePost->transmission }}
-                      </span>
+                      <strong>Additional Accessory:</strong>
+                      <span>{{ $singlePost->additional_accessory }}</span>
                     </li>
                     @endif
-                    @if($singlePost->kms_driven)
+                    @if($singlePost->damages_and_functional_issues)
                     <li class="d-flex justify-content-between">
-                      <strong>KMS Driven:</strong>
-                      <span>{{ $singlePost->kms_driven }}</span>
+                      <strong>Damages & Functional Issues:</strong>
+                      <span>{{ $singlePost->damages_and_functional_issues }}</span>
                     </li>
                     @endif
-                    @if($singlePost->no_of_owners)
+                    @if($singlePost->user_type)
                     <li class="d-flex justify-content-between">
-                      <strong>No. of Owners:</strong>
-                      <span>{{ $singlePost->no_of_owners }}</span>
+                      <strong>User Type:</strong>
+                      <span>{{ $singlePost->user_type }}</span>
                     </li>
                     @endif
-                    @if($singlePost->colour)
+                    @if($singlePost->firm_name)
                     <li class="d-flex justify-content-between">
-                      <strong>Colour:</strong>
-                      <span>{{ $singlePost->colour }}</span>
+                      <strong>Firm Name:</strong>
+                      <span>{{ $singlePost->firm_name }}</span>
                     </li>
                     @endif
-                    @if($singlePost->insurance)
+                    @if($singlePost->gst_no)
                     <li class="d-flex justify-content-between">
-                      <strong>Insurance</strong>
-                      <span>{{ $singlePost->insurance }}</span>
+                      <strong>GST No.:</strong>
+                      <span>{{ $singlePost->gst_no }}</span>
                     </li>
                     @endif
-                    @if($singlePost->accessory_type)
+                    @if($singlePost->invoice)
                     <li class="d-flex justify-content-between">
-                      <strong>Accessory Type</strong>
-                      <?php
-                        $type = DB::table('types')->where('id', $singlePost->accessory_type)->first();
-                      ?>
-                      <span>{{ $type->type_name }}</span>
+                      <strong>Invoice.:</strong>
+                      <span>{{ $singlePost->invoice }}</span>
                     </li>
                     @endif
                     <hr>

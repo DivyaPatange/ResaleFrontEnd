@@ -1,5 +1,5 @@
 @extends('auth.auth_layout.main')
-@section('title', 'Car Post')
+@section('title', 'Bike Post')
 @section('customcss')
 
 @endsection
@@ -50,7 +50,7 @@
                       <?php
                         $brand = DB::table('brands')->where('id', $singlePost->brand_id)->first();
                       ?>
-                      <span>{{ $brand->brand_name }}</span>
+                      <span>@if(!empty($brand)) {{ $brand->brand_name }} @endif</span>
                     </li>
                     @endif
                     @if($singlePost->model_id)
@@ -59,7 +59,7 @@
                       <?php
                         $modelName = DB::table('models')->where('id', $singlePost->model_id)->first();
                       ?>
-                      <span>{{ $modelName->model_name }}</span>
+                      <span>@if(!empty($modelName)) {{ $modelName->model_name }} @endif</span>
                     </li>
                     @endif
                     @if($singlePost->year_of_registration)
@@ -68,50 +68,10 @@
                       <span>{{ $singlePost->year_of_registration }}</span>
                     </li>
                     @endif
-                    @if($singlePost->fuel_type)
-                    <li class="d-flex justify-content-between">
-                      <strong>Fuel Type:</strong>
-                      <span>{{ $singlePost->fuel_type }}</span>
-                    </li>
-                    @endif
-                    @if($singlePost->transmission)
-                    <li class="d-flex justify-content-between">
-                      <strong>Transmission:</strong>
-                      <span>{{ $singlePost->transmission }}
-                      </span>
-                    </li>
-                    @endif
                     @if($singlePost->kms_driven)
                     <li class="d-flex justify-content-between">
                       <strong>KMS Driven:</strong>
                       <span>{{ $singlePost->kms_driven }}</span>
-                    </li>
-                    @endif
-                    @if($singlePost->no_of_owners)
-                    <li class="d-flex justify-content-between">
-                      <strong>No. of Owners:</strong>
-                      <span>{{ $singlePost->no_of_owners }}</span>
-                    </li>
-                    @endif
-                    @if($singlePost->colour)
-                    <li class="d-flex justify-content-between">
-                      <strong>Colour:</strong>
-                      <span>{{ $singlePost->colour }}</span>
-                    </li>
-                    @endif
-                    @if($singlePost->insurance)
-                    <li class="d-flex justify-content-between">
-                      <strong>Insurance</strong>
-                      <span>{{ $singlePost->insurance }}</span>
-                    </li>
-                    @endif
-                    @if($singlePost->accessory_type)
-                    <li class="d-flex justify-content-between">
-                      <strong>Accessory Type</strong>
-                      <?php
-                        $type = DB::table('types')->where('id', $singlePost->accessory_type)->first();
-                      ?>
-                      <span>{{ $type->type_name }}</span>
                     </li>
                     @endif
                     <hr>
@@ -126,15 +86,15 @@
             <div class="col-md-7 col-lg-7 section-md-t3 section-t4">
               <div id="property-single-carousel" class="owl-carousel owl-arrow gallery-property">
               <?php
-          $photos = $singlePost->photos;
-          $explodePhotos = explode(",", $photos);
-          // dd($explodePhotos);
-        ?>
-        @for($i= 0; $i < count($explodePhotos); $i++)
-          <div class="carousel-item-b">
-            <img src="{{  URL::asset('adPhotos/' . $explodePhotos[$i]) }}" alt="" height="350px">
-          </div>
-        @endfor
+                $photos = $singlePost->photos;
+                $explodePhotos = explode(",", $photos);
+                // dd($explodePhotos);
+                ?>
+                @for($i= 0; $i < count($explodePhotos); $i++)
+                <div class="carousel-item-b">
+                    <img src="{{  URL::asset('adPhotos/' . $explodePhotos[$i]) }}" alt="" height="350px">
+                </div>
+                @endfor
               </div>
               </div>
           </div>

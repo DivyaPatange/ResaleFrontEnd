@@ -1,5 +1,5 @@
 @extends('auth.auth_layout.main')
-@section('title', 'Car Post')
+@section('title', 'Job Post')
 @section('customcss')
 
 @endsection
@@ -23,13 +23,13 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="title-box-d">
-                    <h3 class="title-d">{{ $singlePost->ad_title }}</h3>
+                    <h3 class="title-d">{{ $singlePost->job_title }}</h3>
                   </div>
                 </div>
               </div>
               <div class="property-description">
                 <p class="description color-text-a">
-                  {{ $singlePost->description }}
+                  {{ $singlePost->job_description }}
                 </p>
               </div>
               <div class="row justify-content-between">
@@ -38,87 +38,54 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <div class="title-box-d section-t4">
-                      <h3 class="title-d">Product Details</h3>
+                      <h3 class="title-d">Job Details</h3>
                     </div>
                   </div>
                 </div>
                 <div class="summary-list">
                   <ul class="list">
-                    @if($singlePost->brand_id)
+                    @if($singlePost->job_title)
                     <li class="d-flex justify-content-between">
-                      <strong>Brand Name:</strong>
-                      <?php
-                        $brand = DB::table('brands')->where('id', $singlePost->brand_id)->first();
-                      ?>
-                      <span>{{ $brand->brand_name }}</span>
+                      <strong>Job Title:</strong>
+                      <span>{{ $singlePost->job_title }}</span>
                     </li>
                     @endif
-                    @if($singlePost->model_id)
+                    @if($singlePost->job_type)
                     <li class="d-flex justify-content-between">
-                      <strong>Model Name:</strong>
-                      <?php
-                        $modelName = DB::table('models')->where('id', $singlePost->model_id)->first();
-                      ?>
-                      <span>{{ $modelName->model_name }}</span>
+                      <strong>Job Type:</strong>
+                      <span>{{ $singlePost->job_type }}</span>
                     </li>
                     @endif
-                    @if($singlePost->year_of_registration)
+                    @if($singlePost->salary_period)
                     <li class="d-flex justify-content-between">
-                      <strong>Year of Registration:</strong>
-                      <span>{{ $singlePost->year_of_registration }}</span>
+                      <strong>Salary Period:</strong>
+                      <span>{{ $singlePost->salary_period }}</span>
                     </li>
                     @endif
-                    @if($singlePost->fuel_type)
+                    @if($singlePost->position)
                     <li class="d-flex justify-content-between">
-                      <strong>Fuel Type:</strong>
-                      <span>{{ $singlePost->fuel_type }}</span>
+                      <strong>Position:</strong>
+                      <span>{{ $singlePost->position }}</span>
                     </li>
                     @endif
-                    @if($singlePost->transmission)
+                    @if($singlePost->min_monthly_salary || $singlePost->max_monthly_salary)
                     <li class="d-flex justify-content-between">
-                      <strong>Transmission:</strong>
-                      <span>{{ $singlePost->transmission }}
-                      </span>
+                      <strong>Monthly Salary:</strong>
+                      <span>Min. <i class="fa fa-inr"></i>{{ $singlePost->min_monthly_salary }} - Max. <i class="fa fa-inr"></i> {{ $singlePost->max_monthly_salary }}</span>
                     </li>
                     @endif
-                    @if($singlePost->kms_driven)
+                    @if($singlePost->min_experience || $singlePost->max_experience)
                     <li class="d-flex justify-content-between">
-                      <strong>KMS Driven:</strong>
-                      <span>{{ $singlePost->kms_driven }}</span>
+                      <strong>Experience:</strong>
+                      <span>Min. {{ $singlePost->min_experience }} yrs - Max. {{ $singlePost->max_experience }} yrs</span>
                     </li>
                     @endif
-                    @if($singlePost->no_of_owners)
+                    @if($singlePost->company_name)
                     <li class="d-flex justify-content-between">
-                      <strong>No. of Owners:</strong>
-                      <span>{{ $singlePost->no_of_owners }}</span>
+                      <strong>Company Name:</strong>
+                      <span>{{ $singlePost->company_name }}</span>
                     </li>
                     @endif
-                    @if($singlePost->colour)
-                    <li class="d-flex justify-content-between">
-                      <strong>Colour:</strong>
-                      <span>{{ $singlePost->colour }}</span>
-                    </li>
-                    @endif
-                    @if($singlePost->insurance)
-                    <li class="d-flex justify-content-between">
-                      <strong>Insurance</strong>
-                      <span>{{ $singlePost->insurance }}</span>
-                    </li>
-                    @endif
-                    @if($singlePost->accessory_type)
-                    <li class="d-flex justify-content-between">
-                      <strong>Accessory Type</strong>
-                      <?php
-                        $type = DB::table('types')->where('id', $singlePost->accessory_type)->first();
-                      ?>
-                      <span>{{ $type->type_name }}</span>
-                    </li>
-                    @endif
-                    <hr>
-                    <li class="d-flex justify-content-between">
-                      <strong>Selling Price</strong>
-                      <span><span class="ion-money">&#8377;</span>&nbsp;{{ $singlePost->price }}</span>
-                    </li>
                   </ul>
                 </div>
               </div>

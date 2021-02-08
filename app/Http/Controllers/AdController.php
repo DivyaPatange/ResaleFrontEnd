@@ -227,7 +227,7 @@ class AdController extends Controller
         $carPost->category_id = $request->category_id;
         $carPost->sub_category_id = $request->sub_category_id;
         $carPost->save();
-        return redirect()->route('single.post.ad', $carPost->id)->with('success', 'Car Post Added Successfully!');
+        return redirect()->route('car.post.ad', $carPost->id)->with('success', 'Car Post Added Successfully!');
     }
 
     public function saveRealEstatePost(Request $request)
@@ -323,11 +323,6 @@ class AdController extends Controller
         return Redirect::back()->with('success', 'Properties Post Added Successfully!');
     }
 
-    public function getSinglePostDetail($id)
-    {
-        $singlePost = Car::findorfail($id);
-        return view('auth.product_detail', compact('singlePost'));
-    }
 
     public function saveBikePost(Request $request)
     {
@@ -390,7 +385,7 @@ class AdController extends Controller
         $bikePost->category_id = $request->category_id;
         $bikePost->sub_category_id = $request->sub_category_id;
         $bikePost->save();
-        return Redirect::back()->with('success', 'Post Added Successfully!');
+        return redirect()->route('bike.post.ad', $bikePost->id)->with('success', 'Post Added Successfully!');
     }
 
     public function saveCommercialVehiclePost(Request $request)
@@ -457,7 +452,7 @@ class AdController extends Controller
         $vehicle->user_type = $request->user_type;
         $vehicle->gst_no = $request->gst_no;
         $vehicle->save();
-        return Redirect::back()->with('success', 'Post Added Successfully!');
+        return redirect()->route('commercial-vehicle.post.ad', $vehicle->id)->with('success', 'Post Added Successfully!');
     }
 
     public function saveMobilePhonePost(Request $request)
@@ -467,7 +462,7 @@ class AdController extends Controller
             'email' => 'required',
             'mobile_no' => 'required',
             'brand_name' => 'required',
-            'model_name' => 'required',
+            // 'model_name' => 'required',
             'year_of_purchase' => 'required',
             'physical_condition' => 'required',
             'ad_title' => 'required',
@@ -526,7 +521,7 @@ class AdController extends Controller
         $mobilePost->additional_accessory = $request->additional_accessory;
         $mobilePost->damages_and_functional_issues = $request->damages_and_functional_issues;
         $mobilePost->save();
-        return Redirect::back()->with('success', 'Mobile Phone Post Added Successfully!');
+        return redirect()->route('mobile-phone.post.ad', $mobilePost->id)->with('success', 'Mobile Phone Post Added Successfully!');
     }
 
     public function saveMobileAccessory(Request $request)
@@ -589,7 +584,7 @@ class AdController extends Controller
         $mobileAccessory->user_type = $request->user_type;
         $mobileAccessory->gst_no = $request->gst_no;
         $mobileAccessory->save();
-        return Redirect::back()->with('success', 'Mobile Accessory Post Added Successfully!');
+        return redirect()->route('mobile-accessory.post.ad', $mobileAccessory->id)->with('success', 'Mobile Accessory Post Added Successfully!');
     }
 
     public function saveTabletsPost(Request $request)
@@ -651,7 +646,7 @@ class AdController extends Controller
         $tablet->user_type = $request->user_type;
         $tablet->gst_no = $request->gst_no;
         $tablet->save();
-        return Redirect::back()->with('success', 'Tablet Post Added Successfully!');
+        return redirect()->route('mobile-tablet.post.ad', $tablet->id)->with('success', 'Tablet Post Added Successfully!');
     }
 
     public function saveJobsPost(Request $request)
@@ -714,7 +709,7 @@ class AdController extends Controller
         $job->category_id = $request->category_id;
         $job->sub_category_id = $request->sub_category_id;
         $job->save();
-        return Redirect::back()->with('success', 'Job Post Added Successfully!');
+        return redirect()->route('job.post.ad', $job->id)->with('success', 'Job Post Added Successfully!');
     }    
     
     public function saveSparePartsPost(Request $request)
@@ -771,7 +766,7 @@ class AdController extends Controller
         $sparePart->sub_category_id = $request->sub_category_id;
         $sparePart->locality_id = $request->locality;
         $sparePart->save();
-        return Redirect::back()->with('success', 'Post Added Successfully!');
+        return redirect()->route('spare-parts.post.ad', $sparePart->id)->with('success', 'Post Added Successfully!');
     }
 
     public function saveTVPost(Request $request)
@@ -832,7 +827,7 @@ class AdController extends Controller
         $tv->user_type = $request->user_type;
         $tv->gst_no = $request->gst_no;
         $tv->save();
-        return Redirect::back()->with('success', 'Post Added Successfully!');
+        return redirect()->route('electronics.post.ad', $tv->id)->with('success', 'Post Added Successfully!');
     }
 
     public function saveFurniturePost(Request $request)
@@ -895,6 +890,6 @@ class AdController extends Controller
         $furniture->user_type = $request->user_type;
         $furniture->gst_no = $request->gst_no;
         $furniture->save();
-        return Redirect::back()->with('success', 'Post Added Successfully!');
+        return redirect()->route('furniture.post.ad', $furniture->id)->with('success', 'Post Added Successfully!');
     }
 }

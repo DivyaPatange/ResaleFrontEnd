@@ -112,7 +112,7 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="type_name">Type <span class="text-danger">*</span></label>
-                  <select name="type_name" id="type_name" class="form-control @error('type_name') invalid-feedback @enderror">
+                  <select name="type_name" id="type_name" class="form-control @error('type_name') is-invalid @enderror">
                     <option value="">-Select Type-</option>
                     @foreach($type as $t)
                     <option value="{{ $t->id }}" @if(old('type_name') == $t->id) selected @endif>{{ $t->type_name }}</option>

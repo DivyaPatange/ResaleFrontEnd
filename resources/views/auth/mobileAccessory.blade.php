@@ -546,7 +546,7 @@ function removeField(){
       success:function(res){        
       if(res){
         $("#city").empty();
-        $("#city").append('<option>Select City</option>');
+        $("#city").append('<option value="">Select City</option>');
         $.each(res,function(key,value){
           $("#city").append('<option value="'+key+'">'+value+'</option>');
         });
@@ -571,7 +571,7 @@ function removeField(){
       success:function(res){        
       if(res){
         $("#locality").empty();
-        $("#locality").append('<option>Select Locality</option>');
+        $("#locality").append('<option value="">Select Locality</option>');
         $.each(res,function(key,value){
           $("#locality").append('<option value="'+key+'">'+value+'</option>');
         });
