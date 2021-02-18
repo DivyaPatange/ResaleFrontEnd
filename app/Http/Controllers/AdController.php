@@ -97,15 +97,20 @@ class AdController extends Controller
                 return view('auth.tv', compact('subCategory', 'type', 'state', 'category'));
             }
             // dd($subCategory);
-            if(($subCategory->sub_category == "Property for Rent / Lease") || ($subCategory->sub_category == "Property for Sale"))
-            {
-                $cities = City::where('status', 1)->get();
-                return view('auth.realEstate', compact('subCategory', 'cities', 'state', 'category'));
-            }
+            // if(($subCategory->sub_category == "Property for Rent / Lease") || ($subCategory->sub_category == "Property for Sale"))
+            // {
+            //     $cities = City::where('status', 1)->get();
+            //     return view('auth.realEstate', compact('subCategory', 'cities', 'state', 'category'));
+            // }
             if($subCategory->sub_category == "PG & Guest Houses")
             {
                 $cities = City::where('status', 1)->get();
                 return view('auth.pgGuest', compact('subCategory', 'cities', 'state', 'category'));
+            }
+            if($subCategory->sub_category == "Property for Rent / Lease")
+            {
+                $cities = City::where('status', 1)->get();
+                return view('auth.rent-lease', compact('subCategory', 'cities', 'state', 'category'));
             }
             if(($subCategory->sub_category == "Men") || ($subCategory->sub_category == "Women") || ($subCategory->sub_category == "Kids"))
             {

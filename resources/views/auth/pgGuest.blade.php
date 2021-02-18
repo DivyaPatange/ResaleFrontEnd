@@ -228,7 +228,7 @@
       <div class="col-sm-12">
         <div class="row">
           <div class="col-md-8">
-            <form method="POST" action="{{ url('save-real-estate-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
+            <form method="POST" action="#" id="property-form" enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
             @csrf 
               <input type="hidden" name="sub_category_id"  value="{{ $subCategory->id }}">
               <input type="hidden" name="category_id" value="{{ $category->id }}">
@@ -355,8 +355,8 @@
                     <div class="form-group">
                         <div class="row">
                         <div class="col-md-6">
-                            <label>No. of Single Sharing Room <span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" name="no_single_sharing_room">
+                            <label>No. of Single Sharing Room <span class="text-danger">*</span><span  style="color:red" id="single_room_err"> </span></label>
+                            <input type="number" class="form-control" name="no_single_sharing_room" id="single_room">
                             @error('no_single_sharing_room')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -364,8 +364,8 @@
                             @enderror
                         </div>
                         <div class="col-md-6">
-                            <label>Monthly Rent Per Bed<span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" name="monthly_rent_per_bed">
+                            <label>Monthly Rent Per Bed<span class="text-danger">*</span><span  style="color:red" id="monthly_single_rent_err"> </span></label>
+                            <input type="number" class="form-control" name="monthly_rent_per_bed" id="monthly_single_rent">
                             @error('monthly_rent_per_bed')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -373,8 +373,8 @@
                             @enderror
                         </div>
                         <div class="col-md-6">
-                            <label>Security Deposit Per Bed<span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" name="security_deposit_per_bed">
+                            <label>Security Deposit Per Bed<span class="text-danger">*</span><span  style="color:red" id="deposit_single_err"> </span></label>
+                            <input type="number" class="form-control" name="security_deposit_per_bed" id="deposit_single">
                             @error('security_deposit_per_bed')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -391,8 +391,8 @@
                     <div class="form-group">
                         <div class="row">
                         <div class="col-md-6">
-                            <label>No. of Twin Sharing Room <span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" name="no_twin_sharing_room">
+                            <label>No. of Twin Sharing Room <span class="text-danger">*</span><span  style="color:red" id="twin_room_err"> </span></label>
+                            <input type="number" class="form-control" name="no_twin_sharing_room" id="twin_room">
                             @error('no_twin_sharing_room')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -400,8 +400,8 @@
                             @enderror
                         </div>
                         <div class="col-md-6">
-                            <label>Monthly Rent Per Bed<span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" name="monthly_rent_per_bed">
+                            <label>Monthly Rent Per Bed<span class="text-danger">*</span><span  style="color:red" id="monthly_twin_rent_err"> </span></label>
+                            <input type="number" class="form-control" name="monthly_rent_per_bed" id="monthly_twin_rent">
                             @error('monthly_rent_per_bed')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -409,8 +409,8 @@
                             @enderror
                         </div>
                         <div class="col-md-6">
-                            <label>Security Deposit Per Bed<span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" name="security_deposit_per_bed">
+                            <label>Security Deposit Per Bed<span class="text-danger">*</span><span  style="color:red" id="deposit_twin_err"> </span></label>
+                            <input type="number" class="form-control" name="security_deposit_per_bed" id="deposit_twin">
                             @error('security_deposit_per_bed')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -427,8 +427,8 @@
                     <div class="form-group">
                         <div class="row">
                         <div class="col-md-6">
-                            <label>No. of Triple Sharing Room <span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" name="no_triple_sharing_room">
+                            <label>No. of Triple Sharing Room <span class="text-danger">*</span><span  style="color:red" id="triple_room_err"> </span></label>
+                            <input type="number" class="form-control" name="no_triple_sharing_room" id="triple_room">
                             @error('no_triple_sharing_room')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -436,8 +436,8 @@
                             @enderror
                         </div>
                         <div class="col-md-6">
-                            <label>Monthly Rent Per Bed<span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" name="monthly_rent_per_bed">
+                            <label>Monthly Rent Per Bed<span class="text-danger">*</span><span  style="color:red" id="monthly_triple_rent_err"> </span></label>
+                            <input type="number" class="form-control" name="monthly_rent_per_bed" id="monthly_triple_rent">
                             @error('monthly_rent_per_bed')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -445,8 +445,8 @@
                             @enderror
                         </div>
                         <div class="col-md-6">
-                            <label>Security Deposit Per Bed<span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" name="security_deposit_per_bed">
+                            <label>Security Deposit Per Bed<span class="text-danger">*</span><span  style="color:red" id="deposit_triple_err"> </span></label>
+                            <input type="number" class="form-control" name="security_deposit_per_bed" id="deposit_triple">
                             @error('security_deposit_per_bed')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -463,8 +463,8 @@
                     <div class="form-group">
                         <div class="row">
                         <div class="col-md-6">
-                            <label>No. of Four Sharing Room <span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" name="no_four_sharing_room">
+                            <label>No. of Four Sharing Room <span class="text-danger">*</span><span  style="color:red" id="four_room_err"> </span></label>
+                            <input type="number" class="form-control" name="no_four_sharing_room" id="four_room">
                             @error('no_four_sharing_room')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -472,8 +472,8 @@
                             @enderror
                         </div>
                         <div class="col-md-6">
-                            <label>Monthly Rent Per Bed<span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" name="monthly_rent_per_bed">
+                            <label>Monthly Rent Per Bed<span class="text-danger">*</span><span  style="color:red" id="monthly_four_rent_err"> </span></label>
+                            <input type="number" class="form-control" name="monthly_rent_per_bed" id="monthly_four_rent">
                             @error('monthly_rent_per_bed')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -481,8 +481,8 @@
                             @enderror
                         </div>
                         <div class="col-md-6">
-                            <label>Security Deposit Per Bed<span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" name="security_deposit_per_bed">
+                            <label>Security Deposit Per Bed<span class="text-danger">*</span><span  style="color:red" id="deposit_four_err"> </span></label>
+                            <input type="number" class="form-control" name="security_deposit_per_bed" id="deposit_four">
                             @error('security_deposit_per_bed')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -499,8 +499,8 @@
                     <div class="form-group">
                         <div class="row">
                         <div class="col-md-6">
-                            <label>No. of Other Sharing Room <span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" name="no_other_sharing_room">
+                            <label>No. of Other Sharing Room <span class="text-danger">*</span><span  style="color:red" id="other_room_err"> </span></label>
+                            <input type="number" class="form-control" name="no_other_sharing_room" id="other_room">
                             @error('no_other_sharing_room')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -508,8 +508,8 @@
                             @enderror
                         </div>
                         <div class="col-md-6">
-                            <label>Monthly Rent Per Bed<span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" name="monthly_rent_per_bed">
+                            <label>Monthly Rent Per Bed<span class="text-danger">*</span><span  style="color:red" id="monthly_other_rent_err"> </span></label>
+                            <input type="number" class="form-control" name="monthly_rent_per_bed" id="monthly_other_rent">
                             @error('monthly_rent_per_bed')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -517,8 +517,8 @@
                             @enderror
                         </div>
                         <div class="col-md-6">
-                            <label>Security Deposit Per Bed<span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" name="security_deposit_per_bed">
+                            <label>Security Deposit Per Bed<span class="text-danger">*</span><span  style="color:red" id="deposit_other_err"> </span></label>
+                            <input type="number" class="form-control" name="security_deposit_per_bed" id="deposit_other">
                             @error('security_deposit_per_bed')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -529,7 +529,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <h6>Room Facilities</h6>
+                    <h6>Room Facilities<span class="text-danger">*</span><span  style="color:red" id="room_facility_err"> </span></h6>
                 </div>
                 <div class="form-group">
                     <div class="row">
@@ -566,7 +566,7 @@
                 <div class="form-group">
                     <div class="row">
                     <div class="col-md-4">
-                        <h6>Preferred Gender</h6>
+                        <h6>Preferred Gender<span class="text-danger">*</span><span  style="color:red" id="gender_err"> </span></h6>
                     </div>
                     <div class="col-md-8">
                         <div class="switch-field">
@@ -583,7 +583,7 @@
                 <div class="form-group">
                     <div class="row">
                     <div class="col-md-4">
-                        <h6>Set Your Tenent Preferance</h6>
+                        <h6>Set Your Tenent Preferance <span class="text-danger">*</span><span  style="color:red" id="tenent_preference_err"> </span></h6>
                     </div>
                     <div class="col-md-8">
                         <div class="switch-field">
@@ -603,7 +603,7 @@
                 <div class="form-group">
                     <div class="row">
                     <div class="col-md-4">
-                        <h6>PG Rules</h6>
+                        <h6>PG Rules<span class="text-danger">*</span><span  style="color:red" id="rules_err"> </span></h6>
                     </div>
                     <div class="col-md-8">
                         <ul class="list-group">
@@ -619,7 +619,7 @@
                 <div class="form-group">
                     <div class="row">
                     <div class="col-md-4">
-                        <h6>Notice Period</h6>
+                        <h6>Notice Period<span class="text-danger">*</span><span  style="color:red" id="notice_period_err"> </span></h6>
                     </div>
                     <div class="col-md-8">
                         <select name="notice_period" class="form-control" id="notice_period">
@@ -641,13 +641,14 @@
                 <div class="form-group d-flex justify-content-between">
                     <h6>Tenants must be back in PG before</h6>
                     <label class="switch">
-                        <input type="checkbox" id="tenants_back_time">           
+                        <input type="checkbox" id="tenants_back_time" onclick="ShowHideDiv(this)">           
                         <span class="slider"></span>
                         <p class="off"></p>
                         <p class="on"></p>
                     </label>
                 </div>
-                <div class="form-group">
+                <div id="gct" class="hidden">
+                  <div class="form-group">
                     <div class="row">
                         <div class="col-md-4">
                             <h6>Gate Closing Time</h6>
@@ -664,6 +665,7 @@
                             </select>
                         </div>
                     </div>
+                  </div>
                 </div>
                 <button type="button" class="btn btn-primary" id="hideButton4">Save & Next</button>
               </div>
@@ -685,25 +687,27 @@
                 <div class="form-group d-flex justify-content-between">
                     <h6>Food Provided</h6>
                     <label class="switch">
-                        <input type="checkbox" id="food_service">           
+                        <input type="checkbox" id="food_service" onclick="ShowHideDiv1(this)">           
                         <span class="slider"></span>
                         <p class="off"></p>
                         <p class="on"></p>
                     </label>
                 </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h6>Veg/Non-Veg Food Provided</h6>
-                        </div>
-                        <div class="col-md-8">
-                            <select name="food_type" class="form-control">
-                                <option value="">-Select Veg/Non-Veg Food Provided-</option>
-                                <option value="Veg" @if(old('food_type') == "Veg") Selected @endif>Veg</option>
-                                <option value="Veg/Non-Veg" @if(old('food_type') == "Veg/Non-Veg") Selected @endif>Veg/Non-Veg</option>
-                            </select>
-                        </div>
-                    </div>
+                <div id="fp" class="hidden">
+                  <div class="form-group">
+                      <div class="row">
+                          <div class="col-md-4">
+                              <h6>Veg/Non-Veg Food Provided</h6>
+                          </div>
+                          <div class="col-md-8">
+                              <select name="food_type" class="form-control">
+                                  <option value="">-Select Veg/Non-Veg Food Provided-</option>
+                                  <option value="Veg" @if(old('food_type') == "Veg") Selected @endif>Veg</option>
+                                  <option value="Veg/Non-Veg" @if(old('food_type') == "Veg/Non-Veg") Selected @endif>Veg/Non-Veg</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
                 </div>
                 <button type="button" class="btn btn-primary" id="hideButton5">Save & Next</button>
                </div> 
@@ -731,26 +735,28 @@
                     <div class="form-group d-flex justify-content-between">
                         <h6>Parking Availability</h6>
                         <label class="switch">
-                            <input type="checkbox" id="food_service">           
+                            <input type="checkbox" id="parking_available" onclick="ShowHideDiv2(this)">           
                             <span class="slider"></span>
                             <p class="off"></p>
                             <p class="on"></p>
                         </label>
                     </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <select name="parking" class="form-control">
-                                    <option value="">-Select-</option>
-                                    <option value="2-Wheeler" @if(old('parking') == "2-Wheeler") Selected @endif>2-Wheeler</option>
-                                    <option value="Car Parking" @if(old('parking') == "Car Parking") Selected @endif>Car Parking</option>
-                                    <option value="Both" @if(old('parking') == "Both") Selected @endif>Both</option>
-                                </select>
-                            </div>
-                        </div>
+                    <div id="pa" class="hidden">
+                      <div class="form-group">
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <select name="parking" class="form-control">
+                                      <option value="">-Select-</option>
+                                      <option value="2-Wheeler" @if(old('parking') == "2-Wheeler") Selected @endif>2-Wheeler</option>
+                                      <option value="Car Parking" @if(old('parking') == "Car Parking") Selected @endif>Car Parking</option>
+                                      <option value="Both" @if(old('parking') == "Both") Selected @endif>Both</option>
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
                     </div>
                     <div class="form-group">
-                        <label>PG Description <span class="text-danger">*</span></label>
+                        <label>PG Description <span class="text-danger">*</span><span  style="color:red" id="pg_description_err"> </span></label>
                         <textarea class="form-control @error('pg_description') is-invalid @enderror" id="pg_description"  name="pg_description">{{ old('pg_description') }}</textarea>
                         @error('pg_description')
                         <span class="invalid-feedback" role="alert">
@@ -760,7 +766,7 @@
                     </div>
                     <hr>
                     <div class="form-group">
-                        <label>Photos <span class="text-danger">*</span></label>
+                        <label>Photos <span class="text-danger">*</span><span  style="color:red" id="photos_err"> </span></label>
                     </div>
                     <div id="upload_form">
                         <label class="filelabel p_file">
@@ -781,100 +787,9 @@
                         </span>
                     @enderror
                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                    <input type="hidden" class="form-control @error('name') is-invalid @enderror" id="name"  name="name" value="{{ Auth::user()->name }}">
                     <hr>
-                    <button type="button" class="btn btn-primary" id="hideButton6">Save & Next</button>
-                </div>
-                <div class="hidden" id="hideDiv6">
-                    <div class="form-group">
-                        <h6>Fill User Details</h6>
-                    </div>
-                    <div class="form-row">
-                    <div class="form-group col-md-4 mb-3">
-                        <label>Name<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"  name="name" value="{{ Auth::user()->name }}">
-                        @error('name')
-                        <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="form-group col-md-4 mb-3">
-                        <label>Email<span class="text-danger">*</span></label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"  name="email" value="{{ Auth::user()->email }}">
-                        @error('email')
-                        <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="form-group col-md-4 mb-3">
-                        <label>Mobile Number<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('mobile_no') is-invalid @enderror" id="mobile_no"  name="mobile_no" value="{{ Auth::user()->mobile_no }}">
-                        @error('mobile_no')
-                        <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label>State</label><span class="text-danger">*</span></label>
-                            <select id="state" class="form-control @error('state') is-invalid @enderror" name="state">
-                                <option value="">Choose...</option>
-                                @foreach($state as $s)
-                                <option value="{{ $s->id }}" @if (old('state') == $s->id) selected="selected" @endif>{{ $s->state_name }}</option>
-                                @endforeach
-                            </select>
-                            @error('state')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputCity">City</label><span class="text-danger">*</span></label>
-                            <select class="form-control @error('city') is-invalid @enderror" id="city" name="city">
-                            
-                            </select>
-                            @error('city')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputLocality">Locality</label><span class="text-danger">*</span></label>
-                            <select class="form-control @error('locality') is-invalid @enderror" id="locality" name="locality">
-                            
-                            </select>
-                            @error('locality')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-6">
-                        <label>Pin Code</label><span class="text-danger">*</span></label>
-                        <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code" value="{{ old('pin_code') }}">
-                        @error('pin_code')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                        </div>
-                        <div class="form-group col-md-6">
-                        <label>Address</label><span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
-                        @error('address')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                        </div>
-                    </div>
-                <button type="submit" class="btn btn-primary">Post Your Add</button>
+                    <button type="button" id="submitForm" class="btn btn-primary">Post Your Add</button>
                 </div>
             </form>
           </div>
@@ -1120,57 +1035,57 @@ function removeField(){
     var pg_present_in = $("#pg_present_in").val();
     var pg_name = $("#pg_name").val();
     var ad_posted_by = $("#ad_posted_by").val();
-    if (locality=="") {
-        $("#locality_err").fadeIn().html("Required");
-        setTimeout(function(){ $("#locality_err").fadeOut(); }, 3000);
-        $("#locality").focus();
-        return false;
+    if(locality=="") {
+      $("#locality_err").fadeIn().html("Required");
+      setTimeout(function(){ $("#locality_err").fadeOut(); }, 3000);
+      $("#locality").focus();
+      return false;
     }
-    if (address=="") {
-        $("#address_err").fadeIn().html("Required");
-        setTimeout(function(){ $("#address_err").fadeOut(); }, 3000);
-        $("#address").focus();
-        return false;
+    if(address=="") {
+      $("#address_err").fadeIn().html("Required");
+      setTimeout(function(){ $("#address_err").fadeOut(); }, 3000);
+      $("#address").focus();
+      return false;
     }
-    if (pincode=="") {
-        $("#pincode_err").fadeIn().html("Required");
-        setTimeout(function(){ $("#pincode_err").fadeOut(); }, 3000);
-        $("#pincode").focus();
-        return false;
+    if(pincode=="") {
+      $("#pincode_err").fadeIn().html("Required");
+      setTimeout(function(){ $("#pincode_err").fadeOut(); }, 3000);
+      $("#pincode").focus();
+      return false;
     }
-    if (landmark=="") {
-        $("#landmark_err").fadeIn().html("Required");
-        setTimeout(function(){ $("#landmark_err").fadeOut(); }, 3000);
-        $("#landmark").focus();
-        return false;
+    if(landmark=="") {
+      $("#landmark_err").fadeIn().html("Required");
+      setTimeout(function(){ $("#landmark_err").fadeOut(); }, 3000);
+      $("#landmark").focus();
+      return false;
     }
-    if (pg_operational_since=="") {
-        $("#pg_op_err").fadeIn().html("Required");
-        setTimeout(function(){ $("#pg_op_err").fadeOut(); }, 3000);
-        $("#pg_operational_since").focus();
-        return false;
+    if(pg_operational_since=="") {
+      $("#pg_op_err").fadeIn().html("Required");
+      setTimeout(function(){ $("#pg_op_err").fadeOut(); }, 3000);
+      $("#pg_operational_since").focus();
+      return false;
     }
-    if (pg_present_in=="") {
-        $("#pg_present_err").fadeIn().html("Required");
-        setTimeout(function(){ $("#pg_present_err").fadeOut(); }, 3000);
-        $("#pg_present_in").focus();
-        return false;
+    if(pg_present_in=="") {
+      $("#pg_present_err").fadeIn().html("Required");
+      setTimeout(function(){ $("#pg_present_err").fadeOut(); }, 3000);
+      $("#pg_present_in").focus();
+      return false;
     }
-    if (pg_name=="") {
-        $("#pg_name_err").fadeIn().html("Required");
-        setTimeout(function(){ $("#pg_name_err").fadeOut(); }, 3000);
-        $("#pg_name").focus();
-        return false;
+    if(pg_name=="") {
+      $("#pg_name_err").fadeIn().html("Required");
+      setTimeout(function(){ $("#pg_name_err").fadeOut(); }, 3000);
+      $("#pg_name").focus();
+      return false;
     }
-    if (ad_posted_by=="") {
-        $("#ad_post_by_err").fadeIn().html("Required");
-        setTimeout(function(){ $("#ad_post_by_err").fadeOut(); }, 3000);
-        $("#ad_posted_by").focus();
-        return false;
+    if(ad_posted_by=="") {
+      $("#ad_post_by_err").fadeIn().html("Required");
+      setTimeout(function(){ $("#ad_post_by_err").fadeOut(); }, 3000);
+      $("#ad_posted_by").focus();
+      return false;
     }
     else{
-    $("#hideDiv1").removeClass("hidden");
-    $("#hideButton1").addClass("hidden");
+      $("#hideDiv1").removeClass("hidden");
+      $("#hideButton1").addClass("hidden");
     }
   })
   $('body').on('click', '#hideButton2', function () {
@@ -1179,47 +1094,244 @@ function removeField(){
         rooms_categories.push($(this).val());
     });
     // alert(rooms_categories[0]);
-    if (rooms_categories=="") {
-        $("#rc_err").fadeIn().html("Required");
-        setTimeout(function(){ $("#rc_err").fadeOut(); }, 3000);
-        $("input[name='rooms_categories[]']").focus();
-        return false;
+    if(rooms_categories.length==0) {
+      $("#rc_err").fadeIn().html("Required");
+      setTimeout(function(){ $("#rc_err").fadeOut(); }, 3000);
+      $("input[name='rooms_categories[]']").focus();
+      return false;
     }
     else{
-        $("#hideDiv2").removeClass("hidden");
-        $("#hideButton2").addClass("hidden");
-        for( var i=0; i < rooms_categories.length; i++)
+      $("#hideDiv2").removeClass("hidden");
+      $("#hideButton2").addClass("hidden");
+      for( var i=0; i < rooms_categories.length; i++)
+      {
+        if(rooms_categories[i] == "Single Bed")
         {
-            if(rooms_categories[i] == "Single Bed")
-            {
-                $("#hideDiv7").removeClass("hidden");
-            }
-            if(rooms_categories[i] == "Double Bed")
-            {
-                $("#hideDiv8").removeClass("hidden");
-            }
-            if(rooms_categories[i] == "Triple Bed")
-            {
-                $("#hideDiv9").removeClass("hidden");
-            }
-            if(rooms_categories[i] == "Four Bed")
-            {
-                $("#hideDiv10").removeClass("hidden");
-            }
-            if(rooms_categories[i] == "Other")
-            {
-                $("#hideDiv11").removeClass("hidden");
-            }
+          $("#hideDiv7").removeClass("hidden");
         }
+        if(rooms_categories[i] == "Double Bed")
+        {
+          $("#hideDiv8").removeClass("hidden");
+        }
+        if(rooms_categories[i] == "Triple Bed")
+        {
+          $("#hideDiv9").removeClass("hidden");
+        }
+        if(rooms_categories[i] == "Four Bed")
+        {
+          $("#hideDiv10").removeClass("hidden");
+        }
+        if(rooms_categories[i] == "Other")
+        {
+          $("#hideDiv11").removeClass("hidden");
+        }
+      }
     }
   })
   $('body').on('click', '#hideButton3', function () {
-        $("#hideDiv3").removeClass("hidden");
-        $("#hideButton3").addClass("hidden");
+    var single_room = $("#single_room").val();
+    var monthly_single_rent = $("#monthly_single_rent").val();
+    var deposit_single = $("#deposit_single").val();
+    var twin_room = $("#twin_room").val();
+    var monthly_twin_rent = $("#monthly_twin_rent").val();
+    var deposit_twin = $("#deposit_twin").val();
+    var triple_room = $("#triple_room").val();
+    var monthly_triple_rent = $("#monthly_triple_rent").val();
+    var deposit_triple = $("#deposit_triple").val();
+    var four_room = $("#four_room").val();
+    var monthly_four_rent = $("#monthly_four_rent").val();
+    var deposit_four = $("#deposit_four").val();
+    var other_room = $("#other_room").val();
+    var monthly_other_rent = $("#monthly_other_rent").val();
+    var deposit_other = $("#deposit_other").val();
+    var room_facility = new Array();
+    $.each($("input[name='room_facility[]']:checked"), function() {
+      room_facility.push($(this).val());
+    });
+    var gender = $("input[name='gender']:checked").val();
+    var tenent_preference = $("input[name='tenent_preference']:checked").val();
+    // alert(single_room);
+    // if (single_room=="") {
+    //     $("#single_room_err").fadeIn().html("Required");
+    //     setTimeout(function(){ $("#tenent_preference").fadeOut(); }, 3000);
+    //     $("single_room").focus();
+    //     return false;
+    // }
+    // if (monthly_single_rent=="") {
+    //     $("#monthly_single_rent_err").fadeIn().html("Required");
+    //     setTimeout(function(){ $("#monthly_single_rent_err").fadeOut(); }, 3000);
+    //     $("monthly_single_rent").focus();
+    //     return false;
+    // }
+    // if (deposit_single=="") {
+    //     $("#deposit_single_err").fadeIn().html("Required");
+    //     setTimeout(function(){ $("#deposit_single_err").fadeOut(); }, 3000);
+    //     $("deposit_single").focus();
+    //     return false;
+    // }
+    // if (twin_room=="") {
+    //     $("#twin_room_err").fadeIn().html("Required");
+    //     setTimeout(function(){ $("#twin_room_err").fadeOut(); }, 3000);
+    //     $("twin_room").focus();
+    //     return false;
+    // }
+    // if (monthly_twin_rent=="") {
+    //     $("#monthly_twin_rent_err").fadeIn().html("Required");
+    //     setTimeout(function(){ $("#monthly_twin_rent_err").fadeOut(); }, 3000);
+    //     $("monthly_twin_rent").focus();
+    //     return false;
+    // }
+    // if (deposit_twin=="") {
+    //     $("#deposit_twin_err").fadeIn().html("Required");
+    //     setTimeout(function(){ $("#deposit_twin_err").fadeOut(); }, 3000);
+    //     $("deposit_twin").focus();
+    //     return false;
+    // }
+    // if (triple_room=="") {
+    //     $("#triple_room_err").fadeIn().html("Required");
+    //     setTimeout(function(){ $("#triple_room_err").fadeOut(); }, 3000);
+    //     $("triple_room").focus();
+    //     return false;
+    // }
+    // if (monthly_triple_rent=="") {
+    //     $("#monthly_triple_rent_err").fadeIn().html("Required");
+    //     setTimeout(function(){ $("#monthly_triple_rent_err").fadeOut(); }, 3000);
+    //     $("monthly_triple_rent").focus();
+    //     return false;
+    // }
+    // if (deposit_triple=="") {
+    //     $("#deposit_triple_err").fadeIn().html("Required");
+    //     setTimeout(function(){ $("#deposit_triple_err").fadeOut(); }, 3000);
+    //     $("deposit_triple").focus();
+    //     return false;
+    // }
+    // if (four_room=="") {
+    //     $("#four_room_err").fadeIn().html("Required");
+    //     setTimeout(function(){ $("#four_room_err").fadeOut(); }, 3000);
+    //     $("four_room").focus();
+    //     return false;
+    // }
+    // if (monthly_four_rent=="") {
+    //     $("#monthly_four_rent_err").fadeIn().html("Required");
+    //     setTimeout(function(){ $("#monthly_four_rent_err").fadeOut(); }, 3000);
+    //     $("monthly_four_rent").focus();
+    //     return false;
+    // }
+    // if (deposit_four=="") {
+    //     $("#deposit_four_err").fadeIn().html("Required");
+    //     setTimeout(function(){ $("#deposit_four_err").fadeOut(); }, 3000);
+    //     $("deposit_four").focus();
+    //     return false;
+    // }
+    // if (other_room=="") {
+    //     $("#other_room_err").fadeIn().html("Required");
+    //     setTimeout(function(){ $("#other_room_err").fadeOut(); }, 3000);
+    //     $("other_room").focus();
+    //     return false;
+    // }
+    // if (monthly_other_rent=="") {
+    //     $("#monthly_other_rent_err").fadeIn().html("Required");
+    //     setTimeout(function(){ $("#monthly_other_rent_err").fadeOut(); }, 3000);
+    //     $("monthly_other_rent").focus();
+    //     return false;
+    // }
+    // if (deposit_other=="") {
+    //     $("#deposit_other_err").fadeIn().html("Required");
+    //     setTimeout(function(){ $("#deposit_other_err").fadeOut(); }, 3000);
+    //     $("deposit_other").focus();
+    //     return false;
+    // }
+    if(room_facility.length == 0)
+    {
+        $("#room_facility_err").fadeIn().html("Required");
+        setTimeout(function(){ $("#room_facility_err").fadeOut(); }, 3000);
+        // $("deposit_other").focus();
+        return false;
+    }
+    if (gender == null) {
+        $("#gender_err").fadeIn().html("Required");
+        setTimeout(function(){ $("#gender_err").fadeOut(); }, 3000);
+        // $("deposit_other").focus();
+        return false;
+    }
+    if (tenent_preference==null) {
+        $("#tenent_preference_err").fadeIn().html("Required");
+        setTimeout(function(){ $("#tenent_preference_err").fadeOut(); }, 3000);
+        // $("deposit_other").focus();
+        return false;
+    }
+    else{
+    // alert(single_room);
+      $("#hideDiv3").removeClass("hidden");
+      $("#hideButton3").addClass("hidden");
+    }
   })
   $('body').on('click', '#hideButton4', function () {
-        $("#hideDiv4").removeClass("hidden");
-        $("#hideButton4").addClass("hidden");
+    var rules = new Array();
+    $.each($("input[name='rules[]']:checked"), function() {
+      rules.push($(this).val());
+    });
+    // alert(rules);
+    var notice_period = $("#notice_period").val();
+    if (rules.length==0) {
+      $("#rules_err").fadeIn().html("Required");
+      setTimeout(function(){ $("#rules_err").fadeOut(); }, 3000);
+      // $("deposit_other").focus();
+      return false;
+    }
+    if (notice_period=="") {
+      $("#notice_period_err").fadeIn().html("Required");
+      setTimeout(function(){ $("#notice_period_err").fadeOut(); }, 3000);
+      $("notice_period").focus();
+      return false;
+    }
+    else{
+      $("#hideDiv4").removeClass("hidden");
+      $("#hideButton4").addClass("hidden");
+    }
+  })
+
+  $('body').on('click', '#hideButton5', function () {
+    $("#hideDiv5").removeClass("hidden");
+      $("#hideButton5").addClass("hidden");
+  });
+  $('body').on('click', '#hideButton6', function () {
+    $("#hideDiv6").removeClass("hidden");
+      $("#hideButton6").addClass("hidden");
+  });
+  
+  function ShowHideDiv(tenants_back_time) {
+    $("#gct").fadeToggle();
+  }
+  function ShowHideDiv1(food_service) {
+    $("#fp").fadeToggle();
+  }
+  function ShowHideDiv2(parking_available) {
+    $("#pa").fadeToggle();
+  }
+  $('body').on('click', '#submitForm', function () {
+    var pg_description = $('textarea#pg_description').val();
+    var photos = new Array();
+    $.each($("input[name='photos[]']"), function() {
+      photos.push($(this).val());
+    });
+    // alert(photos);
+    if (pg_description=="") {
+      $("#pg_description_err").fadeIn().html("Required");
+      setTimeout(function(){ $("#pg_description_err").fadeOut(); }, 3000);
+      $("pg_description").focus();
+      return false;
+    }
+    // alert(photos.length);
+    if(photos.length == 1) {
+      $("#photos_err").fadeIn().html("Required");
+      setTimeout(function(){ $("#photos_err").fadeOut(); }, 3000);
+      // $("photos").focus();
+      return false;
+    }
+    else{
+      $("#property-form").submit();
+    }
   })
 </script>
 @endsection
