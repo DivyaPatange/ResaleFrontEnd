@@ -39,6 +39,10 @@ Route::get('/seed', function () {
     return 'DONE'; //Return anything
 });
 
+Route::get('/commercial-shop', function(){
+    return view('auth.commercial_office');
+});
+
 
 
 Route::get('/', function () {

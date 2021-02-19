@@ -21,7 +21,7 @@
   padding: 20px;
   margin:10px;
 }
-#upload_form{
+#upload_form, #upload_form1, #upload_form2, #upload_form3, #upload_form4, #upload_form5, #upload_form6, #upload_form7, #upload_form8{
   display:inline-flex;
   flex-wrap:wrap;
 }
@@ -117,6 +117,88 @@
 
 .switch-field label:last-of-type {
 	border-radius: 0 4px 4px 0;
+}
+
+.plus-minus {
+
+}
+.css-label {
+  cursor: pointer;
+}
+.css-checkbox {
+  display: none;
+}
+.fa {
+  color: white;
+  line-height: 16px;
+  border-radius: 4px;
+}
+.fa-plus {
+  padding-top: 2px;
+  padding-right: 2px;
+  padding-left: 2px;
+  background-color: #3AC5C9;
+}
+.fa-minus {
+  padding-top: 1px;
+  padding-right: 2px;
+  padding-left: 2px;
+  background-color: #E85764;
+  display: none;
+}
+.css-checkbox:checked + .css-label .fa-minus {
+  display: inline;
+}
+.css-checkbox:checked + .css-label .fa-plus {
+  display: none;
+}
+
+/* Tab Pane CSS */
+
+nav > .nav.nav-tabs{
+
+border: none;
+  color:#fff;
+  background:#272e38;
+  border-radius:0;
+
+}
+nav > div a.nav-item.nav-link,
+nav > div a.nav-item.nav-link.active
+{
+border: none;
+  padding: 8px 7px;
+  color:#fff;
+  background:#272e38;
+  border-radius:0;
+}
+
+nav > div a.nav-item.nav-link.active:after
+{
+content: "";
+position: relative;
+bottom: -40px;
+left: -40%;
+border: 8px solid transparent;
+border-top-color: #e74c3c ;
+}
+.tab-content{
+background: #fdfdfd;
+  line-height: 25px;
+  border: 1px solid #ddd;
+  border-top:5px solid #e74c3c;
+  border-bottom:5px solid #e74c3c;
+  padding:30px 25px;
+}
+
+nav > div a.nav-item.nav-link:hover,
+nav > div a.nav-item.nav-link:focus
+{
+border: none;
+  background: #e74c3c;
+  color:#fff;
+  border-radius:0;
+  transition:background 0.20s linear;
 }
 </style>
 @endsection
@@ -357,298 +439,559 @@
                 <div class="form-group col-md-5">
                   <label for="">Super Build Up Area<span class="text-danger">*</span></label>
                   @error('super_build_up_area')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
                   @enderror
                 </div>
                 <div class="form-group col-md-4">
                     <input type="number" class="form-control @error('super_build_up_area') invalid-feedback @enderror" name="super_build_up_area" value="{{ old('super_build_up_area') }}">
                 </div>
                 <div class="form-group col-md-3">
-                    <select name="super_area_unit" id="super_area_unit" class="form-control">
-                        <option value="Sq-ft">Sq-ft</option>
-                        <option value="Sq-yrd">Sq-yrd</option>
-                        <option value="Sq-m">Sq-m</option>
-                        <option value="Acre">Acre</option>
-                        <option value="Bigha">Bigha</option>
-                        <option value="Hectare">Hectare</option>
-                        <option value="Marla">Marla</option>
-                        <option value="Kanal">Kanal</option>
-                        <option value="Biswa1">Biswa1</option>
-                        <option value="Biswa2">Biswa2</option>
-                        <option value="Ground">Ground</option>
-                        <option value="Aankadam">Aankadam</option>
-                        <option value="Rood">Rood</option>
-                        <option value="Chatak">Chatak</option>
-                        <option value="Kottah">Kottah</option>
-                        <option value="Cent">Cent</option>
-                    </select>
+                  <select name="super_area_unit" id="super_area_unit" class="form-control">
+                    <option value="Sq-ft">Sq-ft</option>
+                    <option value="Sq-yrd">Sq-yrd</option>
+                    <option value="Sq-m">Sq-m</option>
+                    <option value="Acre">Acre</option>
+                    <option value="Bigha">Bigha</option>
+                    <option value="Hectare">Hectare</option>
+                    <option value="Marla">Marla</option>
+                    <option value="Kanal">Kanal</option>
+                    <option value="Biswa1">Biswa1</option>
+                    <option value="Biswa2">Biswa2</option>
+                    <option value="Ground">Ground</option>
+                    <option value="Aankadam">Aankadam</option>
+                    <option value="Rood">Rood</option>
+                    <option value="Chatak">Chatak</option>
+                    <option value="Kottah">Kottah</option>
+                    <option value="Cent">Cent</option>
+                  </select>
                 </div>
                 <div class="col-md-5 form-group">
                   <label for="">Carpet Area <small>(Sq.ft.)</small></label>
                   @error('carpet_area')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
                   @enderror
                 </div>
                 <div class="form-group col-md-4">
-                    <input type="number" id="carpet_area" class="form-control @error('carpet_area') invalid-feedback @enderror" name="carpet_area" value="{{ old('carpet_area') }}">
+                  <input type="number" id="carpet_area" class="form-control @error('carpet_area') invalid-feedback @enderror" name="carpet_area" value="{{ old('carpet_area') }}">
                 </div>
                 <div class="form-group col-md-3">
-                    <select name="super_area_unit" id="super_area_unit" class="form-control">
-                        <option value="Sq-ft">Sq-ft</option>
-                        <option value="Sq-yrd">Sq-yrd</option>
-                        <option value="Sq-m">Sq-m</option>
-                        <option value="Acre">Acre</option>
-                        <option value="Bigha">Bigha</option>
-                        <option value="Hectare">Hectare</option>
-                        <option value="Marla">Marla</option>
-                        <option value="Kanal">Kanal</option>
-                        <option value="Biswa1">Biswa1</option>
-                        <option value="Biswa2">Biswa2</option>
-                        <option value="Ground">Ground</option>
-                        <option value="Aankadam">Aankadam</option>
-                        <option value="Rood">Rood</option>
-                        <option value="Chatak">Chatak</option>
-                        <option value="Kottah">Kottah</option>
-                        <option value="Cent">Cent</option>
-                    </select>
+                  <select name="super_area_unit" id="super_area_unit" class="form-control">
+                    <option value="Sq-ft">Sq-ft</option>
+                    <option value="Sq-yrd">Sq-yrd</option>
+                    <option value="Sq-m">Sq-m</option>
+                    <option value="Acre">Acre</option>
+                    <option value="Bigha">Bigha</option>
+                    <option value="Hectare">Hectare</option>
+                    <option value="Marla">Marla</option>
+                    <option value="Kanal">Kanal</option>
+                    <option value="Biswa1">Biswa1</option>
+                    <option value="Biswa2">Biswa2</option>
+                    <option value="Ground">Ground</option>
+                    <option value="Aankadam">Aankadam</option>
+                    <option value="Rood">Rood</option>
+                    <option value="Chatak">Chatak</option>
+                    <option value="Kottah">Kottah</option>
+                    <option value="Cent">Cent</option>
+                  </select>
                 </div>
                 <div class="col-md-5 form-group">
                   <label for="">Build Up Area <small>(Sq.ft.)</small></label>
                   @error('build_up_area')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
                   @enderror
                 </div>
                 <div class="form-group col-md-4">
                   <input type="number" id="build_up_area" class="form-control @error('build_up_area') invalid-feedback @enderror" name="build_up_area" value="{{ old('build_up_area') }}">
                 </div>
                 <div class="form-group col-md-3">
-                    <select name="super_area_unit" id="super_area_unit" class="form-control">
-                        <option value="Sq-ft">Sq-ft</option>
-                        <option value="Sq-yrd">Sq-yrd</option>
-                        <option value="Sq-m">Sq-m</option>
-                        <option value="Acre">Acre</option>
-                        <option value="Bigha">Bigha</option>
-                        <option value="Hectare">Hectare</option>
-                        <option value="Marla">Marla</option>
-                        <option value="Kanal">Kanal</option>
-                        <option value="Biswa1">Biswa1</option>
-                        <option value="Biswa2">Biswa2</option>
-                        <option value="Ground">Ground</option>
-                        <option value="Aankadam">Aankadam</option>
-                        <option value="Rood">Rood</option>
-                        <option value="Chatak">Chatak</option>
-                        <option value="Kottah">Kottah</option>
-                        <option value="Cent">Cent</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <h6>Transaction Type/Property Availability</h6>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="">Transaction Type <span class="text-danger">*</span></label>
-                  <select name="transaction_type" id="transaction_type" class="form-control @error('transaction_type') invalid-feedback @enderror">
-                    <option value="">-Select Transaction Type-</option>
-                    <option value="New Property" @if(old('transaction_type') == "New Property") Selected @endif>New Property</option>
-                    <option value="Resale Property" @if(old('transaction_type') == "Resale Property") Selected @endif>Resale Property</option>
+                  <select name="super_area_unit" id="super_area_unit" class="form-control">
+                    <option value="Sq-ft">Sq-ft</option>
+                    <option value="Sq-yrd">Sq-yrd</option>
+                    <option value="Sq-m">Sq-m</option>
+                    <option value="Acre">Acre</option>
+                    <option value="Bigha">Bigha</option>
+                    <option value="Hectare">Hectare</option>
+                    <option value="Marla">Marla</option>
+                    <option value="Kanal">Kanal</option>
+                    <option value="Biswa1">Biswa1</option>
+                    <option value="Biswa2">Biswa2</option>
+                    <option value="Ground">Ground</option>
+                    <option value="Aankadam">Aankadam</option>
+                    <option value="Rood">Rood</option>
+                    <option value="Chatak">Chatak</option>
+                    <option value="Kottah">Kottah</option>
+                    <option value="Cent">Cent</option>
                   </select>
-                  @error('transaction_type')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
                 </div>
-                <div class="form-group col-md-6">
-                  <label for="">Possession Status <span class="text-danger">*</span></label>
-                  <select name="possession_status" id="possession_status" class="form-control @error('possession_status') invalid-feedback @enderror">
-                    <option value="">-Select Possession Status-</option>
-                    <option value="Under Construction" @if(old('possession_status') == "Under Construction") Selected @endif>Under Construction</option>
-                    <option value="Ready to Move" @if(old('possession_status') == "Ready to Move") Selected @endif>Ready to Move</option>
-                  </select>
-                  @error('possession_status')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
+              </div>
+              <div class="form-group">
+                <h6>Transaction Type/Property Availability</h6>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-3">
+                  <label for="">Available From</label>
                 </div>
+                <div class="col-md-6 form-group">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="available_from" value="Select Date">Select Date
+                      <div class="hidden" id="showDateDiv">
+                        <input type="date" class="form-control" name="available_date">
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-3 form-group">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="available_from" value="Immediately">Immediately
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
                 <div class="form-group col-md-6">
                   <label>Age of Construction <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control @error('age_of_construction') is-invalid @enderror" id="age_of_construction" name="age_of_construction" value="{{ old('age_of_construction') }}">
+                  <select class="form-control @error('age_of_construction') is-invalid @enderror" id="age_of_construction" name="age_of_construction">
+                    <option value="">-Select-</option>
+                    <option value="New Construction">New Construction</option>
+                    <option value="Less than 5 years">Less than 5 years</option>
+                    <option value="5 to 10 years">5 to 10 years</option>
+                    <option value="10 to 15 years">10 to 15 years</option>
+                    <option value="15 to 20 years">15 to 20 years</option>
+                    <option value="Above 20 years">Above 20 years</option>
+                  </select>
                   @error('age_of_construction')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                     </span>
                   @enderror
                 </div>
-                <div class="form-group col-md-6">
-                  <label>Available From <span class="text-danger">*</span></label>
-                  <input type="month" class="form-control @error('available_from') is-invalid @enderror" id="available_from" name="available_from" value="{{ old('available_from') }}">
-                  @error('available_from')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
-                </div>
               </div>
-              <hr>
               <div class="form-group">
-                <h6>Price Details</h6>
+                <h6>Rent/Lease Detail</h6>
               </div>
               <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="">Total Price <span class="text-danger">*</span></label>
-                  <input type="number" name="total_price" class="form-control @error('total_price') invalid-feedback @enderror" value="{{ old('total_price') }}">
-                  @error('total_price')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
+                <div class="col-md-4">
+                  <label for="">Monthly Rent</label>
                 </div>
-                <div class="form-group col-md-6">
-                  <label for="">Price Per Sq.ft<span class="text-danger">*</span></label>
-                  <input type="number" name="price_per_sq_ft" class="form-control @error('price_per_sq_ft') invalid-feedback @enderror" value="{{ old('price_per_sq_ft') }}">
-                  @error('price_per_sq_ft')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="monthly_rent" name="monthly_rent" onkeyup="show_price.innerHTML=convertNumberToWords(this.value)">
+                  <span id="show_price" class="text-muted"></span>
                 </div>
               </div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-3">
-                    <label for="">Price Include</label>
+              <div id="show_rent" class="hidden">
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label for="">Show Rent as</label>
                   </div>
-                  <div class="col-md-9">
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="price_include" id="Car Parking" value="Car Parking" @if(old('price_include') == "Car Parking") checked @endif>
-                      <label class="form-check-label" for="Car Parking">Car Parking</label>
+                  <div class="form-group col-md-3">
+                    <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="show_rent_as" >
+                        <span id="rent_1"></span>
+                      </label>
                     </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="price_include" id="Club Membersip" value="Club Membersip" @if(old('price_include') == "Club Membersip") checked @endif>
-                      <label class="form-check-label" for="Club Membersip">Club Membersip</label>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="show_rent_as" >
+                        <span id="rent_2"></span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="show_rent_as">Call For Price
+                      </label>
                     </div>
                   </div>
                 </div>
-                @error('price_include')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
+              </div>
+              <div class="form-group">
+                <div class="plus-minus">
+                  <input type="checkbox" name="other_charges" id="a" class="css-checkbox">
+                  <label for="a" class="css-label">
+                    <span class="fa fa-plus"></span>
+                    <span class="fa fa-minus"></span>
+                  Add Other Charges
+                  </label>
+                </div>
+              </div>
+              <div id="otherChargesDiv" class="hidden">
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="">Other Charges</label>
+                  </div>
+                  <div class="form-group col-md-8">
+                    <input type="text" class="form-control" name="other_charges">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="checkbox" name="ele_water_charges" class="form-check-input" value="1" checked>Electricity & Water charges excluded.
+                  </label>
+                </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="">Booking Amount Charges</label>
-                  <input type="number" name="booking_amount_charges" class="form-control @error('booking_amount_charges') invalid-feedback @enderror" value="{{ old('booking_amount_charges') }}">
-                  @error('booking_amount_charges')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
+                  <label for="">Security/Deposit Amount</label>
                 </div>
+                <div class="form-group col-md-6">
+                  <input type="number" class="form-control" name="security_amount">
+                </div>
+              </div>
+              <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="">Maintenance Charges</label>
-                  <input type="number" name="maintenance_charges" class="form-control @error('maintenance_charges') invalid-feedback @enderror" value="{{ old('maintenance_charges') }}">
-                  @error('maintenance_charges')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
+                  <input type="number" name="maintenance_charge" class="form-control">
                 </div>
-              </div>
-              <hr>
-              <div class="form-group">
-                <label>Photos <span class="text-danger">*</span></label>
-              </div>
-              <div id="upload_form">
-                <label class="filelabel p_file">
-                  <div class="icon">X</div>
-                  <i class="fa fa-paperclip" id="icon1">
-                  </i>
-                  
-                  <span class="title1">
-                      Add File
-                  </span>
-                  <input class="FileUpload1" id="FileInput" name="photos[]" type="file"/>
-                  <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
-                </label>
-              </div>
-              @error('photos')
-                  <span class="text-danger" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-              @enderror
-              <div class="form-group">
-                <label>Ad title <span class="text-danger">*</span></label>
-                <input type="text" class="form-control @error('ad_title') is-invalid @enderror" id="ad_title" placeholder="(e.g. brand, model, age, type)" name="ad_title" value="{{ old('ad_title') }}">
-                @error('ad_title')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              <div class="form-group">
-                <label>Description <span class="text-danger">*</span></label>
-                <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
-                @error('description')
-                  <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-3">
-                    <label for="">Listed By <span class="text-danger">*</span></label>
-                  </div>
-                  <div class="col-md-9">
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="listed_by" id="Builder" value="Builder" @if(old('listed_by') == "Builder") checked @endif>
-                      <label class="form-check-label" for="Builder">Builder</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="listed_by" id="Owner" value="Owner" @if(old('listed_by') == "Owner") checked @endif>
-                      <label class="form-check-label" for="Owner">Owner</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="listed_by" id="Agent" value="Agent" @if(old('listed_by') == "Agent") checked @endif>
-                      <label class="form-check-label" for="Agent">Agent</label>
-                    </div>
-                  </div>
+                <div class="form-group col-md-6">
+                  <label for="">Per</label>
+                  <select name="m_charges_per" id="" class="form-control">
+                    <option value="Monthly">Monthly</option>
+                    <option value="Quarterly">Quarterly</option>
+                    <option value="Yearly">Yearly</option>
+                    <option value="One-Time">One-Time</option>
+                    <option value="Per Sq. Unit Monthly">Per Sq. Unit Monthly</option>
+                  </select>
                 </div>
-                @error('listed_by')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div> 
-              <hr>
-              <div class="form-group">
-                <h6>Additional Feature</h6>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="">Rooms <span class="text-danger">*</span></label>
-                  <select name="rooms" id="rooms" class="form-control @error('rooms') invalid-feedback @enderror">
-                    <option value="">-Select Rooms-</option>
-                    <option value="Pooja Room" @if(old('rooms') == "Pooja Room") Selected @endif >Pooja Room</option>
-                    <option value="Store Room" @if(old('rooms') == "Store Room") Selected @endif>Store Room</option>
-                    <option value="Study Room" @if(old('rooms') == "Study Room") Selected @endif>Study Room</option>
-                    <option value="Servant Room" @if(old('rooms') == "Servant Room") Selected @endif>Servant Room</option>
-                    <option value="None of these" @if(old('rooms') == "None of these") Selected @endif>None of these</option>
-                  </select>
-                  @error('rooms')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
+                  <label for="">Brokerage (Brokers Only)</label>
                 </div>
                 <div class="form-group col-md-6">
+                  <select name="brokerage" id="" class="form-control">
+                    <option value="">-Select Brokerage-</option>
+                    <option value="No Brokerage">No Brokerage</option>
+                    <option value="10 Days">10 Days</option>
+                    <option value="15 Days">15 Days</option>
+                    <option value="20 Days">20 Days</option>
+                    <option value="25 Days">25 Days</option>
+                    <option value="30 Days">30 Days</option>
+                    <option value="45 Days">45 Days</option>
+                    <option value="Others">Others</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <h6>Photos</h6>
+              </div>
+              <div class="form-group">
+                <nav>
+                  <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Exterior View</a>
+                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Living Room</a>
+                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Bedroom</a>
+                    <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="false">Bathrooms</a>
+                    <a class="nav-item nav-link" id="nav-kitchen-tab" data-toggle="tab" href="#nav-kitchen" role="tab" aria-controls="nav-about" aria-selected="false">Kitchen</a>
+                    <a class="nav-item nav-link" id="nav-floor-tab" data-toggle="tab" href="#nav-floor" role="tab" aria-controls="nav-about" aria-selected="false">Floor Plan</a>
+                    <a class="nav-item nav-link" id="nav-master-tab" data-toggle="tab" href="#nav-master" role="tab" aria-controls="nav-about" aria-selected="false">Master Plan</a>
+                    <a class="nav-item nav-link" id="nav-location-tab" data-toggle="tab" href="#nav-location" role="tab" aria-controls="nav-about" aria-selected="false">Location Map</a>
+                    <a class="nav-item nav-link" id="nav-other-tab" data-toggle="tab" href="#nav-other" role="tab" aria-controls="nav-about" aria-selected="false">Others</a>
+                  </div>
+                </nav>
+                <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                      <div id="upload_form">
+                        <label class="filelabel p_file">
+                          <div class="icon">X</div>
+                          <i class="fa fa-paperclip" id="icon1">
+                          </i>
+                          
+                          <span class="title1">
+                              Add File
+                          </span>
+                          <input class="FileUpload1" id="FileInput" name="exterior_photos[]" type="file"/>
+                          <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                        </label>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                      <div id="upload_form1">
+                        <label class="filelabel p_file">
+                          <div class="icon">X</div>
+                          <i class="fa fa-paperclip" id="icon1">
+                          </i>
+                          
+                          <span class="title1">
+                              Add File
+                          </span>
+                          <input class="FileUpload1" id="FileInput" name="living_photos[]" type="file"/>
+                          <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                        </label>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                      <div id="upload_form2">
+                        <label class="filelabel p_file">
+                          <div class="icon">X</div>
+                          <i class="fa fa-paperclip" id="icon1">
+                          </i>
+                          
+                          <span class="title1">
+                              Add File
+                          </span>
+                          <input class="FileUpload1" id="FileInput" name="bedroom_photos[]" type="file"/>
+                          <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                        </label>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+                      <div id="upload_form3">
+                        <label class="filelabel p_file">
+                          <div class="icon">X</div>
+                          <i class="fa fa-paperclip" id="icon1">
+                          </i>
+                          
+                          <span class="title1">
+                              Add File
+                          </span>
+                          <input class="FileUpload1" id="FileInput" name="bathroom_photos[]" type="file"/>
+                          <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                        </label>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-kitchen" role="tabpanel" aria-labelledby="nav-kitchen-tab">
+                      <div id="upload_form4">
+                        <label class="filelabel p_file">
+                          <div class="icon">X</div>
+                          <i class="fa fa-paperclip" id="icon1">
+                          </i>
+                          
+                          <span class="title1">
+                              Add File
+                          </span>
+                          <input class="FileUpload1" id="FileInput" name="kitchen_photos[]" type="file"/>
+                          <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                        </label>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-floor" role="tabpanel" aria-labelledby="nav-floor-tab">
+                      <div id="upload_form5">
+                        <label class="filelabel p_file">
+                          <div class="icon">X</div>
+                          <i class="fa fa-paperclip" id="icon1">
+                          </i>
+                          
+                          <span class="title1">
+                              Add File
+                          </span>
+                          <input class="FileUpload1" id="FileInput" name="floor_photos[]" type="file"/>
+                          <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                        </label>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-master" role="tabpanel" aria-labelledby="nav-master-tab">
+                      <div id="upload_form6">
+                        <label class="filelabel p_file">
+                          <div class="icon">X</div>
+                          <i class="fa fa-paperclip" id="icon1">
+                          </i>
+                          
+                          <span class="title1">
+                              Add File
+                          </span>
+                          <input class="FileUpload1" id="FileInput" name="master_photos[]" type="file"/>
+                          <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                        </label>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-location" role="tabpanel" aria-labelledby="nav-location-tab">
+                      <div id="upload_form7">
+                        <label class="filelabel p_file">
+                          <div class="icon">X</div>
+                          <i class="fa fa-paperclip" id="icon1">
+                          </i>
+                          
+                          <span class="title1">
+                              Add File
+                          </span>
+                          <input class="FileUpload1" id="FileInput" name="location_photos[]" type="file"/>
+                          <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                        </label>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-other" role="tabpanel" aria-labelledby="nav-other-tab">
+                      <div id="upload_form8">
+                        <label class="filelabel p_file">
+                          <div class="icon">X</div>
+                          <i class="fa fa-paperclip" id="icon1">
+                          </i>
+                          
+                          <span class="title1">
+                              Add File
+                          </span>
+                          <input class="FileUpload1" id="FileInput" name="other_photos[]" type="file"/>
+                          <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <h6>Tenants Tou Prefer</h6>
+              </div>
+              <div class="form-group">
+                <label for="">Tenants who are Bachelors</label>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="tenants_bachelor" value="Yes">Yes
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="tenants_bachelor" value="No">No
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="tenants_bachelor" value="Doesn't Matter">Doesn't Matter
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="">Tenants who are Non Vegetarians</label>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="tenants_non_veg" value="Yes">Yes
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="tenants_non_veg" value="No">No
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="tenants_non_veg" value="Doesn't Matter">Doesn't Matter
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="">Tenants with Pets</label>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="tenants_pets" value="Yes">Yes
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="tenants_pets" value="No">No
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="tenants_pets" value="Doesn't Matter">Doesn't Matter
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="">Tenants without Company Lease</label>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="tenants_company_lease" value="Yes">Yes
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="tenants_company_lease" value="No">No
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="tenants_company_lease" value="Doesn't Matter">Doesn't Matter
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <h6>Additional Features</h6>
+              </div>
+              <div class="form-group">
+                <label for="">Additional Rooms</label>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input" name="add_room[]" value="Pooja Room">Pooja Room
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input" name="add_room[]" value="Study">Study
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input" name="add_room[]" value="Store">Store
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input" name="add_room[]" value="Servant Room">Servant Room
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input" name="add_room[]" value="None of these">None of these
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+              <div class="form-group col-md-6">
                   <label for="">Facing <span class="text-danger">*</span></label>
                   <select name="facing" id="facing" class="form-control @error('facing') invalid-feedback @enderror">
                     <option value="">-Select Facing-</option>
@@ -671,7 +1014,7 @@
                   <label for="">Overlooking <span class="text-danger">*</span></label>
                   <select name="overlooking" id="overlooking" class="form-control @error('overlooking') invalid-feedback @enderror">
                     <option value="">-Select Overlooking-</option>
-                    <option value="Garden Park" @if(old('overlooking') == "Garden Park") Selected @endif>Garden Park</option>
+                    <option value="Garden/Park" @if(old('overlooking') == "Garden/Park") Selected @endif>Garden/Park</option>
                     <option value="Pool" @if(old('overlooking') == "Pool") Selected @endif>Pool</option>
                     <option value="Main Road" @if(old('overlooking') == "Main Road") Selected @endif>Main Road</option>
                     <option value="Not Available" @if(old('overlooking') == "Not Available") Selected @endif>Not Available</option>
@@ -696,40 +1039,45 @@
                   </span>
                   @enderror
                 </div>
+                <div class="form-group col-md-6">
+                  <label for="">Lifts in the Tower </label>
+                  <select name="car_parking" id="car_parking" class="form-control @error('lift_tower') invalid-feedback @enderror">
+                    <option value="">-Select-</option>
+                    <option value="None" @if(old('lift_tower') == "None") Selected @endif>None</option>
+                    <option value="1" @if(old('lift_tower') == "1") Selected @endif>1</option>
+                    <option value="2" @if(old('lift_tower') == "2") Selected @endif>2</option>
+                    <option value="3" @if(old('lift_tower') == "3") Selected @endif>3</option>
+                    <option value="4" @if(old('lift_tower') == "4") Selected @endif>4</option>
+                    <option value="5" @if(old('lift_tower') == "5") Selected @endif>5</option>
+                    <option value="6" @if(old('lift_tower') == "6") Selected @endif>6</option>
+                    <option value="7" @if(old('lift_tower') == "7") Selected @endif>7</option>
+                  </select>
+                  @error('lift_tower')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </div>
               </div>
-              <div class="form-group">
-                <h6>Flats on Floor</h6>
-              </div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-8">
-                    <label for="">Multiple Flat Available</label>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="">Multiple Units Available</label>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="mul_unit_avail" value="Yes">Yes
+                    </label>
                   </div>
-                  <div class="col-md-4">
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="multiple_flat" id="Yes" value="Yes" @if(old('multiple_flat') == "Yes") checked @endif>
-                      <label class="form-check-label" for="Yes">Yes</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="multiple_flat" id="No" value="No" @if(old('multiple_flat') == "No") checked @endif>
-                      <label class="form-check-label" for="No">No</label>
-                    </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="mul_unit_avail" value="No">No
+                    </label>
                   </div>
                 </div>
-                @error('multiple_flat')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
               </div>
               <div class="form-group">
-                <label for="">Area Registration No. (Optional)</label>
-                <input type="text" name="area_registration_no" class="form-control @error('area_registration_no') invalid-feedback @enderror" value="{{ old('area_registration_no') }}">
-                @error('area_registration_no')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
+                <h6>Status of Water & Electricity</h6>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
@@ -764,39 +1112,7 @@
                   </span>
                   @enderror
                 </div>
-                <div class="form-group col-md-6">
-                  <label for="">Ownership Approval</label>
-                  <select name="ownership_approval" id="ownership_approval" class="form-control @error('ownership_approval') invalid-feedback @enderror">
-                    <option value="">-Select Ownership Approval-</option>
-                    <option value="Freehold" @if(old('ownership_approval') == "Freehold") Selected @endif>Freehold</option>
-                    <option value="Leasehold" @if(old('ownership_approval') == "Leasehold") Selected @endif>Leasehold</option>
-                    <option value="Power of Attorney" @if(old('ownership_approval') == "Power of Attorney") Selected @endif>Power of Attorney</option>
-                    <option value="Co-Operative Society" @if(old('ownership_approval') == "Co-Operative Society") Selected @endif>Co-Operative Society</option>
-                  </select>
-                  @error('ownership_approval')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="">Approved By</label>
-                  <select name="approved_by" id="approved_by" class="form-control @error('approved_by') invalid-feedback @enderror">
-                    <option value="">-Select Approved By-</option>
-                    <option value="Metropolitan Region" @if(old('approved_by') == "Metropolitan Region") Selected @endif>Metropolitan Region</option>
-                    <option value="Development Authority" @if(old('approved_by') == "Development Authority") Selected @endif>Development Authority</option>
-                    <option value="Developer" @if(old('approved_by') == "Developer") Selected @endif>Developer</option>
-                    <option value="RWA/ Co-Operative Housing Society" @if(old('approved_by') == "RWA/ Co-Operative Housing Society") Selected @endif>RWA/ Co-Operative Housing Society</option>
-                    <option value="City Muncipal Corporation" @if(old('approved_by') == "City Muncipal Corporation") Selected @endif>City Muncipal Corporation</option>
-                  </select>
-                  @error('approved_by')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
-                </div>
               </div>
-              <hr>
               <div class="form-group">
                 <h6>Flooring & Aminities</h6>
               </div>
@@ -825,35 +1141,35 @@
                   <label for="">Aminities</label>
                   <select name="aminities" id="aminities" class="form-control @error('aminities') invalid-feedback @enderror">
                     <option value="">-Select Aminities-</option>
-                    <option value="Air Conditioner" @if(old('aminities') == "Air Conditioner") Selected @endif>Air Conditioner</option>
-                    <option value="Banquet Hall" @if(old('aminities') == "Banquet Hall") Selected @endif>Banquet Hall</option>
-                    <option value="Bar/Lounge" @if(old('aminities') == "Bar/Lounge") Selected @endif>Bar/Lounge</option>
-                    <option value="Cafeteria Food Court" @if(old('aminities') == "Cafeteria Food Court") Selected @endif>Cafeteria Food Court</option>
-                    <option value="Club House" @if(old('aminities') == "Club House") Selected @endif>Club House</option>
-                    <option value="Conference Room" @if(old('aminities') == "Conference Room") Selected @endif>Conference Room</option>
-                    <option value="DTH Television Facility" @if(old('aminities') == "DTH Television Facility") Selected @endif>DTH Television Facility</option>
+                    <!-- <option value="Air Conditioner" @if(old('aminities') == "Air Conditioner") Selected @endif>Air Conditioner</option> -->
+                    <!-- <option value="Banquet Hall" @if(old('aminities') == "Banquet Hall") Selected @endif>Banquet Hall</option> -->
+                    <!-- <option value="Bar/Lounge" @if(old('aminities') == "Bar/Lounge") Selected @endif>Bar/Lounge</option> -->
+                    <!-- <option value="Cafeteria Food Court" @if(old('aminities') == "Cafeteria Food Court") Selected @endif>Cafeteria Food Court</option> -->
+                    <!-- <option value="Club House" @if(old('aminities') == "Club House") Selected @endif>Club House</option> -->
+                    <!-- <option value="Conference Room" @if(old('aminities') == "Conference Room") Selected @endif>Conference Room</option> -->
+                    <!-- <option value="DTH Television Facility" @if(old('aminities') == "DTH Television Facility") Selected @endif>DTH Television Facility</option> -->
                     <option value="Gymnasium" @if(old('aminities') == "Gymnasium") Selected @endif>Gymnasium</option>
-                    <option value="Intercom Facility" @if(old('aminities') == "Intercom Facility") Selected @endif>Intercom Facility</option>
-                    <option value="Internet Wi-Fi Facility" @if(old('aminities') == "Internet Wi-Fi Facility") Selected @endif>Internet Wi-Fi Facility</option>
+                    <!-- <option value="Intercom Facility" @if(old('aminities') == "Intercom Facility") Selected @endif>Intercom Facility</option> -->
+                    <!-- <option value="Internet Wi-Fi Facility" @if(old('aminities') == "Internet Wi-Fi Facility") Selected @endif>Internet Wi-Fi Facility</option> -->
                     <option value="Jogging & Strolling Track" @if(old('aminities') == "Jogging & Strolling Track") Selected @endif>Jogging & Strolling Track</option>
-                    <option value="Laundary Services" @if(old('aminities') == "Laundary Services") Selected @endif>Laundary Services</option>
-                    <option value="Lift" @if(old('aminities') == "Lift") Selected @endif>Lift</option>
-                    <option value="Maintenance Staff" @if(old('aminities') == "Maintenance Staff") Selected @endif>Maintenance Staff</option>
-                    <option value="Outdoor Tennis Court" @if(old('aminities') == "Outdoor Tennis Court") Selected @endif>Outdoor Tennis Court</option>
-                    <option value="Park" @if(old('aminities') == "Park") Selected @endif>Park</option>
+                    <!-- <option value="Laundary Services" @if(old('aminities') == "Laundary Services") Selected @endif>Laundary Services</option> -->
+                    <!-- <option value="Lift" @if(old('aminities') == "Lift") Selected @endif>Lift</option> -->
+                    <!-- <option value="Maintenance Staff" @if(old('aminities') == "Maintenance Staff") Selected @endif>Maintenance Staff</option> -->
+                    <!-- <option value="Outdoor Tennis Court" @if(old('aminities') == "Outdoor Tennis Court") Selected @endif>Outdoor Tennis Court</option> -->
+                    <!-- <option value="Park" @if(old('aminities') == "Park") Selected @endif>Park</option> -->
                     <option value="Pipe Gas" @if(old('aminities') == "Pipe Gas") Selected @endif>Pipe Gas</option>
                     <option value="Power Back Up" @if(old('aminities') == "Power Back Up") Selected @endif>Power Back Up</option>
-                    <option value="Private Terrace" @if(old('aminities') == "Private Terrace") Selected @endif>Private Terrace</option>
-                    <option value="Garden" @if(old('aminities') == "Garden") Selected @endif>Garden</option>
-                    <option value="RO Water System" @if(old('aminities') == "RO Water System") Selected @endif>RO Water System</option>
-                    <option value="Rain Water Harvesting" @if(old('aminities') == "Rain Water Harvesting") Selected @endif>Rain Water Harvesting</option>
+                    <!-- <option value="Private Terrace" @if(old('aminities') == "Private Terrace") Selected @endif>Private Terrace</option> -->
+                    <!-- <option value="Garden" @if(old('aminities') == "Garden") Selected @endif>Garden</option> -->
+                    <!-- <option value="RO Water System" @if(old('aminities') == "RO Water System") Selected @endif>RO Water System</option> -->
+                    <!-- <option value="Rain Water Harvesting" @if(old('aminities') == "Rain Water Harvesting") Selected @endif>Rain Water Harvesting</option> -->
                     <option value="Reserve Parking Security" @if(old('aminities') == "Reserve Parking Security") Selected @endif>Reserve Parking Security</option>
-                    <option value="Services/ Goods Lift" @if(old('aminities') == "Services/ Goods Lift") Selected @endif>Services/ Goods Lift</option>
+                    <!-- <option value="Services/ Goods Lift" @if(old('aminities') == "Services/ Goods Lift") Selected @endif>Services/ Goods Lift</option> -->
                     <option value="Swimming Pool" @if(old('aminities') == "Swimming Pool") Selected @endif>Swimming Pool</option>
-                    <option value="Vastu Compliment" @if(old('aminities') == "Vastu Compliment") Selected @endif>Vastu Compliment</option>
-                    <option value="Visitors Parking" @if(old('aminities') == "Visitors Parking") Selected @endif>Visitors Parking</option>
-                    <option value="Waste Disposal" @if(old('aminities') == "Waste Disposal") Selected @endif>Waste Disposal</option>
-                    <option value="Water Storage" @if(old('aminities') == "Water Storage") Selected @endif>Water Storage</option>
+                    <!-- <option value="Vastu Compliment" @if(old('aminities') == "Vastu Compliment") Selected @endif>Vastu Compliment</option> -->
+                    <!-- <option value="Visitors Parking" @if(old('aminities') == "Visitors Parking") Selected @endif>Visitors Parking</option> -->
+                    <!-- <option value="Waste Disposal" @if(old('aminities') == "Waste Disposal") Selected @endif>Waste Disposal</option> -->
+                    <!-- <option value="Water Storage" @if(old('aminities') == "Water Storage") Selected @endif>Water Storage</option> -->
                   </select>
                   @error('aminities')
                     <span class="invalid-feedback" role="alert">
@@ -862,98 +1178,43 @@
                   @enderror
                 </div>
               </div>
-                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                <hr>
-                <div class="form-group">
-                    <h6>Fill User Details</h6>
+
+              <div class="form-group">
+                <h6>Description & Landmarks</h6>
+              </div>
+              <div class="form-group">
+                <label for="">Description</label>
+                <textarea name="description" id="" class="form-control"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="">Landmark</label>
+                <input type="text" name="landmark" class="form-control">
+              </div>
+              <div class="form-group">
+                <h6>Owner's Residence</h6>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="">Owner Resides in</label>
                 </div>
-                <div class="form-row">
-                  <div class="form-group col-md-4 mb-3">
-                    <label>Name<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"  name="name" value="{{ Auth::user()->name }}">
-                    @error('name')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-                  <div class="form-group col-md-4 mb-3">
-                    <label>Email<span class="text-danger">*</span></label>
-                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"  name="email" value="{{ Auth::user()->email }}">
-                    @error('email')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-                  <div class="form-group col-md-4 mb-3">
-                    <label>Mobile Number<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control @error('mobile_no') is-invalid @enderror" id="mobile_no"  name="mobile_no" value="{{ Auth::user()->mobile_no }}">
-                    @error('mobile_no')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
+                <div class="form-group col-md-4">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="owner_resides" value="Same Premise">Same Premise
+                    </label>
                   </div>
                 </div>
-                
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label>State</label><span class="text-danger">*</span></label>
-                        <select id="state" class="form-control @error('state') is-invalid @enderror" name="state">
-                            <option value="">Choose...</option>
-                            @foreach($state as $s)
-                            <option value="{{ $s->id }}" @if (old('state') == $s->id) selected="selected" @endif>{{ $s->state_name }}</option>
-                            @endforeach
-                        </select>
-                        @error('state')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="inputCity">City</label><span class="text-danger">*</span></label>
-                        <select class="form-control @error('city') is-invalid @enderror" id="city" name="city">
-                        
-                        </select>
-                        @error('city')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="inputLocality">Locality</label><span class="text-danger">*</span></label>
-                        <select class="form-control @error('locality') is-invalid @enderror" id="locality" name="locality">
-                        
-                        </select>
-                        @error('locality')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group col-md-6">
-                    <label>Pin Code</label><span class="text-danger">*</span></label>
-                    <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code" value="{{ old('pin_code') }}">
-                    @error('pin_code')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                    </div>
-                    <div class="form-group col-md-6">
-                    <label>Address</label><span class="text-danger">*</span></label>
-                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
-                    @error('address')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                    </div>
+                <div class="form-group col-md-4">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="owner_resides" value="Away">Away
+                    </label>
+                  </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Post Your Add</button>
+              </div>
+              <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+              <hr>
+              <button type="submit" class="btn btn-primary">Post Your Add</button>
             </form>
           </div>
           <div class="col-md-4 section-md-t3">
@@ -1041,6 +1302,7 @@
 <!-- End Contact Single-->
 @endsection
 @section('customjs')
+
 <script>
 function readURL(input) {
   if (input.files && input.files[0]) {
@@ -1053,62 +1315,527 @@ function readURL(input) {
     reader.readAsDataURL(input.files[0]); // convert to base64 string
   }
 }
+
+// Exterior View Photos
  $('body')
     .delegate('#upload_form input[type="file"]', 'change', inputChanged)
     .delegate('#upload_form .icon', 'click', removeField);
 
 function inputChanged(e) {
-    
-    $current_count = $('#upload_form input[type="file"]').length;
-    // console.log($current_count);
-    $next_count = $current_count + 1;
-    var labelVal = $(".title"+$current_count).text();
-    var oldfileName = $(this).val();
-    
-    console.log(oldfileName);
-    $(".filelabel .title").text(labelVal);
-    fileName = e.target.value.split( '\\' ).pop();
-    if (oldfileName == fileName) {return false;}
-            var className = $(this).attr("class");
-            console.log(className);
-            var lastChar = className.slice(-1);
-            var inc  = 1 + +lastChar;
-            console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
-            var extension = fileName.split('.').pop();
-            if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
-                $(".filelabel #icon"+lastChar).remove();
-                $('#frame'+lastChar).removeClass("hidden");
-                $('#frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
-                $(".filelabel i, .filelabel .title").css({'color':'#208440'});
-                $(".filelabel").css({'border':' 2px solid #208440'});
-            }
-            if(fileName ){
-                if (fileName.length > 10){
-                    $(".filelabel .title"+lastChar).text(fileName.slice(0,4)+'...'+extension);
-                }
-                else{
-                    $(".filelabel .title"+$current_count).text(fileName);
-                }
-            }
-            else{
-                $(".filelabel .title").text(labelVal);
-            }
-            
-            if($(".FileUpload"+inc).length > 0) {
-                console.log('exist');
-            }else{
-            $(this).closest('.p_file').after(
-            '<label class="filelabel p_file"><div class="icon">X</div>' +
-            '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
-            '<span class="title'+$next_count+'">Add File</span>' +
-            '<input class="FileUpload'+$next_count+'" id="FileInput" name="photos[]" type="file"/>'+
-            '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
-            '</label>');
-            }
-           
+  $current_count = $('#upload_form input[type="file"]').length;
+  // console.log($current_count);
+  $next_count = $current_count + 1;
+  var labelVal = $(".title"+$current_count).text();
+  var oldfileName = $(this).val();
+  console.log(oldfileName);
+  $("#upload_form .filelabel .title").text(labelVal);
+  fileName = e.target.value.split( '\\' ).pop();
+  if (oldfileName == fileName) {return false;}
+  var className = $(this).attr("class");
+  console.log(className);
+  var lastChar = className.slice(-1);
+  var inc  = 1 + +lastChar;
+  console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
+  var extension = fileName.split('.').pop();
+  if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+    $("#upload_form .filelabel #icon"+lastChar).remove();
+    $('#upload_form #frame'+lastChar).removeClass("hidden");
+    $('#upload_form #frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
+    $("#upload_form .filelabel i, .filelabel .title").css({'color':'#208440'});
+    $("#upload_form .filelabel").css({'border':' 2px solid #208440'});
+  }
+  if(fileName ){
+    if (fileName.length > 10){
+      $("#upload_form .filelabel .title"+lastChar).text(fileName.slice(0,4)+'...'+extension);
+    }
+    else{
+      $("#upload_form .filelabel .title"+$current_count).text(fileName);
+    }
+  }
+  else{
+    $("#upload_form .filelabel .title").text(labelVal);
+  }
+  if($("#upload_form .FileUpload"+inc).length > 0) {
+    console.log('exist');
+  }
+  else{
+  $(this).closest('.p_file').after(
+  '<label class="filelabel p_file"><div class="icon">X</div>' +
+  '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+  '<span class="title'+$next_count+'">Add File</span>' +
+  '<input class="FileUpload'+$next_count+'" id="FileInput" name="exterior_photos[]" type="file"/>'+
+  '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
+  '</label>');
+  }
 }
 
 function removeField(){
+    $(this).closest('.p_file').remove();
+    return false;
+}
+
+// Living Room Photos
+$('body')
+  .delegate('#upload_form1 input[type="file"]', 'change', inputChanged1)
+  .delegate('#upload_form1 .icon', 'click', removeField1);
+
+function inputChanged1(e) {
+  $current_count = $('#upload_form1 input[type="file"]').length;
+  // console.log($current_count);
+  $next_count = $current_count + 1;
+  var labelVal = $(".title"+$current_count).text();
+  var oldfileName = $(this).val();
+  console.log(oldfileName);
+  $("#upload_form1 .filelabel .title").text(labelVal);
+  fileName = e.target.value.split( '\\' ).pop();
+  if (oldfileName == fileName) {return false;}
+  var className = $(this).attr("class");
+  console.log(className);
+  var lastChar = className.slice(-1);
+  var inc  = 1 + +lastChar;
+  console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
+  var extension = fileName.split('.').pop();
+  if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+    $("#upload_form1 .filelabel #icon"+lastChar).remove();
+    $('#upload_form1 #frame'+lastChar).removeClass("hidden");
+    $('#upload_form1 #frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
+    $("#upload_form1 .filelabel i, .filelabel .title").css({'color':'#208440'});
+    $("#upload_form1 .filelabel").css({'border':' 2px solid #208440'});
+  }
+  if(fileName ){
+    if (fileName.length > 10){
+      $("#upload_form1 .filelabel .title"+lastChar).text(fileName.slice(0,4)+'...'+extension);
+    }
+    else{
+      $("#upload_form1 .filelabel .title"+$current_count).text(fileName);
+    }
+  }
+  else{
+    $("#upload_form1 .filelabel .title").text(labelVal);
+  }
+  if($("#upload_form1 .FileUpload"+inc).length > 0) {
+    console.log('exist');
+  }
+  else{
+  $(this).closest('.p_file').after(
+  '<label class="filelabel p_file"><div class="icon">X</div>' +
+  '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+  '<span class="title'+$next_count+'">Add File</span>' +
+  '<input class="FileUpload'+$next_count+'" id="FileInput" name="living_photos[]" type="file"/>'+
+  '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
+  '</label>');
+  }
+}
+
+function removeField1(){
+    $(this).closest('.p_file').remove();
+    return false;
+}
+
+// Bedroom Photos
+$('body')
+    .delegate('#upload_form2 input[type="file"]', 'change', inputChanged2)
+    .delegate('#upload_form2 .icon', 'click', removeField2);
+
+function inputChanged2(e) {
+  $current_count = $('#upload_form2 input[type="file"]').length;
+  // console.log($current_count);
+  $next_count = $current_count + 1;
+  var labelVal = $(".title"+$current_count).text();
+  var oldfileName = $(this).val();
+  console.log(oldfileName);
+  $("#upload_form2 .filelabel .title").text(labelVal);
+  fileName = e.target.value.split( '\\' ).pop();
+  if (oldfileName == fileName) {return false;}
+  var className = $(this).attr("class");
+  console.log(className);
+  var lastChar = className.slice(-1);
+  var inc  = 1 + +lastChar;
+  console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
+  var extension = fileName.split('.').pop();
+  if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+    $("#upload_form2 .filelabel #icon"+lastChar).remove();
+    $('#upload_form2 #frame'+lastChar).removeClass("hidden");
+    $('#upload_form2 #frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
+    $("#upload_form2 .filelabel i, .filelabel .title").css({'color':'#208440'});
+    $("#upload_form2 .filelabel").css({'border':' 2px solid #208440'});
+  }
+  if(fileName ){
+    if (fileName.length > 10){
+      $("#upload_form2 .filelabel .title"+lastChar).text(fileName.slice(0,4)+'...'+extension);
+    }
+    else{
+      $("#upload_form2 .filelabel .title"+$current_count).text(fileName);
+    }
+  }
+  else{
+    $("#upload_form2 .filelabel .title").text(labelVal);
+  }
+  if($("#upload_form2 .FileUpload"+inc).length > 0) {
+    console.log('exist');
+  }
+  else{
+  $(this).closest('.p_file').after(
+  '<label class="filelabel p_file"><div class="icon">X</div>' +
+  '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+  '<span class="title'+$next_count+'">Add File</span>' +
+  '<input class="FileUpload'+$next_count+'" id="FileInput" name="bedroom_photos[]" type="file"/>'+
+  '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
+  '</label>');
+  }
+}
+
+function removeField2(){
+    $(this).closest('.p_file').remove();
+    return false;
+}
+
+// Bathroom Photos
+$('body')
+    .delegate('#upload_form3 input[type="file"]', 'change', inputChanged3)
+    .delegate('#upload_form3 .icon', 'click', removeField3);
+
+function inputChanged3(e) {
+  $current_count = $('#upload_form3 input[type="file"]').length;
+  // console.log($current_count);
+  $next_count = $current_count + 1;
+  var labelVal = $(".title"+$current_count).text();
+  var oldfileName = $(this).val();
+  console.log(oldfileName);
+  $("#upload_form3 .filelabel .title").text(labelVal);
+  fileName = e.target.value.split( '\\' ).pop();
+  if (oldfileName == fileName) {return false;}
+  var className = $(this).attr("class");
+  console.log(className);
+  var lastChar = className.slice(-1);
+  var inc  = 1 + +lastChar;
+  console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
+  var extension = fileName.split('.').pop();
+  if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+    $("#upload_form3 .filelabel #icon"+lastChar).remove();
+    $('#upload_form3 #frame'+lastChar).removeClass("hidden");
+    $('#upload_form3 #frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
+    $("#upload_form3 .filelabel i, .filelabel .title").css({'color':'#208440'});
+    $("#upload_form3 .filelabel").css({'border':' 2px solid #208440'});
+  }
+  if(fileName ){
+    if (fileName.length > 10){
+      $("#upload_form3 .filelabel .title"+lastChar).text(fileName.slice(0,4)+'...'+extension);
+    }
+    else{
+      $("#upload_form3 .filelabel .title"+$current_count).text(fileName);
+    }
+  }
+  else{
+    $("#upload_form3 .filelabel .title").text(labelVal);
+  }
+  if($("#upload_form3 .FileUpload"+inc).length > 0) {
+    console.log('exist');
+  }
+  else{
+  $(this).closest('.p_file').after(
+  '<label class="filelabel p_file"><div class="icon">X</div>' +
+  '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+  '<span class="title'+$next_count+'">Add File</span>' +
+  '<input class="FileUpload'+$next_count+'" id="FileInput" name="bathroom_photos[]" type="file"/>'+
+  '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
+  '</label>');
+  }
+}
+
+function removeField3(){
+    $(this).closest('.p_file').remove();
+    return false;
+}
+
+// Kitchen Photos
+$('body')
+  .delegate('#upload_form4 input[type="file"]', 'change', inputChanged4)
+  .delegate('#upload_form4 .icon', 'click', removeField4);
+
+function inputChanged4(e) {
+  $current_count = $('#upload_form4 input[type="file"]').length;
+  // console.log($current_count);
+  $next_count = $current_count + 1;
+  var labelVal = $(".title"+$current_count).text();
+  var oldfileName = $(this).val();
+  console.log(oldfileName);
+  $("#upload_form4 .filelabel .title").text(labelVal);
+  fileName = e.target.value.split( '\\' ).pop();
+  if (oldfileName == fileName) {return false;}
+  var className = $(this).attr("class");
+  console.log(className);
+  var lastChar = className.slice(-1);
+  var inc  = 1 + +lastChar;
+  console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
+  var extension = fileName.split('.').pop();
+  if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+    $("#upload_form4 .filelabel #icon"+lastChar).remove();
+    $('#upload_form4 #frame'+lastChar).removeClass("hidden");
+    $('#upload_form4 #frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
+    $("#upload_form4 .filelabel i, .filelabel .title").css({'color':'#208440'});
+    $("#upload_form4 .filelabel").css({'border':' 2px solid #208440'});
+  }
+  if(fileName ){
+    if (fileName.length > 10){
+      $("#upload_form4 .filelabel .title"+lastChar).text(fileName.slice(0,4)+'...'+extension);
+    }
+    else{
+      $("#upload_form4 .filelabel .title"+$current_count).text(fileName);
+    }
+  }
+  else{
+    $("#upload_form4 .filelabel .title").text(labelVal);
+  }
+  if($("#upload_form4 .FileUpload"+inc).length > 0) {
+    console.log('exist');
+  }
+  else{
+  $(this).closest('.p_file').after(
+  '<label class="filelabel p_file"><div class="icon">X</div>' +
+  '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+  '<span class="title'+$next_count+'">Add File</span>' +
+  '<input class="FileUpload'+$next_count+'" id="FileInput" name="kitchen_photos[]" type="file"/>'+
+  '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
+  '</label>');
+  }
+}
+
+function removeField4(){
+    $(this).closest('.p_file').remove();
+    return false;
+}
+
+// Floor Photos
+$('body')
+  .delegate('#upload_form5 input[type="file"]', 'change', inputChanged5)
+  .delegate('#upload_form5 .icon', 'click', removeField5);
+
+function inputChanged5(e) {
+  $current_count = $('#upload_form5 input[type="file"]').length;
+  // console.log($current_count);
+  $next_count = $current_count + 1;
+  var labelVal = $(".title"+$current_count).text();
+  var oldfileName = $(this).val();
+  console.log(oldfileName);
+  $("#upload_form5 .filelabel .title").text(labelVal);
+  fileName = e.target.value.split( '\\' ).pop();
+  if (oldfileName == fileName) {return false;}
+  var className = $(this).attr("class");
+  console.log(className);
+  var lastChar = className.slice(-1);
+  var inc  = 1 + +lastChar;
+  console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
+  var extension = fileName.split('.').pop();
+  if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+    $("#upload_form5 .filelabel #icon"+lastChar).remove();
+    $('#upload_form5 #frame'+lastChar).removeClass("hidden");
+    $('#upload_form5 #frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
+    $("#upload_form5 .filelabel i, .filelabel .title").css({'color':'#208440'});
+    $("#upload_form5 .filelabel").css({'border':' 2px solid #208440'});
+  }
+  if(fileName ){
+    if (fileName.length > 10){
+      $("#upload_form5 .filelabel .title"+lastChar).text(fileName.slice(0,4)+'...'+extension);
+    }
+    else{
+      $("#upload_form5 .filelabel .title"+$current_count).text(fileName);
+    }
+  }
+  else{
+    $("#upload_form5 .filelabel .title").text(labelVal);
+  }
+  if($("#upload_form5 .FileUpload"+inc).length > 0) {
+    console.log('exist');
+  }
+  else{
+  $(this).closest('.p_file').after(
+  '<label class="filelabel p_file"><div class="icon">X</div>' +
+  '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+  '<span class="title'+$next_count+'">Add File</span>' +
+  '<input class="FileUpload'+$next_count+'" id="FileInput" name="floor_photos[]" type="file"/>'+
+  '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
+  '</label>');
+  }
+}
+
+function removeField5(){
+    $(this).closest('.p_file').remove();
+    return false;
+}
+
+
+// Master Photos
+$('body')
+  .delegate('#upload_form6 input[type="file"]', 'change', inputChanged6)
+  .delegate('#upload_form6 .icon', 'click', removeField6);
+
+function inputChanged6(e) {
+  $current_count = $('#upload_form6 input[type="file"]').length;
+  // console.log($current_count);
+  $next_count = $current_count + 1;
+  var labelVal = $(".title"+$current_count).text();
+  var oldfileName = $(this).val();
+  console.log(oldfileName);
+  $("#upload_form6 .filelabel .title").text(labelVal);
+  fileName = e.target.value.split( '\\' ).pop();
+  if (oldfileName == fileName) {return false;}
+  var className = $(this).attr("class");
+  console.log(className);
+  var lastChar = className.slice(-1);
+  var inc  = 1 + +lastChar;
+  console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
+  var extension = fileName.split('.').pop();
+  if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+    $("#upload_form6 .filelabel #icon"+lastChar).remove();
+    $('#upload_form6 #frame'+lastChar).removeClass("hidden");
+    $('#upload_form6 #frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
+    $("#upload_form6 .filelabel i, .filelabel .title").css({'color':'#208440'});
+    $("#upload_form6 .filelabel").css({'border':' 2px solid #208440'});
+  }
+  if(fileName ){
+    if (fileName.length > 10){
+      $("#upload_form6 .filelabel .title"+lastChar).text(fileName.slice(0,4)+'...'+extension);
+    }
+    else{
+      $("#upload_form6 .filelabel .title"+$current_count).text(fileName);
+    }
+  }
+  else{
+    $("#upload_form6 .filelabel .title").text(labelVal);
+  }
+  if($("#upload_form6 .FileUpload"+inc).length > 0) {
+    console.log('exist');
+  }
+  else{
+  $(this).closest('.p_file').after(
+  '<label class="filelabel p_file"><div class="icon">X</div>' +
+  '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+  '<span class="title'+$next_count+'">Add File</span>' +
+  '<input class="FileUpload'+$next_count+'" id="FileInput" name="master_photos[]" type="file"/>'+
+  '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
+  '</label>');
+  }
+}
+
+function removeField6(){
+    $(this).closest('.p_file').remove();
+    return false;
+}
+
+
+// Location Photos
+$('body')
+  .delegate('#upload_form7 input[type="file"]', 'change', inputChanged7)
+  .delegate('#upload_form7 .icon', 'click', removeField7);
+
+function inputChanged7(e) {
+  $current_count = $('#upload_form7 input[type="file"]').length;
+  // console.log($current_count);
+  $next_count = $current_count + 1;
+  var labelVal = $(".title"+$current_count).text();
+  var oldfileName = $(this).val();
+  console.log(oldfileName);
+  $("#upload_form7 .filelabel .title").text(labelVal);
+  fileName = e.target.value.split( '\\' ).pop();
+  if (oldfileName == fileName) {return false;}
+  var className = $(this).attr("class");
+  console.log(className);
+  var lastChar = className.slice(-1);
+  var inc  = 1 + +lastChar;
+  console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
+  var extension = fileName.split('.').pop();
+  if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+    $("#upload_form7 .filelabel #icon"+lastChar).remove();
+    $('#upload_form7 #frame'+lastChar).removeClass("hidden");
+    $('#upload_form7 #frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
+    $("#upload_form7 .filelabel i, .filelabel .title").css({'color':'#208440'});
+    $("#upload_form7 .filelabel").css({'border':' 2px solid #208440'});
+  }
+  if(fileName ){
+    if (fileName.length > 10){
+      $("#upload_form7 .filelabel .title"+lastChar).text(fileName.slice(0,4)+'...'+extension);
+    }
+    else{
+      $("#upload_form7 .filelabel .title"+$current_count).text(fileName);
+    }
+  }
+  else{
+    $("#upload_form7 .filelabel .title").text(labelVal);
+  }
+  if($("#upload_form7 .FileUpload"+inc).length > 0) {
+    console.log('exist');
+  }
+  else{
+  $(this).closest('.p_file').after(
+  '<label class="filelabel p_file"><div class="icon">X</div>' +
+  '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+  '<span class="title'+$next_count+'">Add File</span>' +
+  '<input class="FileUpload'+$next_count+'" id="FileInput" name="location_photos[]" type="file"/>'+
+  '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
+  '</label>');
+  }
+}
+
+function removeField7(){
+    $(this).closest('.p_file').remove();
+    return false;
+}
+
+// Other Photos
+$('body')
+  .delegate('#upload_form8 input[type="file"]', 'change', inputChanged8)
+  .delegate('#upload_form8 .icon', 'click', removeField8);
+
+function inputChanged8(e) {
+  $current_count = $('#upload_form8 input[type="file"]').length;
+  // console.log($current_count);
+  $next_count = $current_count + 1;
+  var labelVal = $(".title"+$current_count).text();
+  var oldfileName = $(this).val();
+  console.log(oldfileName);
+  $("#upload_form8 .filelabel .title").text(labelVal);
+  fileName = e.target.value.split( '\\' ).pop();
+  if (oldfileName == fileName) {return false;}
+  var className = $(this).attr("class");
+  console.log(className);
+  var lastChar = className.slice(-1);
+  var inc  = 1 + +lastChar;
+  console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
+  var extension = fileName.split('.').pop();
+  if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+    $("#upload_form8 .filelabel #icon"+lastChar).remove();
+    $('#upload_form8 #frame'+lastChar).removeClass("hidden");
+    $('#upload_form8 #frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
+    $("#upload_form8 .filelabel i, .filelabel .title").css({'color':'#208440'});
+    $("#upload_form8 .filelabel").css({'border':' 2px solid #208440'});
+  }
+  if(fileName ){
+    if (fileName.length > 10){
+      $("#upload_form8 .filelabel .title"+lastChar).text(fileName.slice(0,4)+'...'+extension);
+    }
+    else{
+      $("#upload_form8 .filelabel .title"+$current_count).text(fileName);
+    }
+  }
+  else{
+    $("#upload_form8 .filelabel .title").text(labelVal);
+  }
+  if($("#upload_form8 .FileUpload"+inc).length > 0) {
+    console.log('exist');
+  }
+  else{
+  $(this).closest('.p_file').after(
+  '<label class="filelabel p_file"><div class="icon">X</div>' +
+  '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+  '<span class="title'+$next_count+'">Add File</span>' +
+  '<input class="FileUpload'+$next_count+'" id="FileInput" name="other_photos[]" type="file"/>'+
+  '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
+  '</label>');
+  }
+}
+
+function removeField8(){
     $(this).closest('.p_file').remove();
     return false;
 }
@@ -1189,5 +1916,121 @@ function removeField(){
     $("#locality").empty();
   }   
   });
+
+  $("input[name='available_from']").change(function(){
+    var available_from = $(this).val();
+    if(available_from == "Select Date")
+    {
+      $("#showDateDiv").show(1000);
+    }
+    else{
+      $("#showDateDiv").hide(1000);
+    }
+  })
+
+function convertNumberToWords(amount) {
+    var words = new Array();
+    words[0] = '';
+    words[1] = 'One';
+    words[2] = 'Two';
+    words[3] = 'Three';
+    words[4] = 'Four';
+    words[5] = 'Five';
+    words[6] = 'Six';
+    words[7] = 'Seven';
+    words[8] = 'Eight';
+    words[9] = 'Nine';
+    words[10] = 'Ten';
+    words[11] = 'Eleven';
+    words[12] = 'Twelve';
+    words[13] = 'Thirteen';
+    words[14] = 'Fourteen';
+    words[15] = 'Fifteen';
+    words[16] = 'Sixteen';
+    words[17] = 'Seventeen';
+    words[18] = 'Eighteen';
+    words[19] = 'Nineteen';
+    words[20] = 'Twenty';
+    words[30] = 'Thirty';
+    words[40] = 'Forty';
+    words[50] = 'Fifty';
+    words[60] = 'Sixty';
+    words[70] = 'Seventy';
+    words[80] = 'Eighty';
+    words[90] = 'Ninety';
+    amount = amount.toString();
+    var atemp = amount.split(".");
+    var number = atemp[0].split(",").join("");
+    var n_length = number.length;
+    var words_string = "";
+    if (n_length <= 9) {
+        var n_array = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0);
+        var received_n_array = new Array();
+        for (var i = 0; i < n_length; i++) {
+            received_n_array[i] = number.substr(i, 1);
+        }
+        for (var i = 9 - n_length, j = 0; i < 9; i++, j++) {
+            n_array[i] = received_n_array[j];
+        }
+        for (var i = 0, j = 1; i < 9; i++, j++) {
+            if (i == 0 || i == 2 || i == 4 || i == 7) {
+                if (n_array[i] == 1) {
+                    n_array[j] = 10 + parseInt(n_array[j]);
+                    n_array[i] = 0;
+                }
+            }
+        }
+        value = "";
+        for (var i = 0; i < 9; i++) {
+            if (i == 0 || i == 2 || i == 4 || i == 7) {
+                value = n_array[i] * 10;
+            } else {
+                value = n_array[i];
+            }
+            if (value != 0) {
+                words_string += words[value] + " ";
+            }
+            if ((i == 1 && value != 0) || (i == 0 && value != 0 && n_array[i + 1] == 0)) {
+                words_string += "Crores ";
+            }
+            if ((i == 3 && value != 0) || (i == 2 && value != 0 && n_array[i + 1] == 0)) {
+                words_string += "Lakhs ";
+            }
+            if ((i == 5 && value != 0) || (i == 4 && value != 0 && n_array[i + 1] == 0)) {
+                words_string += "Thousand ";
+            }
+            if (i == 6 && value != 0 && (n_array[i + 1] != 0 && n_array[i + 2] != 0)) {
+                words_string += "Hundred and ";
+            } else if (i == 6 && value != 0) {
+                words_string += "Hundred ";
+            }
+        }
+        words_string = words_string.split("  ").join(" ");
+    }
+    return words_string;
+}
+$(document).mouseup(function (e) { 
+  // rest code here 
+  var monthly_rent = $("#monthly_rent").val();
+  // alert(monthly_rent);
+  if(monthly_rent != ""){
+  if ($(e.target).closest("#monthly_rent").length === 0) {
+    x=monthly_rent.toString();
+    var lastThree = x.substring(x.length-3);
+    var otherNumbers = x.substring(0,x.length-3);
+    if(otherNumbers != '')
+        lastThree = ',' + lastThree;
+    var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+    $("#rent_1").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
+    $("#rent_2").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
+    // format.format(4800)  
+    $("#show_rent").show(1000); 
+  } 
+  }
+}) 
+
+$('body').on('click', '#a', function () {
+  $("#otherChargesDiv").fadeToggle(1000); 
+})
 </script>
 @endsection
