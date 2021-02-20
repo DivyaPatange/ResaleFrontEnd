@@ -109,8 +109,9 @@ class AdController extends Controller
             }
             if($subCategory->sub_category == "Property for Rent / Lease")
             {
+                $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 $cities = City::where('status', 1)->get();
-                return view('auth.rent-lease', compact('subCategory', 'cities', 'state', 'category'));
+                return view('auth.property', compact('subCategory', 'cities', 'state', 'category', 'type'));
             }
             if(($subCategory->sub_category == "Men") || ($subCategory->sub_category == "Women") || ($subCategory->sub_category == "Kids"))
             {
@@ -901,5 +902,41 @@ class AdController extends Controller
         $furniture->gst_no = $request->gst_no;
         $furniture->save();
         return redirect()->route('furniture.post.ad', $furniture->id)->with('success', 'Post Added Successfully!');
+    }
+
+    public function searchCity(Request $request)
+    {
+        if($request->ajax()) {
+            // select country name from database
+            $data = City::where('city_name', 'LIKE', $request->keyword.'%')->get();
+
+            $output = '';
+            if (count($data)>0) {
+                $output .= '<ul id="country-list">';
+                foreach ($data as $row){
+                    $output .= '<li onclick="selectCountry(\''.$row->city_name.'\');">'.$row->city_name.'</li>';
+                }
+                $output .= '</ul>';
+            }
+            return $output;
+        }
+    }
+
+    public function searchLocality(Request $request)
+    {
+        if($request->ajax()) {
+            // select country name from database
+            $data = DB::table('localities')->where('locality', 'LIKE', $request->keyword.'%')->get();
+
+            $output = '';
+            if (count($data)>0) {
+                $output .= '<ul id="country-list">';
+                foreach ($data as $row){
+                    $output .= '<li onclick="selectLocality(\''.$row->locality.'\');">'.$row->locality.'</li>';
+                }
+                $output .= '</ul>';
+            }
+            return $output;
+        }
     }
 }

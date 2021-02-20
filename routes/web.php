@@ -42,6 +42,9 @@ Route::get('/seed', function () {
 Route::get('/commercial-shop', function(){
     return view('auth.commercial_office');
 });
+Route::get('/commercial-showroom', function(){
+    return view('auth.commercial_showroom');
+});
 
 
 
@@ -69,6 +72,8 @@ Route::post('/submitMobileNo', [MobileController::class, 'save'])->name('mobileN
 Route::post('/otpSubmit', [MobileController::class, 'otpSave'])->name('otp.save');
 Route::get('/post-ad', [AdController::class, 'index'])->name('post-ad');
 Route::get('/post-ad-form/{id}', [AdController::class, 'postAdForm'])->name('post-ad-form');
+Route::get('/searchCity', [AdController::class, 'searchCity'])->name('searchCity');
+Route::get('/searchLocality', [AdController::class, 'searchLocality'])->name('searchLocality');
 
 // Ajax Route
 Route::get('/get-model-list', [AdController::class, 'getModelList']);
