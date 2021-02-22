@@ -124,6 +124,9 @@ Route::get('/commercial-vehicle-post', [DesignController::class, 'allCommercialV
 Route::post('/save-furniture-post', [AdController::class, 'saveFurniturePost']);
 Route::get('/furniture-post-detail/{id}', [DesignController::class, 'getFurniturePostDetail'])->name('furniture.post.ad');
 
+// PG Guest House
+Route::post('/save-pg-guest-house', [AdController::class, 'savePGHousePost']);
+
 // Sidebar Route
 Route::get('/cars/{id}', [DesignController::class, 'carsDetails'])->name('sidebar.car.post');
 Route::get('/jobs/{id}', [DesignController::class, 'jobsDetails'])->name('sidebar.job.post');

@@ -22,6 +22,7 @@ use App\Models\SparePart;
 use App\Models\TV;
 use App\Models\CommercialVehicle;
 use App\Models\Furniture;
+use App\Models\PGHouse;
 use DB;
 
 class AdController extends Controller
@@ -902,6 +903,70 @@ class AdController extends Controller
         $furniture->gst_no = $request->gst_no;
         $furniture->save();
         return redirect()->route('furniture.post.ad', $furniture->id)->with('success', 'Post Added Successfully!');
+    }
+
+    public function savePGHousePost(Request $request)
+    {
+        $pgPost = new PGHouse();
+        $pgPost->locality = $request->locality;
+        $pgPost->address = $request->address;
+        $pgPost->pin_code = $request->pincode;
+        $pgPost->landmark = $request->landmark;
+        $pgPost->pg_operational_since = $request->pg_operational_since;
+        $pgPost->pg_present_in = $request->pg_present_in;
+        $pgPost->pg_name = $request->pg_name;
+        $pgPost->ad_posted_by = $request->ad_posted_by;
+        $pgPost->rooms_categories = implode(",",$request->rooms_categories);
+        $pgPost->no_of_single_sharing_room = $request->no_single_sharing_room;
+        $pgPost->mo_rent_p_bed_single = $request->monthly_single_rent;
+        $pgPost->security_deposit_single = $request->deposit_single;
+        $pgPost->no_of_double_sharing_room = $request->no_twin_sharing_room;
+        $pgPost->mo_rent_p_bed_double = $request->monthly_twin_rent;
+        $pgPost->security_deposit_double = $request->deposit_twin;
+        $pgPost->no_of_triple_sharing_room = $request->no_triple_sharing_room;
+        $pgPost->mo_rent_p_bed_triple = $request->monthly_triple_rent;
+        $pgPost->security_deposit_triple = $request->deposit_triple;
+        $pgPost->no_of_four_sharing_room = $request->no_four_sharing_room;
+        $pgPost->mo_rent_p_bed_four = $request->monthly_four_rent;
+        $pgPost->security_deposit_four = $request->deposit_four;
+        $pgPost->no_of_other_sharing_room = $request->no_other_sharing_room;
+        $pgPost->mo_rent_p_bed_other = $request->monthly_other_rent;
+        $pgPost->security_deposit_other = $request->deposit_other;
+        $pgPost->room_facility = implode(",", $request->room_facility);
+        $pgPost->preferred_gender = $request->gender;
+        $pgPost->tenent_preference = $request->tenent_preference;
+        $pgPost->pg_rules = implode(",", $request->rules);
+        $pgPost->notice_period = $request->notice_period;
+        $pgPost->gate_closing_time = $request->gate_closed_time;
+        $pgPost->available_services = implode(",", $request->services);
+        $pgPost->food_provided = $request->food_type;
+        $pgPost->amenities = implode(",", $request->amenities);
+        $pgPost->parking_availability = $request->parking;
+        $pgPost->pg_description = $request->pg_description;
+        if($request->hasfile('photos'))
+
+         {
+
+            foreach($request->file('photos') as $file)
+
+            {
+
+                $name = time().rand(1,100).'.'.$file->extension();
+
+                $file->move(public_path('adPhotos'), $name);  
+
+                $files[] = $name;  
+
+            }
+            // dd($files);
+
+         }
+        $pgPost->photos = implode(",", $files);
+        $pgPost->user_id = $request->user_id;
+        $pgPost->category_id = $request->category_id;
+        $pgPost->sub_category_id = $request->sub_category_id;
+        $pgPost->save();
+        return Redirect::back()->with('success', 'Post Added Successfully!');
     }
 
     public function searchCity(Request $request)

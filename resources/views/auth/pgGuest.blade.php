@@ -195,7 +195,68 @@
     color: #43AD50;
     
 }
+#country-list{float:left;list-style:none;margin-top:-3px;padding:0;width:190px;position: absolute;}
+#country-list li{padding: 10px; background: #f0f0f0; border-bottom: #bbb9b9 1px solid;}
+#country-list li:hover{background:#ece3d2;cursor: pointer;}
+#search-box{padding: 10px;border-radius:4px;}
 </style>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+
+<script>
+// AJAX call for autocomplete 
+$(document).ready(function(){
+	$("#search-box").keyup(function(){
+    if( this.value.length > 5 ){
+		$.ajax({
+		type: "GET",
+		url: "{{ route('searchCity') }}",
+		data:'keyword='+$(this).val(),
+		beforeSend: function(){
+			$("#search-box").css("background","#FFF url('{{ asset('35.gif')}}') no-repeat 100%");
+		},
+		success: function(data){
+			$("#suggesstion-box").show();
+			$("#suggesstion-box").html(data);
+			$("#search-box").css("background","#FFF");
+		}
+		});
+    }
+	});
+});
+
+//To select country name
+function selectCountry(val) {
+$("#search-box").val(val);
+$("#suggesstion-box").hide();
+}
+
+// AJAX call for autocomplete 
+$(document).ready(function(){
+	$("#locality").keyup(function(){
+    if( this.value.length > 5 ){
+		$.ajax({
+		type: "GET",
+		url: "{{ route('searchLocality') }}",
+		data:'keyword='+$(this).val(),
+		beforeSend: function(){
+			$("#locality").css("background","#FFF url('{{ asset('35.gif')}}') no-repeat 100%");
+		},
+		success: function(data){
+			$("#suggesstion-locality").show();
+			$("#suggesstion-locality").html(data);
+			$("#locality").css("background","#FFF");
+		}
+		});
+    }
+	});
+});
+
+//To select country name
+function selectLocality(val) {
+$("#locality").val(val);
+$("#suggesstion-locality").hide();
+}
+</script>
 @endsection
 @section('content')
 <section class="intro-single mt-5">
@@ -228,7 +289,7 @@
       <div class="col-sm-12">
         <div class="row">
           <div class="col-md-8">
-            <form method="POST" action="#" id="property-form" enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
+            <form method="POST" action="{{ url('save-pg-guest-house') }}" id="property-form" enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
             @csrf 
               <input type="hidden" name="sub_category_id"  value="{{ $subCategory->id }}">
               <input type="hidden" name="category_id" value="{{ $category->id }}">
@@ -236,6 +297,7 @@
                 <div class="form-group col-md-6">
                   <label>Locality<span style="color:red;">*</span><span  style="color:red" id="locality_err"> </span></label>
                   <input type="text" class="form-control @error('locality') is-invalid @enderror" name="locality" placeholder="Enter Locality" id="locality">
+                  <div id="suggesstion-locality"></div>
                   @error('locality')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
@@ -365,7 +427,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Monthly Rent Per Bed<span class="text-danger">*</span><span  style="color:red" id="monthly_single_rent_err"> </span></label>
-                            <input type="number" class="form-control" name="monthly_rent_per_bed" id="monthly_single_rent">
+                            <input type="number" class="form-control" name="monthly_single_rent" id="monthly_single_rent">
                             @error('monthly_rent_per_bed')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -374,7 +436,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Security Deposit Per Bed<span class="text-danger">*</span><span  style="color:red" id="deposit_single_err"> </span></label>
-                            <input type="number" class="form-control" name="security_deposit_per_bed" id="deposit_single">
+                            <input type="number" class="form-control" name="deposit_single" id="deposit_single">
                             @error('security_deposit_per_bed')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -401,7 +463,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Monthly Rent Per Bed<span class="text-danger">*</span><span  style="color:red" id="monthly_twin_rent_err"> </span></label>
-                            <input type="number" class="form-control" name="monthly_rent_per_bed" id="monthly_twin_rent">
+                            <input type="number" class="form-control" name="monthly_twin_rent" id="monthly_twin_rent">
                             @error('monthly_rent_per_bed')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -410,7 +472,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Security Deposit Per Bed<span class="text-danger">*</span><span  style="color:red" id="deposit_twin_err"> </span></label>
-                            <input type="number" class="form-control" name="security_deposit_per_bed" id="deposit_twin">
+                            <input type="number" class="form-control" name="deposit_twin" id="deposit_twin">
                             @error('security_deposit_per_bed')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -437,7 +499,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Monthly Rent Per Bed<span class="text-danger">*</span><span  style="color:red" id="monthly_triple_rent_err"> </span></label>
-                            <input type="number" class="form-control" name="monthly_rent_per_bed" id="monthly_triple_rent">
+                            <input type="number" class="form-control" name="monthly_triple_rent" id="monthly_triple_rent">
                             @error('monthly_rent_per_bed')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -446,7 +508,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Security Deposit Per Bed<span class="text-danger">*</span><span  style="color:red" id="deposit_triple_err"> </span></label>
-                            <input type="number" class="form-control" name="security_deposit_per_bed" id="deposit_triple">
+                            <input type="number" class="form-control" name="deposit_triple" id="deposit_triple">
                             @error('security_deposit_per_bed')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -473,7 +535,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Monthly Rent Per Bed<span class="text-danger">*</span><span  style="color:red" id="monthly_four_rent_err"> </span></label>
-                            <input type="number" class="form-control" name="monthly_rent_per_bed" id="monthly_four_rent">
+                            <input type="number" class="form-control" name="monthly_four_rent" id="monthly_four_rent">
                             @error('monthly_rent_per_bed')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -482,7 +544,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Security Deposit Per Bed<span class="text-danger">*</span><span  style="color:red" id="deposit_four_err"> </span></label>
-                            <input type="number" class="form-control" name="security_deposit_per_bed" id="deposit_four">
+                            <input type="number" class="form-control" name="deposit_four" id="deposit_four">
                             @error('security_deposit_per_bed')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -509,7 +571,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Monthly Rent Per Bed<span class="text-danger">*</span><span  style="color:red" id="monthly_other_rent_err"> </span></label>
-                            <input type="number" class="form-control" name="monthly_rent_per_bed" id="monthly_other_rent">
+                            <input type="number" class="form-control" name="monthly_other_rent" id="monthly_other_rent">
                             @error('monthly_rent_per_bed')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -518,7 +580,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Security Deposit Per Bed<span class="text-danger">*</span><span  style="color:red" id="deposit_other_err"> </span></label>
-                            <input type="number" class="form-control" name="security_deposit_per_bed" id="deposit_other">
+                            <input type="number" class="form-control" name="deposit_other" id="deposit_other">
                             @error('security_deposit_per_bed')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
