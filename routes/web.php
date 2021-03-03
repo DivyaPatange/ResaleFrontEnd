@@ -127,6 +127,11 @@ Route::get('/furniture-post-detail/{id}', [DesignController::class, 'getFurnitur
 // PG Guest House
 Route::post('/save-pg-guest-house', [AdController::class, 'savePGHousePost']);
 
+
+// Property Rent Post 
+Route::post('/save-property-rent-post', [AdController::class, 'savePropertyRentPost']);
+
+
 // Sidebar Route
 Route::get('/cars/{id}', [DesignController::class, 'carsDetails'])->name('sidebar.car.post');
 Route::get('/jobs/{id}', [DesignController::class, 'jobsDetails'])->name('sidebar.job.post');

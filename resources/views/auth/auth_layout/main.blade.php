@@ -8,7 +8,7 @@
   <title> Resale99 - @yield('title')</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   @include('auth.auth_layout.stylesheet')
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   @yield('customcss')

@@ -303,8 +303,8 @@ $("#suggesstion-locality").hide();
       <div class="col-sm-12">
         <div class="row">
           <div class="col-md-8">
-            <form method="POST" action="#" id="property-form" enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
-            @csrf 
+            <form method="POST" action="{{ url('/save-property-rent-post') }}" id="property-form" enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
+            @csrf
               <input type="hidden" name="sub_category_id"  value="{{ $subCategory->id }}">
               <input type="hidden" name="category_id" value="{{ $category->id }}">
               <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
@@ -468,7 +468,7 @@ $("#suggesstion-locality").hide();
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="floor">No. of Floor<span  style="color:red" id="total_floor_err"> </span></label>
-                        <input type="number" name="no_of_floor" class="form-control @error('no_of_floor') is-invalid @enderror" value="{{ old('no_of_floor') }}" id="no_of_floor">
+                        <input type="number" name="total_floor" class="form-control @error('no_of_floor') is-invalid @enderror" value="{{ old('no_of_floor') }}" id="no_of_floor">
                         @error('no_of_floor')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
@@ -548,7 +548,7 @@ $("#suggesstion-locality").hide();
                     <input type="number" id="carpet_area" class="form-control @error('carpet_area') invalid-feedback @enderror" name="carpet_area" value="{{ old('carpet_area') }}">
                   </div>
                   <div class="form-group col-md-3">
-                    <select name="super_area_unit" id="super_area_unit" class="form-control">
+                    <select name="carpet_unit" id="carpet_unit" class="form-control">
                       <option value="Sq-ft">Sq-ft</option>
                       <option value="Sq-yrd">Sq-yrd</option>
                       <option value="Sq-m">Sq-m</option>
@@ -579,7 +579,7 @@ $("#suggesstion-locality").hide();
                     <input type="number" id="build_up_area" class="form-control @error('build_up_area') invalid-feedback @enderror" name="build_up_area" value="{{ old('build_up_area') }}">
                   </div>
                   <div class="form-group col-md-3">
-                    <select name="super_area_unit" id="super_area_unit" class="form-control">
+                    <select name="build_unit" id="build_unit" class="form-control">
                       <option value="Sq-ft">Sq-ft</option>
                       <option value="Sq-yrd">Sq-yrd</option>
                       <option value="Sq-m">Sq-m</option>
@@ -663,7 +663,7 @@ $("#suggesstion-locality").hide();
                     <div class="form-group col-md-3">
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="show_rent_as" >
+                          <input type="radio" class="form-check-input" id="show_rent1" name="show_rent_as" value="">
                           <span id="rent_1"></span>
                         </label>
                       </div>
@@ -671,7 +671,7 @@ $("#suggesstion-locality").hide();
                     <div class="form-group col-md-3">
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="show_rent_as" >
+                          <input type="radio" class="form-check-input" id="show_rent2" name="show_rent_as" value="">
                           <span id="rent_2"></span>
                         </label>
                       </div>
@@ -679,7 +679,7 @@ $("#suggesstion-locality").hide();
                     <div class="form-group col-md-3">
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="show_rent_as">Call For Price
+                          <input type="radio" class="form-check-input" name="show_rent_as" value="Call For Price">Call For Price
                         </label>
                       </div>
                     </div>
@@ -687,7 +687,7 @@ $("#suggesstion-locality").hide();
                 </div>
                 <div class="form-group">
                   <div class="plus-minus">
-                    <input type="checkbox" name="other_charges" id="a" class="a css-checkbox">
+                    <input type="checkbox" name="" id="a" class="a css-checkbox">
                     <label for="a" class="css-label">
                       <span class="fa fa-plus"></span>
                       <span class="fa fa-minus"></span>
@@ -727,7 +727,7 @@ $("#suggesstion-locality").hide();
                   </div>
                   <div class="form-group col-md-6">
                     <label for="">Per</label>
-                    <select name="m_charges_per" id="" class="form-control">
+                    <select name="m_charges_per" id="m_charges_per" class="form-control">
                       <option value="Monthly">Monthly</option>
                       <option value="Quarterly">Quarterly</option>
                       <option value="Yearly">Yearly</option>
@@ -741,7 +741,7 @@ $("#suggesstion-locality").hide();
                     <label for="">Brokerage (Brokers Only)</label>
                   </div>
                   <div class="form-group col-md-6">
-                    <select name="brokerage" id="" class="form-control">
+                    <select name="brokerage" id="brokerage" class="form-control">
                       <option value="">-Select Brokerage-</option>
                       <option value="No Brokerage">No Brokerage</option>
                       <option value="10 Days">10 Days</option>
@@ -1048,7 +1048,7 @@ $("#suggesstion-locality").hide();
                     </div>
                     <div class="form-group col-md-6">
                       <label for="">Lifts in the Tower </label>
-                      <select name="car_parking" id="car_parking" class="form-control @error('lift_tower') invalid-feedback @enderror">
+                      <select name="lift_in_tower" id="lift_in_tower" class="form-control @error('lift_tower') invalid-feedback @enderror">
                         <option value="">-Select-</option>
                         <option value="None" @if(old('lift_tower') == "None") Selected @endif>None</option>
                         <option value="1" @if(old('lift_tower') == "1") Selected @endif>1</option>
@@ -1552,7 +1552,7 @@ $("#suggesstion-locality").hide();
                     <input type="number" id="carpet_area" class="form-control @error('carpet_area') invalid-feedback @enderror" name="carpet_area" value="{{ old('carpet_area') }}">
                   </div>
                   <div class="form-group col-md-3">
-                    <select name="super_area_unit" id="super_area_unit" class="form-control">
+                    <select name="carpet_unit" id="carpet_unit" class="form-control">
                       <option value="Sq-ft">Sq-ft</option>
                       <option value="Sq-yrd">Sq-yrd</option>
                       <option value="Sq-m">Sq-m</option>
@@ -1583,7 +1583,7 @@ $("#suggesstion-locality").hide();
                     <input type="number" id="build_up_area" class="form-control @error('build_up_area') invalid-feedback @enderror" name="build_up_area" value="{{ old('build_up_area') }}">
                   </div>
                   <div class="form-group col-md-3">
-                    <select name="super_area_unit" id="super_area_unit" class="form-control">
+                    <select name="build_unit" id="build_unit" class="form-control">
                       <option value="Sq-ft">Sq-ft</option>
                       <option value="Sq-yrd">Sq-yrd</option>
                       <option value="Sq-m">Sq-m</option>
@@ -1685,7 +1685,7 @@ $("#suggesstion-locality").hide();
                     <div class="form-group col-md-3">
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="show_rent_as" >
+                          <input type="radio" class="form-check-input" name="show_rent_as" id="show_rent1" value="">
                           <span id="rent_1"></span>
                         </label>
                       </div>
@@ -1693,7 +1693,7 @@ $("#suggesstion-locality").hide();
                     <div class="form-group col-md-3">
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="show_rent_as" >
+                          <input type="radio" class="form-check-input" name="show_rent_as" id="show_rent2" value="">
                           <span id="rent_2"></span>
                         </label>
                       </div>
@@ -1701,7 +1701,7 @@ $("#suggesstion-locality").hide();
                     <div class="form-group col-md-3">
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="show_rent_as">Call For Price
+                          <input type="radio" class="form-check-input" name="show_rent_as" value="Call For Price">Call For Price
                         </label>
                       </div>
                     </div>
@@ -1709,7 +1709,7 @@ $("#suggesstion-locality").hide();
                 </div>
                 <div class="form-group">
                   <div class="plus-minus">
-                    <input type="checkbox" name="other_charges" id="a1" class="a css-checkbox">
+                    <input type="checkbox" name="" id="a1" class="a css-checkbox">
                     <label for="a1" class="css-label">
                       <span class="fa fa-plus"></span>
                       <span class="fa fa-minus"></span>
@@ -1749,7 +1749,7 @@ $("#suggesstion-locality").hide();
                   </div>
                   <div class="form-group col-md-6">
                     <label for="">Per</label>
-                    <select name="m_charges_per" id="" class="form-control">
+                    <select name="m_charges_per" id="m_charges_per" class="form-control">
                       <option value="Monthly">Monthly</option>
                       <option value="Quarterly">Quarterly</option>
                       <option value="Yearly">Yearly</option>
@@ -1763,7 +1763,7 @@ $("#suggesstion-locality").hide();
                     <label for="">Brokerage (Brokers Only)</label>
                   </div>
                   <div class="form-group col-md-6">
-                    <select name="brokerage" id="" class="form-control">
+                    <select name="brokerage" id="brokerage" class="form-control">
                       <option value="">-Select Brokerage-</option>
                       <option value="No Brokerage">No Brokerage</option>
                       <option value="10 Days">10 Days</option>
@@ -1924,7 +1924,7 @@ $("#suggesstion-locality").hide();
                     </div>
                     <div class="form-group col-md-6">
                       <label for="">Lifts in the Tower </label>
-                      <select name="car_parking" id="car_parking" class="form-control @error('lift_tower') invalid-feedback @enderror">
+                      <select name="lift_in_tower" id="lift_in_tower" class="form-control @error('lift_in_tower') invalid-feedback @enderror">
                         <option value="">-Select-</option>
                         <option value="None" @if(old('lift_tower') == "None") Selected @endif>None</option>
                         <option value="1" @if(old('lift_tower') == "1") Selected @endif>1</option>
@@ -1981,7 +1981,7 @@ $("#suggesstion-locality").hide();
                     </div>
                     <div class="form-group col-md-6">
                       <label for="">LEED Certification</label>
-                      <select name="building_class" id="" class="form-control">
+                      <select name="leed_certification" id="" class="form-control">
                         <option value="">-Select LEED Certification-</option>
                         <option value="Not Applicable">Not Applicable</option>
                         <option value="Certified">Certified</option>
@@ -2436,7 +2436,7 @@ $("#suggesstion-locality").hide();
                     <input type="number" id="carpet_area" class="form-control @error('carpet_area') invalid-feedback @enderror" name="carpet_area" value="{{ old('carpet_area') }}">
                   </div>
                   <div class="form-group col-md-3">
-                    <select name="super_area_unit" id="super_area_unit" class="form-control">
+                    <select name="carpet_unit" id="carpet_unit" class="form-control">
                       <option value="Sq-ft">Sq-ft</option>
                       <option value="Sq-yrd">Sq-yrd</option>
                       <option value="Sq-m">Sq-m</option>
@@ -2467,7 +2467,7 @@ $("#suggesstion-locality").hide();
                     <input type="number" id="build_up_area" class="form-control @error('build_up_area') invalid-feedback @enderror" name="build_up_area" value="{{ old('build_up_area') }}">
                   </div>
                   <div class="form-group col-md-3">
-                    <select name="build_area_unit" id="super_area_unit" class="form-control">
+                    <select name="build_unit" id="build_unit" class="form-control">
                       <option value="Sq-ft">Sq-ft</option>
                       <option value="Sq-yrd">Sq-yrd</option>
                       <option value="Sq-m">Sq-m</option>
@@ -2509,7 +2509,7 @@ $("#suggesstion-locality").hide();
                     <input type="number" class="form-control" name="facing_width">
                   </div>
                   <div class="form-group col-md-3">
-                    <select name="entrance_unit" class="form-control" id="">
+                    <select name="width_facing_road_unit" class="form-control" id="">
                       <option value="meters">meters</option>
                       <option value="ft">ft</option>
                     </select>
@@ -2597,7 +2597,7 @@ $("#suggesstion-locality").hide();
                     <div class="form-group col-md-3">
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="show_rent_as" >
+                          <input type="radio" class="form-check-input" name="show_rent_as" id="show_rent1" value="">
                           <span id="rent_1"></span>
                         </label>
                       </div>
@@ -2605,7 +2605,7 @@ $("#suggesstion-locality").hide();
                     <div class="form-group col-md-3">
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="show_rent_as" >
+                          <input type="radio" class="form-check-input" name="show_rent_as" id="show_rent2" value="">
                           <span id="rent_2"></span>
                         </label>
                       </div>
@@ -2613,7 +2613,7 @@ $("#suggesstion-locality").hide();
                     <div class="form-group col-md-3">
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="show_rent_as">Call For Price
+                          <input type="radio" class="form-check-input" name="show_rent_as" value="Call For Price">Call For Price
                         </label>
                       </div>
                     </div>
@@ -2621,7 +2621,7 @@ $("#suggesstion-locality").hide();
                 </div>
                 <div class="form-group">
                   <div class="plus-minus">
-                    <input type="checkbox" name="other_charges" id="a2" class="a css-checkbox">
+                    <input type="checkbox" name="" id="a2" class="a css-checkbox">
                     <label for="a2" class="css-label">
                       <span class="fa fa-plus"></span>
                       <span class="fa fa-minus"></span>
@@ -2661,7 +2661,7 @@ $("#suggesstion-locality").hide();
                   </div>
                   <div class="form-group col-md-6">
                     <label for="">Per</label>
-                    <select name="m_charges_per" id="" class="form-control">
+                    <select name="m_charges_per" id="m_charges_per" class="form-control">
                       <option value="Monthly">Monthly</option>
                       <option value="Quarterly">Quarterly</option>
                       <option value="Yearly">Yearly</option>
@@ -2675,7 +2675,7 @@ $("#suggesstion-locality").hide();
                     <label for="">Brokerage (Brokers Only)</label>
                   </div>
                   <div class="form-group col-md-6">
-                    <select name="brokerage" id="" class="form-control">
+                    <select name="brokerage" id="brokerage" class="form-control">
                       <option value="">-Select Brokerage-</option>
                       <option value="No Brokerage">No Brokerage</option>
                       <option value="10 Days">10 Days</option>
@@ -2815,7 +2815,7 @@ $("#suggesstion-locality").hide();
                     </div>
                     <div class="form-group col-md-6">
                       <label for="">Lifts in the Tower </label>
-                      <select name="car_parking" id="car_parking" class="form-control @error('lift_tower') invalid-feedback @enderror">
+                      <select name="lift_in_tower" id="lift_in_tower" class="form-control @error('lift_in_tower') invalid-feedback @enderror">
                         <option value="">-Select-</option>
                         <option value="None" @if(old('lift_tower') == "None") Selected @endif>None</option>
                         <option value="1" @if(old('lift_tower') == "1") Selected @endif>1</option>
@@ -2872,7 +2872,7 @@ $("#suggesstion-locality").hide();
                     </div>
                     <div class="form-group col-md-6">
                       <label for="">LEED Certification</label>
-                      <select name="building_class" id="" class="form-control">
+                      <select name="leed_certification" id="" class="form-control">
                         <option value="">-Select LEED Certification-</option>
                         <option value="Not Applicable">Not Applicable</option>
                         <option value="Certified">Certified</option>
@@ -3075,7 +3075,11 @@ $("#suggesstion-locality").hide();
 <script src="{{ asset('js/image-upload.js') }}"></script>
 
 <script type=text/javascript>
-
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
   $("input[name='available_from']").change(function(){
     var available_from = $(this).val();
     // alert(available_from);
@@ -3212,8 +3216,10 @@ $(document).mouseup(function (e) {
       if(otherNumbers != '')
           lastThree = ',' + lastThree;
       var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+      $("#commercial-form #show_rent1").val(res);
       $("#commercial-form #rent_1").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
       $("#commercial-form #rent_2").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
+      $("#commercial-form #show_rent2").val(res+' Negotiable');
       // format.format(4800)  
       $("#commercial-form #show_rent").show(1000); 
     } 
@@ -3232,7 +3238,9 @@ $(document).mouseup(function (e) {
           lastThree = ',' + lastThree;
       var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
       $("#rent-lease-form #rent_1").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
+      $("#rent-lease-form #show_rent1").val(res);
       $("#rent-lease-form #rent_2").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
+      $("#rent-lease-form #show_rent2").val(res+' Negotiable');
       // format.format(4800)  
       $("#rent-lease-form #show_rent").show(1000); 
     } 
@@ -3251,7 +3259,9 @@ $(document).mouseup(function (e) {
           lastThree = ',' + lastThree;
       var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
       $("#showroom-form #rent_1").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
+      $("#showroom-form #show_rent1").val('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
       $("#showroom-form #rent_2").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
+      $("#showroom-form #show_rent2").val('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
       // format.format(4800)  
       $("#showroom-form #show_rent").show(1000); 
     } 
@@ -3415,9 +3425,9 @@ $('body').on('click', '#submitForm', function () {
     $("#description").focus();
     return false;
   }
-  else{
-    $("#property-form").submit();
-  }
+  $("#commercial-form :input").prop("disabled", true);
+  $("#showroom-form :input").prop("disabled", true);
+  $("#property-form").submit();
 });
 
 $('body').on('click', '#showButton2', function () {
@@ -3516,6 +3526,8 @@ $('body').on('click', '#submitButton2', function () {
     return false;
   }
   else{
+    $("#rent-lease-form :input").prop("disabled", true);
+    $("#showroom-form :input").prop("disabled", true);
     $("#property-form").submit();
   }
 });
@@ -3616,6 +3628,8 @@ $('body').on('click', '#submitForm2', function () {
     return false;
   }
   else{
+    $("#rent-lease-form :input").prop("disabled", true);
+    $("#commercial-form :input").prop("disabled", true);
     $("#property-form").submit();
   }
 });

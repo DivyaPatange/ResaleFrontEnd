@@ -130,7 +130,7 @@
       <div class="col-md-12">
         <div class="title-single-box">
           <h1 class="title-single">The Best Way To Sell Your {{ $subCategory->sub_category }}</h1>
-          <span class="color-text-a">Resale99 Makes Selling A Car An Easy,Guaranteed Purchase. Free Paperwork. Free RC Transfer. Free Online Car Valuation. Hassle Free Selling. Free Ownership Transfer. Free Valuation in 10 Sec. Instant Payment. Book An Appointment. Instant Valuation.</span>
+         
         </div>
       </div>
     </div>
@@ -199,7 +199,7 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label>Year of Registration<span class="text-danger">*</span></label>
-                  <input type="month" class="form-control @error('year_of_registration') is-invalid @enderror" id="year_of_registration" placeholder="Year" name="year_of_registration" value="{{ old('year_of_registration') }}">
+                  <input type="text" class="form-control @error('year_of_registration') is-invalid @enderror" id="year_of_registration" name="year_of_registration" value="{{ old('year_of_registration') }}" placeholder="Month, Year" onfocus="(this.type='month')">
                   @error('year_of_registration')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -307,7 +307,7 @@
                   @enderror
                 </div>
                 <div class="form-group">
-                  <label>Photos <span class="text-danger">*</span></label>
+                  <label>Photos <span class="text-danger">*</span></label><strong>(Upload Upto 25 Photos)</strong>
                 </div>
                 <div id="upload_form">
                   <label class="filelabel p_file">
@@ -360,7 +360,7 @@
                         <div class="input-group-prepend">
                           <div class="input-group-text"><i class="fa fa-rupee"></i></div>
                         </div>
-                        <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Price" name="price" value="{{ old('price') }}">
+                        <input type="text" class="form-control Stylednumber @error('price') is-invalid @enderror" id="price" placeholder="Price" name="price" value="{{ old('price') }}">
                       </div>
                     </div>
                   </div>
@@ -440,7 +440,7 @@
                     @enderror
                   </div>
                   <div class="form-group col-md-6">
-                    <label>Pin Code</label><span class="text-danger">*</span></label>
+                    <label>Pin Code</label>
                     <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code">
                     @error('pin_code')
                     <span class="invalid-feedback" role="alert">
@@ -547,6 +547,39 @@
 @endsection
 @section('customjs')
 <script>
+
+String.prototype.replaceAll = function(search, replacement) {
+  var target = this;
+  return target.replace(new RegExp(search, 'g'), replacement);
+};
+$('input.Stylednumber').keyup(function() {
+  var input = $(this).val().replaceAll(',', '');
+  if (input.length < 1)
+    $(this).val('0');
+  else {
+    var formatted = inrFormat(input);
+    if (formatted.indexOf('.') > 0) {
+      var split = formatted.split('.');
+      formatted = split[0] + '.' + split[1].substring(0, 2);
+    }
+    $(this).val(formatted);
+  }
+});
+function inrFormat(val) {
+  var x = val;
+  x = x.toString();
+  var afterPoint = '';
+  if (x.indexOf('.') > 0)
+    afterPoint = x.substring(x.indexOf('.'), x.length);
+  x = Math.floor(x);
+  x = x.toString();
+  var lastThree = x.substring(x.length - 3);
+  var otherNumbers = x.substring(0, x.length - 3);
+  if (otherNumbers != '')
+    lastThree = ',' + lastThree;
+  var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + afterPoint;
+  return res;
+}
 function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();

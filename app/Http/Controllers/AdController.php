@@ -24,6 +24,7 @@ use App\Models\CommercialVehicle;
 use App\Models\Furniture;
 use App\Models\PGHouse;
 use DB;
+use App\Models\PropertyRent;
 
 class AdController extends Controller
 {
@@ -112,7 +113,13 @@ class AdController extends Controller
             {
                 $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 $cities = City::where('status', 1)->get();
-                return view('auth.property', compact('subCategory', 'cities', 'state', 'category', 'type'));
+                return view('auth.propertyRent', compact('subCategory', 'cities', 'state', 'category', 'type'));
+            }
+            if($subCategory->sub_category == "Property for Sale")
+            {
+                $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
+                $cities = City::where('status', 1)->get();
+                return view('auth.propertySale', compact('subCategory', 'cities', 'state', 'category', 'type'));
             }
             if(($subCategory->sub_category == "Men") || ($subCategory->sub_category == "Women") || ($subCategory->sub_category == "Kids"))
             {
@@ -1003,5 +1010,190 @@ class AdController extends Controller
             }
             return $output;
         }
+    }
+
+    public function savePropertyRentPost(Request $request)
+    {
+        // dd($request->add_room);
+        $propRent = new PropertyRent();
+        $propRent->user_id = $request->user_id;
+        $propRent->category_id = $request->category_id;
+        $propRent->sub_category_id = $request->sub_category_id;
+        $propRent->type_id = $request->property_type;
+        $propRent->city = $request->city;
+        $propRent->locality = $request->locality;
+        $propRent->address = $request->address;
+        // dd($request->project_name);
+        $propRent->project_name = $request->project_name;
+        $propRent->bedroom = $request->bedroom;
+        $propRent->balcony = $request->balcony;
+        $propRent->bathroom = $request->bathroom;
+        $propRent->property_floor_no = $request->property_floor_no;
+        $propRent->total_floor = $request->total_floor;
+        $propRent->furnished_status = $request->furnishing;
+        $propRent->super_area = $request->super_build_up_area;
+        $propRent->super_unit = $request->super_area_unit;
+        $propRent->carpet_area = $request->carpet_area;
+        $propRent->carpet_unit = $request->carpet_unit;
+        $propRent->build_area = $request->build_up_area;
+        $propRent->build_unit = $request->build_unit;
+        $propRent->available_from = $request->available_from;
+        $propRent->available_date = $request->available_date;
+        $propRent->age_of_construction = $request->age_of_construction;
+        $propRent->monthly_rent = $request->monthly_rent;
+        $propRent->rent_as = $request->show_rent_as;
+        $propRent->other_charges = $request->other_charges;
+        $propRent->elec_water_charges = $request->ele_water_charges;
+        $propRent->security_amount = $request->security_amount;
+        $propRent->maintenance_charges = $request->maintenance_charge;
+        $propRent->charges_per = $request->m_charges_per;
+        $propRent->brokerages = $request->brokerage;
+        // dd($request->exterior_photos);
+        if($request->hasfile('exterior_photos'))
+
+         {
+
+            foreach($request->file('exterior_photos') as $file)
+
+            {
+
+                $name = time().rand(1,100).'.'.$file->extension();
+
+                $file->move(public_path('adPhotos'), $name);  
+
+                $files[] = $name;  
+
+            }
+            // dd($files);
+            $propRent->exterior_photos = implode(",", $files);
+         }
+         
+         if($request->hasfile('living_photos'))
+
+         {
+
+            foreach($request->file('living_photos') as $file1)
+
+            {
+
+                $name1 = time().rand(1,100).'.'.$file1->extension();
+
+                $file1->move(public_path('adPhotos'), $name1);  
+
+                $files1[] = $name1;  
+
+            }
+            // dd($files);
+         $propRent->living_room_photos = implode(",", $files1);
+
+         }
+         if($request->hasfile('bedroom_photos'))
+
+         {
+
+            foreach($request->file('bedroom_photos') as $file2)
+
+            {
+
+                $name2 = time().rand(1,100).'.'.$file2->extension();
+
+                $file2->move(public_path('adPhotos'), $name2);  
+
+                $files2[] = $name2;  
+
+            }
+            // dd($files);
+         $propRent->bedroom_photos = implode(",", $files2);
+
+         }
+
+         if($request->hasfile('bathroom_photos'))
+
+         {
+
+            foreach($request->file('bathroom_photos') as $file3)
+
+            {
+
+                $name3 = time().rand(1,100).'.'.$file3->extension();
+
+                $file3->move(public_path('adPhotos'), $name3);  
+
+                $files3[] = $name3;  
+
+            }
+            // dd($files);
+         $propRent->bathroom_photos = implode(",", $files3);
+
+         }
+
+         if($request->hasfile('kitchen_photos'))
+
+         {
+
+            foreach($request->file('kitchen_photos') as $file4)
+
+            {
+
+                $name4 = time().rand(1,100).'.'.$file4->extension();
+
+                $file4->move(public_path('adPhotos'), $name4);  
+
+                $files4[] = $name4;  
+
+            }
+            // dd($files);
+         $propRent->kitchen_photos = implode(",", $files4);
+
+         }
+         $propRent->tenants_bachelor = $request->tenants_bachelor;
+         $propRent->tenants_non_veg = $request->tenants_non_veg;
+         $propRent->tenants_pets = $request->tenants_pets;
+         $propRent->tenants_company_lease = $request->tenants_company_lease;
+         if($request->add_room){
+            $propRent->add_rooms = implode(",", $request->add_room);
+         }
+         $propRent->facing = $request->facing;
+         $propRent->overlooking = $request->overlooking;
+         $propRent->car_parking = $request->car_parking;
+         $propRent->lifts_in_tower = $request->lift_in_tower;
+         $propRent->mul_unit_available = $request->mul_unit_avail;
+         $propRent->water_status = $request->status_of_water;
+         $propRent->electricity_status = $request->status_of_electricity;
+         $propRent->flooring = $request->flooring;
+         $propRent->aminities = $request->aminities;
+         $propRent->description = $request->description;
+         $propRent->landmark = $request->landmark;
+         $propRent->owner_resides = $request->owner_resides;
+         $propRent->land_zone = $request->land_zone;
+         $propRent->metro_station_name = $request->metro_station;
+         $propRent->prop_dist_metro = $request->distance_metro;
+         $propRent->railway_station_name = $request->railway_station;
+         $propRent->prop_dist_rly = $request->distance_railway;
+         $propRent->bus_stand_name = $request->bus_stand;
+         $propRent->prop_dist_bus = $request->distance_bus;
+         $propRent->airport_name = $request->airport;
+         $propRent->prop_dist_airport = $request->distance_airport;
+         $propRent->shopping_mall_name = $request->shopping_mall;
+         $propRent->prop_dist_mall = $request->distance_mall;
+         $propRent->office_name = $request->office_complex;
+         $propRent->prop_dist_office = $request->distance_office;
+         $propRent->ideal_business = $request->ideal_business;
+         $propRent->will_to_modify_interior = $request->modify_interior;
+         $propRent->lock_in_period = $request->lock_period;
+         $propRent->personal_washroom = $request->personal_washroom;
+         $propRent->pantry = $request->pantry_cafe;
+         $propRent->currently_rent_out = $request->rent_out;
+         $propRent->office_on_floor = $request->office_floor;
+         $propRent->building_class = $request->building_class;
+         $propRent->leed_certification = $request->leed_certification;
+         $propRent->corner_showroom = $request->corner_showroom;
+         $propRent->main_road_facing = $request->main_road_facing;
+         $propRent->entrance_width = $request->entrance_width;
+         $propRent->entrance_width_unit = $request->entrance_unit;
+         $propRent->width_facing_road = $request->facing_width;
+         $propRent->width_facing_road_unit = $request->width_facing_road_unit;
+         $propRent->save();
+         return Redirect::back()->with('success', 'Post Added Successfully');
     }
 }

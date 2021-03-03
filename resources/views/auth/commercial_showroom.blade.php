@@ -285,10 +285,10 @@ border: none;
                     @enderror
                 </div>
                 <div class="form-row">
-                    <div class="col-md-6 form-group">
-                        <label for="">Name of Project Office Complex<span class="text-danger">*</span><span  style="color:red" id="project_name_err"> </span></label>
-                        <input type="text" name="project_name" class="form-control" id="project_name">
-                    </div>
+                  <div class="col-md-6 form-group">
+                    <label for="">Name of Project Office Complex<span class="text-danger">*</span><span  style="color:red" id="project_name_err"> </span></label>
+                    <input type="text" name="project_name" class="form-control" id="project_name">
+                  </div>
                     <div class="form-group col-md-6">
                         <label for="">Land Zone</label>
                         <select name="land_zone" id="" class="form-control">
