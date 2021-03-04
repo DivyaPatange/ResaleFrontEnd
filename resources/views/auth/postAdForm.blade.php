@@ -134,6 +134,7 @@
         </div>
       </div>
     </div>
+    @include('auth.auth_layout.changeCategory')
   </div>
 </section>
 <!-- End Intro Single-->
@@ -208,7 +209,7 @@
                 </div>
                 <div class="form-group col-md-6">
                   <label>KMS Driven</label>
-                  <input type="text" class="form-control @error('kms_driven') is-invalid @enderror" id="kms_driven" name="kms_driven" value="{{ old('kms_driven') }}">
+                  <input type="text" class="form-control Stylednumber @error('kms_driven') is-invalid @enderror" id="kms_driven" name="kms_driven" value="{{ old('kms_driven') }}">
                   @error('kms_driven')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -310,17 +311,19 @@
                   <label>Photos <span class="text-danger">*</span></label><strong>(Upload Upto 25 Photos)</strong>
                 </div>
                 <div id="upload_form">
+                  @for($i=1; $i < 26; $i++)
                   <label class="filelabel p_file">
                     <div class="icon">X</div>
-                    <i class="fa fa-paperclip" id="icon1">
+                    <i class="fa fa-paperclip" id="icon{{ $i }}">
                     </i>
                     
-                    <span class="title1">
+                    <span class="title{{ $i }}">
                         Add File
                     </span>
-                    <input class="FileUpload1" id="FileInput" name="photos[]" type="file"/>
-                    <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                    <input class="FileUpload{{ $i }}" id="FileInput" name="photos[]" type="file"/>
+                    <img  id="frame{{ $i }}" style="max-width: 90px; max-height: 70px;" class="hidden">
                   </label>
+                  @endfor
                 </div>
                 @error('photos')
                     <span class="text-danger" role="alert">
@@ -440,15 +443,6 @@
                     @enderror
                   </div>
                   <div class="form-group col-md-6">
-                    <label>Pin Code</label>
-                    <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code">
-                    @error('pin_code')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-                  <div class="form-group col-md-6">
                     <label>Address</label><span class="text-danger">*</span></label>
                     <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address">
                     @error('address')
@@ -457,6 +451,16 @@
                     </span>
                     @enderror
                   </div>
+                  <div class="form-group col-md-6">
+                    <label>Pin Code</label>
+                    <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code">
+                    @error('pin_code')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                  
                 </div>
                 <button type="submit" class="btn btn-primary">Post Your Add</button>
             </form>
@@ -634,15 +638,16 @@ function inputChanged(e) {
             
             if($(".FileUpload"+inc).length > 0) {
                 console.log('exist');
-            }else{
-            $(this).closest('.p_file').after(
-            '<label class="filelabel p_file"><div class="icon">X</div>' +
-            '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
-            '<span class="title'+$next_count+'">Add File</span>' +
-            '<input class="FileUpload'+$next_count+'" id="FileInput" name="photos[]" type="file"/>'+
-            '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
-            '</label>');
             }
+            // else{
+            // $(this).closest('.p_file').after(
+            // '<label class="filelabel p_file"><div class="icon">X</div>' +
+            // '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+            // '<span class="title'+$next_count+'">Add File</span>' +
+            // '<input class="FileUpload'+$next_count+'" id="FileInput" name="photos[]" type="file"/>'+
+            // '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
+            // '</label>');
+            // }
            
 }
 

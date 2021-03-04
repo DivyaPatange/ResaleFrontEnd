@@ -81,10 +81,10 @@
       <div class="col-md-12">
         <div class="title-single-box">
           <h1 class="title-single">The Best Way To Sell Your {{ $subCategory->sub_category }}</h1>
-          <span class="color-text-a">Resale99 Makes Selling A Tablets An Easy,Guaranteed Purchase. Free Paperwork. Free data Transfer. Free Online Tablets Valuation. Hassle Free Selling. Free Valuation in 10 Sec. Instant Payment. Book An Appointment. Instant Valuation.</span>
         </div>
       </div>
     </div>
+    @include('auth.auth_layout.changeCategory')
   </div>
 </section>
 <!-- End Intro Single-->
@@ -175,16 +175,22 @@
                 @enderror
               </div>
               <div class="form-froup">
-                <label>Photos <span class="text-danger">*</span></label>
+                <label>Photos <span class="text-danger">*</span><strong>(Upload Upto 15 Photos)</strong></label>
               </div>
               <div id="upload_form">
-                <label class="filelabel p_file">
-                  <div class="icon">X</div>
-                  <i class="fa fa-paperclip" id="icon1"></i>
-                  <span class="title1">Add File</span>
-                  <input class="FileUpload1" id="FileInput" name="photos[]" type="file"/>
-                  <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
-                </label>
+                    @for($i=1; $i < 16; $i++)
+                    <label class="filelabel p_file">
+                    <div class="icon">X</div>
+                    <i class="fa fa-paperclip" id="icon{{ $i }}">
+                    </i>
+                    
+                    <span class="title{{ $i }}">
+                        Add File
+                    </span>
+                    <input class="FileUpload{{ $i }}" id="FileInput" name="photos[]" type="file"/>
+                    <img  id="frame{{ $i }}" style="max-width: 90px; max-height: 70px;" class="hidden">
+                  </label>
+                  @endfor
               </div>
               @error('photos')
                   <span class="text-danger" role="alert">
@@ -205,7 +211,7 @@
                       <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fa fa-rupee"></i></div>
                       </div>
-                      <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Price" name="price" value="{{ old('price') }}">
+                      <input type="text" class="form-control Stylednumber @error('price') is-invalid @enderror" id="price" placeholder="Price" name="price" value="{{ old('price') }}">
                     </div>
                   </div>
                 </div>
@@ -287,18 +293,18 @@
                   @enderror
                 </div>
                 <div class="form-group col-md-6">
-                  <label>Pin Code</label><span class="text-danger">*</span></label>
-                  <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code" value="{{ old('pin_code') }}">
-                  @error('pin_code')
+                  <label>Address</label><span class="text-danger">*</span></label>
+                  <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
+                  @error('address')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
                   @enderror
                 </div>
                 <div class="form-group col-md-6">
-                  <label>Address</label><span class="text-danger">*</span></label>
-                  <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
-                  @error('address')
+                  <label>Pin Code</label><span class="text-danger">*</span></label>
+                  <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code" value="{{ old('pin_code') }}">
+                  @error('pin_code')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
@@ -435,6 +441,39 @@
 @endsection
 @section('customjs')
 <script>
+
+String.prototype.replaceAll = function(search, replacement) {
+  var target = this;
+  return target.replace(new RegExp(search, 'g'), replacement);
+};
+$('input.Stylednumber').keyup(function() {
+  var input = $(this).val().replaceAll(',', '');
+  if (input.length < 1)
+    $(this).val('0');
+  else {
+    var formatted = inrFormat(input);
+    if (formatted.indexOf('.') > 0) {
+      var split = formatted.split('.');
+      formatted = split[0] + '.' + split[1].substring(0, 2);
+    }
+    $(this).val(formatted);
+  }
+});
+function inrFormat(val) {
+  var x = val;
+  x = x.toString();
+  var afterPoint = '';
+  if (x.indexOf('.') > 0)
+    afterPoint = x.substring(x.indexOf('.'), x.length);
+  x = Math.floor(x);
+  x = x.toString();
+  var lastThree = x.substring(x.length - 3);
+  var otherNumbers = x.substring(0, x.length - 3);
+  if (otherNumbers != '')
+    lastThree = ',' + lastThree;
+  var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + afterPoint;
+  return res;
+}
 function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
@@ -489,15 +528,16 @@ function inputChanged(e) {
             
             if($(".FileUpload"+inc).length > 0) {
                 console.log('exist');
-            }else{
-            $(this).closest('.p_file').after(
-            '<label class="filelabel p_file"><div class="icon">X</div>' +
-            '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
-            '<span class="title'+$next_count+'">Add File</span>' +
-            '<input class="FileUpload'+$next_count+'" id="FileInput" name="photos[]" type="file"/>'+
-            '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
-            '</label>');
             }
+            // else{
+            // $(this).closest('.p_file').after(
+            // '<label class="filelabel p_file"><div class="icon">X</div>' +
+            // '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+            // '<span class="title'+$next_count+'">Add File</span>' +
+            // '<input class="FileUpload'+$next_count+'" id="FileInput" name="photos[]" type="file"/>'+
+            // '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
+            // '</label>');
+            // }
            
 }
 
@@ -508,6 +548,7 @@ function removeField(){
 </script>
 
 <script type=text/javascript>
+
   $('#type_name').change(function(){
   var typeID = $(this).val();  
 //   alert(brandID);

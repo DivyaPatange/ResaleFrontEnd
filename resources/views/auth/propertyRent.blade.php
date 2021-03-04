@@ -3633,5 +3633,6 @@ $('body').on('click', '#submitForm2', function () {
     $("#property-form").submit();
   }
 });
+
 </script>
 @endsection
