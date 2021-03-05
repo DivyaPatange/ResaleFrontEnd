@@ -22,7 +22,8 @@
   margin:10px;
 }
 #upload_form, #upload_form1, #upload_form2, #upload_form3, #upload_form4, #upload_form5, #upload_form6, #upload_form7, #upload_form8,
-#upload_form9, #upload_form10, #upload_form11, #upload_form12, #upload_form13, #upload_form14, #upload_form15, #upload_form16, #upload_form17
+#upload_form9, #upload_form10, #upload_form11, #upload_form12, #upload_form13, #upload_form14, #upload_form15, #upload_form16, #upload_form17,
+#upload_form18, #upload_form19, #upload_form20, #upload_form21, #upload_form22, #upload_form23, #upload_form24, #upload_form25
 {
   display:inline-flex;
   flex-wrap:wrap;
@@ -1812,10 +1813,11 @@ $("#suggesstion-locality").hide();
                   <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                       <a class="nav-item nav-link active" id="nav-home1-tab" data-toggle="tab" href="#nav-home1" role="tab" aria-controls="nav-home1" aria-selected="true">Exterior View</a>
-                      <a class="nav-item nav-link" id="nav-profile1-tab" data-toggle="tab" href="#nav-profile1" role="tab" aria-controls="nav-profile1" aria-selected="false">Living Room</a>
-                      <a class="nav-item nav-link" id="nav-contact1-tab" data-toggle="tab" href="#nav-contact1" role="tab" aria-controls="nav-contact1" aria-selected="false">Bedroom</a>
-                      <a class="nav-item nav-link" id="nav-about1-tab" data-toggle="tab" href="#nav-about1" role="tab" aria-controls="nav-about1" aria-selected="false">Bathrooms</a>
-                      <a class="nav-item nav-link" id="nav-kitchen1-tab" data-toggle="tab" href="#nav-kitchen1" role="tab" aria-controls="nav-kitchen1" aria-selected="false">Kitchen</a>
+                      <a class="nav-item nav-link" id="nav-profile1-tab" data-toggle="tab" href="#nav-profile1" role="tab" aria-controls="nav-profile1" aria-selected="false">Common Area</a>
+                      <a class="nav-item nav-link" id="nav-contact1-tab" data-toggle="tab" href="#nav-contact1" role="tab" aria-controls="nav-contact1" aria-selected="false">Washroom</a>
+                      <a class="nav-item nav-link" id="nav-about1-tab" data-toggle="tab" href="#nav-about1" role="tab" aria-controls="nav-about1" aria-selected="false">Master Plan</a>
+                      <a class="nav-item nav-link" id="nav-kitchen1-tab" data-toggle="tab" href="#nav-kitchen1" role="tab" aria-controls="nav-kitchen1" aria-selected="false">Location Map</a>
+                      <a class="nav-item nav-link" id="nav-others1-tab" data-toggle="tab" href="#nav-others1" role="tab" aria-controls="nav-others1" aria-selected="false">Others</a>
                     </div>
                   </nav>
                   <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
@@ -1844,7 +1846,7 @@ $("#suggesstion-locality").hide();
                           <span class="title1">
                               Add File
                           </span>
-                          <input class="FileUpload1" id="FileInput" name="living_photos[]" type="file"/>
+                          <input class="FileUpload1" id="FileInput" name="common_photos[]" type="file"/>
                           <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                           </label>
                       </div>
@@ -1859,7 +1861,7 @@ $("#suggesstion-locality").hide();
                           <span class="title1">
                               Add File
                           </span>
-                          <input class="FileUpload1" id="FileInput" name="bedroom_photos[]" type="file"/>
+                          <input class="FileUpload1" id="FileInput" name="bathroom_photos[]" type="file"/>
                           <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                           </label>
                       </div>
@@ -1874,7 +1876,7 @@ $("#suggesstion-locality").hide();
                           <span class="title1">
                               Add File
                           </span>
-                          <input class="FileUpload1" id="FileInput" name="bathroom_photos[]" type="file"/>
+                          <input class="FileUpload1" id="FileInput" name="master_photos[]" type="file"/>
                           <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                           </label>
                       </div>
@@ -1889,7 +1891,22 @@ $("#suggesstion-locality").hide();
                           <span class="title1">
                               Add File
                           </span>
-                          <input class="FileUpload1" id="FileInput" name="kitchen_photos[]" type="file"/>
+                          <input class="FileUpload1" id="FileInput" name="location_photos[]" type="file"/>
+                          <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                          </label>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-others1" role="tabpanel" aria-labelledby="nav-others1-tab">
+                      <div id="upload_form10">
+                          <label class="filelabel p_file">
+                          <div class="icon">X</div>
+                          <i class="fa fa-paperclip" id="icon1">
+                          </i>
+                          
+                          <span class="title1">
+                              Add File
+                          </span>
+                          <input class="FileUpload1" id="FileInput" name="others_photos[]" type="file"/>
                           <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                           </label>
                       </div>
@@ -2162,16 +2179,16 @@ $("#suggesstion-locality").hide();
                 <div class="form-group">
                   <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                      <a class="nav-item nav-link active" id="nav-metro1-tab" data-toggle="tab" href="#nav-metro1" role="tab" aria-controls="nav-metro1" aria-selected="true">Metro Station</a>
-                      <a class="nav-item nav-link" id="nav-railway1-tab" data-toggle="tab" href="#nav-railway1" role="tab" aria-controls="nav-railway1" aria-selected="false">Railway Station</a>
-                      <a class="nav-item nav-link" id="nav-bus1-tab" data-toggle="tab" href="#nav-bus1" role="tab" aria-controls="nav-bus1" aria-selected="false">Bus Stand</a>
-                      <a class="nav-item nav-link" id="nav-airport1-tab" data-toggle="tab" href="#nav-airport1" role="tab" aria-controls="nav-airport1" aria-selected="false">Airport</a>
-                      <a class="nav-item nav-link" id="nav-shopping1-tab" data-toggle="tab" href="#nav-shopping1" role="tab" aria-controls="nav-shopping1" aria-selected="false">Shopping Mall</a>
-                      <a class="nav-item nav-link" id="nav-office1-tab" data-toggle="tab" href="#nav-office1" role="tab" aria-controls="nav-office1" aria-selected="false">Office Complex</a>
+                      <a class="nav-item nav-link active" id="nav-metro3-tab" data-toggle="tab" href="#nav-metro3" role="tab" aria-controls="nav-metro3" aria-selected="true">Metro Station</a>
+                      <a class="nav-item nav-link" id="nav-railway3-tab" data-toggle="tab" href="#nav-railway3" role="tab" aria-controls="nav-railway3" aria-selected="false">Railway Station</a>
+                      <a class="nav-item nav-link" id="nav-bus3-tab" data-toggle="tab" href="#nav-bus3" role="tab" aria-controls="nav-bus3" aria-selected="false">Bus Stand</a>
+                      <a class="nav-item nav-link" id="nav-airport3-tab" data-toggle="tab" href="#nav-airport3" role="tab" aria-controls="nav-airport3" aria-selected="false">Airport</a>
+                      <a class="nav-item nav-link" id="nav-shopping3-tab" data-toggle="tab" href="#nav-shopping3" role="tab" aria-controls="nav-shopping3" aria-selected="false">Shopping Mall</a>
+                      <a class="nav-item nav-link" id="nav-office3-tab" data-toggle="tab" href="#nav-office3" role="tab" aria-controls="nav-office3" aria-selected="false">Office Complex</a>
                     </div>
                   </nav>
                   <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-metro1" role="tabpanel" aria-labelledby="nav-metro1-tab">
+                    <div class="tab-pane fade show active" id="nav-metro3" role="tabpanel" aria-labelledby="nav-metro3-tab">
                       <div class="container-fluid">
                         <div class="row">
                           <div class="col-md-6">
@@ -2189,7 +2206,7 @@ $("#suggesstion-locality").hide();
                         </div>
                       </div>
                     </div>
-                    <div class="tab-pane fade" id="nav-railway1" role="tabpanel" aria-labelledby="nav-railway1-tab">
+                    <div class="tab-pane fade" id="nav-railway3" role="tabpanel" aria-labelledby="nav-railway3-tab">
                       <div class="container-fluid">
                         <div class="row">
                           <div class="col-md-6">
@@ -2207,7 +2224,7 @@ $("#suggesstion-locality").hide();
                         </div>
                       </div>
                     </div>
-                    <div class="tab-pane fade" id="nav-bus1" role="tabpanel" aria-labelledby="nav-bus1-tab">
+                    <div class="tab-pane fade" id="nav-bus3" role="tabpanel" aria-labelledby="nav-bus3-tab">
                       <div class="container-fluid">
                         <div class="row">
                           <div class="col-md-6">
@@ -2225,7 +2242,7 @@ $("#suggesstion-locality").hide();
                         </div>
                       </div>
                     </div>
-                    <div class="tab-pane fade" id="nav-airport1" role="tabpanel" aria-labelledby="nav-airport1-tab">
+                    <div class="tab-pane fade" id="nav-airport3" role="tabpanel" aria-labelledby="nav-airport3-tab">
                       <div class="container-fluid">
                         <div class="row">
                           <div class="col-md-6">
@@ -2243,7 +2260,7 @@ $("#suggesstion-locality").hide();
                         </div>
                       </div>
                     </div>
-                    <div class="tab-pane fade" id="nav-shopping1" role="tabpanel" aria-labelledby="nav-shopping1-tab">
+                    <div class="tab-pane fade" id="nav-shopping3" role="tabpanel" aria-labelledby="nav-shopping3-tab">
                       <div class="container-fluid">
                         <div class="row">
                           <div class="col-md-6">
@@ -2261,7 +2278,7 @@ $("#suggesstion-locality").hide();
                         </div>
                       </div>
                     </div>
-                    <div class="tab-pane fade" id="nav-office1" role="tabpanel" aria-labelledby="nav-office1-tab">
+                    <div class="tab-pane fade" id="nav-office3" role="tabpanel" aria-labelledby="nav-office3-tab">
                       <div class="container-fluid">
                         <div class="row">
                           <div class="col-md-6">
@@ -2549,14 +2566,14 @@ $("#suggesstion-locality").hide();
                     <div class="col-md-12">
                       <nav>
                         <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Site View</a>
-                          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Master Plan</a>
-                          <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Location Map</a>
-                          <a class="nav-item nav-link" id="nav-others-tab" data-toggle="tab" href="#nav-others" role="tab" aria-controls="nav-others" aria-selected="false">Others </a>
+                          <a class="nav-item nav-link active" id="nav-home5-tab" data-toggle="tab" href="#nav-home5" role="tab" aria-controls="nav-home5" aria-selected="true">Site View</a>
+                          <a class="nav-item nav-link" id="nav-profile5-tab" data-toggle="tab" href="#nav-profile5" role="tab" aria-controls="nav-profile5" aria-selected="false">Master Plan</a>
+                          <a class="nav-item nav-link" id="nav-contact5-tab" data-toggle="tab" href="#nav-contact5" role="tab" aria-controls="nav-contact5" aria-selected="false">Location Map</a>
+                          <a class="nav-item nav-link" id="nav-others5-tab" data-toggle="tab" href="#nav-others5" role="tab" aria-controls="nav-others5" aria-selected="false">Others </a>
                         </div>
                       </nav>
                       <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div class="tab-pane fade show active" id="nav-home5" role="tabpanel" aria-labelledby="nav-home5-tab">
                           <div id="upload_form11">
                             <label class="filelabel p_file">
                               <div class="icon">X</div>
@@ -2564,77 +2581,43 @@ $("#suggesstion-locality").hide();
                               <span class="title1">
                                 Add File
                               </span>
-                              <input class="FileUpload1" id="FileInput" name="photos[]" type="file"/>
-                              <img id="frame1" width="100px" height="100px" class="hidden">
+                              <input class="FileUpload1" id="FileInput" name="site_photos[]" type="file"/>
+                              <img id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                             </label>
                           </div>
-                          @error('photos')
-                          <span class="text-danger" role="alert">
-                            <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
                         </div>
-                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <div class="tab-pane fade" id="nav-profile5" role="tabpanel" aria-labelledby="nav-profile5-tab">
                           <div id="upload_form12">
-                                    <label class="filelabel p_file">
-                                      <div class="icon">X</div>
-                                      <i class="fa fa-paperclip" id="icon1">
-                                      </i>
-                                      
-                                      <span class="title1">
-                                          Add File
-                                      </span>
-                                      <input class="FileUpload1" id="FileInput" name="photos[]" type="file"/>
-                                      <img  id="frame1" width="100px" height="100px" class="hidden">
-                                    </label>
-                                </div>
-                                @error('photos')
-                                      <span class="text-danger" role="alert">
-                                          <strong>{{ $message }}</strong>
-                                      </span>
-                                @enderror
-                               
+                            <label class="filelabel p_file">
+                              <div class="icon">X</div>
+                              <i class="fa fa-paperclip" id="icon1"></i>
+                              <span class="title1">Add File</span>
+                              <input class="FileUpload1" id="FileInput" name="master_photos[]" type="file"/>
+                              <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                            </label>
+                          </div>      
                         </div>
-                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                <div id="upload_form13">
-                                    <label class="filelabel p_file">
-                                      <div class="icon">X</div>
-                                      <i class="fa fa-paperclip" id="icon1">
-                                      </i>
-                                      
-                                      <span class="title1">
-                                          Add File
-                                      </span>
-                                      <input class="FileUpload1" id="FileInput" name="photos[]" type="file"/>
-                                      <img  id="frame1" width="100px" height="100px" class="hidden">
-                                    </label>
-                                </div>
-                                @error('photos')
-                                      <span class="text-danger" role="alert">
-                                          <strong>{{ $message }}</strong>
-                                      </span>
-                                @enderror
+                        <div class="tab-pane fade" id="nav-contact5" role="tabpanel" aria-labelledby="nav-contact5-tab">
+                          <div id="upload_form13">
+                            <label class="filelabel p_file">
+                              <div class="icon">X</div>
+                              <i class="fa fa-paperclip" id="icon1"></i>
+                              <span class="title1">Add File</span>
+                              <input class="FileUpload1" id="FileInput" name="location_photos[]" type="file"/>
+                              <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                            </label>
+                          </div>
                         </div>
-                        
-                        <div class="tab-pane fade" id="nav-others" role="tabpanel" aria-labelledby="nav-others-tab">
-                            <div id="upload_form14">
-                                    <label class="filelabel p_file">
-                                      <div class="icon">X</div>
-                                      <i class="fa fa-paperclip" id="icon1">
-                                      </i>
-                                      
-                                      <span class="title1">
-                                          Add File
-                                      </span>
-                                      <input class="FileUpload1" id="FileInput" name="photos[]" type="file"/>
-                                      <img  id="frame1" width="100px" height="100px" class="hidden">
-                                    </label>
-                                </div>
-                                @error('photos')
-                                      <span class="text-danger" role="alert">
-                                          <strong>{{ $message }}</strong>
-                                      </span>
-                                @enderror
+                        <div class="tab-pane fade" id="nav-others5" role="tabpanel" aria-labelledby="nav-others5-tab">
+                          <div id="upload_form14">
+                            <label class="filelabel p_file">
+                              <div class="icon">X</div>
+                              <i class="fa fa-paperclip" id="icon1"></i>
+                              <span class="title1">Add File</span>
+                              <input class="FileUpload1" id="FileInput" name="others_photos[]" type="file"/>
+                              <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                            </label>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -2686,7 +2669,7 @@ $("#suggesstion-locality").hide();
                     </div>
                   </div>
                   <div class="form-group">
-                    <label>Description <span class="text-danger">*</span></label>
+                    <label>Description <span class="text-danger">*</span><span class="text-danger" id="description_err"></span></label>
                     <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
                     @error('description')
                     <span class="invalid-feedback" role="alert">
@@ -2703,9 +2686,9 @@ $("#suggesstion-locality").hide();
                     </span>
                     @enderror
                   </div>
+                  <hr>
+                  <button type="button" id="submitForm3" class="btn btn-primary">Post Your Add</button>
                 </div>
-                <hr>
-                <button type="button" id="submitForm3" class="btn btn-primary">Post Your Add</button>
               </div>
               <!--Sale Industrial Land / Open Plot for Sale end-->
               <!--form 4-->
@@ -2713,7 +2696,7 @@ $("#suggesstion-locality").hide();
               <div id="com-shop-form" class="hidden">
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <label for="">Name of Project/ Market</label>
+                    <label for="">Name of Project/ Market <span class="text-danger">*</span><span class="text-danger" id="project_err"></span></label>
                     <input type="text" class="form-control @error('project_name') is-invalid @enderror" id="project_name"  name="project_name">
                     @error('project_name')
                     <span class="invalid-feedback" role="alert">
@@ -2876,8 +2859,8 @@ $("#suggesstion-locality").hide();
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="">Floor No.</label>
-                        <select name="floor_no" class="form-control @error('floor_no') is-invalid @enderror" value="{{ old('floor_no') }}">
+                        <label for="">Floor No. <span class="text-danger">*</span><span class="text-danger" id="floor_err"></span></label>
+                        <select name="floor_no" id="floor_no" class="form-control @error('floor_no') is-invalid @enderror" value="{{ old('floor_no') }}">
                           <option value="">Choose..</option>
                           <option value="Lower Basement">Lower Basement</option>
                           <option value="Upper Basement">Upper Basement</option>
@@ -2890,8 +2873,8 @@ $("#suggesstion-locality").hide();
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="floor">Total Floors</label>
-                        <select name="total_floor" class="form-control @error('total_floor') is-invalid @enderror">
+                        <label for="floor">Total Floors <span class="text-danger">*</span><span class="text-danger" id="total_floor_err"></span></label>
+                        <select name="total_floor" id="total_floor" class="form-control @error('total_floor') is-invalid @enderror">
                           <option value="">Choose..</option>
                           @for($i=1; $i < 201; $i++)
                           <option value="{{ $i }}">{{ $i }}</option>
@@ -2904,7 +2887,7 @@ $("#suggesstion-locality").hide();
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-4">
-                      <label>Furnished Status<span class="text-danger">*</span></label>
+                      <label>Furnished Status<span class="text-danger">*</span><span class="text-danger" id="furnished_err"></span></label>
                     </div>
                     <div class="col-md-8">
                       <div class="switch-field">
@@ -2919,7 +2902,7 @@ $("#suggesstion-locality").hide();
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-6">
-                      <label>Washroom<span class="text-danger">*</span>
+                      <label>Washroom<span class="text-danger">*</span><span class="text-danger" id="bathroom_err"></span>
                       </label>
                     </div>
                     <div class="col-md-6">
@@ -2940,7 +2923,7 @@ $("#suggesstion-locality").hide();
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <label for="">Personal Washroom</label>
+                    <label for="">Personal Washroom<span class="text-danger">*</span><span class="text-danger" id="p_washroom_err"></span></label>
                   </div>
                   <div class="form-group col-md-6">
                     <div class="form-check-inline">
@@ -2957,7 +2940,7 @@ $("#suggesstion-locality").hide();
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <label for="">Pantry/Cafeteria</label>
+                    <label for="">Pantry/Cafeteria<span class="text-danger">*</span><span class="text-danger" id="pantry_err"></span></label>
                   </div>
                   <div class="form-group col-md-6">
                     <div class="form-check-inline">
@@ -2979,7 +2962,7 @@ $("#suggesstion-locality").hide();
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <label for="">Corner Shop/Showroom</label>
+                    <label for="">Corner Shop/Showroom <span class="text-danger">*</span><span class="text-danger" id="c_shop_err"></span></label>
                   </div>
                   <div class="form-group col-md-6">
                     <div class="form-check-inline">
@@ -2996,7 +2979,7 @@ $("#suggesstion-locality").hide();
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <label for="">Is Main Road Facing</label>
+                    <label for="">Is Main Road Facing<span class="text-danger">*</span><span class="text-danger" id="main_road_err"></span></label>
                   </div>
                   <div class="form-group col-md-6">
                     <div class="form-check-inline">
@@ -3016,7 +2999,7 @@ $("#suggesstion-locality").hide();
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-5">
-                    <label for="">Covered Area<span class="text-danger">*</span><span  style="color:red" id="super_area_err"> </span></label>
+                    <label for="">Covered Area</label>
                     @error('covered_area')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
@@ -3047,12 +3030,7 @@ $("#suggesstion-locality").hide();
                     </select>
                   </div>
                   <div class="col-md-5 form-group">
-                    <label for="">Carpet Area <small>(Sq.ft.)</small></label>
-                    @error('carpet_area')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
+                    <label for="">Carpet Area </label>
                   </div>
                   <div class="form-group col-md-4">
                     <input type="number" id="carpet_area" class="form-control @error('carpet_area') invalid-feedback @enderror" name="carpet_area" value="{{ old('carpet_area') }}">
@@ -3078,7 +3056,7 @@ $("#suggesstion-locality").hide();
                     </select>
                   </div>
                   <div class="col-md-5 form-group">
-                    <label for="">Plot Area <small>(Sq.ft.)</small></label>
+                    <label for="">Plot Area <span class="text-danger">*</span><span class="text-danger" id="plot_err"></span></label>
                   </div>
                   <div class="form-group col-md-4">
                     <input type="number" id="plot_area" class="form-control @error('plot_area') invalid-feedback @enderror" name="plot_area" value="{{ old('plot_area') }}">
@@ -3122,7 +3100,7 @@ $("#suggesstion-locality").hide();
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-4">
-                    <label for="">Transaction Type</label>
+                    <label for="">Transaction Type<span class="text-danger">*</span><span class="text-danger" id="trans_type_err"></span></label>
                   </div>
                   <div class="form-group col-md-8">
                     <div class="form-check-inline">
@@ -3155,7 +3133,7 @@ $("#suggesstion-locality").hide();
                   </div>
                 </div>
                 <div class="form-row">
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-6" id="possesDiv1">
                     <label>Available From</label>
                     <input  type="text" id="available_from" class="form-control @error('available_from') is-invalid @enderror" name="available_from" placeholder="Month-Year" onfocus="(this.type='month')">
                     @error('available_from')
@@ -3164,7 +3142,7 @@ $("#suggesstion-locality").hide();
                     </span>
                     @enderror
                   </div>
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-6 hidden" id="possesDiv2">
                     <label>Age of Construction <span class="text-danger">*</span></label>
                     <select class="form-control @error('age_of_construction') is-invalid @enderror" id="age_of_construction" name="age_of_construction">
                       <option value="">-Select-</option>
@@ -3224,8 +3202,9 @@ $("#suggesstion-locality").hide();
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="floor">Expected price</label>
-                        <input type="number" name="expected_price" class="form-control @error('expected_price') is-invalid @enderror" value="{{ old('expected_price') }}">
+                        <label for="">Expected price<span class="text-danger">*</span><span class="text-danger" id="price_err"></span></label>
+                        <input type="text" name="expected_price" class="form-control Stylednumber @error('expected_price') is-invalid @enderror" id="total_price" value="{{ old('expected_price') }}" onkeyup="convertNumberToWords(this.value)">
+                        <span id="show_price" class="text-muted"></span>
                         @error('expected_price')
                           <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -3246,6 +3225,36 @@ $("#suggesstion-locality").hide();
                     </div>
                   </div>
                 </div>
+                <div id="show_rent" class="hidden">
+                  <div class="form-row">
+                    <div class="form-group col-md-3">
+                      <label for="">Show Price as</label>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" id="show_rent1" name="show_price_as" value="">
+                          <span id="rent_1"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" id="show_rent2" name="show_price_as" value="">
+                          <span id="rent_2"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="show_price_as" value="Call For Price">Call For Price
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-4">
@@ -3262,11 +3271,6 @@ $("#suggesstion-locality").hide();
                       </div>
                     </div>
                   </div>
-                  @error('price_include')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
                 </div>
                 <div class="form-group">
                   <div class="plus-minus">
@@ -3344,49 +3348,6 @@ $("#suggesstion-locality").hide();
                     </select>
                   </div>
                 </div>
-                <div class="form-group">
-                  <h6>Price Details</h6>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="">Total Price <span class="text-danger">*</span></label>
-                    <input type="number" name="total_price" class="form-control @error('total_price') invalid-feedback @enderror" value="{{ old('total_price') }}">
-                    @error('total_price')
-                      <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                      </span>
-                    @enderror
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="">Price Per Sq.ft<span class="text-danger">*</span></label>
-                    <input type="number" name="price_per_sq_ft" class="form-control @error('price_per_sq_ft') invalid-feedback @enderror" value="{{ old('price_per_sq_ft') }}">
-                    @error('price_per_sq_ft')
-                      <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                      </span>
-                    @enderror
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label for="">Price Include</label>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="switch-field">
-                        <input type="radio"  name="price_include" id="Car Parking" value="Car Parking" @if(old('price_include') == "Car Parking") checked @endif>
-                        <label for="Car Parking">Car Parking</label>
-                        <input type="radio" type="radio" name="price_include" id="Club Membersip" value="Club Membersip" @if(old('price_include') == "Club Membersip") checked @endif>
-                        <label for="Club Membersip">Club Membersip</label>
-                      </div>
-                    </div>
-                  </div>
-                  @error('price_include')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
-                </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="">Booking Tokan Amount</label>
@@ -3421,7 +3382,7 @@ $("#suggesstion-locality").hide();
                           <a class="nav-item nav-link" id="nav-contact2-tab" data-toggle="tab" href="#nav-contact2" role="tab" aria-controls="nav-contact2" aria-selected="false">Washroom</a>
                           <a class="nav-item nav-link" id="nav-master1-tab" data-toggle="tab" href="#nav-master1" role="tab" aria-controls="nav-master1" aria-selected="false">Master Plan</a>
                           <a class="nav-item nav-link" id="nav-location1-tab" data-toggle="tab" href="#nav-location1" role="tab" aria-controls="nav-location1" aria-selected="false">Location Map</a>
-                          <a class="nav-item nav-link" id="nav-others1-tab" data-toggle="tab" href="#nav-others1" role="tab" aria-controls="nav-others1" aria-selected="false">Others </a>
+                          <a class="nav-item nav-link" id="nav-others2-tab" data-toggle="tab" href="#nav-others2" role="tab" aria-controls="nav-others2" aria-selected="false">Others </a>
                         </div>
                       </nav>
                       <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
@@ -3433,8 +3394,8 @@ $("#suggesstion-locality").hide();
                               <span class="title1">
                                 Add File
                               </span>
-                              <input class="FileUpload1" id="FileInput" name="photos[]" type="file"/>
-                              <img id="frame1" width="100px" height="100px" class="hidden">
+                              <input class="FileUpload1" id="FileInput" name="exterior_photos[]" type="file"/>
+                              <img id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                             </label>
                           </div>
                         </div>
@@ -3446,8 +3407,8 @@ $("#suggesstion-locality").hide();
                               <span class="title1">
                                 Add File
                               </span>
-                              <input class="FileUpload1" id="FileInput" name="photos[]" type="file"/>
-                              <img  id="frame1" width="100px" height="100px" class="hidden">
+                              <input class="FileUpload1" id="FileInput" name="common_photos[]" type="file"/>
+                              <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                             </label>
                           </div>
                         </div>
@@ -3457,8 +3418,8 @@ $("#suggesstion-locality").hide();
                               <div class="icon">X</div>
                               <i class="fa fa-paperclip" id="icon1"></i>
                               <span class="title1"> Add File</span>
-                              <input class="FileUpload1" id="FileInput" name="photos[]" type="file"/>
-                              <img  id="frame1" width="100px" height="100px" class="hidden">
+                              <input class="FileUpload1" id="FileInput" name="bathroom_photos[]" type="file"/>
+                              <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                             </label>
                           </div>
                         </div>
@@ -3468,8 +3429,8 @@ $("#suggesstion-locality").hide();
                               <div class="icon">X</div>
                               <i class="fa fa-paperclip" id="icon1"></i>
                               <span class="title1"> Add File</span>
-                              <input class="FileUpload1" id="FileInput" name="photos[]" type="file"/>
-                              <img  id="frame1" width="100px" height="100px" class="hidden">
+                              <input class="FileUpload1" id="FileInput" name="master_photos[]" type="file"/>
+                              <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                             </label>
                           </div>
                         </div>
@@ -3479,270 +3440,269 @@ $("#suggesstion-locality").hide();
                               <div class="icon">X</div>
                               <i class="fa fa-paperclip" id="icon1"></i>
                               <span class="title1"> Add File</span>
-                              <input class="FileUpload1" id="FileInput" name="photos[]" type="file"/>
-                              <img  id="frame1" width="100px" height="100px" class="hidden">
+                              <input class="FileUpload1" id="FileInput" name="location_photos[]" type="file"/>
+                              <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                             </label>
                           </div>
                         </div>
-                        <div class="tab-pane fade" id="nav-others1" role="tabpanel" aria-labelledby="nav-others1-tab">
+                        <div class="tab-pane fade" id="nav-others2" role="tabpanel" aria-labelledby="nav-others2-tab">
                           <div id="upload_form20">
                             <label class="filelabel p_file">
                               <div class="icon">X</div>
                               <i class="fa fa-paperclip" id="icon1"></i>
                               <span class="title1">Add File</span>
-                              <input class="FileUpload1" id="FileInput" name="photos[]" type="file"/>
-                              <img  id="frame1" width="100px" height="100px" class="hidden">
+                              <input class="FileUpload1" id="FileInput" name="others_photos[]" type="file"/>
+                              <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                             </label>
                           </div>
-                          @error('photos')
-                          <span class="text-danger" role="alert">
-                            <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <hr>
-                <div class="form-group">
-                  <h6>Additional Features</h6>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="">Facing <span class="text-danger">*</span></label>
-                    <select name="facing" id="facing" class="form-control @error('facing') invalid-feedback @enderror">
-                      <option value="">-Select Facing-</option>
-                      <option value="East" @if(old('facing') == "East") Selected @endif>East</option>
-                      <option value="West" @if(old('facing') == "West") Selected @endif>West</option>
-                      <option value="North" @if(old('facing') == "North") Selected @endif>North</option>
-                      <option value="South" @if(old('facing') == "South") Selected @endif>South</option>
-                      <option value="North East" @if(old('facing') == "North East") Selected @endif>North East</option>
-                      <option value="North West" @if(old('facing') == "North West") Selected @endif>North West</option>
-                      <option value="South East" @if(old('facing') == "South East") Selected @endif>South East</option>
-                      <option value="South West" @if(old('facing') == "South West") Selected @endif>South West</option>
-                    </select>
-                    @error('facing')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
+                <button type="button" id="showButton4" class="btn btn-primary">Continue & Next</button>
+                <div class="hidden" id="showDiv4">
+                  <div class="form-group">
+                    <h6>Additional Features</h6>
                   </div>
-                  <div class="form-group col-md-6">
-                    <label for="">Overlooking <span class="text-danger">*</span></label>
-                    <select name="overlooking" id="overlooking" class="form-control @error('overlooking') invalid-feedback @enderror">
-                      <option value="">-Select Overlooking-</option>
-                      <option value="Garden/Park" @if(old('overlooking') == "Garden/Park") Selected @endif>Garden/Park</option>
-                      <option value="Pool" @if(old('overlooking') == "Pool") Selected @endif>Pool</option>
-                      <option value="Main Road" @if(old('overlooking') == "Main Road") Selected @endif>Main Road</option>
-                      <option value="Not Available" @if(old('overlooking') == "Not Available") Selected @endif>Not Available</option>
-                    </select>
-                    @error('overlooking')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="">Car Parking <span class="text-danger">*</span></label>
-                    <select name="car_parking" id="car_parking" class="form-control @error('car_parking') invalid-feedback @enderror">
-                      <option value="">-Select Car Parking-</option>
-                      <option value="Covered" @if(old('car_parking') == "Covered") Selected @endif>Covered</option>
-                      <option value="Open" @if(old('car_parking') == "Open") Selected @endif>Open</option>
-                      <option value="None" @if(old('car_parking') == "None") Selected @endif>None</option>
-                    </select>
-                    @error('car_parking')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="">Lifts in the Tower </label>
-                    <select name="lift_in_tower" id="lift_in_tower" class="form-control @error('lift_in_tower') invalid-feedback @enderror">
-                      <option value="">-Select-</option>
-                      <option value="None" @if(old('lift_tower') == "None") Selected @endif>None</option>
-                      <option value="1" @if(old('lift_tower') == "1") Selected @endif>1</option>
-                      <option value="2" @if(old('lift_tower') == "2") Selected @endif>2</option>
-                      <option value="3" @if(old('lift_tower') == "3") Selected @endif>3</option>
-                      <option value="4" @if(old('lift_tower') == "4") Selected @endif>4</option>
-                      <option value="5" @if(old('lift_tower') == "5") Selected @endif>5</option>
-                      <option value="6" @if(old('lift_tower') == "6") Selected @endif>6</option>
-                      <option value="7" @if(old('lift_tower') == "7") Selected @endif>7</option>
-                    </select>
-                    @error('lift_tower')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="">Offices on the Floor</label>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <input type="number" class="form-control" name="office_floor">
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="">Multiple Units Available</label>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-check-inline">
-                      <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="mul_unit_avail" value="Yes">Yes
-                      </label>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="">Facing <span class="text-danger">*</span></label>
+                      <select name="facing" id="facing" class="form-control @error('facing') invalid-feedback @enderror">
+                        <option value="">-Select Facing-</option>
+                        <option value="East" @if(old('facing') == "East") Selected @endif>East</option>
+                        <option value="West" @if(old('facing') == "West") Selected @endif>West</option>
+                        <option value="North" @if(old('facing') == "North") Selected @endif>North</option>
+                        <option value="South" @if(old('facing') == "South") Selected @endif>South</option>
+                        <option value="North East" @if(old('facing') == "North East") Selected @endif>North East</option>
+                        <option value="North West" @if(old('facing') == "North West") Selected @endif>North West</option>
+                        <option value="South East" @if(old('facing') == "South East") Selected @endif>South East</option>
+                        <option value="South West" @if(old('facing') == "South West") Selected @endif>South West</option>
+                      </select>
+                      @error('facing')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
-                    <div class="form-check-inline">
-                      <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="mul_unit_avail" value="No">No
-                      </label>
+                    <div class="form-group col-md-6">
+                      <label for="">Overlooking <span class="text-danger">*</span></label>
+                      <select name="overlooking" id="overlooking" class="form-control @error('overlooking') invalid-feedback @enderror">
+                        <option value="">-Select Overlooking-</option>
+                        <option value="Garden/Park" @if(old('overlooking') == "Garden/Park") Selected @endif>Garden/Park</option>
+                        <option value="Pool" @if(old('overlooking') == "Pool") Selected @endif>Pool</option>
+                        <option value="Main Road" @if(old('overlooking') == "Main Road") Selected @endif>Main Road</option>
+                        <option value="Not Available" @if(old('overlooking') == "Not Available") Selected @endif>Not Available</option>
+                      </select>
+                      @error('overlooking')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="">Car Parking <span class="text-danger">*</span></label>
+                      <select name="car_parking" id="car_parking" class="form-control @error('car_parking') invalid-feedback @enderror">
+                        <option value="">-Select Car Parking-</option>
+                        <option value="Covered" @if(old('car_parking') == "Covered") Selected @endif>Covered</option>
+                        <option value="Open" @if(old('car_parking') == "Open") Selected @endif>Open</option>
+                        <option value="None" @if(old('car_parking') == "None") Selected @endif>None</option>
+                      </select>
+                      @error('car_parking')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="">Lifts in the Tower </label>
+                      <select name="lift_in_tower" id="lift_in_tower" class="form-control @error('lift_in_tower') invalid-feedback @enderror">
+                        <option value="">-Select-</option>
+                        <option value="None" @if(old('lift_tower') == "None") Selected @endif>None</option>
+                        <option value="1" @if(old('lift_tower') == "1") Selected @endif>1</option>
+                        <option value="2" @if(old('lift_tower') == "2") Selected @endif>2</option>
+                        <option value="3" @if(old('lift_tower') == "3") Selected @endif>3</option>
+                        <option value="4" @if(old('lift_tower') == "4") Selected @endif>4</option>
+                        <option value="5" @if(old('lift_tower') == "5") Selected @endif>5</option>
+                        <option value="6" @if(old('lift_tower') == "6") Selected @endif>6</option>
+                        <option value="7" @if(old('lift_tower') == "7") Selected @endif>7</option>
+                      </select>
+                      @error('lift_tower')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
                   </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="">Building Class</label>
-                    <select name="building_class" id="" class="form-control">
-                      <option value="">-Select Building Class-</option>
-                      <option value="Not Applicable">Not Applicable</option>
-                      <option value="Grade A+">Grade A+</option>
-                      <option value="Grade A">Grade A</option>
-                      <option value="Grade B">Grade B</option>
-                      <option value="Grade C">Grade C</option>
-                    </select>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="">Offices on the Floor</label>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <input type="number" class="form-control" name="office_floor">
+                    </div>
                   </div>
-                  <div class="form-group col-md-6">
-                    <label for="">LEED Certification</label>
-                    <select name="leed_certification" id="" class="form-control">
-                      <option value="">-Select LEED Certification-</option>
-                      <option value="Not Applicable">Not Applicable</option>
-                      <option value="Certified">Certified</option>
-                      <option value="Silver Certified">Silver Certified</option>
-                      <option value="Gold Certified">Gold Certified</option>
-                      <option value="Platinum Certified">Platinum Certified</option>
-                    </select>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="">Multiple Units Available</label>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="mul_unit_avail" value="Yes">Yes
+                        </label>
+                      </div>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="mul_unit_avail" value="No">No
+                        </label>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="">Project Rera ID</label>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="">Building Class</label>
+                      <select name="building_class" id="" class="form-control">
+                        <option value="">-Select Building Class-</option>
+                        <option value="Not Applicable">Not Applicable</option>
+                        <option value="Grade A+">Grade A+</option>
+                        <option value="Grade A">Grade A</option>
+                        <option value="Grade B">Grade B</option>
+                        <option value="Grade C">Grade C</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="">LEED Certification</label>
+                      <select name="leed_certification" id="" class="form-control">
+                        <option value="">-Select LEED Certification-</option>
+                        <option value="Not Applicable">Not Applicable</option>
+                        <option value="Certified">Certified</option>
+                        <option value="Silver Certified">Silver Certified</option>
+                        <option value="Gold Certified">Gold Certified</option>
+                        <option value="Platinum Certified">Platinum Certified</option>
+                      </select>
+                    </div>
                   </div>
-                  <div class="form-group col-md-6">
-                    <input type="text" class="form-control" name="rera_id">
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="">Project Rera ID</label>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <input type="text" class="form-control" name="rera_id">
+                    </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <h6>Status of Water & Electricity</h6>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="">Status of Water</label>
-                    <select name="status_of_water" id="status_of_water" class="form-control @error('status_of_water') invalid-feedback @enderror">
-                      <option value="">-Select Status of Water-</option>
-                      <option value="24 hrs" @if(old('status_of_water') == "24 hrs") Selected @endif>24 hrs</option>
-                      <option value="12 hrs" @if(old('status_of_water') == "12 hrs") Selected @endif>12 hrs</option>
-                      <option value="6 hrs" @if(old('status_of_water') == "6 hrs") Selected @endif>6 hrs</option>
-                      <option value="2 hrs" @if(old('status_of_water') == "2 hrs") Selected @endif>2 hrs</option>
-                      <option value="1 hrs" @if(old('status_of_water') == "1 hrs") Selected @endif>1 hrs</option>
-                    </select>
-                    @error('status_of_water')
+                  <div class="form-group">
+                    <h6>Status of Water & Electricity</h6>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="">Status of Water</label>
+                      <select name="status_of_water" id="status_of_water" class="form-control @error('status_of_water') invalid-feedback @enderror">
+                        <option value="">-Select Status of Water-</option>
+                        <option value="24 hrs" @if(old('status_of_water') == "24 hrs") Selected @endif>24 hrs</option>
+                        <option value="12 hrs" @if(old('status_of_water') == "12 hrs") Selected @endif>12 hrs</option>
+                        <option value="6 hrs" @if(old('status_of_water') == "6 hrs") Selected @endif>6 hrs</option>
+                        <option value="2 hrs" @if(old('status_of_water') == "2 hrs") Selected @endif>2 hrs</option>
+                        <option value="1 hrs" @if(old('status_of_water') == "1 hrs") Selected @endif>1 hrs</option>
+                      </select>
+                      @error('status_of_water')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="">Status of Electricity</label>
+                      <select name="status_of_electricity" id="status_of_electricity" class="form-control @error('status_of_electricity') invalid-feedback @enderror">
+                        <option value="">-Select Status of Electricity-</option>
+                        <option value="No Power Cut" @if(old('status_of_electricity') == "No Power Cut") Selected @endif>No Power Cut</option>
+                        <option value="less than 3 hrs" @if(old('status_of_electricity') == "less than 3 hrs") Selected @endif>less than 3 hrs</option>
+                        <option value="2 to 4 hrs Power Cut" @if(old('status_of_electricity') == "2 to 4 hrs Power Cut") Selected @endif>2 to 4 hrs Power Cut</option>
+                        <option value="4 to 6 hrs Power Cut" @if(old('status_of_electricity') == "4 to 6 hrs Power Cut") Selected @endif>4 to 6 hrs Power Cut</option>
+                        <option value="above 6 hrs Power Cut" @if(old('status_of_electricity') == "above 6 hrs Power Cut") Selected @endif>above 6 hrs Power Cut</option>
+                      </select>
+                      @error('status_of_electricity')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="">Ownership Approval</label>
+                      <select name="ownership_approval" class="form-control" id="">
+                        <option value="">-Select-</option>
+                        <option value="Freehold">Freehold</option>
+                        <option value="Leasehold">Leasehold</option>
+                        <option value="Power of Attorney">Power of Attorney</option>
+                        <option value="Co-Operative Society">Co-Operative Society</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="">Approved By</label>
+                      <select name="approved_by" class="form-control" id="">
+                        <option value="">-Select-</option>
+                        <option value="Metropolitan Region">Metropolitan Region</option>
+                        <option value="Development Authority">Development Authority</option>
+                        <option value="Developer">Developer</option>
+                        <option value="RWA/Co-Operative Housing Society">RWA/Co-Operative Housing Society</option>
+                        <option value="City Muncipal Corporation">City Muncipal Corporation</option>
+                      </select>
+                    </div>
+                  </div>  
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="">Aminities</label>
+                      <select name="aminities" class="form-control" id="aminities">
+                        <option value="">Choose</option>
+                        <option value="Air Condition">Air Condition</option>
+                        <option value="CCTV Camera">CCTV Camera</option>
+                        <option value="Cafeteria">Cafeteria</option>
+                        <option value="Food Court">Food Court</option>
+                        <option value="Conference Room">Conference Room</option>
+                        <option value="Fire Sprinkler">Fire Sprinkler</option>
+                        <option value="Intercom Facility">Intercom Facility</option>
+                        <option value="Internet Wi-Fi Connectivity">Internet Wi-Fi Connectivity</option>
+                        <option value="Lift">Lift</option>
+                        <option value="Power Backup">Power Backup</option>
+                        <option value="Printer">Printer</option>
+                        <option value="Projector">Projector</option>
+                        <option value="RO Water System">RO Water System</option>
+                        <option value="Reserve Parking">Reserve Parking</option>
+                        <option value="Security">Security</option>
+                        <option value="Service Goods Lift">Service Goods Lift</option>
+                        <option value="Tea/Coffee">Tea/Coffee</option>
+                        <option value="Visitor Parking">Visitor Parking</option>
+                        <option value="Water Storage">Water Storage</option>
+                        <option value="Wheel Chair Accessibility">Wheel Chair Accessibility</option>
+                        <option value="Whiteboard">Whiteboard</option>
+                      </select>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="form-group">
+                    <label>Description <span class="text-danger">*</span><span class="text-danger" id="description_err"></span></label>
+                    <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
+                    @error('description')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                     </span>
                     @enderror
                   </div>
-                  <div class="form-group col-md-6">
-                    <label for="">Status of Electricity</label>
-                    <select name="status_of_electricity" id="status_of_electricity" class="form-control @error('status_of_electricity') invalid-feedback @enderror">
-                      <option value="">-Select Status of Electricity-</option>
-                      <option value="No Power Cut" @if(old('status_of_electricity') == "No Power Cut") Selected @endif>No Power Cut</option>
-                      <option value="less than 3 hrs" @if(old('status_of_electricity') == "less than 3 hrs") Selected @endif>less than 3 hrs</option>
-                      <option value="2 to 4 hrs Power Cut" @if(old('status_of_electricity') == "2 to 4 hrs Power Cut") Selected @endif>2 to 4 hrs Power Cut</option>
-                      <option value="4 to 6 hrs Power Cut" @if(old('status_of_electricity') == "4 to 6 hrs Power Cut") Selected @endif>4 to 6 hrs Power Cut</option>
-                      <option value="above 6 hrs Power Cut" @if(old('status_of_electricity') == "above 6 hrs Power Cut") Selected @endif>above 6 hrs Power Cut</option>
-                    </select>
-                    @error('status_of_electricity')
+                  <div class="form-group">
+                    <label>Land Mark  <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control @error('land_mark') is-invalid @enderror" id="land_mark"  name="land_mark" value="{{ old('land_mark') }}">
+                    @error('land_mark')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                     </span>
                     @enderror
                   </div>
+                  <hr>
+                  <button type="button" id="submitForm4" class="btn btn-primary">Post Your Add</button>
                 </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="">Ownership Approval</label>
-                    <select name="ownership_approval" class="form-control" id="">
-                      <option value="">-Select-</option>
-                      <option value="Freehold">Freehold</option>
-                      <option value="Leasehold">Leasehold</option>
-                      <option value="Power of Attorney">Power of Attorney</option>
-                      <option value="Co-Operative Society">Co-Operative Society</option>
-                    </select>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="">Approved By</label>
-                    <select name="approved_by" class="form-control" id="">
-                      <option value="">-Select-</option>
-                      <option value="Metropolitan Region">Metropolitan Region</option>
-                      <option value="Development Authority">Development Authority</option>
-                      <option value="Developer">Developer</option>
-                      <option value="RWA/Co-Operative Housing Society">RWA/Co-Operative Housing Society</option>
-                      <option value="City Muncipal Corporation">City Muncipal Corporation</option>
-                    </select>
-                  </div>
-                </div>  
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="">Aminities</label>
-                    <select name="aminities" class="form-control" id="aminities">
-                      <option value="">Choose</option>
-                      <option value="Air Condition">Air Condition</option>
-                      <option value="CCTV Camera">CCTV Camera</option>
-                      <option value="Cafeteria">Cafeteria</option>
-                      <option value="Food Court">Food Court</option>
-                      <option value="Conference Room">Conference Room</option>
-                      <option value="Fire Sprinkler">Fire Sprinkler</option>
-                      <option value="Intercom Facility">Intercom Facility</option>
-                      <option value="Internet Wi-Fi Connectivity">Internet Wi-Fi Connectivity</option>
-                      <option value="Lift">Lift</option>
-                      <option value="Power Backup">Power Backup</option>
-                      <option value="Printer">Printer</option>
-                      <option value="Projector">Projector</option>
-                      <option value="RO Water System">RO Water System</option>
-                      <option value="Reserve Parking">Reserve Parking</option>
-                      <option value="Security">Security</option>
-                      <option value="Service Goods Lift">Service Goods Lift</option>
-                      <option value="Tea/Coffee">Tea/Coffee</option>
-                      <option value="Visitor Parking">Visitor Parking</option>
-                      <option value="Water Storage">Water Storage</option>
-                      <option value="Wheel Chair Accessibility">Wheel Chair Accessibility</option>
-                      <option value="Whiteboard">Whiteboard</option>
-                    </select>
-                  </div>
-                </div>
-                <hr>
-                <div class="form-group">
-                  <label>Description <span class="text-danger">*</span></label>
-                  <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
-                  @error('description')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
-                </div>
-                <div class="form-group">
-                  <label>Land Mark  <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control @error('land_mark') is-invalid @enderror" id="land_mark"  name="land_mark" value="{{ old('land_mark') }}">
-                  @error('land_mark')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
-                </div>
-                <hr>
               </div>
               <!--Commercial Shop / Showroom end-->
               <!-- Fifth Form -->
@@ -3767,13 +3727,13 @@ $("#suggesstion-locality").hide();
                     <label for="">Width of Road Facing the Plot</label>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="number" class="form-control @error('width_of_road') invalid-feedback @enderror" name="width_of_road" value="{{ old('width_of_road') }}" placeholder="Meters">
+                    <input type="text" class="form-control Stylednumber @error('width_of_road') invalid-feedback @enderror" name="width_of_road" value="{{ old('width_of_road') }}" placeholder="Meters">
                   </div>
                 </div>  
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-6">
-                      <label for="">Bondry wall Made<span class="text-danger">*</span></label>
+                      <label for="">Bondry wall Made<span class="text-danger">*</span><span class="text-danger" id="wall_err"></span></label>
                     </div>
                     <div class="col-md-6">
                       <div class="form-check-inline">
@@ -3794,10 +3754,10 @@ $("#suggesstion-locality").hide();
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-5">
-                    <label for="">Land Length<span  style="color:red" id="super_area_err"> </span></label>
+                    <label for="">Land Length<span class="text-danger">*</span><span class="text-danger" id="length_err"></span></label>
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="number" class="form-control @error('land_length') invalid-feedback @enderror" id="land_length" name="land_length" value="{{ old('land_length') }}">
+                    <input type="text" class="form-control Stylednumber @error('land_length') invalid-feedback @enderror" id="land_length" name="land_length" value="{{ old('land_length') }}">
                   </div>
                   <div class="form-group col-md-3">
                     <select name="land_length_unit" id="land_length_unit" class="form-control">
@@ -3807,10 +3767,10 @@ $("#suggesstion-locality").hide();
                     </select>
                   </div>
                   <div class="col-md-5 form-group">
-                    <label for="">Land Breadth</label>
+                    <label for="">Land Breadth <span class="text-danger">*</span><span class="text-danger" id="breadth_err"></span></label>
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="number" id="land_breadth" class="form-control @error('land_breadth') invalid-feedback @enderror" name="land_breadth" value="{{ old('land_breadth') }}">
+                    <input type="text" id="land_breadth" class="form-control Stylednumber @error('land_breadth') invalid-feedback @enderror" name="land_breadth" value="{{ old('land_breadth') }}">
                   </div>
                   <div class="form-group col-md-3">
                     <select name="land_breadth_unit" id="land_breadth_unit" class="form-control">
@@ -3825,7 +3785,7 @@ $("#suggesstion-locality").hide();
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-4">
-                    <label for="">Transaction Type</label>
+                    <label for="">Transaction Type <span class="text-danger">*</span><span class="text-danger" id="trans_type_err"></span></label>
                   </div>
                   <div class="form-group col-md-8">
                     <div class="form-check-inline">
@@ -3838,34 +3798,6 @@ $("#suggesstion-locality").hide();
                         <input type="radio" class="form-check-input" name="transaction_type" value="Resale">Resale
                       </label>
                     </div>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label>Available From</label>
-                    <input  type="text" id="available_from" class="form-control @error('available_from') is-invalid @enderror" name="available_from" placeholder="Month-Year" onfocus="(this.type='month')">
-                    @error('available_from')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label>Age of Construction <span class="text-danger">*</span></label>
-                    <select class="form-control @error('age_of_construction') is-invalid @enderror" id="age_of_construction" name="age_of_construction">
-                      <option value="">-Select-</option>
-                      <option value="New Construction">New Construction</option>
-                      <option value="Less than 5 years">Less than 5 years</option>
-                      <option value="5 to 10 years">5 to 10 years</option>
-                      <option value="10 to 15 years">10 to 15 years</option>
-                      <option value="15 to 20 years">15 to 20 years</option>
-                      <option value="Above 20 years">Above 20 years</option>
-                    </select>
-                    @error('age_of_construction')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
                   </div>
                 </div>
                 <div class="form-row">
@@ -3892,24 +3824,45 @@ $("#suggesstion-locality").hide();
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="floor">Expected price</label>
-                        <input type="number" name="expected_price" class="form-control @error('expected_price') is-invalid @enderror" value="{{ old('expected_price') }}">
-                        @error('expected_price')
-                          <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                          </span>
-                        @enderror
+                        <label for="floor">Expected price <span class="text-danger">*</span><span class="text-danger" id="price_err"></span></label>
+                        <input type="text" name="expected_price" id="total_price" class="form-control Stylednumber @error('expected_price') is-invalid @enderror" value="{{ old('expected_price') }}" onkeyup="convertNumberToWords(this.value)">
+                        <span id="show_price" class="text-muted"></span>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="floor">Price per sq.ft.</label>
                         <input type="number" name="price_per_sq" class="form-control @error('price_per_sq') is-invalid @enderror" value="{{ old('price_per_sq') }}">
-                        @error('price_per_sq')
-                          <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                          </span>
-                        @enderror
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="show_rent" class="hidden">
+                  <div class="form-row">
+                    <div class="form-group col-md-3">
+                      <label for="">Show Price as</label>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" id="show_rent1" name="show_price_as" value="">
+                          <span id="rent_1"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" id="show_rent2" name="show_price_as" value="">
+                          <span id="rent_2"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="show_price_as" value="Call For Price">Call For Price
+                        </label>
                       </div>
                     </div>
                   </div>
@@ -3980,16 +3933,15 @@ $("#suggesstion-locality").hide();
                 <div class="form-group">
                   <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                      <a class="nav-item nav-link active" id="nav-home1-tab" data-toggle="tab" href="#nav-home1" role="tab" aria-controls="nav-home1" aria-selected="true">Exterior View</a>
-                      <a class="nav-item nav-link" id="nav-profile1-tab" data-toggle="tab" href="#nav-profile1" role="tab" aria-controls="nav-profile1" aria-selected="false">Living Room</a>
-                      <a class="nav-item nav-link" id="nav-contact1-tab" data-toggle="tab" href="#nav-contact1" role="tab" aria-controls="nav-contact1" aria-selected="false">Bedroom</a>
-                      <a class="nav-item nav-link" id="nav-about1-tab" data-toggle="tab" href="#nav-about1" role="tab" aria-controls="nav-about1" aria-selected="false">Bathrooms</a>
-                      <a class="nav-item nav-link" id="nav-kitchen1-tab" data-toggle="tab" href="#nav-kitchen1" role="tab" aria-controls="nav-kitchen1" aria-selected="false">Kitchen</a>
+                      <a class="nav-item nav-link active" id="nav-home6-tab" data-toggle="tab" href="#nav-home6" role="tab" aria-controls="nav-home6" aria-selected="true">Site View</a>
+                      <a class="nav-item nav-link" id="nav-profile6-tab" data-toggle="tab" href="#nav-profile6" role="tab" aria-controls="nav-profile6" aria-selected="false">Location Map</a>
+                      <a class="nav-item nav-link" id="nav-contact6-tab" data-toggle="tab" href="#nav-contact6" role="tab" aria-controls="nav-contact6" aria-selected="false">Master Plan</a>
+                      <a class="nav-item nav-link" id="nav-about6-tab" data-toggle="tab" href="#nav-about6" role="tab" aria-controls="nav-about6" aria-selected="false">Others</a>
                     </div>
                   </nav>
                   <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-home1" role="tabpanel" aria-labelledby="nav-home1-tab">
-                      <div id="upload_form5">
+                    <div class="tab-pane fade show active" id="nav-home6" role="tabpanel" aria-labelledby="nav-home6-tab">
+                      <div id="upload_form21">
                           <label class="filelabel p_file">
                           <div class="icon">X</div>
                           <i class="fa fa-paperclip" id="icon1">
@@ -3998,13 +3950,13 @@ $("#suggesstion-locality").hide();
                           <span class="title1">
                               Add File
                           </span>
-                          <input class="FileUpload1" id="FileInput" name="exterior_photos[]" type="file"/>
+                          <input class="FileUpload1" id="FileInput" name="site_photos[]" type="file"/>
                           <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                           </label>
                       </div>
                     </div>
-                    <div class="tab-pane fade" id="nav-profile1" role="tabpanel" aria-labelledby="nav-profile1-tab">
-                      <div id="upload_form6">
+                    <div class="tab-pane fade" id="nav-profile6" role="tabpanel" aria-labelledby="nav-profile6-tab">
+                      <div id="upload_form22">
                           <label class="filelabel p_file">
                           <div class="icon">X</div>
                           <i class="fa fa-paperclip" id="icon1">
@@ -4013,13 +3965,13 @@ $("#suggesstion-locality").hide();
                           <span class="title1">
                               Add File
                           </span>
-                          <input class="FileUpload1" id="FileInput" name="living_photos[]" type="file"/>
+                          <input class="FileUpload1" id="FileInput" name="location_photos[]" type="file"/>
                           <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                           </label>
                       </div>
                     </div>
-                    <div class="tab-pane fade" id="nav-contact1" role="tabpanel" aria-labelledby="nav-contact1-tab">
-                      <div id="upload_form7">
+                    <div class="tab-pane fade" id="nav-contact6" role="tabpanel" aria-labelledby="nav-contact6-tab">
+                      <div id="upload_form23">
                           <label class="filelabel p_file">
                           <div class="icon">X</div>
                           <i class="fa fa-paperclip" id="icon1">
@@ -4028,13 +3980,13 @@ $("#suggesstion-locality").hide();
                           <span class="title1">
                               Add File
                           </span>
-                          <input class="FileUpload1" id="FileInput" name="bedroom_photos[]" type="file"/>
+                          <input class="FileUpload1" id="FileInput" name="master_photos[]" type="file"/>
                           <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                           </label>
                       </div>
                     </div>
-                    <div class="tab-pane fade" id="nav-about1" role="tabpanel" aria-labelledby="nav-about1-tab">
-                      <div id="upload_form8">
+                    <div class="tab-pane fade" id="nav-about6" role="tabpanel" aria-labelledby="nav-about6-tab">
+                      <div id="upload_form24">
                           <label class="filelabel p_file">
                           <div class="icon">X</div>
                           <i class="fa fa-paperclip" id="icon1">
@@ -4043,87 +3995,78 @@ $("#suggesstion-locality").hide();
                           <span class="title1">
                               Add File
                           </span>
-                          <input class="FileUpload1" id="FileInput" name="bathroom_photos[]" type="file"/>
-                          <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
-                          </label>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-kitchen1" role="tabpanel" aria-labelledby="nav-kitchen1-tab">
-                      <div id="upload_form9">
-                          <label class="filelabel p_file">
-                          <div class="icon">X</div>
-                          <i class="fa fa-paperclip" id="icon1">
-                          </i>
-                          
-                          <span class="title1">
-                              Add File
-                          </span>
-                          <input class="FileUpload1" id="FileInput" name="kitchen_photos[]" type="file"/>
+                          <input class="FileUpload1" id="FileInput" name="others_photos[]" type="file"/>
                           <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                           </label>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <h6>Additional Features</h6>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-4">
-                    <label>Overlooking</label>
+                <hr>
+                <button type="button" id="showButton5" class="btn btn-primary">Continue & Next</button>
+                <div class="hidden" id="showDiv5">
+                  <div class="form-group">
+                    <h6>Additional Features</h6>
                   </div>
-                  <div class="form-group col-md-8">
-                    <div class="form-check-inline">
-                      <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" name="overlooking" value="Main Road">Main Road
-                      </label>
+                  <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label>Overlooking</label>
                     </div>
-                    <div class="form-check-inline">
-                      <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" name="overlooking" value="Not Available">Not Available
-                      </label>
+                    <div class="form-group col-md-8">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="overlooking" value="Main Road">Main Road
+                        </label>
+                      </div>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="overlooking" value="Not Available">Not Available
+                        </label>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <h6>Ownership & Approvals</h6>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="">Ownership Status</label>
-                    <select name="ownership_approval" id="ownership_approval" class="form-control @error('ownership_approval') invalid-feedback @enderror">
-                      <option value="">-Select Ownership Approval-</option>
-                      <option value="Freehold" @if(old('ownership_approval') == "Freehold") Selected @endif>Freehold</option>
-                      <option value="Leasehold" @if(old('ownership_approval') == "Leasehold") Selected @endif>Leasehold</option>
-                      <option value="Power of Attorney" @if(old('ownership_approval') == "Power of Attorney") Selected @endif>Power of Attorney</option>
-                      <option value="Co-Operative Society" @if(old('ownership_approval') == "Co-Operative Society") Selected @endif>Co-Operative Society</option>
-                    </select>
+                  <div class="form-group">
+                    <h6>Ownership & Approvals</h6>
                   </div>
-                  <div class="form-group col-md-6">
-                    <label for="">Approved By</label>
-                    <select name="approved_by" id="approved_by" class="form-control @error('approved_by') invalid-feedback @enderror">
-                      <option value="">-Select Approved By-</option>
-                      <option value="NMRDA" @if(old('approved_by') == "NMRDA") Selected @endif>NMRDA</option>
-                    </select>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="">Ownership Status</label>
+                      <select name="ownership_approval" id="ownership_approval" class="form-control @error('ownership_approval') invalid-feedback @enderror">
+                        <option value="">-Select Ownership Approval-</option>
+                        <option value="Freehold" @if(old('ownership_approval') == "Freehold") Selected @endif>Freehold</option>
+                        <option value="Leasehold" @if(old('ownership_approval') == "Leasehold") Selected @endif>Leasehold</option>
+                        <option value="Power of Attorney" @if(old('ownership_approval') == "Power of Attorney") Selected @endif>Power of Attorney</option>
+                        <option value="Co-Operative Society" @if(old('ownership_approval') == "Co-Operative Society") Selected @endif>Co-Operative Society</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="">Approved By</label>
+                      <select name="approved_by" id="approved_by" class="form-control @error('approved_by') invalid-feedback @enderror">
+                        <option value="">-Select Approved By-</option>
+                        <option value="NMRDA" @if(old('approved_by') == "NMRDA") Selected @endif>NMRDA</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <label>Description <span class="text-danger">*</span></label>
-                  <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
-                  @error('description')
-                  <span class="invalid-feedback" role="alert">
+                  <div class="form-group">
+                    <label>Description <span class="text-danger">*</span><span class="text-danger" id="description_err"></span></label>
+                    <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
+                    @error('description')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                  <div class="form-group">
+                    <label>Land Mark</label>
+                    <input type="text" class="form-control @error('land_mark') is-invalid @enderror" id="land_mark"  name="land_mark" value="{{ old('land_mark') }}">
+                    @error('land_mark')
+                    <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
-                </div>
-                <div class="form-group">
-                  <label>Land Mark</label>
-                  <input type="text" class="form-control @error('land_mark') is-invalid @enderror" id="land_mark"  name="land_mark" value="{{ old('land_mark') }}">
-                  @error('land_mark')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
+                    </span>
+                    @enderror
+                  </div>
+                  <hr>
+                  <button type="button" id="submitForm5" class="btn btn-primary">Post Your Add</button>
                 </div>
               </div>
               
@@ -4214,7 +4157,7 @@ $("#suggesstion-locality").hide();
 <!-- End Contact Single-->
 @endsection
 @section('customjs')
-<script src="{{ asset('js/image-upload.js') }}"></script>
+<script src="{{ asset('js/image-upload1.js') }}"></script>
 
 <script type=text/javascript>
 $('body').on('click', '.a', function () {
@@ -4226,10 +4169,14 @@ $('body').on('click', '.a', function () {
   {
     $("#land-form #otherChargesDiv").fadeToggle(1000);
   } 
-  // if($("#showroom-form").css("display") == "block")
-  // {
-  //   $("#showroom-form #otherChargesDiv").fadeToggle(1000);
-  // } 
+  if($("#com-shop-form").css("display") == "block")
+  {
+    $("#com-shop-form #otherChargesDiv").fadeToggle(1000);
+  }
+  if($("#agri-form").css("display") == "block")
+  {
+    $("#agri-form #otherChargesDiv").fadeToggle(1000);
+  } 
 })
 $('body').on('change', '#property_type', function () {
     var query = $(this).val();
@@ -4275,6 +4222,34 @@ $('body').on('change', '#property_type', function () {
         $('#agri-form').fadeOut();
       }, 2500);
     }
+    if((query == 52) || (query == 53))
+    {
+      var showDiv = $('.pageloader');
+      if (showDiv.is(":visible")) { return; }
+      showDiv.show();
+      setTimeout(function() {
+        showDiv.hide();
+        $('#flat-form').fadeOut();
+        $('#com-office-form').fadeOut();
+        $('#land-form').fadeOut();
+        $('#com-shop-form').fadeIn();
+        $('#agri-form').fadeOut();
+      }, 2500);
+    }
+    if((query == 59) || (query == 61) || (query == 62))
+    {
+      var showDiv = $('.pageloader');
+      if (showDiv.is(":visible")) { return; }
+      showDiv.show();
+      setTimeout(function() {
+        showDiv.hide();
+        $('#flat-form').fadeOut();
+        $('#com-office-form').fadeOut();
+        $('#land-form').fadeOut();
+        $('#com-shop-form').fadeOut();
+        $('#agri-form').fadeIn();
+      }, 2500);
+    }
 })
 $("input[name='posses_status']").change(function(){
   var posses_status = $(this).val();
@@ -4292,6 +4267,14 @@ $("input[name='posses_status']").change(function(){
       $("#land-form #possesDiv1").show();
       $("#land-form #possesDiv2").hide();
     }
+    if($("#com-shop-form").css("display") == "block"){ 
+      $("#com-shop-form #possesDiv1").show();
+      $("#com-shop-form #possesDiv2").hide();
+    }
+    if($("#agri-form").css("display") == "block"){ 
+      $("#agri-form #possesDiv1").show();
+      $("#agri-form #possesDiv2").hide();
+    }
   }
   else{
     if($("#flat-form").css("display") == "block"){
@@ -4305,6 +4288,14 @@ $("input[name='posses_status']").change(function(){
     if($("#land-form").css("display") == "block"){
       $("#land-form #possesDiv2").show(); 
       $("#land-form #possesDiv1").hide();
+    }
+    if($("#com-shop-form").css("display") == "block"){
+      $("#com-shop-form #possesDiv2").show(); 
+      $("#com-shop-form #possesDiv1").hide();
+    }
+    if($("#agri-form").css("display") == "block"){
+      $("#agri-form #possesDiv2").show(); 
+      $("#agri-form #possesDiv1").hide();
     }
   }
 })
@@ -4399,10 +4390,14 @@ function convertNumberToWords(amount) {
     { 
       $('#land-form #show_price').html(words_string);
     }
-    // if($("#showroom-form").css("display") == "block")
-    // { 
-    //   $('#showroom-form #show_price').html(words_string);
-    // }
+    if($("#com-shop-form").css("display") == "block")
+    { 
+      $('#com-shop-form #show_price').html(words_string);
+    }
+    if($("#agri-form").css("display") == "block")
+    { 
+      $('#agri-form #show_price').html(words_string);
+    }
     // return words_string;
 }
 $(document).mouseup(function (e) { 
@@ -4470,27 +4465,48 @@ $(document).mouseup(function (e) {
     } 
     }
   }
-  // if($("#showroom-form").css("display") == "block")
-  // { 
-  //   var monthly_rent = $("#showroom-form #monthly_rent").val();
-  //   // alert(monthly_rent);
-  //   if(monthly_rent != ""){
-  //   if ($(e.target).closest("#showroom-form #monthly_rent").length === 0) {
-  //     x=monthly_rent.toString();
-  //     var lastThree = x.substring(x.length-3);
-  //     var otherNumbers = x.substring(0,x.length-3);
-  //     if(otherNumbers != '')
-  //         lastThree = ',' + lastThree;
-  //     var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
-  //     $("#showroom-form #rent_1").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
-  //     $("#showroom-form #show_rent1").val('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
-  //     $("#showroom-form #rent_2").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
-  //     $("#showroom-form #show_rent2").val('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
-  //     // format.format(4800)  
-  //     $("#showroom-form #show_rent").show(1000); 
-  //   } 
-  //   }
-  // }
+  if($("#com-shop-form").css("display") == "block")
+  { 
+    var total_price = $("#com-shop-form #total_price").val();
+    // alert(monthly_rent);
+    if(total_price != ""){
+    if ($(e.target).closest("#com-shop-form #total_price").length === 0) {
+      x=total_price.toString();
+      var lastThree = x.substring(x.length-3);
+      var otherNumbers = x.substring(0,x.length-3);
+      if(otherNumbers != '')
+          lastThree = '' + lastThree;
+      var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+      $("#com-shop-form #show_rent1").val(res);
+      $("#com-shop-form #rent_1").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
+      $("#com-shop-form #rent_2").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
+      $("#com-shop-form #show_rent2").val(res+' Negotiable');
+      // format.format(4800)  
+      $("#com-shop-form #show_rent").show(1000); 
+    } 
+    }
+  }
+  if($("#agri-form").css("display") == "block")
+  { 
+    var total_price = $("#agri-form #total_price").val();
+    // alert(monthly_rent);
+    if(total_price != ""){
+    if ($(e.target).closest("#agri-form #total_price").length === 0) {
+      x=total_price.toString();
+      var lastThree = x.substring(x.length-3);
+      var otherNumbers = x.substring(0,x.length-3);
+      if(otherNumbers != '')
+          lastThree = '' + lastThree;
+      var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+      $("#agri-form #show_rent1").val(res);
+      $("#agri-form #rent_1").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
+      $("#agri-form #rent_2").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
+      $("#agri-form #show_rent2").val(res+' Negotiable');
+      // format.format(4800)  
+      $("#agri-form #show_rent").show(1000); 
+    } 
+    }
+  }
 }) 
 String.prototype.replaceAll = function(search, replacement) {
   var target = this;
@@ -4747,14 +4763,104 @@ $('body').on('click', '#showButton3', function () {
   var city = $('#search-box').val();
   var locality = $('#locality').val();
   var address = $('textarea#address').val();
-  var name_of_society = $('#com-office-form #name_of_project').val();
-  var bathroom = $("#com-office-form input[name='bathroom']:checked").val();
-  var floor_no = $('#com-office-form #floor_no').val();
-  var no_of_floor = $('#com-office-form #total_floor').val();
-  var furnishing = $("#com-office-form input[name='furnishing']:checked").val();
-  var covered_area = $('#com-office-form #covered_area').val();
-  var transaction_type = $("#com-office-form input[name='transaction_type']:checked").val();
-  var total_price = $("#com-office-form #total_price").val();
+  var any_construct = $("#land-form input[name='any_construc']:checked").val();
+  var boundary_wall = $("#land-form input[name='boundry_wall']:checked").val();
+  var plot_area = $('#land-form #plot_area').val();;
+  var transaction_type = $("#land-form input[name='transaction_type']:checked").val();
+  var total_price = $("#land-form #total_price").val();
+  if(city == '')
+  {
+    $("#city_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#city_err").fadeOut(); }, 3000);
+    $("#search-box").focus();
+    return false;
+  }
+  if(locality == '')
+  {
+    $("#locality_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#locality_err").fadeOut(); }, 3000);
+    $("#locality").focus();
+    return false;
+  }
+  if(address == '')
+  {
+    $("#address_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#address_err").fadeOut(); }, 3000);
+    $("#address").focus();
+    return false;
+  }
+  if(any_construct == null)
+  {
+    $("#construct_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#construct_err").fadeOut(); }, 3000);
+    $("#land-form input[name='any_construc']").focus();
+    return false;
+  }
+  if(boundary_wall == null)
+  {
+    $("#wall_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#wall_err").fadeOut(); }, 3000);
+    $("#land-form input[name='boundry_wall']").focus();
+    return false;
+  }
+  if(plot_area == '')
+  {
+    $("#land-form #plot_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#land-form #plot_err").fadeOut(); }, 3000);
+    $("#land-form #plot_area").focus();
+    return false;
+  }
+  if(transaction_type == null)
+  {
+    $("#land-form #trans_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#land-form #trans_err").fadeOut(); }, 3000);
+    $("#land-form input[name='transaction_type']").focus();
+    return false;
+  }
+  if(total_price == '')
+  {
+    $("#land-form #price_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#land-form #price_err").fadeOut(); }, 3000);
+    $("#land-form #total_price").focus();
+    return false;
+  }
+  else{
+    $("#showDiv3").removeClass("hidden");
+    $("#showButton3").addClass("hidden");
+  }
+})
+$('body').on('click', '#submitForm3', function () {
+  var description = $('textarea#description').val();
+  if(description == '')
+  {
+    $("#land-form #description_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#land-form #description_err").fadeOut(); }, 3000);
+    $("#land-form #description").focus();
+    return false;
+  }
+  $("#flat-form :input").prop("disabled", true);
+  $("#com-office :input").prop("disabled", true);
+  $("#com-shop-form :input").prop("disabled", true);
+  $("#agri-form :input").prop("disabled", true);
+  $("#property-sale").submit();
+});
+
+$('body').on('click', '#showButton4', function () {
+  var city = $('#search-box').val();
+  var locality = $('#locality').val();
+  var address = $('textarea#address').val();
+  var name_of_society = $('#com-shop-form #project_name').val();
+  var bathroom = $("#com-shop-form input[name='bathroom']:checked").val();
+  var floor_no = $('#com-shop-form #floor_no').val();
+  var no_of_floor = $('#com-shop-form #total_floor').val();
+  var furnishing = $("#com-shop-form input[name='furnishing']:checked").val();
+  var p_washroom = $("#com-shop-form input[name='personal_washroom']:checked").val();
+  var pantry_cafe = $("#com-shop-form input[name='pantry_cafe']:checked").val();
+  var corner_shop = $("#com-shop-form input[name='corner_shop']:checked").val();
+  var main_road = $("#com-shop-form input[name='main_road']:checked").val();
+  var plot_area = $('#com-shop-form #plot_area').val();
+  var transaction_type = $("#com-shop-form input[name='transaction_type']:checked").val();
+  var total_price = $("#com-shop-form #total_price").val();
   if(city == '')
   {
     $("#city_err").fadeIn().html("Required");
@@ -4778,78 +4884,192 @@ $('body').on('click', '#showButton3', function () {
   }
   if(name_of_society == '')
   {
-    $("#project_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#project_err").fadeOut(); }, 3000);
-    $("#com-office-form #name_of_project").focus();
+    $("#com-shop-form #project_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#com-shop-form #project_err").fadeOut(); }, 3000);
+    $("#com-shop-form #project_name").focus();
     return false;
   }
   if(bathroom == null)
   {
-    $("#bathroom_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#bathroom_err").fadeOut(); }, 3000);
-    $("#com-office-form input[name='bathroom']").focus();
+    $("#com-shop-form #bathroom_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#com-shop-form #bathroom_err").fadeOut(); }, 3000);
+    $("#com-shop-form input[name='bathroom']").focus();
     return false;
   }
   if(floor_no == '')
   {
-    $("#com-office-form #floor_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#com-office-form #floor_err").fadeOut(); }, 3000);
-    $("#com-office-form #floor_no").focus();
+    $("#com-shop-form #floor_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#com-shop-form #floor_err").fadeOut(); }, 3000);
+    $("#com-shop-form #floor_no").focus();
     return false;
   }
   if(no_of_floor == '')
   {
-    $("#com-office-form #total_floor_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#com-office-form #total_floor_err").fadeOut(); }, 3000);
-    $("#com-office-form #total_floor").focus();
+    $("#com-shop-form #total_floor_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#com-shop-form #total_floor_err").fadeOut(); }, 3000);
+    $("#com-shop-form #total_floor").focus();
     return false;
   }
   if(furnishing == null)
   {
-    $("#com-office-form #furnished_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#com-office-form #furnished_err").fadeOut(); }, 3000);
-    $("#com-office-form input[name='furnishing']").focus();
+    $("#com-shop-form #furnished_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#com-shop-form #furnished_err").fadeOut(); }, 3000);
+    $("#com-shop-form input[name='furnishing']").focus();
     return false;
   }
-  if(covered_area == '')
+  if(p_washroom == null)
   {
-    $("#com-office-form #covered_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#com-office-form #covered_err").fadeOut(); }, 3000);
-    $("#com-office-form #covered_area").focus();
+    $("#com-shop-form #p_washroom_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#com-shop-form #p_washroom_err").fadeOut(); }, 3000);
+    $("#com-shop-form input[name='personal_washroom']").focus();
+    return false;
+  }
+  if(pantry_cafe == null)
+  {
+    $("#com-shop-form #pantry_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#com-shop-form #pantry_err").fadeOut(); }, 3000);
+    $("#com-shop-form input[name='pantry_cafe']").focus();
+    return false;
+  }
+  if(corner_shop == null)
+  {
+    $("#com-shop-form #c_shop_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#com-shop-form #c_shop_err").fadeOut(); }, 3000);
+    $("#com-shop-form input[name='corner_shop']").focus();
+    return false;
+  }
+  if(main_road == null)
+  {
+    $("#com-shop-form #main_road_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#com-shop-form #main_road_err").fadeOut(); }, 3000);
+    $("#com-shop-form input[name='main_road']").focus();
+    return false;
+  }
+  if(plot_area == '')
+  {
+    $("#com-shop-form #plot_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#com-shop-form #plot_err").fadeOut(); }, 3000);
+    $("#com-shop-form #plot_area").focus();
     return false;
   }
   if(transaction_type == null)
   {
-    $("#com-office-form #trans_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#com-office-form #trans_err").fadeOut(); }, 3000);
-    $("#com-office-form input[name='transaction_type']").focus();
+    $("#com-shop-form #trans_type_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#com-shop-form #trans_type_err").fadeOut(); }, 3000);
+    $("#com-shop-form input[name='transaction_type']").focus();
     return false;
   }
   if(total_price == '')
   {
-    $("#com-office-form #price_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#com-office-form #price_err").fadeOut(); }, 3000);
-    $("#com-office-form #total_price").focus();
+    $("#com-shop-form #price_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#com-shop-form #price_err").fadeOut(); }, 3000);
+    $("#com-shop-form #total_price").focus();
     return false;
   }
   else{
-    $("#showDiv2").removeClass("hidden");
-    $("#showButton2").addClass("hidden");
+    $("#showDiv4").removeClass("hidden");
+    $("#showButton4").addClass("hidden");
   }
 })
-$('body').on('click', '#submitForm2', function () {
-  var description = $('textarea#description').val();
+$('body').on('click', '#submitForm4', function () {
+  var description = $('#com-shop-form textarea#description').val();
   if(description == '')
   {
-    $("#description_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#description_err").fadeOut(); }, 3000);
-    $("#description").focus();
+    $("#com-shop-form #description_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#com-shop-form #description_err").fadeOut(); }, 3000);
+    $("#com-shop-form #description").focus();
     return false;
   }
   $("#flat-form :input").prop("disabled", true);
   $("#land-form :input").prop("disabled", true);
-  $("#com-shop-form :input").prop("disabled", true);
+  $("#com-office-form :input").prop("disabled", true);
   $("#agri-form :input").prop("disabled", true);
+  $("#property-sale").submit();
+});
+
+$('body').on('click', '#showButton5', function () {
+  var city = $('#search-box').val();
+  var locality = $('#locality').val();
+  var address = $('textarea#address').val();
+  var boundry_wall = $("#agri-form input[name='boundry_wall']:checked").val();
+  var land_length = $('#agri-form #land_length').val();
+  var land_breadth = $('#agri-form #land_breadth').val();
+  var transaction_type = $("#agri-form input[name='transaction_type']:checked").val();
+  var total_price = $("#agri-form #total_price").val();
+  if(city == '')
+  {
+    $("#city_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#city_err").fadeOut(); }, 3000);
+    $("#search-box").focus();
+    return false;
+  }
+  if(locality == '')
+  {
+    $("#locality_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#locality_err").fadeOut(); }, 3000);
+    $("#locality").focus();
+    return false;
+  }
+  if(address == '')
+  {
+    $("#address_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#address_err").fadeOut(); }, 3000);
+    $("#address").focus();
+    return false;
+  }
+  if(boundry_wall == null)
+  {
+    $("#agri-form #wall_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#agri-form #wall_err").fadeOut(); }, 3000);
+    $("#agri-form input[name='boundry_wall']").focus();
+    return false;
+  }
+  if(land_length == '')
+  {
+    $("#agri-form #length_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#agri-form #length_err").fadeOut(); }, 3000);
+    $("#agri-form #land_length").focus();
+    return false;
+  }
+  if(land_breadth == '')
+  {
+    $("#agri-form #breadth_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#agri-form #breadth_err").fadeOut(); }, 3000);
+    $("#agri-form #land_breadth").focus();
+    return false;
+  }
+  if(transaction_type == null)
+  {
+    $("#agri-form #trans_type_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#agri-form #trans_type_err").fadeOut(); }, 3000);
+    $("#agri-form input[name='transaction_type']").focus();
+    return false;
+  }
+  if(total_price == '')
+  {
+    $("#agri-form #price_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#agri-form #price_err").fadeOut(); }, 3000);
+    $("#agri-form #total_price").focus();
+    return false;
+  }
+  else{
+    $("#showDiv5").removeClass("hidden");
+    $("#showButton5").addClass("hidden");
+  }
+})
+$('body').on('click', '#submitForm5', function () {
+  var description = $('#agri-form textarea#description').val();
+  if(description == '')
+  {
+    $("#agri-form #description_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#agri-form #description_err").fadeOut(); }, 3000);
+    $("#agri-form #description").focus();
+    return false;
+  }
+  $("#flat-form :input").prop("disabled", true);
+  $("#land-form :input").prop("disabled", true);
+  $("#com-office-form :input").prop("disabled", true);
+  $("#com-shop-form :input").prop("disabled", true);
   $("#property-sale").submit();
 });
 </script>
