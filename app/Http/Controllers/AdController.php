@@ -25,6 +25,7 @@ use App\Models\Furniture;
 use App\Models\PGHouse;
 use DB;
 use App\Models\PropertyRent;
+use App\Models\PropertySale;
 
 class AdController extends Controller
 {
@@ -1050,109 +1051,62 @@ class AdController extends Controller
         $propRent->brokerages = $request->brokerage;
         // dd($request->exterior_photos);
         if($request->hasfile('exterior_photos'))
-
-         {
-
+        {
             foreach($request->file('exterior_photos') as $file)
-
             {
-
                 $name = time().rand(1,100).'.'.$file->extension();
-
                 $file->move(public_path('adPhotos'), $name);  
-
                 $files[] = $name;  
-
             }
-            // dd($files);
             $propRent->exterior_photos = implode(",", $files);
-         }
-         
-         if($request->hasfile('living_photos'))
-
-         {
-
+        }
+        if($request->hasfile('living_photos'))
+        {
             foreach($request->file('living_photos') as $file1)
-
             {
-
                 $name1 = time().rand(1,100).'.'.$file1->extension();
-
                 $file1->move(public_path('adPhotos'), $name1);  
-
                 $files1[] = $name1;  
-
             }
-            // dd($files);
-         $propRent->living_room_photos = implode(",", $files1);
-
-         }
-         if($request->hasfile('bedroom_photos'))
-
-         {
-
+            $propRent->living_room_photos = implode(",", $files1);
+        }
+        if($request->hasfile('bedroom_photos'))
+        {
             foreach($request->file('bedroom_photos') as $file2)
-
             {
-
                 $name2 = time().rand(1,100).'.'.$file2->extension();
-
                 $file2->move(public_path('adPhotos'), $name2);  
-
                 $files2[] = $name2;  
-
             }
-            // dd($files);
-         $propRent->bedroom_photos = implode(",", $files2);
-
-         }
-
-         if($request->hasfile('bathroom_photos'))
-
-         {
-
+            $propRent->bedroom_photos = implode(",", $files2);
+        }
+        if($request->hasfile('bathroom_photos'))
+        {
             foreach($request->file('bathroom_photos') as $file3)
-
             {
-
                 $name3 = time().rand(1,100).'.'.$file3->extension();
-
                 $file3->move(public_path('adPhotos'), $name3);  
-
                 $files3[] = $name3;  
-
             }
-            // dd($files);
-         $propRent->bathroom_photos = implode(",", $files3);
-
-         }
-
-         if($request->hasfile('kitchen_photos'))
-
-         {
-
+            $propRent->bathroom_photos = implode(",", $files3);
+        }
+        if($request->hasfile('kitchen_photos'))
+        {
             foreach($request->file('kitchen_photos') as $file4)
-
             {
-
                 $name4 = time().rand(1,100).'.'.$file4->extension();
-
                 $file4->move(public_path('adPhotos'), $name4);  
-
                 $files4[] = $name4;  
-
             }
-            // dd($files);
-         $propRent->kitchen_photos = implode(",", $files4);
-
-         }
-         $propRent->tenants_bachelor = $request->tenants_bachelor;
-         $propRent->tenants_non_veg = $request->tenants_non_veg;
-         $propRent->tenants_pets = $request->tenants_pets;
-         $propRent->tenants_company_lease = $request->tenants_company_lease;
-         if($request->add_room){
-            $propRent->add_rooms = implode(",", $request->add_room);
-         }
+            $propRent->kitchen_photos = implode(",", $files4);
+        }
+        $propRent->tenants_bachelor = $request->tenants_bachelor;
+        $propRent->tenants_non_veg = $request->tenants_non_veg;
+        $propRent->tenants_pets = $request->tenants_pets;
+        $propRent->tenants_company_lease = $request->tenants_company_lease;
+        if($request->add_room){
+        $propRent->add_rooms = implode(",", $request->add_room);
+        }
          $propRent->facing = $request->facing;
          $propRent->overlooking = $request->overlooking;
          $propRent->car_parking = $request->car_parking;
@@ -1195,5 +1149,211 @@ class AdController extends Controller
          $propRent->width_facing_road_unit = $request->width_facing_road_unit;
          $propRent->save();
          return Redirect::back()->with('success', 'Post Added Successfully');
+    }
+
+    public function savePropertySale(Request $request)
+    {
+        // dd($request->all());
+        $propSale = new PropertySale();
+        $propSale->category_id = $request->category_id;
+        $propSale->sub_category_id = $request->sub_category_id;
+        $propSale->user_id = $request->user_id;
+        $propSale->type_id = $request->property_type;
+        $propSale->city = $request->city;
+        $propSale->locality = $request->locality;
+        $propSale->address = $request->address;
+        $propSale->project_name = $request->project_name;
+        $propSale->bedroom = $request->bedroom;
+        $propSale->balcony = $request->balcony;
+        $propSale->bathroom = $request->bathroom;
+        $propSale->floor_no = $request->floor_no;
+        $propSale->total_floor = $request->total_floor;
+        $propSale->furnishing = $request->furnishing;
+        $propSale->super_area = $request->super_build_up_area;
+        $propSale->super_area_unit = $request->super_area_unit;
+        $propSale->carpet_area = $request->carpet_area;
+        $propSale->carpet_unit = $request->carpet_unit;
+        $propSale->build_up_area = $request->build_up_area;
+        $propSale->build_unit = $request->build_unit;
+        $propSale->transaction_type = $request->transaction_type;
+        $propSale->possess_status = $request->posses_status;
+        $propSale->available_from = $request->available_from;
+        $propSale->age_of_construction = $request->age_of_construction;
+        $propSale->total_price = $request->total_price;
+        $propSale->price_per_sq_ft = $request->price_per_sq_ft;
+        $propSale->show_price_as = $request->show_price_as;
+        if($request->price_include)
+        {
+            $propSale->price_include = implode(",", $request->price_include);
+        }
+        $propSale->booking_token_amt = $request->booking_token_amount;
+        $propSale->maintenance_charges = $request->maintenance_charges;
+        if($request->add_room)
+        {
+            $propSale->add_rooms = implode(",", $request->add_room);
+        }
+        $propSale->facing = $request->facing;
+        $propSale->overlooking = $request->overlooking;
+        $propSale->car_parking = $request->car_parking;
+        $propSale->mul_flat_avail = $request->mul_flat_available;
+        $propSale->rera_registr_no = $request->rera_regis_no;
+        $propSale->status_of_water = $request->status_of_water;
+        $propSale->status_of_electricity = $request->status_of_electricity;
+        $propSale->flooring = $request->flooring;
+        $propSale->aminities = $request->aminities;
+        $propSale->ownership_approval = $request->ownership_approval;
+        $propSale->approved_by = $request->approved_by;
+        $propSale->description = $request->description;
+        $propSale->landmark = $request->land_mark;
+        $propSale->listed_by = $request->listed_by;
+        if($request->hasfile('exterior_photos'))
+        {
+            foreach($request->file('exterior_photos') as $file)
+            {
+                $name = time().rand(1,100).'.'.$file->extension();
+                $file->move(public_path('adPhotos'), $name);  
+                $files[] = $name;  
+            }
+            $propSale->exterior_photos = implode(",", $files);
+        }
+        if($request->hasfile('living_photos'))
+        {
+            foreach($request->file('living_photos') as $file1)
+            {
+                $name1 = time().rand(1,100).'.'.$file1->extension();
+                $file1->move(public_path('adPhotos'), $name1);  
+                $files1[] = $name1;  
+            }
+            $propSale->living_photos = implode(",", $files1);
+        }
+        if($request->hasfile('bedroom_photos'))
+        {
+            foreach($request->file('bedroom_photos') as $file2)
+            {
+                $name2 = time().rand(1,100).'.'.$file2->extension();
+                $file2->move(public_path('adPhotos'), $name2);  
+                $files2[] = $name2;  
+            }
+            $propSale->bedroom_photos = implode(",", $files2);
+        }
+        if($request->hasfile('bathroom_photos'))
+        {
+            foreach($request->file('bathroom_photos') as $file3)
+            {
+                $name3 = time().rand(1,100).'.'.$file3->extension();
+                $file3->move(public_path('adPhotos'), $name3);  
+                $files3[] = $name3;  
+            }
+            $propSale->bathroom_photos = implode(",", $files3);
+        }
+        if($request->hasfile('kitchen_photos'))
+        {
+            foreach($request->file('kitchen_photos') as $file4)
+            {
+                $name4 = time().rand(1,100).'.'.$file4->extension();
+                $file4->move(public_path('adPhotos'), $name4);  
+                $files4[] = $name4;  
+            }
+            $propSale->kitchen_photos = implode(",", $files4);
+        }
+        if($request->hasfile('common_photos'))
+        {
+            foreach($request->file('common_photos') as $file5)
+            {
+                $name5 = time().rand(1,100).'.'.$file5->extension();
+                $file5->move(public_path('adPhotos'), $name5);  
+                $files5[] = $name5;  
+            }
+            $propSale->common_photos = implode(",", $files5);
+        }
+        if($request->hasfile('master_photos'))
+        {
+            foreach($request->file('master_photos') as $file6)
+            {
+                $name6 = time().rand(1,100).'.'.$file6->extension();
+                $file6->move(public_path('adPhotos'), $name6);  
+                $files6[] = $name6;  
+            }
+            $propSale->master_photos = implode(",", $files6);
+        }
+        if($request->hasfile('location_photos'))
+        {
+            foreach($request->file('location_photos') as $file7)
+            {
+                $name7 = time().rand(1,100).'.'.$file7->extension();
+                $file7->move(public_path('adPhotos'), $name7);  
+                $files7[] = $name7;  
+            }
+            $propSale->location_photos = implode(",", $files7);
+        }
+        if($request->hasfile('others_photos'))
+        {
+            foreach($request->file('others_photos') as $file8)
+            {
+                $name8 = time().rand(1,100).'.'.$file8->extension();
+                $file8->move(public_path('adPhotos'), $name8);  
+                $files8[] = $name8;  
+            }
+            $propSale->others_photos = implode(",", $files8);
+        }
+        if($request->hasfile('site_photos'))
+        {
+            foreach($request->file('site_photos') as $file9)
+            {
+                $name9 = time().rand(1,100).'.'.$file9->extension();
+                $file9->move(public_path('adPhotos'), $name9);  
+                $files9[] = $name9;  
+            }
+            $propSale->site_photos = implode(",", $files9);
+        }
+        $propSale->rera_id = $request->rera_id;
+        $propSale->land_zone = $request->land_zone;
+        $propSale->ideal_business = $request->ideal_business;
+        $propSale->metro_station_name = $request->metro_station;
+        $propSale->prop_dist_metro = $request->distance_metro;
+        $propSale->railway_station_name = $request->railway_station;
+        $propSale->prop_dist_rly = $request->distance_railway;
+        $propSale->bus_stand_name = $request->bus_stand;
+        $propSale->prop_dist_bus = $request->distance_bus;
+        $propSale->airport_name = $request->airport;
+        $propSale->prop_dist_airport = $request->distance_airport;
+        $propSale->shopping_mall_name = $request->shopping_mall;
+        $propSale->prop_dist_mall = $request->distance_mall;
+        $propSale->office_name = $request->office_complex;
+        $propSale->prop_dist_office = $request->distance_office;
+        $propSale->personal_washroom = $request->personal_washroom;
+        $propSale->pantry_cafe = $request->pantry_cafe;
+        $propSale->covered_area = $request->covered_area;
+        $propSale->covered_unit = $request->covered_unit;
+        $propSale->plot_area = $request->plot_area;
+        $propSale->plot_unit = $request->plot_unit;
+        $propSale->current_lease_out = $request->lease_out;
+        $propSale->assured_return = $request->assure_return;
+        $propSale->other_charges = $request->other_charges;
+        $propSale->stamp_duty = $request->stamp_duty;
+        $propSale->m_charges_per = $request->m_charges_per;
+        $propSale->brokerage = $request->brokerage;
+        $propSale->lift_in_tower = $request->lift_in_tower;
+        $propSale->office_floor = $request->office_floor;
+        $propSale->mul_unit_avail = $request->mul_unit_avail;
+        $propSale->building_class = $request->building_class;
+        $propSale->leed_certificate = $request->leed_certification;
+        $propSale->no_open_side = $request->no_of_open_side;
+        $propSale->wt_road_facing_plot = $request->width_of_road;
+        $propSale->any_construction = $request->any_construc;
+        $propSale->boundry_wall = $request->boundry_wall;
+        $propSale->plot_length = $request->plot_length;
+        $propSale->plot_width = $request->plot_width;
+        $propSale->corner_plot = $request->corner_plot;
+        $propSale->main_road_facing = $request->main_road;
+        $propSale->entrance_width = $request->entrance_width;
+        $propSale->entrance_unit = $request->entrance_unit;
+        $propSale->land_length = $request->land_length;
+        $propSale->l_length_unit = $request->land_length_unit;
+        $propSale->land_breadth = $request->land_breadth;
+        $propSale->l_breadth_unit = $request->land_breadth_unit;
+        $propSale->save();
+        return Redirect::back()->with('success', 'Post Added Successfully!');
+
     }
 }

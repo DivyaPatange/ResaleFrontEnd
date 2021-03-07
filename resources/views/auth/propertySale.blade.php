@@ -302,7 +302,7 @@ $("#suggesstion-locality").hide();
         <div class="row">
           <div class="col-md-8">
             <!--flat appartment form start-->
-            <form method="POST" action="{{ url('save-real-estate-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;" id="property-sale">
+            <form method="POST" action="{{ url('save-property-sale-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;" id="property-sale">
             @csrf 
               <input type="hidden" name="sub_category_id"  value="{{ $subCategory->id }}">
               <input type="hidden" name="category_id" value="{{ $category->id }}">
@@ -361,8 +361,8 @@ $("#suggesstion-locality").hide();
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label>Name of Society<span class="text-danger">*<span><span style="color:red" id="society_err"></span></label>
-                    <input  type="text" id="name_of_society" class="form-control @error('name_of_society') is-invalid @enderror" name="name_of_society">
-                    @error('name_of_society')
+                    <input  type="text" id="name_of_society" class="form-control @error('project_name') is-invalid @enderror" name="project_name">
+                    @error('project_name')
                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                       </span>
@@ -475,7 +475,7 @@ $("#suggesstion-locality").hide();
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="floor">Total Floor<span class="text-danger">*</span><span style="color:red" id="total_floor_err"></span></label>
-                        <select name="no_of_floor" id="total_floor" class="form-control @error('no_of_floor') is-invalid @enderror">
+                        <select name="total_floor" id="total_floor" class="form-control @error('no_of_floor') is-invalid @enderror">
                           <option value="">-Select-</option>
                           @for($i=1; $i <= 200; $i++)
                           <option value="{{ $i }}">{{ $i }}</option>
@@ -1158,8 +1158,8 @@ $("#suggesstion-locality").hide();
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="">Name of Project/ Office Complex <span class="text-danger">*</span><span class="text-danger" id="project_err"></span></label>
-                    <input type="text" class="form-control @error('name_of_project') is-invalid @enderror" id="name_of_project"  name="name_of_project" >
-                    @error('name_of_project')
+                    <input type="text" class="form-control @error('project_name') is-invalid @enderror" id="name_of_project"  name="project_name" >
+                    @error('project_name')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                     </span>
@@ -1365,7 +1365,7 @@ $("#suggesstion-locality").hide();
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="floor">Total Floor <span class="text-danger">*</span><span class="text-danger" id="total_floor_err"></span></label>
-                        <select name="no_of_floor" id="total_floor" class="form-control @error('no_of_floor') is-invalid @enderror">
+                        <select name="total_floor" id="total_floor" class="form-control @error('no_of_floor') is-invalid @enderror">
                           <option value="">-Select-</option>
                           @for($i=1; $i <= 200; $i++)
                           <option value="{{ $i }}">{{ $i }}</option>
@@ -1621,12 +1621,12 @@ $("#suggesstion-locality").hide();
                   <div class="form-group col-md-6">
                     <div class="form-check-inline">
                       <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="rent_out" value="Yes">Yes
+                        <input type="radio" class="form-check-input" name="lease_out" value="Yes">Yes
                       </label>
                     </div>
                     <div class="form-check-inline">
                       <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="rent_out" value="No">No
+                        <input type="radio" class="form-check-input" name="lease_out" value="No">No
                       </label>
                     </div>
                   </div>
@@ -1668,8 +1668,8 @@ $("#suggesstion-locality").hide();
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="floor">Price per sq.ft.</label>
-                        <input type="number" name="price_per_sq" class="form-control @error('price_per_sq') is-invalid @enderror" value="{{ old('price_per_sq') }}">
-                        @error('price_per_sq')
+                        <input type="text" name="price_per_sq_ft" class="form-control Stylednumber @error('price_per_sq_ft') is-invalid @enderror" value="{{ old('price_per_sq_ft') }}">
+                        @error('price_per_sq_ft')
                           <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                           </span>
@@ -1773,7 +1773,7 @@ $("#suggesstion-locality").hide();
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="">Maintenance Charges</label>
-                    <input type="number" name="maintenance_charge" class="form-control">
+                    <input type="number" name="maintenance_charges" class="form-control">
                   </div>
                   <div class="form-group col-md-6">
                     <label for="">Per</label>
@@ -2412,7 +2412,7 @@ $("#suggesstion-locality").hide();
                 </div>
                 <div class="form-row">
                   <div class="col-md-4">
-                    <label for="">Ploat Width</label>
+                    <label for="">Plot Width</label>
                   </div>
                   <div class="form-group col-md-8">
                     <input type="number" class="form-control @error('plot_width') invalid-feedback @enderror" name="plot_width" value="{{ old('plot_width') }}" placeholder="yrd">
@@ -2455,14 +2455,14 @@ $("#suggesstion-locality").hide();
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="floor">Expected price<span class="text-danger">*</span><span class="text-danger" id="price_err"></span></label>
-                        <input type="text" id="total_price" name="expected_price" class="form-control Stylednumber" onkeyup="convertNumberToWords(this.value)">
+                        <input type="text" id="total_price" name="total_price" class="form-control Stylednumber" onkeyup="convertNumberToWords(this.value)">
                         <span id="show_price" class="text-muted"></span>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="">Price per Sq.Ft.</label>
-                        <input type="number" name="price_per_sq" class="form-control @error('price_per_sq') is-invalid @enderror" value="{{ old('price_per_sq') }}">
+                        <input type="number" name="price_per_sq_ft" class="form-control @error('price_per_sq') is-invalid @enderror" value="{{ old('price_per_sq') }}">
                       </div>
                     </div>
                   </div>
@@ -2686,6 +2686,25 @@ $("#suggesstion-locality").hide();
                     </span>
                     @enderror
                   </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label for="">Listed By</label>
+                    </div>
+                    <div class="form-group col-md-8">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="" name="listed_by" value="Builder">
+                        <label class="form-check-label" for="">Builder</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="" name="listed_by" value="Owner">
+                        <label class="form-check-label" for="">Owner</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="" name="listed_by" value="Agent">
+                        <label class="form-check-label" for="">Agent</label>
+                      </div>
+                    </div>
+                  </div>
                   <hr>
                   <button type="button" id="submitForm3" class="btn btn-primary">Post Your Add</button>
                 </div>
@@ -2907,15 +2926,15 @@ $("#suggesstion-locality").hide();
                     </div>
                     <div class="col-md-6">
                       <div class="switch-field">
-                        <input type="radio"  name="bathroom" id="bath15" value="1" @if(old('washroom') == "1") checked @endif>
+                        <input type="radio"  name="bathroom" id="bath15" value="1" @if(old('bathroom') == "1") checked @endif>
                         <label for="bath15">1</label>
-                        <input type="radio"  name="bathroom" id="bath16" value="2" @if(old('washroom') == "2") checked @endif>
+                        <input type="radio"  name="bathroom" id="bath16" value="2" @if(old('bathroom') == "2") checked @endif>
                         <label for="bath16">2</label>
-                        <input type="radio" type="radio" name="bathroom" id="bath17" value="3" @if(old('washroom') == "3") checked @endif>
+                        <input type="radio" type="radio" name="bathroom" id="bath17" value="3" @if(old('bathroom') == "3") checked @endif>
                         <label for="bath17">3</label>
-                        <input type="radio" type="radio" name="bathroom" id="bath18" value="4" @if(old('washroom') == "4") checked @endif>
+                        <input type="radio" type="radio" name="bathroom" id="bath18" value="4" @if(old('bathroom') == "4") checked @endif>
                         <label for="bath18">4</label>
-                        <input type="radio" type="radio" name="bathroom" id="bath19" value="4+" @if(old('washroom') == "4+") checked @endif>
+                        <input type="radio" type="radio" name="bathroom" id="bath19" value="4+" @if(old('bathroom') == "4+") checked @endif>
                         <label for="bath19">4+</label>
                       </div>
                     </div>
@@ -3168,12 +3187,12 @@ $("#suggesstion-locality").hide();
                   <div class="form-group col-md-6">
                     <div class="form-check-inline">
                       <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="rent_out" value="Yes">Yes
+                        <input type="radio" class="form-check-input" name="lease_out" value="Yes">Yes
                       </label>
                     </div>
                     <div class="form-check-inline">
                       <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="rent_out" value="No">No
+                        <input type="radio" class="form-check-input" name="lease_out" value="No">No
                       </label>
                     </div>
                   </div>
@@ -3203,9 +3222,9 @@ $("#suggesstion-locality").hide();
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="">Expected price<span class="text-danger">*</span><span class="text-danger" id="price_err"></span></label>
-                        <input type="text" name="expected_price" class="form-control Stylednumber @error('expected_price') is-invalid @enderror" id="total_price" value="{{ old('expected_price') }}" onkeyup="convertNumberToWords(this.value)">
+                        <input type="text" name="total_price" class="form-control Stylednumber @error('expected_price') is-invalid @enderror" id="total_price" value="{{ old('expected_price') }}" onkeyup="convertNumberToWords(this.value)">
                         <span id="show_price" class="text-muted"></span>
-                        @error('expected_price')
+                        @error('total_price')
                           <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                           </span>
@@ -3215,7 +3234,7 @@ $("#suggesstion-locality").hide();
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="floor">Price per sq.ft.</label>
-                        <input type="number" name="price_per_sq" class="form-control @error('price_per_sq') is-invalid @enderror" value="{{ old('price_per_sq') }}">
+                        <input type="number" name="price_per_sq_ft" class="form-control @error('price_per_sq') is-invalid @enderror" value="{{ old('price_per_sq') }}">
                         @error('price_per_sq')
                           <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -3315,7 +3334,7 @@ $("#suggesstion-locality").hide();
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="">Maintenance Charges</label>
-                    <input type="number" name="maintenance_charge" class="form-control">
+                    <input type="number" name="maintenance_charges" class="form-control">
                   </div>
                   <div class="form-group col-md-6">
                     <label for="">Per</label>
@@ -3346,26 +3365,6 @@ $("#suggesstion-locality").hide();
                       <option value="4 %">4 %</option>
                       <option value="5 %">5 %</option>
                     </select>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="">Booking Tokan Amount</label>
-                    <input type="number" name="booking_amount_charges" class="form-control @error('booking_amount_charges') invalid-feedback @enderror" value="{{ old('booking_amount_charges') }}">
-                    @error('booking_amount_charges')
-                      <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                      </span>
-                    @enderror
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="">Maintenance Charges</label>
-                    <input type="number" name="maintenance_charges" class="form-control @error('maintenance_charges') invalid-feedback @enderror" value="{{ old('maintenance_charges') }}">
-                    @error('maintenance_charges')
-                      <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                      </span>
-                    @enderror
                   </div>
                 </div>
                 <hr>
@@ -3700,6 +3699,25 @@ $("#suggesstion-locality").hide();
                     </span>
                     @enderror
                   </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label for="">Listed By</label>
+                    </div>
+                    <div class="form-group col-md-8">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="" name="listed_by" value="Builder">
+                        <label class="form-check-label" for="">Builder</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="" name="listed_by" value="Owner">
+                        <label class="form-check-label" for="">Owner</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="" name="listed_by" value="Agent">
+                        <label class="form-check-label" for="">Agent</label>
+                      </div>
+                    </div>
+                  </div>
                   <hr>
                   <button type="button" id="submitForm4" class="btn btn-primary">Post Your Add</button>
                 </div>
@@ -3807,12 +3825,12 @@ $("#suggesstion-locality").hide();
                   <div class="form-group col-md-6">
                     <div class="form-check-inline">
                       <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="rent_out" value="Yes">Yes
+                        <input type="radio" class="form-check-input" name="lease_out" value="Yes">Yes
                       </label>
                     </div>
                     <div class="form-check-inline">
                       <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="rent_out" value="No">No
+                        <input type="radio" class="form-check-input" name="lease_out" value="No">No
                       </label>
                     </div>
                   </div>
@@ -3825,14 +3843,14 @@ $("#suggesstion-locality").hide();
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="floor">Expected price <span class="text-danger">*</span><span class="text-danger" id="price_err"></span></label>
-                        <input type="text" name="expected_price" id="total_price" class="form-control Stylednumber @error('expected_price') is-invalid @enderror" value="{{ old('expected_price') }}" onkeyup="convertNumberToWords(this.value)">
+                        <input type="text" name="total_price" id="total_price" class="form-control Stylednumber @error('expected_price') is-invalid @enderror" value="{{ old('expected_price') }}" onkeyup="convertNumberToWords(this.value)">
                         <span id="show_price" class="text-muted"></span>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="floor">Price per sq.ft.</label>
-                        <input type="number" name="price_per_sq" class="form-control @error('price_per_sq') is-invalid @enderror" value="{{ old('price_per_sq') }}">
+                        <input type="number" name="price_per_sq_ft" class="form-control @error('price_per_sq') is-invalid @enderror" value="{{ old('price_per_sq') }}">
                       </div>
                     </div>
                   </div>
@@ -4015,12 +4033,12 @@ $("#suggesstion-locality").hide();
                     <div class="form-group col-md-8">
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input" name="overlooking" value="Main Road">Main Road
+                          <input type="radio" class="form-check-input" name="overlooking" value="Main Road">Main Road
                         </label>
                       </div>
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input" name="overlooking" value="Not Available">Not Available
+                          <input type="radio" class="form-check-input" name="overlooking" value="Not Available">Not Available
                         </label>
                       </div>
                     </div>
@@ -4064,6 +4082,25 @@ $("#suggesstion-locality").hide();
                       <strong>{{ $message }}</strong>
                     </span>
                     @enderror
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label for="">Listed By</label>
+                    </div>
+                    <div class="form-group col-md-8">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="" name="listed_by" value="Builder">
+                        <label class="form-check-label" for="">Builder</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="" name="listed_by" value="Owner">
+                        <label class="form-check-label" for="">Owner</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="" name="listed_by" value="Agent">
+                        <label class="form-check-label" for="">Agent</label>
+                      </div>
+                    </div>
                   </div>
                   <hr>
                   <button type="button" id="submitForm5" class="btn btn-primary">Post Your Add</button>
@@ -4180,7 +4217,7 @@ $('body').on('click', '.a', function () {
 })
 $('body').on('change', '#property_type', function () {
     var query = $(this).val();
-    if(query == 44)
+    if(query == 57)
     {
       var showDiv = $('.pageloader');
       if (showDiv.is(":visible")) { return; }
@@ -4194,7 +4231,7 @@ $('body').on('change', '#property_type', function () {
         $('#agri-form').fadeOut();
       }, 2500);
     }
-    if(query == 50)
+    if(query == 60)
     {
       var showDiv = $('.pageloader');
       if (showDiv.is(":visible")) { return; }
@@ -4208,7 +4245,7 @@ $('body').on('change', '#property_type', function () {
         $('#agri-form').fadeOut();
       }, 2500);
     }
-    if(query == 56)
+    if(query == 70)
     {
       var showDiv = $('.pageloader');
       if (showDiv.is(":visible")) { return; }
@@ -4222,7 +4259,7 @@ $('body').on('change', '#property_type', function () {
         $('#agri-form').fadeOut();
       }, 2500);
     }
-    if((query == 52) || (query == 53))
+    if((query == 58) || (query == 67))
     {
       var showDiv = $('.pageloader');
       if (showDiv.is(":visible")) { return; }
@@ -4236,7 +4273,7 @@ $('body').on('change', '#property_type', function () {
         $('#agri-form').fadeOut();
       }, 2500);
     }
-    if((query == 59) || (query == 61) || (query == 62))
+    if((query == 73) || (query == 75) || (query == 76))
     {
       var showDiv = $('.pageloader');
       if (showDiv.is(":visible")) { return; }
@@ -4745,19 +4782,22 @@ $('body').on('click', '#showButton2', function () {
   }
 })
 $('body').on('click', '#submitForm2', function () {
-  var description = $('textarea#description').val();
+  var description = $('#com-office-form textarea#description').val();
+  // alert(description);
   if(description == '')
   {
-    $("#description_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#description_err").fadeOut(); }, 3000);
-    $("#description").focus();
+    $("#com-office-form #description_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#com-office-form #description_err").fadeOut(); }, 3000);
+    $("#com-office-form #description").focus();
     return false;
   }
+  else{
   $("#flat-form :input").prop("disabled", true);
   $("#land-form :input").prop("disabled", true);
   $("#com-shop-form :input").prop("disabled", true);
   $("#agri-form :input").prop("disabled", true);
   $("#property-sale").submit();
+  }
 });
 $('body').on('click', '#showButton3', function () {
   var city = $('#search-box').val();
@@ -4765,7 +4805,7 @@ $('body').on('click', '#showButton3', function () {
   var address = $('textarea#address').val();
   var any_construct = $("#land-form input[name='any_construc']:checked").val();
   var boundary_wall = $("#land-form input[name='boundry_wall']:checked").val();
-  var plot_area = $('#land-form #plot_area').val();;
+  var plot_area = $('#land-form #plot_area').val();
   var transaction_type = $("#land-form input[name='transaction_type']:checked").val();
   var total_price = $("#land-form #total_price").val();
   if(city == '')
@@ -4830,7 +4870,7 @@ $('body').on('click', '#showButton3', function () {
   }
 })
 $('body').on('click', '#submitForm3', function () {
-  var description = $('textarea#description').val();
+  var description = $('#land-form textarea#description').val();
   if(description == '')
   {
     $("#land-form #description_err").fadeIn().html("Required");
@@ -4838,11 +4878,13 @@ $('body').on('click', '#submitForm3', function () {
     $("#land-form #description").focus();
     return false;
   }
+  else{
   $("#flat-form :input").prop("disabled", true);
   $("#com-office :input").prop("disabled", true);
   $("#com-shop-form :input").prop("disabled", true);
   $("#agri-form :input").prop("disabled", true);
   $("#property-sale").submit();
+  }
 });
 
 $('body').on('click', '#showButton4', function () {
@@ -4980,11 +5022,13 @@ $('body').on('click', '#submitForm4', function () {
     $("#com-shop-form #description").focus();
     return false;
   }
+  else{
   $("#flat-form :input").prop("disabled", true);
   $("#land-form :input").prop("disabled", true);
   $("#com-office-form :input").prop("disabled", true);
   $("#agri-form :input").prop("disabled", true);
   $("#property-sale").submit();
+  }
 });
 
 $('body').on('click', '#showButton5', function () {
@@ -5066,11 +5110,13 @@ $('body').on('click', '#submitForm5', function () {
     $("#agri-form #description").focus();
     return false;
   }
+  else{
   $("#flat-form :input").prop("disabled", true);
   $("#land-form :input").prop("disabled", true);
   $("#com-office-form :input").prop("disabled", true);
   $("#com-shop-form :input").prop("disabled", true);
   $("#property-sale").submit();
+  }
 });
 </script>
 @endsection
