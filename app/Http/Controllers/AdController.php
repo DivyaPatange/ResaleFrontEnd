@@ -72,7 +72,7 @@ class AdController extends Controller
                 $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 return view('auth.spareParts', compact('subCategory', 'type', 'state', 'category'));
             }
-            if(($subCategory->sub_category == "Sales & Marketing") || ($subCategory->sub_category == "Data Entry & Back Office Executive"))
+            if(($subCategory->sub_category == "Part time Jobs") || ($subCategory->sub_category == "Full Time Jobs") || ($subCategory->sub_category == "Internship") || ($subCategory->sub_category == "Freelancer") || ($subCategory->sub_category == "Work Abroad") || ($subCategory->sub_category == "Contract Jobs"))
             {
                 $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 return view('auth.jobs', compact('subCategory', 'brand', 'state', 'category'));
@@ -162,6 +162,12 @@ class AdController extends Controller
         $locality = DB::table('localities')->where("city_id", $request->city_id)
         ->pluck("locality","id");
         return response()->json($locality);
+    }
+
+    public function getSubRoleList(Request $request)
+    {
+        $subRole = DB::table('sub_roles')->where('role_id', $request->role_id)->pluck("sub_role", "id");
+        return response()->json($subRole);
     }
 
     public function getCarVarient(Request $request)
@@ -677,6 +683,8 @@ class AdController extends Controller
             'mobile_no' => 'required',
             'job_title' => 'required',
             'job_type' => 'required',
+            'role' => 'required',
+            'sub_role' => 'required',
             'salary_period' => 'required',
             'company_name' => 'required',
             'job_description' => 'required',
@@ -686,11 +694,13 @@ class AdController extends Controller
             'pin_code' => 'required',
             'address' => 'required',
         ]);
+        // dd($request->job_type);
         $job = new Job();
         $job->job_title = $request->job_title;
-        $job->job_type = $request->job_type;
+        $job->sub_category_id = $request->job_type;
+        $job->role_id = $request->role;
+        $job->sub_role_id = implode(",", $request->sub_role);
         $job->salary_period = $request->salary_period;
-        $job->position = $request->position;
         $job->min_monthly_salary = $request->min_monthly_salary;
         $job->max_monthly_salary = $request->max_monthly_salary;
         $job->min_experience = $request->min_experience; 
@@ -727,7 +737,6 @@ class AdController extends Controller
         $job->email = $request->email;
         $job->mobile_no = $request->mobile_no;
         $job->category_id = $request->category_id;
-        $job->sub_category_id = $request->sub_category_id;
         $job->save();
         return redirect()->route('job.post.ad', $job->id)->with('success', 'Job Post Added Successfully!');
     }    

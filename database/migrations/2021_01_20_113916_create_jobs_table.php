@@ -22,7 +22,10 @@ class CreateJobsTable extends Migration
             $table->unsignedInteger('sub_category_id');
             $table->foreign('sub_category_id')->references('id')->on('sub_categories');
             $table->string('job_title')->nullable();
-            $table->string('job_type')->nullable();
+            $table->unsignedInteger('role_id')->nullable();
+            $table->foreign('role_id')->references('id')->on('roles');
+            $table->unsignedInteger('sub_role_id')->nullable();
+            $table->foreign('sub_role_id')->references('id')->on('sub_roles');
             $table->text('salary_period')->nullable();
             $table->string('position')->nullable();
             $table->string('min_monthly_salary')->nullable();

@@ -5118,5 +5118,12 @@ $('body').on('click', '#submitForm5', function () {
   $("#property-sale").submit();
   }
 });
+function selectOnlyThis(id){
+  var myCheckbox = document.getElementsByName("myCheckbox");
+  Array.prototype.forEach.call(myCheckbox,function(el){
+  	el.checked = false;
+  });
+  id.checked = true;
+} 
 </script>
 @endsection

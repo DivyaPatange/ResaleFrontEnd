@@ -2,7 +2,10 @@
 @section('title', 'Jpbs')
 @section('customcss')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
+<link rel="stylesheet" href= 
+"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css"> 
+  
+<!-- <script src= "https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"> </script>  -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
 .myimg
@@ -81,11 +84,13 @@
       <div class="col-md-12">
         <div class="title-single-box">
           <h1 class="title-single">The Best Way To Sell Your {{ $subCategory->sub_category }}</h1>
-          <span class="color-text-a">Resale99 Makes Selling A Car An Easy,Guaranteed Purchase. Free Paperwork. Free RC Transfer. Free Online Car Valuation. Hassle Free Selling. Free Ownership Transfer. Free Valuation in 10 Sec. Instant Payment. Book An Appointment. Instant Valuation.</span>
+          <!--<span class="color-text-a">Resale99 Makes Selling A Car An Easy,Guaranteed Purchase. Free Paperwork. Free RC Transfer. Free Online Car Valuation. Hassle Free Selling. Free Ownership Transfer. Free Valuation in 10 Sec. Instant Payment. Book An Appointment. Instant Valuation.</span>-->
         </div>
       </div>
     </div>
+    @include('auth.auth_layout.changeCategory')
   </div>
+  
 </section>
 <!-- End Intro Single-->
 <!-- ======= Contact Single ======= -->
@@ -107,7 +112,6 @@
           <div class="col-md-8">
             <form method="POST" action="{{ url('save-jobs-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
             @csrf 
-              <input type="hidden" name="sub_category_id"  value="{{ $subCategory->id }}">
               <input type="hidden" name="category_id" value="{{ $category->id }}">
               <div class="form-row">
                 <div class="form-group col-md-6">
@@ -119,20 +123,52 @@
                   </span>
                   @enderror
                 </div>
+                
+                <div class="form-group col-md-12">
+                    <label>Job Type</label>
+                    @error('job_type')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+                <?php 
+                    $subCategories = DB::table('sub_categories')->where('category_id', $category->id)->get();                    
+                ?>
+                <div class="form-group col-md-12">
+                    @foreach($subCategories as $s)
+                    <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="checkbox" name="job_type" class="form-check-input" value="{{ $s->id }}" @if($s->id == $subCategory->id) Checked @endif onclick="selectOnlyThis(this)">{{ $s->sub_category }}
+                      </label>
+                    </div>
+                    @endforeach
+                </div>
+                <?php 
+                    $roles = DB::table('roles')->where('status', 1)->get();                    
+                ?>
                 <div class="form-group col-md-6">
-                  <label>Job Type<span class="text-danger">*<span></label>
-                  <select id="job_type" class="form-control @error('job_type') is-invalid @enderror" name="job_type">
-                    <option value="">Choose Job Type...</option>
-                    <option value="Contract" @if(old('job_title') == "Contract") Selected @endif>Contract</option>
-                    <option value="Full Time" @if(old('job_title') == "Full Time") Selected @endif>Full Time</option>
-                    <option value="Part Time" @if(old('job_title') == "Part Time") Selected @endif>Part Time</option>
-                    <option value="Work From Home" @if(old('job_title') == "Work From Home") Selected @endif>Work From Home</option>
-                    <option value="Internship" @if(old('job_title') == "Internship") Selected @endif>Internship</option>
-                    <option value="Work Abroad" @if(old('job_title') == "Work Abroad") Selected @endif>Work Abroad</option>
+                  <label>Role</label>
+                  <select name="role" id="role" class="form-control @error('role') is-invalid @enderror">
+                    <option value="">-Select Role-</option>
+                    @foreach($roles as $r)
+                    <option value="{{ $r->id }}">{{ $r->role_name }}</option>
+                    @endforeach
                   </select>
-                  @error('job_type')
+                  @error('role')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Sub Role</label>
+                  <select name="sub_role[]" id="sub_role" class="form-control mul-select @error('sub_role') is-invalid @enderror" multiple="true">
+                    
+                  </select>
+                  @error('sub_role')
                   <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
+                      <strong>{{ $message }}</strong>
                   </span>
                   @enderror
                 </div>
@@ -152,15 +188,7 @@
                     @enderror
                 </div>
                 <div class="form-group col-md-6">
-                    <label>Position (Role)<span class="text-danger">*<span></label>
-                    <select id="position" class="form-control @error('position') is-invalid @enderror" name="position">
-                        <option value="">-Select Position-</option>
-                    </select>
-                    @error('position')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
+                    
                 </div>
               </div>
               <div class="form-group">
@@ -241,17 +269,19 @@
                 <label>Photos <span class="text-danger">*</span></label>
               </div>
               <div id="upload_form">
+                  @for($i=1; $i < 13; $i++)
                 <label class="filelabel p_file">
                   <div class="icon">X</div>
-                  <i class="fa fa-paperclip" id="icon1">
+                  <i class="fa fa-paperclip" id="icon{{ $i }}">
                   </i>
                   
-                  <span class="title1">
+                  <span class="title{{ $i }}">
                       Add File
                   </span>
-                  <input class="FileUpload1" id="FileInput" name="photos[]" type="file"/>
-                  <img  id="frame1" class="hidden" style="max-width: 90px; max-height: 70px;">
+                  <input class="FileUpload{{ $i }}" id="FileInput" name="photos[]" type="file"/>
+                  <img  id="frame{{ $i }}" class="hidden" style="max-width: 90px; max-height: 70px;">
                 </label>
+                @endfor
               </div>
               @error('photos')
                   <span class="text-danger" role="alert">
@@ -329,6 +359,17 @@
                   </span>
                   @enderror
                 </div>
+                
+                
+                 <div class="form-group col-md-6">
+                  <label>Address</label><span class="text-danger">*</span></label>
+                  <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
+                  @error('address')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </div>
                 <div class="form-group col-md-6">
                   <label>Pin Code</label><span class="text-danger">*</span></label>
                   <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code" value="{{ old('pin_code') }}">
@@ -338,15 +379,7 @@
                   </span>
                   @enderror
                 </div>
-                <div class="form-group col-md-6">
-                  <label>Address</label><span class="text-danger">*</span></label>
-                  <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
-                  @error('address')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
-                </div>
+               
               </div>
               <button type="submit" class="btn btn-primary">Post Your Add</button>
             </form>
@@ -509,6 +542,7 @@ function removeField(){
 }
 </script>
 
+<script src= "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"> </script> 
 <script type=text/javascript>
  $('#accessory_type').change(function(){
   var typeID = $(this).val();  
@@ -584,5 +618,45 @@ function removeField(){
     $("#locality").empty();
   }   
   });
+
+
+  $('#role').change(function(){
+  var roleID = $(this).val();  
+//   alert(brandID);
+  if(roleID){
+    $.ajax({
+      type:"GET",
+      url:"{{url('/get-subrole-list')}}?role_id="+roleID,
+      success:function(res){        
+      if(res){
+        $("#sub_role").empty();
+        $("#sub_role").append('<option>Select Sub Role</option>');
+        $.each(res,function(key,value){
+          $("#sub_role").append('<option value="'+key+'">'+value+'</option>');
+        });
+      
+      }else{
+        $("#sub_role").empty();
+      }
+      }
+    });
+  }else{
+    $("#sub_role").empty();
+  }   
+  });
+
+  $(document).ready(function() { 
+            $(".mul-select").select2({ 
+                placeholder: "Select Sub Role", 
+                tags: true, 
+            }); 
+        }) 
+  function selectOnlyThis(id){
+  var myCheckbox = document.getElementsByName("job_type");
+  Array.prototype.forEach.call(myCheckbox,function(el){
+  	el.checked = false;
+  });
+  id.checked = true;
+} 
 </script>
 @endsection
