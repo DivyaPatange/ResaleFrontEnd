@@ -132,7 +132,6 @@
                 <div class="form-group col-md-6">
                   <label>Size<span class="text-danger">*<span></label>
                   <select id="size" class="form-control @error('size') is-invalid @enderror" name="size">
-                    <option value="">Choose Size...</option>
                   </select>
                   @error('size')
                   <span class="invalid-feedback" role="alert">
@@ -523,28 +522,28 @@ function removeField(){
 </script>
 
 <script type=text/javascript>
- $('#accessory_type').change(function(){
+ $('#clothing_type').change(function(){
   var typeID = $(this).val();  
 //   alert(brandID);
   if(typeID){
     $.ajax({
       type:"GET",
-      url:"{{url('/get-brand-list')}}?type_id="+typeID,
+      url:"{{url('/get-size-list')}}?type_id="+typeID,
       success:function(res){        
       if(res){
-        $("#brand_name").empty();
-        $("#brand_name").append('<option value="">Choose Brand...</option>');
+        $("#size").empty();
+        $("#size").append('<option value="">Choose Size...</option>');
         $.each(res,function(key,value){
-          $("#brand_name").append('<option value="'+key+'" >'+value+'</option>');
+          $("#size").append('<option value="'+key+'" >'+value+'</option>');
         });
       
       }else{
-        $("#brand_name").empty();
+        $("#size").empty();
       }
       }
     });
   }else{
-    $("#brand_name").empty();
+    $("#size").empty();
   }   
   });
 

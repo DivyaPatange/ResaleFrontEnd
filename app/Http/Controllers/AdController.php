@@ -150,6 +150,13 @@ class AdController extends Controller
         return response()->json($model);
     }
 
+    public function getSizeList(Request $request)
+    {
+        $size = DB::table('sizes')->where('type_id', $request->type_id)->where('status', 1)
+        ->pluck("size", "id");
+        return response()->json($size);
+    }
+
     public function getCityList(Request $request)
     {
         $city = City::where("state_id", $request->state_id)->where('status', 1)
