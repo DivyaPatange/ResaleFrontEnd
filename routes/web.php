@@ -81,6 +81,7 @@ Route::get('/get-city-list', [AdController::class, 'getCityList']);
 Route::get('/get-locality-list', [AdController::class, 'getLocalityList']);
 Route::get('/get-subrole-list', [AdController::class, 'getSubRoleList']);
 Route::get('/get-brand-list', [AdController::class, 'getBrandList']);
+Route::get('/get-size-list', [AdController::class, 'getSizeList']);
 Route::get('/get-car-varient-list', [AdController::class, 'getCarVarient']);
 
 // Save Car Post
