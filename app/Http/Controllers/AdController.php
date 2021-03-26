@@ -134,6 +134,11 @@ class AdController extends Controller
                 $cities = City::where('status', 1)->get();
                 return view('auth.pet', compact('subCategory', 'cities', 'state', 'category', 'type'));
             }
+            if($subCategory->sub_category == "Entrance Exams Coaching")
+            {
+                $cities = City::where('status', 1)->get();
+                return view('auth.education', compact('subCategory', 'cities', 'state', 'category'));
+            }
 
         }
         else{
