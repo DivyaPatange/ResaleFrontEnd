@@ -26,6 +26,7 @@ use App\Models\PGHouse;
 use DB;
 use App\Models\PropertyRent;
 use App\Models\PropertySale;
+use App\Models\Education;
 
 class AdController extends Controller
 {
@@ -134,7 +135,7 @@ class AdController extends Controller
                 $cities = City::where('status', 1)->get();
                 return view('auth.pet', compact('subCategory', 'cities', 'state', 'category', 'type'));
             }
-            if($subCategory->sub_category == "Entrance Exams Coaching")
+            if(($subCategory->sub_category == "Entrance Exams Coaching") || ($subCategory->sub_category == "Baby Sitting - Creche") || ($subCategory->sub_category == "Competitive Exams Coaching") || ($subCategory->sub_category == "Distance Learning Education") || ($subCategory->sub_category == "Training & Certifications") || ($subCategory->sub_category == "Career Counseling") || ($subCategory->sub_category == "Hobbies") || ($subCategory->sub_category == "Schools &  Tuitions") || ($subCategory->sub_category == "Study in Abroad Consultants") || ($subCategory->sub_category == "Books & Study Material") || ($subCategory->sub_category == "Vocational Skills Training") || ($subCategory->sub_category == "Workshops"))
             {
                 $cities = City::where('status', 1)->get();
                 return view('auth.education', compact('subCategory', 'cities', 'state', 'category'));
@@ -623,6 +624,66 @@ class AdController extends Controller
         $mobileAccessory->gst_no = $request->gst_no;
         $mobileAccessory->save();
         return redirect()->route('mobile-accessory.post.ad', $mobileAccessory->id)->with('success', 'Mobile Accessory Post Added Successfully!');
+    }
+
+    public function saveEducationPost(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'mobile_no' => 'required',
+            'ad_title' => 'required',
+            'description' => 'required',
+            'fees' => 'required',
+            'photos' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'pin_code' => 'required',
+            'address' => 'required',
+            'education_stream' => 'required',
+            'institute_name' => 'required',
+            'institute_address' => 'required',
+            'institute_website' => 'required',
+        ]);
+        $education = new Education();
+        $education->ad_title = $request->ad_title;
+        $education->description = $request->description;
+        if($request->hasfile('photos'))
+        {
+            foreach($request->file('photos') as $file)
+            {
+                $name = time().rand(1,100).'.'.$file->extension();
+
+                $file->move(public_path('adPhotos'), $name);  
+
+                $files[] = $name;  
+            }
+        }
+        $education->photos = implode(",", $files);
+        $education->education_stream = $request->education_stream;
+        $education->fees = $request->fees;
+        $education->institute_name = $request->institute_name;
+        $education->institute_address = $request->institute_address;
+        $education->institute_website = $request->institute_website;
+        $education->description = $request->description;
+        $education->description = $request->description;
+        $education->description = $request->description;
+        $education->description = $request->description;
+        $education->state_id = $request->state;
+        $education->city_id = $request->city;
+        $education->pin_code = $request->pin_code;
+        $education->address = $request->address;
+        $education->user_id = $request->user_id;
+        $education->name = $request->name;
+        $education->email = $request->email;
+        $education->mobile_no = $request->mobile_no;
+        $education->category_id = $request->category_id;
+        $education->sub_category_id = $request->sub_category_id;
+        $education->user_type = $request->user_type;
+        $education->locality_id = $request->locality;
+        $education->gst_no = $request->gst_no;
+        $education->save();
+        return Redirect::back()->with('success', 'Post Added Successfully!');
     }
 
     public function saveTabletsPost(Request $request)

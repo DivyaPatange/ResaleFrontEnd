@@ -89,6 +89,7 @@
         </div>
       </div>
     </div>
+    @include('auth.auth_layout.changeCategory')
   </div>
 </section>
 <!-- End Intro Single-->
@@ -109,37 +110,31 @@
       <div class="col-sm-12">
         <div class="row">
           <div class="col-md-8">
-            <form method="POST" action="{{ url('save-furniture-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
+            <form method="POST" action="{{ url('save-education-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
             @csrf 
               <input type="hidden" name="category_id" value="{{ $category->id }}">
               <div class="form-group">
                 <div class="row">
-                    <div class="col-md-6">
-                        <?php 
-                            $subCategories = DB::table('sub_categories')->where('category_id', $category->id)->where('status', 1)->get();
-                        ?>
-                        <select name="sub_category_id" id="sub_category_id" class="form-control @error('sub_category_id') is-invalid @enderror">
-                           @foreach($subCategories as $s)
-                            <option value="{{ $s->id }}" @if($s->id == $subCategory->id) Selected @endif>{{ $s->sub_category }}</option>
-                           @endforeach 
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                    </div>
+                  <div class="col-md-6">
+                    <?php 
+                      $subCategories = DB::table('sub_categories')->where('category_id', $category->id)->where('status', 1)->get();
+                    ?>
+                    <select name="sub_category_id" id="sub_category_id" class="form-control @error('sub_category_id') is-invalid @enderror">
+                      @foreach($subCategories as $s)
+                      <option value="{{ $s->id }}" @if($s->id == $subCategory->id) Selected @endif>{{ $s->sub_category }}</option>
+                      @endforeach 
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                  </div>
                 </div>
-                
-                @error('pet_type')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
               </div>
               <div class="form-group">
                 <label>Ad title <span class="text-danger">*</span></label>
                 <input type="text" class="form-control @error('ad_title') is-invalid @enderror" id="ad_title" placeholder="(e.g. brand, model, age, type)" name="ad_title" value="{{ old('ad_title') }}">
                 @error('ad_title')
                 <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
+                  <strong>{{ $message }}</strong>
                 </span>
                 @enderror
               </div>
@@ -147,56 +142,103 @@
                 <label>Description <span class="text-danger">*</span></label>
                 <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
                 @error('description')
-                  <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
                 @enderror
               </div>
               <div class="form-group">
-                <label>Photos <span class="text-danger">*</span></label>&nbsp;<small class="text-muted">(Upload upto 15 Photos)</small>
+                <label>Photos <span class="text-danger">*</span></label>&nbsp;<small class="text-muted">(Upload upto 10 Photos)</small>
               </div>
               <div class="form-group">
-              <div id="upload_form">
-                <label class="filelabel p_file">
-                  <div class="icon">X</div>
-                  <i class="fa fa-paperclip" id="icon1">
-                  </i>
-                  
-                  <span class="title1">
-                      Add File
-                  </span>
-                  <input class="FileUpload1" id="FileInput" name="photos[]" type="file"/>
-                  <img  id="frame1" class="hidden" style="max-width: 90px; max-height: 70px;">
-                </label>
-              </div>
+                <div id="upload_form">
+                  @for($i=1; $i < 11; $i++)
+                  <label class="filelabel p_file">
+                    <div class="icon">X</div>
+                    <i class="fa fa-paperclip" id="icon{{ $i }}"></i>
+                    <span class="title{{ $i }}">Add File</span>
+                    <input class="FileUpload{{ $i }}" id="FileInput" name="photos[]" type="file"/>
+                    <img  id="frame{{ $i }}" style="max-width: 90px; max-height: 70px;" class="hidden">
+                  </label>
+                  @endfor
+                </div>
               </div>
               @error('photos')
-                  <span class="text-danger" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
+              <span class="text-danger" role="alert">
+                <strong>{{ $message }}</strong>
+              </span>
               @enderror
               <div class="form-group">
-                <h6>Expected Selling</h6>
+                <div class="row">
+                  <div class="col-md-3">
+                    <label>Education Stream</label><span class="text-danger">*</span></label>
+                  </div>
+                  <div class="col-md-9">
+                    <input type="text" class="form-control @error('education_stream') is-invalid @enderror" id="education_stream" placeholder="Education Stream" name="education_stream" value="{{ old('education_stream') }}">
+                  </div>
+                </div>
+                @error('education_stream')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+              </div>
+              <div class="form-group">
+                <h6>Counselling Fees</h6>
               </div>
               <div class="form-group">
                 <div class="row">
                   <div class="col-md-3">
-                    <label>Price</label><span class="text-danger">*</span></label>
+                    <label>Fees</label><span class="text-danger">*</span></label>
                   </div>
                   <div class="col-md-9">
                     <div class="input-group mb-2">
                       <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fa fa-rupee"></i></div>
                       </div>
-                      <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Price" name="price" value="{{ old('price') }}">
+                      <input type="text" class="form-control Stylednumber @error('fees') is-invalid @enderror" id="fees" placeholder="Fee" name="fees" value="{{ old('fees') }}">
                     </div>
                   </div>
                 </div>
-                @error('price')
+                @error('fees')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
                 </span>
                 @enderror
+              </div>
+              <div class="form-group">
+                <h6>Institute Details</h6>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="">Institute Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control @error('institute_name') is-invalid @enderror" name="institute_name" id="institute_name" value="{{ old('institute_name') }}">
+                        @error('institute_name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="col-md-4">
+                        <label for="">Institute Address <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control @error('institute_address') is-invalid @enderror" name="institute_address" id="institute_address" value="{{ old('institute_address') }}">
+                        @error('institute_address')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="col-md-4">
+                        <label for="">Institute Website <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control @error('institute_website') is-invalid @enderror" name="institute_website" id="institute_website" value="{{ old('institute_website') }}">
+                        @error('institute_website')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
               </div>
               <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
               <hr>
@@ -270,18 +312,18 @@
                   @enderror
                 </div>
                 <div class="form-group col-md-6">
-                  <label>Pin Code</label><span class="text-danger">*</span></label>
-                  <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code" value="{{ old('pin_code') }}">
-                  @error('pin_code')
+                  <label>Address</label><span class="text-danger">*</span></label>
+                  <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
+                  @error('address')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
                   @enderror
                 </div>
                 <div class="form-group col-md-6">
-                  <label>Address</label><span class="text-danger">*</span></label>
-                  <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
-                  @error('address')
+                  <label>Pin Code</label><span class="text-danger">*</span></label>
+                  <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code" value="{{ old('pin_code') }}">
+                  @error('pin_code')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
@@ -418,6 +460,39 @@
 @endsection
 @section('customjs')
 <script>
+String.prototype.replaceAll = function(search, replacement) {
+  var target = this;
+  return target.replace(new RegExp(search, 'g'), replacement);
+};
+$('input.Stylednumber').keyup(function() {
+  var input = $(this).val().replaceAll(',', '');
+  if (input.length < 1)
+    $(this).val('0');
+  else {
+    var formatted = inrFormat(input);
+    if (formatted.indexOf('.') > 0) {
+      var split = formatted.split('.');
+      formatted = split[0] + '.' + split[1].substring(0, 2);
+    }
+    $(this).val(formatted);
+  }
+});
+function inrFormat(val) {
+  var x = val;
+  x = x.toString();
+  var afterPoint = '';
+  if (x.indexOf('.') > 0)
+    afterPoint = x.substring(x.indexOf('.'), x.length);
+  x = Math.floor(x);
+  x = x.toString();
+  var lastThree = x.substring(x.length - 3);
+  var otherNumbers = x.substring(0, x.length - 3);
+  if (otherNumbers != '')
+    lastThree = ',' + lastThree;
+  var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + afterPoint;
+  return res;
+}
+
 function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();

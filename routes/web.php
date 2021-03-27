@@ -93,6 +93,9 @@ Route::get('/car-post', [DesignController::class, 'allCarPost'])->name('allCarPo
 Route::post('/save-real-estate-post', [AdController::class, 'saveRealEstatePost']);
 Route::post('/save-property-sale-post', [AdController::class, 'savePropertySale']);
 
+// Save Education Post
+Route::post('/save-education-post', [AdController::class, 'saveEducationPost']);
+
 // Bike Route
 Route::post('/save-bike-post', [AdController::class, 'saveBikePost']);
 Route::get('/bike-detail/{id}', [DesignController::class, 'getBikePostDetail'])->name('bike.post.ad');
