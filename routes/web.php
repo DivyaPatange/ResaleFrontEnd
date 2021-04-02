@@ -95,6 +95,7 @@ Route::post('/save-property-sale-post', [AdController::class, 'savePropertySale'
 
 // Save Education Post
 Route::post('/save-education-post', [AdController::class, 'saveEducationPost']);
+Route::get('/education-post-detail/{id}', [DesignController::class, 'getEducationPostDetail'])->name('education.post.ad');
 
 // Bike Route
 Route::post('/save-bike-post', [AdController::class, 'saveBikePost']);
@@ -130,9 +131,15 @@ Route::get('/commercial-vehicle-post', [DesignController::class, 'allCommercialV
 Route::post('/save-furniture-post', [AdController::class, 'saveFurniturePost']);
 Route::get('/furniture-post-detail/{id}', [DesignController::class, 'getFurniturePostDetail'])->name('furniture.post.ad');
 
+// Pet Route
+Route::post('/save-pet-post', [AdController::class, 'savePetPost']);
+Route::get('/pet-post-detail/{id}', [DesignController::class, 'getPetPostDetail'])->name('pet.post.ad');
+
 // PG Guest House
 Route::post('/save-pg-guest-house', [AdController::class, 'savePGHousePost']);
 
+Route::post('/save-fashion-post', [AdController::class, 'saveFashionPost']);
+Route::get('/fashion-post-detail/{id}', [DesignController::class, 'getFashionPostDetail'])->name('fashion.post.ad');
 
 // Property Rent Post 
 Route::post('/save-property-rent-post', [AdController::class, 'savePropertyRentPost']);
@@ -144,3 +151,6 @@ Route::get('/jobs/{id}', [DesignController::class, 'jobsDetails'])->name('sideba
 Route::get('/bikes/{id}', [DesignController::class, 'bikesDetails'])->name('sidebar.bike.post');
 Route::get('/electronic-appliances/{id}', [DesignController::class, 'etcAppliancesDetails'])->name('sidebar.electronic.post');
 Route::get('/furnitures/{id}', [DesignController::class, 'furnitureDetails'])->name('sidebar.furniture.post');
+Route::get('/fashions/{id}', [DesignController::class, 'fashionDetails'])->name('sidebar.fashion.post');
+Route::get('/education/{id}', [DesignController::class, 'educationDetails'])->name('sidebar.education.post');
+Route::get('/pets/{id}', [DesignController::class, 'petDetails'])->name('sidebar.pet.post');

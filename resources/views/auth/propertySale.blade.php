@@ -1213,128 +1213,128 @@ $("#suggesstion-locality").hide();
                 <div class="form-group">
                   <h6>Popular Landmark Nearby Area</h6>
                 </div>
-                <div class="form-group">
-                  <nav>
-                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                      <a class="nav-item nav-link active" id="nav-metro-tab" data-toggle="tab" href="#nav-metro" role="tab" aria-controls="nav-metro" aria-selected="true">Metro Station</a>
-                      <a class="nav-item nav-link" id="nav-railway-tab" data-toggle="tab" href="#nav-railway" role="tab" aria-controls="nav-railway" aria-selected="false">Railway Station</a>
-                      <a class="nav-item nav-link" id="nav-bus-tab" data-toggle="tab" href="#nav-bus" role="tab" aria-controls="nav-bus" aria-selected="false">Bus Stand</a>
-                      <a class="nav-item nav-link" id="nav-airport-tab" data-toggle="tab" href="#nav-airport" role="tab" aria-controls="nav-airport" aria-selected="false">Airport</a>
-                      <a class="nav-item nav-link" id="nav-shopping-tab" data-toggle="tab" href="#nav-shopping" role="tab" aria-controls="nav-shopping" aria-selected="false">Shopping Mall</a>
-                      <a class="nav-item nav-link" id="nav-office-tab" data-toggle="tab" href="#nav-office" role="tab" aria-controls="nav-office" aria-selected="false">Office Complex</a>
-                    </div>
-                  </nav>
-                  <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-metro" role="tabpanel" aria-labelledby="nav-metro-tab">
-                      <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Metro Station</label>
-                              <input type="text" name="metro_station" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Distance from Property</label>
-                              <input type="text" name="distance_metro" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-railway" role="tabpanel" aria-labelledby="nav-railway-tab">
-                      <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Railway Station</label>
-                              <input type="text" name="railway_station" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Distance from Property</label>
-                              <input type="text" name="distance_railway" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-bus" role="tabpanel" aria-labelledby="nav-bus-tab">
-                      <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Bus Stand</label>
-                              <input type="text" name="bus_stand" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Distance from Property</label>
-                              <input type="text" name="distance_bus" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-airport" role="tabpanel" aria-labelledby="nav-airport-tab">
-                      <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Airport</label>
-                              <input type="text" name="airport" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Distance from Property</label>
-                              <input type="text" name="distance_airport" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-shopping" role="tabpanel" aria-labelledby="nav-shopping-tab">
-                      <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Shopping Mall</label>
-                              <input type="text" name="shopping_mall" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Distance from Property</label>
-                              <input type="text" name="distance_mall" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-office" role="tabpanel" aria-labelledby="nav-office-tab">
-                      <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Office Complex</label>
-                              <input type="text" name="office_complex" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Distance from Property</label>
-                              <input type="text" name="distance_office" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <!--<div class="form-group">-->
+                <!--  <nav>-->
+                <!--    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">-->
+                <!--      <a class="nav-item nav-link active" id="nav-metro-tab" data-toggle="tab" href="#nav-metro" role="tab" aria-controls="nav-metro" aria-selected="true">Metro Station</a>-->
+                <!--      <a class="nav-item nav-link" id="nav-railway-tab" data-toggle="tab" href="#nav-railway" role="tab" aria-controls="nav-railway" aria-selected="false">Railway Station</a>-->
+                <!--      <a class="nav-item nav-link" id="nav-bus-tab" data-toggle="tab" href="#nav-bus" role="tab" aria-controls="nav-bus" aria-selected="false">Bus Stand</a>-->
+                <!--      <a class="nav-item nav-link" id="nav-airport-tab" data-toggle="tab" href="#nav-airport" role="tab" aria-controls="nav-airport" aria-selected="false">Airport</a>-->
+                <!--      <a class="nav-item nav-link" id="nav-shopping-tab" data-toggle="tab" href="#nav-shopping" role="tab" aria-controls="nav-shopping" aria-selected="false">Shopping Mall</a>-->
+                <!--      <a class="nav-item nav-link" id="nav-office-tab" data-toggle="tab" href="#nav-office" role="tab" aria-controls="nav-office" aria-selected="false">Office Complex</a>-->
+                <!--    </div>-->
+                <!--  </nav>-->
+                <!--  <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">-->
+                <!--    <div class="tab-pane fade show active" id="nav-metro" role="tabpanel" aria-labelledby="nav-metro-tab">-->
+                <!--      <div class="container-fluid">-->
+                <!--        <div class="row">-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Metro Station</label>-->
+                <!--              <input type="text" name="metro_station" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Distance from Property</label>-->
+                <!--              <input type="text" name="distance_metro" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+                <!--      </div>-->
+                <!--    </div>-->
+                <!--    <div class="tab-pane fade" id="nav-railway" role="tabpanel" aria-labelledby="nav-railway-tab">-->
+                <!--      <div class="container-fluid">-->
+                <!--        <div class="row">-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Railway Station</label>-->
+                <!--              <input type="text" name="railway_station" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Distance from Property</label>-->
+                <!--              <input type="text" name="distance_railway" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+                <!--      </div>-->
+                <!--    </div>-->
+                <!--    <div class="tab-pane fade" id="nav-bus" role="tabpanel" aria-labelledby="nav-bus-tab">-->
+                <!--      <div class="container-fluid">-->
+                <!--        <div class="row">-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Bus Stand</label>-->
+                <!--              <input type="text" name="bus_stand" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Distance from Property</label>-->
+                <!--              <input type="text" name="distance_bus" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+                <!--      </div>-->
+                <!--    </div>-->
+                <!--    <div class="tab-pane fade" id="nav-airport" role="tabpanel" aria-labelledby="nav-airport-tab">-->
+                <!--      <div class="container-fluid">-->
+                <!--        <div class="row">-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Airport</label>-->
+                <!--              <input type="text" name="airport" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Distance from Property</label>-->
+                <!--              <input type="text" name="distance_airport" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+                <!--      </div>-->
+                <!--    </div>-->
+                <!--    <div class="tab-pane fade" id="nav-shopping" role="tabpanel" aria-labelledby="nav-shopping-tab">-->
+                <!--      <div class="container-fluid">-->
+                <!--        <div class="row">-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Shopping Mall</label>-->
+                <!--              <input type="text" name="shopping_mall" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Distance from Property</label>-->
+                <!--              <input type="text" name="distance_mall" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+                <!--      </div>-->
+                <!--    </div>-->
+                <!--    <div class="tab-pane fade" id="nav-office" role="tabpanel" aria-labelledby="nav-office-tab">-->
+                <!--      <div class="container-fluid">-->
+                <!--        <div class="row">-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Office Complex</label>-->
+                <!--              <input type="text" name="office_complex" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Distance from Property</label>-->
+                <!--              <input type="text" name="distance_office" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+                <!--      </div>-->
+                <!--    </div>-->
+                <!--  </div>-->
+                <!--</div>-->
                 <div class="form-group">
                   <h6>Property Feature</h6>
                 </div>
@@ -2173,131 +2173,131 @@ $("#suggesstion-locality").hide();
               <!--Sale Industrial Land / Open Plot for Sale start-->
               <div id="land-form" class="hidden">
                 <hr>
-                <div class="form-group">
-                  <h6>Popular Landmark Nearby Area</h6>
-                </div>
-                <div class="form-group">
-                  <nav>
-                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                      <a class="nav-item nav-link active" id="nav-metro3-tab" data-toggle="tab" href="#nav-metro3" role="tab" aria-controls="nav-metro3" aria-selected="true">Metro Station</a>
-                      <a class="nav-item nav-link" id="nav-railway3-tab" data-toggle="tab" href="#nav-railway3" role="tab" aria-controls="nav-railway3" aria-selected="false">Railway Station</a>
-                      <a class="nav-item nav-link" id="nav-bus3-tab" data-toggle="tab" href="#nav-bus3" role="tab" aria-controls="nav-bus3" aria-selected="false">Bus Stand</a>
-                      <a class="nav-item nav-link" id="nav-airport3-tab" data-toggle="tab" href="#nav-airport3" role="tab" aria-controls="nav-airport3" aria-selected="false">Airport</a>
-                      <a class="nav-item nav-link" id="nav-shopping3-tab" data-toggle="tab" href="#nav-shopping3" role="tab" aria-controls="nav-shopping3" aria-selected="false">Shopping Mall</a>
-                      <a class="nav-item nav-link" id="nav-office3-tab" data-toggle="tab" href="#nav-office3" role="tab" aria-controls="nav-office3" aria-selected="false">Office Complex</a>
-                    </div>
-                  </nav>
-                  <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-metro3" role="tabpanel" aria-labelledby="nav-metro3-tab">
-                      <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Metro Station</label>
-                              <input type="text" name="metro_station" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Distance from Property</label>
-                              <input type="text" name="distance_metro" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-railway3" role="tabpanel" aria-labelledby="nav-railway3-tab">
-                      <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Railway Station</label>
-                              <input type="text" name="railway_station" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Distance from Property</label>
-                              <input type="text" name="distance_railway" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-bus3" role="tabpanel" aria-labelledby="nav-bus3-tab">
-                      <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Bus Stand</label>
-                              <input type="text" name="bus_stand" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Distance from Property</label>
-                              <input type="text" name="distance_bus" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-airport3" role="tabpanel" aria-labelledby="nav-airport3-tab">
-                      <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Airport</label>
-                              <input type="text" name="airport" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Distance from Property</label>
-                              <input type="text" name="distance_airport" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-shopping3" role="tabpanel" aria-labelledby="nav-shopping3-tab">
-                      <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Shopping Mall</label>
-                              <input type="text" name="shopping_mall" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Distance from Property</label>
-                              <input type="text" name="distance_mall" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-office3" role="tabpanel" aria-labelledby="nav-office3-tab">
-                      <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Office Complex</label>
-                              <input type="text" name="office_complex" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Distance from Property</label>
-                              <input type="text" name="distance_office" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <!--<div class="form-group">-->
+                <!--  <h6>Popular Landmark Nearby Area</h6>-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                <!--  <nav>-->
+                <!--    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">-->
+                <!--      <a class="nav-item nav-link active" id="nav-metro3-tab" data-toggle="tab" href="#nav-metro3" role="tab" aria-controls="nav-metro3" aria-selected="true">Metro Station</a>-->
+                <!--      <a class="nav-item nav-link" id="nav-railway3-tab" data-toggle="tab" href="#nav-railway3" role="tab" aria-controls="nav-railway3" aria-selected="false">Railway Station</a>-->
+                <!--      <a class="nav-item nav-link" id="nav-bus3-tab" data-toggle="tab" href="#nav-bus3" role="tab" aria-controls="nav-bus3" aria-selected="false">Bus Stand</a>-->
+                <!--      <a class="nav-item nav-link" id="nav-airport3-tab" data-toggle="tab" href="#nav-airport3" role="tab" aria-controls="nav-airport3" aria-selected="false">Airport</a>-->
+                <!--      <a class="nav-item nav-link" id="nav-shopping3-tab" data-toggle="tab" href="#nav-shopping3" role="tab" aria-controls="nav-shopping3" aria-selected="false">Shopping Mall</a>-->
+                <!--      <a class="nav-item nav-link" id="nav-office3-tab" data-toggle="tab" href="#nav-office3" role="tab" aria-controls="nav-office3" aria-selected="false">Office Complex</a>-->
+                <!--    </div>-->
+                <!--  </nav>-->
+                <!--  <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">-->
+                <!--    <div class="tab-pane fade show active" id="nav-metro3" role="tabpanel" aria-labelledby="nav-metro3-tab">-->
+                <!--      <div class="container-fluid">-->
+                <!--        <div class="row">-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Metro Station</label>-->
+                <!--              <input type="text" name="metro_station" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Distance from Property</label>-->
+                <!--              <input type="text" name="distance_metro" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+                <!--      </div>-->
+                <!--    </div>-->
+                <!--    <div class="tab-pane fade" id="nav-railway3" role="tabpanel" aria-labelledby="nav-railway3-tab">-->
+                <!--      <div class="container-fluid">-->
+                <!--        <div class="row">-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Railway Station</label>-->
+                <!--              <input type="text" name="railway_station" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Distance from Property</label>-->
+                <!--              <input type="text" name="distance_railway" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+                <!--      </div>-->
+                <!--    </div>-->
+                <!--    <div class="tab-pane fade" id="nav-bus3" role="tabpanel" aria-labelledby="nav-bus3-tab">-->
+                <!--      <div class="container-fluid">-->
+                <!--        <div class="row">-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Bus Stand</label>-->
+                <!--              <input type="text" name="bus_stand" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Distance from Property</label>-->
+                <!--              <input type="text" name="distance_bus" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+                <!--      </div>-->
+                <!--    </div>-->
+                <!--    <div class="tab-pane fade" id="nav-airport3" role="tabpanel" aria-labelledby="nav-airport3-tab">-->
+                <!--      <div class="container-fluid">-->
+                <!--        <div class="row">-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Airport</label>-->
+                <!--              <input type="text" name="airport" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Distance from Property</label>-->
+                <!--              <input type="text" name="distance_airport" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+                <!--      </div>-->
+                <!--    </div>-->
+                <!--    <div class="tab-pane fade" id="nav-shopping3" role="tabpanel" aria-labelledby="nav-shopping3-tab">-->
+                <!--      <div class="container-fluid">-->
+                <!--        <div class="row">-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Shopping Mall</label>-->
+                <!--              <input type="text" name="shopping_mall" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Distance from Property</label>-->
+                <!--              <input type="text" name="distance_mall" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+                <!--      </div>-->
+                <!--    </div>-->
+                <!--    <div class="tab-pane fade" id="nav-office3" role="tabpanel" aria-labelledby="nav-office3-tab">-->
+                <!--      <div class="container-fluid">-->
+                <!--        <div class="row">-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Office Complex</label>-->
+                <!--              <input type="text" name="office_complex" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Distance from Property</label>-->
+                <!--              <input type="text" name="distance_office" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+                <!--      </div>-->
+                <!--    </div>-->
+                <!--  </div>-->
+                <!--</div>-->
                 <div class="form-group">
                   <h6>Property Feature</h6>
                 </div>
@@ -2746,131 +2746,131 @@ $("#suggesstion-locality").hide();
                     @enderror
                   </div>
                 </div>
-                <div class="form-group">
-                  <h6>Popular Landmark Nearby Area</h6>
-                </div>
-                <div class="form-group">
-                  <nav>
-                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                      <a class="nav-item nav-link active" id="nav-metro2-tab" data-toggle="tab" href="#nav-metro2" role="tab" aria-controls="nav-metro2" aria-selected="true">Metro Station</a>
-                      <a class="nav-item nav-link" id="nav-railway2-tab" data-toggle="tab" href="#nav-railway2" role="tab" aria-controls="nav-railway2" aria-selected="false">Railway Station</a>
-                      <a class="nav-item nav-link" id="nav-bus2-tab" data-toggle="tab" href="#nav-bus2" role="tab" aria-controls="nav-bus2" aria-selected="false">Bus Stand</a>
-                      <a class="nav-item nav-link" id="nav-airport2-tab" data-toggle="tab" href="#nav-airport2" role="tab" aria-controls="nav-airport2" aria-selected="false">Airport</a>
-                      <a class="nav-item nav-link" id="nav-shopping2-tab" data-toggle="tab" href="#nav-shopping2" role="tab" aria-controls="nav-shopping2" aria-selected="false">Shopping Mall</a>
-                      <a class="nav-item nav-link" id="nav-office2-tab" data-toggle="tab" href="#nav-office2" role="tab" aria-controls="nav-office2" aria-selected="false">Office Complex</a>
-                    </div>
-                  </nav>
-                  <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-metro2" role="tabpanel" aria-labelledby="nav-metro2-tab">
-                      <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Metro Station</label>
-                              <input type="text" name="metro_station" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Distance from Property</label>
-                              <input type="text" name="distance_metro" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-railway2" role="tabpanel" aria-labelledby="nav-railway2-tab">
-                      <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Railway Station</label>
-                              <input type="text" name="railway_station" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Distance from Property</label>
-                              <input type="text" name="distance_railway" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-bus2" role="tabpanel" aria-labelledby="nav-bus2-tab">
-                      <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Bus Stand</label>
-                              <input type="text" name="bus_stand" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Distance from Property</label>
-                              <input type="text" name="distance_bus" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-airport2" role="tabpanel" aria-labelledby="nav-airport2-tab">
-                      <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Airport</label>
-                              <input type="text" name="airport" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Distance from Property</label>
-                              <input type="text" name="distance_airport" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-shopping2" role="tabpanel" aria-labelledby="nav-shopping2-tab">
-                      <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Shopping Mall</label>
-                              <input type="text" name="shopping_mall" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Distance from Property</label>
-                              <input type="text" name="distance_mall" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-office2" role="tabpanel" aria-labelledby="nav-office2-tab">
-                      <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Office Complex</label>
-                              <input type="text" name="office_complex" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="">Distance from Property</label>
-                              <input type="text" name="distance_office" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <!--<div class="form-group">-->
+                <!--  <h6>Popular Landmark Nearby Area</h6>-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                <!--  <nav>-->
+                <!--    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">-->
+                <!--      <a class="nav-item nav-link active" id="nav-metro2-tab" data-toggle="tab" href="#nav-metro2" role="tab" aria-controls="nav-metro2" aria-selected="true">Metro Station</a>-->
+                <!--      <a class="nav-item nav-link" id="nav-railway2-tab" data-toggle="tab" href="#nav-railway2" role="tab" aria-controls="nav-railway2" aria-selected="false">Railway Station</a>-->
+                <!--      <a class="nav-item nav-link" id="nav-bus2-tab" data-toggle="tab" href="#nav-bus2" role="tab" aria-controls="nav-bus2" aria-selected="false">Bus Stand</a>-->
+                <!--      <a class="nav-item nav-link" id="nav-airport2-tab" data-toggle="tab" href="#nav-airport2" role="tab" aria-controls="nav-airport2" aria-selected="false">Airport</a>-->
+                <!--      <a class="nav-item nav-link" id="nav-shopping2-tab" data-toggle="tab" href="#nav-shopping2" role="tab" aria-controls="nav-shopping2" aria-selected="false">Shopping Mall</a>-->
+                <!--      <a class="nav-item nav-link" id="nav-office2-tab" data-toggle="tab" href="#nav-office2" role="tab" aria-controls="nav-office2" aria-selected="false">Office Complex</a>-->
+                <!--    </div>-->
+                <!--  </nav>-->
+                <!--  <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">-->
+                <!--    <div class="tab-pane fade show active" id="nav-metro2" role="tabpanel" aria-labelledby="nav-metro2-tab">-->
+                <!--      <div class="container-fluid">-->
+                <!--        <div class="row">-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Metro Station</label>-->
+                <!--              <input type="text" name="metro_station" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Distance from Property</label>-->
+                <!--              <input type="text" name="distance_metro" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+                <!--      </div>-->
+                <!--    </div>-->
+                <!--    <div class="tab-pane fade" id="nav-railway2" role="tabpanel" aria-labelledby="nav-railway2-tab">-->
+                <!--      <div class="container-fluid">-->
+                <!--        <div class="row">-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Railway Station</label>-->
+                <!--              <input type="text" name="railway_station" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Distance from Property</label>-->
+                <!--              <input type="text" name="distance_railway" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+                <!--      </div>-->
+                <!--    </div>-->
+                <!--    <div class="tab-pane fade" id="nav-bus2" role="tabpanel" aria-labelledby="nav-bus2-tab">-->
+                <!--      <div class="container-fluid">-->
+                <!--        <div class="row">-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Bus Stand</label>-->
+                <!--              <input type="text" name="bus_stand" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Distance from Property</label>-->
+                <!--              <input type="text" name="distance_bus" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+                <!--      </div>-->
+                <!--    </div>-->
+                <!--    <div class="tab-pane fade" id="nav-airport2" role="tabpanel" aria-labelledby="nav-airport2-tab">-->
+                <!--      <div class="container-fluid">-->
+                <!--        <div class="row">-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Airport</label>-->
+                <!--              <input type="text" name="airport" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Distance from Property</label>-->
+                <!--              <input type="text" name="distance_airport" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+                <!--      </div>-->
+                <!--    </div>-->
+                <!--    <div class="tab-pane fade" id="nav-shopping2" role="tabpanel" aria-labelledby="nav-shopping2-tab">-->
+                <!--      <div class="container-fluid">-->
+                <!--        <div class="row">-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Shopping Mall</label>-->
+                <!--              <input type="text" name="shopping_mall" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Distance from Property</label>-->
+                <!--              <input type="text" name="distance_mall" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+                <!--      </div>-->
+                <!--    </div>-->
+                <!--    <div class="tab-pane fade" id="nav-office2" role="tabpanel" aria-labelledby="nav-office2-tab">-->
+                <!--      <div class="container-fluid">-->
+                <!--        <div class="row">-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Office Complex</label>-->
+                <!--              <input type="text" name="office_complex" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="">Distance from Property</label>-->
+                <!--              <input type="text" name="distance_office" class="form-control">-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+                <!--      </div>-->
+                <!--    </div>-->
+                <!--  </div>-->
+                <!--</div>-->
                 <div class="form-group">
                   <h6>Property Feature</h6>
                 </div>
@@ -4217,7 +4217,7 @@ $('body').on('click', '.a', function () {
 })
 $('body').on('change', '#property_type', function () {
     var query = $(this).val();
-    if(query == 57)
+    if((query == 57) || (query == 61) || (query == 64) || (query == 65) || (query == 66))
     {
       var showDiv = $('.pageloader');
       if (showDiv.is(":visible")) { return; }
@@ -4231,7 +4231,7 @@ $('body').on('change', '#property_type', function () {
         $('#agri-form').fadeOut();
       }, 2500);
     }
-    if(query == 60)
+    if((query == 60) || (query == 59))
     {
       var showDiv = $('.pageloader');
       if (showDiv.is(":visible")) { return; }
@@ -4245,7 +4245,7 @@ $('body').on('change', '#property_type', function () {
         $('#agri-form').fadeOut();
       }, 2500);
     }
-    if(query == 70)
+    if((query == 70) || (query == 72) || (query == 62) || (query == 68) || (query == 74))
     {
       var showDiv = $('.pageloader');
       if (showDiv.is(":visible")) { return; }
@@ -4259,7 +4259,7 @@ $('body').on('change', '#property_type', function () {
         $('#agri-form').fadeOut();
       }, 2500);
     }
-    if((query == 58) || (query == 67))
+    if((query == 58) || (query == 67) || (query == 71) || (query == 69))
     {
       var showDiv = $('.pageloader');
       if (showDiv.is(":visible")) { return; }
@@ -5118,12 +5118,5 @@ $('body').on('click', '#submitForm5', function () {
   $("#property-sale").submit();
   }
 });
-function selectOnlyThis(id){
-  var myCheckbox = document.getElementsByName("myCheckbox");
-  Array.prototype.forEach.call(myCheckbox,function(el){
-  	el.checked = false;
-  });
-  id.checked = true;
-} 
 </script>
 @endsection
