@@ -92,6 +92,7 @@ Route::get('/car-post', [DesignController::class, 'allCarPost'])->name('allCarPo
 // Save Real Estate Post
 Route::post('/save-real-estate-post', [AdController::class, 'saveRealEstatePost']);
 Route::post('/save-property-sale-post', [AdController::class, 'savePropertySale']);
+Route::get('/property-sale-post-detail/{id}', [DesignController::class, 'getPropertySalePostDetail'])->name('property-sale.post.ad');
 
 // Save Education Post
 Route::post('/save-education-post', [AdController::class, 'saveEducationPost']);
@@ -143,7 +144,7 @@ Route::get('/fashion-post-detail/{id}', [DesignController::class, 'getFashionPos
 
 // Property Rent Post 
 Route::post('/save-property-rent-post', [AdController::class, 'savePropertyRentPost']);
-
+Route::get('/property-rent-post-detail/{id}', [DesignController::class, 'getPropertyRentPostDetail'])->name('property-rent.post.ad');
 
 // Sidebar Route
 Route::get('/cars/{id}', [DesignController::class, 'carsDetails'])->name('sidebar.car.post');
@@ -154,3 +155,5 @@ Route::get('/furnitures/{id}', [DesignController::class, 'furnitureDetails'])->n
 Route::get('/fashions/{id}', [DesignController::class, 'fashionDetails'])->name('sidebar.fashion.post');
 Route::get('/education/{id}', [DesignController::class, 'educationDetails'])->name('sidebar.education.post');
 Route::get('/pets/{id}', [DesignController::class, 'petDetails'])->name('sidebar.pet.post');
+Route::get('/property-rent/{id}', [DesignController::class, 'propertyRentDetails'])->name('sidebar.property-rent.post');
+Route::get('/property-sale/{id}', [DesignController::class, 'propertySaleDetails'])->name('sidebar.property-sale.post');

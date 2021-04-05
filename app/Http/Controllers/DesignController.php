@@ -17,6 +17,8 @@ use App\Models\Furniture;
 use App\Models\Fashion;
 use App\Models\Education;
 use App\Models\Pet;
+use App\Models\PropertyRent;
+use App\Models\PropertySale;
 
 class DesignController extends Controller
 {
@@ -187,5 +189,31 @@ class DesignController extends Controller
     {
         $singlePost = Pet::findorfail($id);
         return view('auth.pet_detail', compact('singlePost'));
+    }
+
+    public function propertyRentDetails($id)
+    {
+        $subCategory = SubCategory::findorfail($id);
+        $propertyRent = PropertyRent::where('sub_category_id', $subCategory->id)->orderBy('id', 'DESC')->get();
+        return view('auth.allPropertyRent', compact('subCategory', 'propertyRent'));
+    }
+
+    public function getPropertyRentPostDetail($id)
+    {
+        $singlePost = PropertyRent::findorfail($id);
+        return view('auth.property-rent-detail', compact('singlePost'));
+    }
+
+    public function propertySaleDetails($id)
+    {
+        $subCategory = SubCategory::findorfail($id);
+        $propertySale = PropertySale::where('sub_category_id', $subCategory->id)->orderBy('id', 'DESC')->get();
+        return view('auth.allPropertySale', compact('subCategory', 'propertySale'));
+    }
+
+    public function getPropertySalePostDetail($id)
+    {
+        $singlePost = PropertySale::findorfail($id);
+        return view('auth.property-sale-detail', compact('singlePost'));
     }
 }
