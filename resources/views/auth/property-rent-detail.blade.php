@@ -1,5 +1,5 @@
 @extends('auth.auth_layout.main')
-@section('title', 'Property Rent Post')
+@section('title', 'Property Sale Post')
 @section('customcss')
 <style>
     .owl-carousel .owl-item img{
@@ -63,7 +63,7 @@
                         ?>
                         <ul class="nav nav-tabs">
                             <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#home">Exterior ({{ count($explodePhotos) }})</a></li>
-                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu1">Living Room ({{ count($explodeLiving) }})</a></li>
+                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu1">Living Room ( @if(!empty($explodeLiving)){{ count($explodeLiving) }}@endif)</a></li>
                             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu2">Bedroom ({{ count($explodeBedroom) }})</a></li>
                             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu3">Washroom ({{ count($explodeBathroom) }})</a></li>
                             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu4">Kitchen ({{ count($explodeKitchen) }})</a></li>
@@ -197,32 +197,155 @@
                         </div>
                     
                         <div class="container">
-                            <h2>Property Details</h2>
-                            <table class="table mt-5">
-                                <tbody>
-                                <tr>
-                                    <th>Property Type</th>
-                                    <td>
-                                    @if($singlePost->type_id)
-                                    
-                                    <?php
-                                        $type = DB::table('types')->where('id', $singlePost->type_id)->first();
-                                    ?>
-                                    {{ $type->type_name }}
-                                    @endif
-                                        
-                                    </td>
-                                    <th>Monthly Rent</th>
-                                    <td>
-                                    @if($singlePost->monthly_rent)
-                            
-                                        {{ $singlePost->monthly_rent }}
-                                    @endif
-                                    </td>
-                                    
-                                </tr>
-                                </tbody>
-                            </table>
+                            <h2 class="mt-3">Property Details</h2>
+                            <div class="row">
+                                @if($singlePost->bedroom)
+                                <div class="col-md-3">
+                                    <p class="text-muted mb-0" style="font-size:14px;">Bedrooms</p>
+                                    <p class="mb-0 text-dark">{{ $singlePost->bedroom }}</p>
+                                </div>
+                                @endif
+                                @if($singlePost->balcony)
+                                <div class="col-md-3">
+                                    <p class="text-muted mb-0" style="font-size:14px;">Balcony</p>
+                                    <p class="mb-0 text-dark">{{ $singlePost->balcony }}</p>
+                                </div>
+                                @endif
+                                @if($singlePost->bathroom)
+                                <div class="col-md-3">
+                                    <p class="text-muted mb-0" style="font-size:14px;">Bathrooms</p>
+                                    <p class="mb-0 text-dark">{{ $singlePost->bathroom }}</p>
+                                </div>
+                                @endif
+                                @if($singlePost->add_rooms)
+                                <div class="col-md-3">
+                                    <p class="text-muted mb-0" style="font-size:14px;">Additional Rooms</p>
+                                    <p class="mb-0 text-dark">{{ $singlePost->add_rooms }}</p>
+                                </div>
+                                @endif
+                            </div>
+                            <hr>
+                            <div class="row">
+                                @if($singlePost->super_area)
+                                <div class="col-md-3">
+                                    <p class="text-muted mb-0" style="font-size:14px;">Super Build-Up Area</p>
+                                    <p class="mb-0 text-dark">{{ $singlePost->super_area }} {{ $singlePost->super_area_unit }}</p>
+                                </div>
+                                @endif
+                                @if($singlePost->carpet_area)
+                                <div class="col-md-3">
+                                    <p class="text-muted mb-0" style="font-size:14px;">Carpet Area</p>
+                                    <p class="mb-0 text-dark">{{ $singlePost->carpet_area }} {{ $singlePost->carpet_unit }}</p>
+                                </div>
+                                @endif
+                                @if($singlePost->build_area)
+                                <div class="col-md-3">
+                                    <p class="text-muted mb-0" style="font-size:14px;">Build Up Area</p>
+                                    <p class="mb-0 text-dark">{{ $singlePost->build_area }} {{ $singlePost->build_unit }}</p>
+                                </div>
+                                @endif
+                                @if($singlePost->entrance_width)
+                                <div class="col-md-3">
+                                    <p class="text-muted mb-0" style="font-size:14px;">Entrance Width</p>
+                                    <p class="mb-0 text-dark">{{ $singlePost->entrance_width }} {{ $singlePost->entrance_width_unit }}</p>
+                                </div>
+                                @endif
+                                @if($singlePost->width_facing_road)
+                                <div class="col-md-3">
+                                    <p class="text-muted mb-0" style="font-size:14px;">Width of Facing Road</p>
+                                    <p class="mb-0 text-dark">{{ $singlePost->width_facing_road }} {{ $singlePost->width_facing_road_unit }}</p>
+                                </div>
+                                @endif
+                            </div>
+                            <hr>
+                            <div class="row">
+                                @if($singlePost->property_floor_no)
+                                <div class="col-md-3">
+                                    <p class="text-muted mb-0" style="font-size:14px;">Floor</p>
+                                    <p class="mb-0 text-dark">{{ $singlePost->property_floor_no }} (Out Of {{ $singlePost->total_floor }})</p>
+                                </div>
+                                @endif
+                                @if($singlePost->car_parking)
+                                <div class="col-md-3">
+                                    <p class="text-muted mb-0" style="font-size:14px;">Car Parking</p>
+                                    <p class="mb-0 text-dark">{{ $singlePost->car_parking }}</p>
+                                </div>
+                                @endif
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p><b>Property Specification</b></p>
+                                </div>
+                            </div>
+                            @if($singlePost->monthly_rent)
+                            <div class="row">
+                                <div class="col-md-3">Monthly Rent</div>
+                                <div class="col-md-9">&#8377; {{ $singlePost->monthly_rent }}</div>
+                            </div>
+                            <hr>
+                            @endif
+                            <div class="row">
+                                <div class="col-md-3">Facilities</div>
+                                <div class="col-md-9">@if($singlePost->water_status){{ $singlePost->water_status }} Water Supply @endif @if($singlePost->electricity_status), {{ $singlePost->electricity_status }} @endif @if($singlePost->personal_washroom == "Yes"), Personal Washroom @endif @if($singlePost->main_road_facing == "Yes"), Main Road Facing @endif @if($singlePost->pantry), {{ $singlePost->pantry }} Pantry Cafe @endif</div>
+                            </div>
+                            <hr>
+                            @if($singlePost->address)
+                            <div class="row">
+                                <div class="col-md-3">Address</div>
+                                <div class="col-md-9">{{ $singlePost->address }}</div>
+                            </div>
+                            <hr>
+                            @endif
+                            @if($singlePost->locality)
+                            <div class="row">
+                                <div class="col-md-3">Locality</div>
+                                <div class="col-md-9">{{ $singlePost->locality }}</div>
+                                @endif
+                            </div>
+                            <hr>
+                            @if($singlePost->overlooking)
+                            <div class="row">
+                                <div class="col-md-3">Overlooking</div>
+                                <div class="col-md-9">{{ $singlePost->overlooking }}</div>
+                            </div>
+                            <hr>
+                            @endif
+                            @if($singlePost->flooring)
+                            <div class="row">
+                                <div class="col-md-3">Flooring</div>
+                                <div class="col-md-9">{{ $singlePost->flooring }}</div>
+                            </div>
+                            <hr>
+                            @endif
+                            @if($singlePost->age_of_construction)
+                            <div class="row">
+                                <div class="col-md-3">Age of Construction</div>
+                                <div class="col-md-9">{{ $singlePost->age_of_construction }}</div>
+                            </div>
+                            <hr>
+                            @endif
+                            @if($singlePost->furnished_status)
+                            <div class="row">
+                                <div class="col-md-3">Furnishing</div>
+                                <div class="col-md-9">{{ $singlePost->furnished_status }}</div>
+                            </div>
+                            <hr>
+                            @endif
+                            @if($singlePost->ownership_approval)
+                            <div class="row">
+                                <div class="col-md-3">Type of Ownership</div>
+                                <div class="col-md-9">{{ $singlePost->ownership_approval }}</div>
+                            </div>
+                            <hr>
+                            @endif
+                            @if($singlePost->aminities)
+                            <div class="row">
+                                <div class="col-md-3">Amenities</div>
+                                <div class="col-md-9">{{ $singlePost->aminities }}</div>
+                            </div>
+                            <hr>
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-4 section-md-t3">
@@ -235,8 +358,7 @@
                                         ?>
                                         {{ $type->type_name }}
                                     @endif
-                                    <h2><span class="ion-money">&#8377;</span>&nbsp;{{ $singlePost->price }}</h2>
-                                    <p>Monthly Rent @if($singlePost->monthly_rent){{ $singlePost->monthly_rent }}@endif</p>
+                                    <p>Price : @if($singlePost->rent_as)&#8377; {{ $singlePost->rent_as }}@endif</p>
                                     <button type="button" class="btn btn-primary">Call</button>
                                 </div>
                             </div>
