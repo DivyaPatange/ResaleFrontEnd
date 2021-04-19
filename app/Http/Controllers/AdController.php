@@ -27,6 +27,8 @@ use DB;
 use App\Models\PropertyRent;
 use App\Models\PropertySale;
 use App\Models\Education;
+use App\Models\Fashion;
+use App\Models\Pet;
 
 class AdController extends Controller
 {
@@ -993,6 +995,129 @@ class AdController extends Controller
         $furniture->gst_no = $request->gst_no;
         $furniture->save();
         return redirect()->route('furniture.post.ad', $furniture->id)->with('success', 'Post Added Successfully!');
+    }
+
+    public function saveFashionPost(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'mobile_no' => 'required',
+            // 'furniture_type' => 'required',
+            // 'brand_name' => 'required',
+            'ad_title' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'photos' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'pin_code' => 'required',
+            'address' => 'required',
+        ]);
+        $fashion = new Fashion();
+        $fashion->type_id = $request->clothing_type;
+        $fashion->size = $request->size;
+        $fashion->condition = $request->condition;
+        $fashion->age = $request->age;
+        $fashion->ad_title = $request->ad_title;
+        $fashion->description = $request->description;
+        $fashion->price = $request->price;
+        // $files = $request->userfile;
+        // dd($request->photos);
+        if($request->hasfile('photos'))
+
+         {
+
+            foreach($request->file('photos') as $file)
+
+            {
+
+                $name = time().rand(1,100).'.'.$file->extension();
+
+                $file->move(public_path('adPhotos'), $name);  
+
+                $files[] = $name;  
+
+            }
+            // dd($files);
+            
+            $fashion->photos = implode(",", $files);
+        }
+        $fashion->state_id = $request->state;
+        $fashion->city_id = $request->city;
+        $fashion->pin_code = $request->pin_code;
+        $fashion->address = $request->address;
+        $fashion->user_id = $request->user_id;
+        $fashion->name = $request->name;
+        $fashion->email = $request->email;
+        $fashion->mobile_no = $request->mobile_no;
+        $fashion->category_id = $request->category_id;
+        $fashion->sub_category_id = $request->sub_category_id;
+        $fashion->locality_id = $request->locality;
+        $fashion->user_type = $request->user_type;
+        $fashion->gst_no = $request->gst_no;
+        $fashion->save();
+        return redirect()->route('furniture.post.ad', $furniture->id)->with('success', 'Post Added Successfully!');
+    }
+
+    public function savePetPost(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'mobile_no' => 'required',
+            // 'furniture_type' => 'required',
+            // 'brand_name' => 'required',
+            'ad_title' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'photos' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'pin_code' => 'required',
+            'address' => 'required',
+        ]);
+        $pet = new Pet();
+        $pet->type_id = $request->pet_type;
+        $pet->ad_title = $request->ad_title;
+        $pet->description = $request->description;
+        $pet->price = $request->price;
+        // $files = $request->userfile;
+        // dd($request->photos);
+        if($request->hasfile('photos'))
+
+         {
+
+            foreach($request->file('photos') as $file)
+
+            {
+
+                $name = time().rand(1,100).'.'.$file->extension();
+
+                $file->move(public_path('adPhotos'), $name);  
+
+                $files[] = $name;  
+
+            }
+            // dd($files);
+            
+            $pet->photos = implode(",", $files);
+        }
+        $pet->state_id = $request->state;
+        $pet->city_id = $request->city;
+        $pet->pin_code = $request->pin_code;
+        $pet->address = $request->address;
+        $pet->user_id = $request->user_id;
+        $pet->name = $request->name;
+        $pet->email = $request->email;
+        $pet->mobile_no = $request->mobile_no;
+        $pet->category_id = $request->category_id;
+        $pet->sub_category_id = $request->sub_category_id;
+        $pet->locality_id = $request->locality;
+        $pet->user_type = $request->user_type;
+        $pet->gst_no = $request->gst_no;
+        $pet->save();
+        return Redirect::back()->with('success', 'Post Added Successfully!');
     }
 
     public function savePGHousePost(Request $request)

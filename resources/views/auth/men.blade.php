@@ -111,7 +111,7 @@
       <div class="col-sm-12">
         <div class="row">
           <div class="col-md-8">
-            <form method="POST" action="{{ url('save-furniture-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
+            <form method="POST" action="{{ url('save-fashion-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
             @csrf 
               <input type="hidden" name="sub_category_id"  value="{{ $subCategory->id }}">
               <input type="hidden" name="category_id" value="{{ $category->id }}">

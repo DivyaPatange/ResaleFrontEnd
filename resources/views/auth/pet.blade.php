@@ -86,10 +86,11 @@
       <div class="col-md-12">
         <div class="title-single-box">
           <h1 class="title-single">The Best Way To Sell Your {{ $subCategory->sub_category }}</h1>
-          <span class="color-text-a">Resale99 Makes Selling A Car An Easy,Guaranteed Purchase. Free Paperwork. Free RC Transfer. Free Online Car Valuation. Hassle Free Selling. Free Ownership Transfer. Free Valuation in 10 Sec. Instant Payment. Book An Appointment. Instant Valuation.</span>
+          <!--<span class="color-text-a">Resale99 Makes Selling A Car An Easy,Guaranteed Purchase. Free Paperwork. Free RC Transfer. Free Online Car Valuation. Hassle Free Selling. Free Ownership Transfer. Free Valuation in 10 Sec. Instant Payment. Book An Appointment. Instant Valuation.</span>-->
         </div>
       </div>
     </div>
+    @include('auth.auth_layout.changeCategory')
   </div>
 </section>
 <!-- End Intro Single-->
@@ -110,7 +111,7 @@
       <div class="col-sm-12">
         <div class="row">
           <div class="col-md-8">
-            <form method="POST" action="{{ url('save-furniture-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
+            <form method="POST" action="{{ url('save-pet-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
             @csrf 
               <input type="hidden" name="sub_category_id"  value="{{ $subCategory->id }}">
               <input type="hidden" name="category_id" value="{{ $category->id }}">
@@ -158,17 +159,19 @@
               </div>
               <div class="form-group">
               <div id="upload_form">
+                  @for($i=1;$i<16;$i++)
                 <label class="filelabel p_file">
                   <div class="icon">X</div>
-                  <i class="fa fa-paperclip" id="icon1">
+                  <i class="fa fa-paperclip" id="icon{{ $i }}">
                   </i>
                   
-                  <span class="title1">
+                  <span class="title{{ $i }}">
                       Add File
                   </span>
-                  <input class="FileUpload1" id="FileInput" name="photos[]" type="file"/>
-                  <img  id="frame1" class="hidden" style="max-width: 90px; max-height: 70px;">
+                  <input class="FileUpload{{ $i }}" id="FileInput" name="photos[]" type="file"/>
+                  <img  id="frame{{ $i }}" class="hidden" style="max-width: 90px; max-height: 70px;">
                 </label>
+                @endfor
               </div>
               </div>
               @error('photos')
@@ -189,7 +192,7 @@
                       <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fa fa-rupee"></i></div>
                       </div>
-                      <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Price" name="price" value="{{ old('price') }}">
+                      <input type="text" class="form-control Stylednumber @error('price') is-invalid @enderror" id="price" placeholder="Price" name="price" value="{{ old('price') }}">
                     </div>
                   </div>
                 </div>
@@ -270,19 +273,20 @@
                   </span>
                   @enderror
                 </div>
+                
                 <div class="form-group col-md-6">
-                  <label>Pin Code</label><span class="text-danger">*</span></label>
-                  <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code" value="{{ old('pin_code') }}">
-                  @error('pin_code')
+                  <label>Address</label><span class="text-danger">*</span></label>
+                  <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
+                  @error('address')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
                   @enderror
                 </div>
                 <div class="form-group col-md-6">
-                  <label>Address</label><span class="text-danger">*</span></label>
-                  <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
-                  @error('address')
+                  <label>Pin Code</label><span class="text-danger">*</span></label>
+                  <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code" value="{{ old('pin_code') }}">
+                  @error('pin_code')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
@@ -419,6 +423,40 @@
 @endsection
 @section('customjs')
 <script>
+String.prototype.replaceAll = function(search, replacement) {
+  var target = this;
+  return target.replace(new RegExp(search, 'g'), replacement);
+};
+$('input.Stylednumber').keyup(function() {
+  var input = $(this).val().replaceAll(',', '');
+  if (input.length < 1)
+    $(this).val('0');
+  else {
+    var formatted = inrFormat(input);
+    if (formatted.indexOf('.') > 0) {
+      var split = formatted.split('.');
+      formatted = split[0] + '.' + split[1].substring(0, 2);
+    }
+    $(this).val(formatted);
+  }
+});
+function inrFormat(val) {
+  var x = val;
+  x = x.toString();
+  var afterPoint = '';
+  if (x.indexOf('.') > 0)
+    afterPoint = x.substring(x.indexOf('.'), x.length);
+  x = Math.floor(x);
+  x = x.toString();
+  var lastThree = x.substring(x.length - 3);
+  var otherNumbers = x.substring(0, x.length - 3);
+  if (otherNumbers != '')
+    lastThree = ',' + lastThree;
+  var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + afterPoint;
+  return res;
+}
+
+
 function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();

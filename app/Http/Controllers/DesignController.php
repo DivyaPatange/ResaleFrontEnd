@@ -14,6 +14,11 @@ use App\Models\Bike;
 use App\Models\SparePart;
 use App\Models\TV;
 use App\Models\Furniture;
+use App\Models\Fashion;
+use App\Models\Education;
+use App\Models\Pet;
+use App\Models\PropertyRent;
+use App\Models\PropertySale;
 
 class DesignController extends Controller
 {
@@ -137,7 +142,7 @@ class DesignController extends Controller
     public function furnitureDetails($id)
     {
         $subCategory = SubCategory::findorfail($id);
-        $furnitures = Furniture::orderBy('id', 'DESC')->get();
+        $furnitures = Furniture::where('sub_category_id', $subCategory->id)->orderBy('id', 'DESC')->get();
         return view('auth.allFurniture', compact('subCategory', 'furnitures'));
     }
 
@@ -145,5 +150,70 @@ class DesignController extends Controller
     {
         $singlePost = Furniture::findorfail($id);
         return view('auth.furniture_detail', compact('singlePost'));
+    }
+
+    public function fashionDetails($id)
+    {
+        $subCategory = SubCategory::findorfail($id);
+        $fashions = Fashion::where('sub_category_id', $subCategory->id)->orderBy('id', 'DESC')->get();
+        return view('auth.allFashion', compact('subCategory', 'fashions'));
+    }
+
+    public function getFashionPostDetail($id)
+    {
+        $singlePost = Fashion::findorfail($id);
+        return view('auth.fashion_detail', compact('singlePost'));
+    }
+
+    public function educationDetails($id)
+    {
+        $subCategory = SubCategory::findorfail($id);
+        $educations = Education::where('sub_category_id', $subCategory->id)->orderBy('id', 'DESC')->get();
+        return view('auth.allEducation', compact('subCategory', 'educations'));
+    }
+
+    public function getEducationPostDetail($id)
+    {
+        $singlePost = Education::findorfail($id);
+        return view('auth.education_detail', compact('singlePost'));
+    }
+
+    public function petDetails($id)
+    {
+        $subCategory = SubCategory::findorfail($id);
+        $pets = Pet::where('sub_category_id', $subCategory->id)->orderBy('id', 'DESC')->get();
+        return view('auth.allPet', compact('subCategory', 'pets'));
+    }
+
+    public function getPetPostDetail($id)
+    {
+        $singlePost = Pet::findorfail($id);
+        return view('auth.pet_detail', compact('singlePost'));
+    }
+
+    public function propertyRentDetails($id)
+    {
+        $subCategory = SubCategory::findorfail($id);
+        $propertyRent = PropertyRent::where('sub_category_id', $subCategory->id)->orderBy('id', 'DESC')->get();
+        return view('auth.allPropertyRent', compact('subCategory', 'propertyRent'));
+    }
+
+    public function getPropertyRentPostDetail($id)
+    {
+        $singlePost = PropertyRent::findorfail($id);
+        return view('auth.property-rent-detail', compact('singlePost'));
+    }
+
+    public function propertySaleDetails($id)
+    {
+        $subCategory = SubCategory::findorfail($id);
+        $propertySale = PropertySale::where('sub_category_id', $subCategory->id)->orderBy('id', 'DESC')->get();
+        return view('auth.allPropertySale', compact('subCategory', 'propertySale'));
+    }
+
+    public function getPropertySalePostDetail($id)
+    {
+        $singlePost = PropertySale::findorfail($id);
+        return view('auth.property-sale-detail', compact('singlePost'));
     }
 }
