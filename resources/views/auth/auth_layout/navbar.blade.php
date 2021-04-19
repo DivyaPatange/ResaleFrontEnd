@@ -66,6 +66,9 @@
             <a class="dropdown-item text-dark" href="{{ route('post-ad') }}" >
               {{ __('Post an Ad') }}
             </a>
+            <a class="dropdown-item text-dark" href="{{ route('my-ad') }}" >
+              {{ __('My Ads') }}
+            </a>
             <a class="dropdown-item text-dark" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               {{ __('Logout') }}
             </a>

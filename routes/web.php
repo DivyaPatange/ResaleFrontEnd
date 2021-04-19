@@ -60,6 +60,8 @@ Route::get('/postAdForm1', function () {
 Route::get('/sidebar', function () {
     return view('auth.sidebar');
 })->name('sidebar');
+
+Route::get('/my-ads', [AdController::class, 'myAds'])->name('my-ad');
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
