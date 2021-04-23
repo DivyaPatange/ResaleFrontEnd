@@ -898,6 +898,235 @@ function readURL(input) {
       return false;
   }
   
+
+  $('body')
+    .delegate('#upload_form15 input[type="file"]', 'change', inputChanged15)
+    .delegate('#upload_form15 .icon', 'click', removeField15);
+  
+  function inputChanged15(e) {
+    $current_count = $('#upload_form15 input[type="file"]').length;
+    // console.log($current_count);
+    $next_count = $current_count + 1;
+    var labelVal = $(".title"+$current_count).text();
+    var oldfileName = $(this).val();
+    console.log(oldfileName);
+    $("#upload_form15 .filelabel .title").text(labelVal);
+    fileName = e.target.value.split( '\\' ).pop();
+    if (oldfileName == fileName) {return false;}
+    var className = $(this).attr("class");
+    console.log(className);
+    var lastChar = className.slice(-1);
+    var inc  = 1 + +lastChar;
+    console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
+    var extension = fileName.split('.').pop();
+    if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+      $("#upload_form15 .filelabel #icon"+lastChar).remove();
+      $('#upload_form15 #frame'+lastChar).removeClass("hidden");
+      $('#upload_form15 #frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
+      $("#upload_form15 .filelabel i, .filelabel .title").css({'color':'#208440'});
+      $("#upload_form15 .filelabel").css({'border':' 2px solid #208440'});
+    }
+    if(fileName ){
+      if (fileName.length > 10){
+        $("#upload_form15 .filelabel .title"+lastChar).text(fileName.slice(0,4)+'...'+extension);
+      }
+      else{
+        $("#upload_form15 .filelabel .title"+$current_count).text(fileName);
+      }
+    }
+    else{
+      $("#upload_form15 .filelabel .title").text(labelVal);
+    }
+    if($("#upload_form15 .FileUpload"+inc).length > 0) {
+      console.log('exist');
+    }
+    else{
+    $(this).closest('.p_file').after(
+    '<label class="filelabel p_file"><div class="icon">X</div>' +
+    '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+    '<span class="title'+$next_count+'">Add File</span>' +
+    '<input class="FileUpload'+$next_count+'" id="FileInput" name="site_photos[]" type="file"/>'+
+    '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
+    '</label>');
+    }
+  }
+  
+  function removeField15(){
+      $(this).closest('.p_file').remove();
+      return false;
+  }
+
+  $('body')
+    .delegate('#upload_form16 input[type="file"]', 'change', inputChanged16)
+    .delegate('#upload_form16 .icon', 'click', removeField16);
+  
+  function inputChanged16(e) {
+    $current_count = $('#upload_form16 input[type="file"]').length;
+    // console.log($current_count);
+    $next_count = $current_count + 1;
+    var labelVal = $(".title"+$current_count).text();
+    var oldfileName = $(this).val();
+    console.log(oldfileName);
+    $("#upload_form16 .filelabel .title").text(labelVal);
+    fileName = e.target.value.split( '\\' ).pop();
+    if (oldfileName == fileName) {return false;}
+    var className = $(this).attr("class");
+    console.log(className);
+    var lastChar = className.slice(-1);
+    var inc  = 1 + +lastChar;
+    console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
+    var extension = fileName.split('.').pop();
+    if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+      $("#upload_form16 .filelabel #icon"+lastChar).remove();
+      $('#upload_form16 #frame'+lastChar).removeClass("hidden");
+      $('#upload_form16 #frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
+      $("#upload_form16 .filelabel i, .filelabel .title").css({'color':'#208440'});
+      $("#upload_form16 .filelabel").css({'border':' 2px solid #208440'});
+    }
+    if(fileName ){
+      if (fileName.length > 10){
+        $("#upload_form16 .filelabel .title"+lastChar).text(fileName.slice(0,4)+'...'+extension);
+      }
+      else{
+        $("#upload_form16 .filelabel .title"+$current_count).text(fileName);
+      }
+    }
+    else{
+      $("#upload_form16 .filelabel .title").text(labelVal);
+    }
+    if($("#upload_form16 .FileUpload"+inc).length > 0) {
+      console.log('exist');
+    }
+    else{
+    $(this).closest('.p_file').after(
+    '<label class="filelabel p_file"><div class="icon">X</div>' +
+    '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+    '<span class="title'+$next_count+'">Add File</span>' +
+    '<input class="FileUpload'+$next_count+'" id="FileInput" name="master_photos[]" type="file"/>'+
+    '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
+    '</label>');
+    }
+  }
+  
+  function removeField16(){
+      $(this).closest('.p_file').remove();
+      return false;
+  }
+
+  $('body')
+    .delegate('#upload_form17 input[type="file"]', 'change', inputChanged17)
+    .delegate('#upload_form17 .icon', 'click', removeField17);
+  
+  function inputChanged17(e) {
+    $current_count = $('#upload_form17 input[type="file"]').length;
+    // console.log($current_count);
+    $next_count = $current_count + 1;
+    var labelVal = $(".title"+$current_count).text();
+    var oldfileName = $(this).val();
+    console.log(oldfileName);
+    $("#upload_form17 .filelabel .title").text(labelVal);
+    fileName = e.target.value.split( '\\' ).pop();
+    if (oldfileName == fileName) {return false;}
+    var className = $(this).attr("class");
+    console.log(className);
+    var lastChar = className.slice(-1);
+    var inc  = 1 + +lastChar;
+    console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
+    var extension = fileName.split('.').pop();
+    if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+      $("#upload_form17 .filelabel #icon"+lastChar).remove();
+      $('#upload_form17 #frame'+lastChar).removeClass("hidden");
+      $('#upload_form17 #frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
+      $("#upload_form17 .filelabel i, .filelabel .title").css({'color':'#208440'});
+      $("#upload_form17 .filelabel").css({'border':' 2px solid #208440'});
+    }
+    if(fileName ){
+      if (fileName.length > 10){
+        $("#upload_form17 .filelabel .title"+lastChar).text(fileName.slice(0,4)+'...'+extension);
+      }
+      else{
+        $("#upload_form17 .filelabel .title"+$current_count).text(fileName);
+      }
+    }
+    else{
+      $("#upload_form17 .filelabel .title").text(labelVal);
+    }
+    if($("#upload_form17 .FileUpload"+inc).length > 0) {
+      console.log('exist');
+    }
+    else{
+    $(this).closest('.p_file').after(
+    '<label class="filelabel p_file"><div class="icon">X</div>' +
+    '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+    '<span class="title'+$next_count+'">Add File</span>' +
+    '<input class="FileUpload'+$next_count+'" id="FileInput" name="location_photos[]" type="file"/>'+
+    '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
+    '</label>');
+    }
+  }
+  
+  function removeField17(){
+      $(this).closest('.p_file').remove();
+      return false;
+  }
+
+  $('body')
+    .delegate('#upload_form18 input[type="file"]', 'change', inputChanged18)
+    .delegate('#upload_form18 .icon', 'click', removeField18);
+  
+  function inputChanged18(e) {
+    $current_count = $('#upload_form18 input[type="file"]').length;
+    // console.log($current_count);
+    $next_count = $current_count + 1;
+    var labelVal = $(".title"+$current_count).text();
+    var oldfileName = $(this).val();
+    console.log(oldfileName);
+    $("#upload_form18 .filelabel .title").text(labelVal);
+    fileName = e.target.value.split( '\\' ).pop();
+    if (oldfileName == fileName) {return false;}
+    var className = $(this).attr("class");
+    console.log(className);
+    var lastChar = className.slice(-1);
+    var inc  = 1 + +lastChar;
+    console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
+    var extension = fileName.split('.').pop();
+    if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+      $("#upload_form18 .filelabel #icon"+lastChar).remove();
+      $('#upload_form18 #frame'+lastChar).removeClass("hidden");
+      $('#upload_form18 #frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
+      $("#upload_form18 .filelabel i, .filelabel .title").css({'color':'#208440'});
+      $("#upload_form18 .filelabel").css({'border':' 2px solid #208440'});
+    }
+    if(fileName ){
+      if (fileName.length > 10){
+        $("#upload_form18 .filelabel .title"+lastChar).text(fileName.slice(0,4)+'...'+extension);
+      }
+      else{
+        $("#upload_form18 .filelabel .title"+$current_count).text(fileName);
+      }
+    }
+    else{
+      $("#upload_form18 .filelabel .title").text(labelVal);
+    }
+    if($("#upload_form18 .FileUpload"+inc).length > 0) {
+      console.log('exist');
+    }
+    else{
+    $(this).closest('.p_file').after(
+    '<label class="filelabel p_file"><div class="icon">X</div>' +
+    '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+    '<span class="title'+$next_count+'">Add File</span>' +
+    '<input class="FileUpload'+$next_count+'" id="FileInput" name="others_photos[]" type="file"/>'+
+    '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
+    '</label>');
+    }
+  }
+  
+  function removeField18(){
+      $(this).closest('.p_file').remove();
+      return false;
+  }
+  
   
   
   

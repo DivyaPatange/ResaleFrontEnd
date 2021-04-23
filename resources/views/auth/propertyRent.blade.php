@@ -22,7 +22,7 @@
   margin:10px;
 }
 #upload_form, #upload_form1, #upload_form2, #upload_form3, #upload_form4, #upload_form5, #upload_form6, #upload_form7, #upload_form8,
-#upload_form9, #upload_form10, #upload_form11, #upload_form12, #upload_form13, #upload_form14, #upload_form15, #upload_form16, #upload_form17
+#upload_form9, #upload_form10, #upload_form11, #upload_form12, #upload_form13, #upload_form14, #upload_form15, #upload_form16, #upload_form17, #upload_form18
 {
   display:inline-flex;
   flex-wrap:wrap;
@@ -2984,7 +2984,416 @@ $("#suggesstion-locality").hide();
                   <button type="button" id="submitForm2" class="btn btn-primary">Post Your Add</button>
                 </div>
               </div>
-              
+              <div id="land-form" class="hidden">
+                <hr>
+                <div class="form-group">
+                  <h6>Property Feature</h6>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="">Floors Allowed for construction</label>
+                    <select name="floor_constru" id="floor_constru" class="form-control @error('floor_constru') invalid-feedback @enderror">
+                      <option value="">-Select floors Allowed for construction-</option>
+                      @for($i=1; $i <= 201 ;$i++)
+                      <option value="{{$i}}">{{$i}}</option>
+                      @endfor
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="">No. of Open Side</label>
+                    <select name="no_of_open_side" id="no_of_open_side" class="form-control @error('no_of_open_side') invalid-feedback @enderror">
+                      <option value="">-Select No. of Open Side-</option>
+                      <option value="1" @if(old('no_of_open_side') == "1") Selected @endif>1</option>
+                      <option value="2" @if(old('no_of_open_side') == "2") Selected @endif>2</option>
+                      <option value="3" @if(old('no_of_open_side') == "3") Selected @endif>3</option>
+                      <option value="4" @if(old('no_of_open_side') == "4") Selected @endif>4</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="">Width of Road facing the Plot</label>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="number" class="form-control @error('width_of_road') invalid-feedback @enderror" name="width_of_road" value="{{ old('width_of_road') }}" placeholder="Meters">
+                  </div>
+                </div>  
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label for="">Any construction Done <span class="text-danger">*</span><span class="text-danger" id="construct_err"></span></label>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="any_construc" value="Yes">Yes
+                        </label>
+                      </div>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="any_construc" value="No">No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label for="">Bondry wall Made<span class="text-danger">*</span><span class="text-danger" id="wall_err"></span></label>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="boundry_wall" value="Yes">Yes
+                        </label>
+                      </div>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="boundry_wall" value="No">No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <h6>Area</h6>
+                </div>
+                <div class="form-row">
+                  <div class="col-md-4">
+                    <label for="">Plot Area<span class="text-danger">*</span><span class="text-danger" id="plot_err"></span></label>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <input type="number" id="plot_area" class="form-control @error('plot_area') invalid-feedback @enderror" name="plot_area" value="{{ old('plot_area') }}">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <select name="plot_unit" id="plot_unit" class="form-control @error('plot_unit') invalid-feedback @enderror">
+                      <option value="Sq-ft">Sq-ft</option>
+                      <option value="Sq-yrd">Sq-yrd</option>
+                      <option value="Sq-m">Sq-m</option>
+                      <option value="Acre">Acre</option>
+                      <option value="Bigha">Bigha</option>
+                      <option value="Hectare">Hectare</option>
+                      <option value="Marla">Marla</option>
+                      <option value="Kanal">Kanal</option>
+                      <option value="Biswa1">Biswa1</option>
+                      <option value="Biswa2">Biswa2</option>
+                      <option value="Ground">Ground</option>
+                      <option value="Aankadam">Aankadam</option>
+                      <option value="Rood">Rood</option>
+                      <option value="Chatak">Chatak</option>
+                      <option value="Kottah">Kottah</option>
+                      <option value="Cent">Cent</option>
+                      <option value="Perch">Perch</option>
+                      <option value="Guntha">Guntha</option>
+                      <option value="Are">Are</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col-md-4">
+                    <label for="">Plot Length</label>
+                  </div>
+                  <div class="form-group col-md-8">
+                    <input type="number" class="form-control @error('plot_length') invalid-feedback @enderror" name="plot_length" value="{{ old('plot_length') }}" placeholder="yrd">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col-md-4">
+                    <label for="">Plot Width</label>
+                  </div>
+                  <div class="form-group col-md-8">
+                    <input type="number" class="form-control @error('plot_width') invalid-feedback @enderror" name="plot_width" value="{{ old('plot_width') }}" placeholder="yrd">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="1" name="corner_plot">This is Corner Plot 
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <h6>Transaction Type/Property Availability</h6>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label for="">Available From<span  style="color:red" id="available_from_err"> </span></label>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="available_from" value="Select Date">Select Date
+                        <div class="hidden" id="showDateDiv">
+                          <input type="date" class="form-control" name="available_date">
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 form-group">
+                    <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="available_from" value="Immediately">Immediately
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <h6>Rent/Lease Detail</h6>
+                </div>
+                <div class="form-row">
+                  <div class="col-md-4">
+                    <label for="">Monthly Rent<span  style="color:red" id="monthly_rent_err"> </span></label>
+                  </div>
+                  <div class="col-md-8">
+                    <input type="number" class="form-control" id="monthly_rent" name="monthly_rent" onkeyup="convertNumberToWords(this.value)">
+                    <span id="show_price" class="text-muted"></span>
+                  </div>
+                </div>
+                <div id="show_rent" class="hidden">
+                  <div class="form-row">
+                    <div class="form-group col-md-3">
+                      <label for="">Show Rent as</label>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" id="show_rent1" name="show_rent_as" value="">
+                          <span id="rent_1"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" id="show_rent2" name="show_rent_as" value="">
+                          <span id="rent_2"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="show_rent_as" value="Call For Price">Call For Price
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="plus-minus">
+                    <input type="checkbox" name="" id="a" class="a css-checkbox">
+                    <label for="a" class="css-label">
+                      <span class="fa fa-plus"></span>
+                      <span class="fa fa-minus"></span>
+                    Add Other Charges
+                    </label>
+                  </div>
+                </div>
+                <div id="otherChargesDiv" class="hidden">
+                  <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label for="">Other Charges</label>
+                    </div>
+                    <div class="form-group col-md-8">
+                      <input type="text" class="form-control" name="other_charges">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="checkbox" name="stamp_duty" class="form-check-input" value="1" checked>Stamp Duty & Registration Charges Excluded.
+                    </label>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="">Booking Token Amount</label>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="number" name="booking_token_amount" id="booking_token_amount" class="form-control @error('booking_token_amount') invalid-feedback @enderror" value="{{ old('booking_token_amount') }}">
+                    @error('booking_token_amount')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="">Brokerage (Brokers Only)</label>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <select name="brokerage" id="brokerage" class="form-control">
+                      <option value="">-Select Brokerage-</option>
+                      <option value="No Brokerage">No Brokerage</option>
+                      <option value="0.25 %">0.25 %</option>
+                      <option value="0.5 %">0.5 %</option>
+                      <option value="0.75 %">0.75 %</option>
+                      <option value="1 %">1 %</option>
+                      <option value="1.5 %">1.5 %</option>
+                      <option value="2 %">2 %</option>
+                      <option value="3 %">3 %</option>
+                      <option value="4 %">4 %</option>
+                      <option value="5 %">5 %</option>
+                    </select>
+                  </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                  <h6>Photos</h6>
+                </div>
+                <div class="form-group mt-3">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <nav>
+                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                          <a class="nav-item nav-link active" id="nav-home5-tab" data-toggle="tab" href="#nav-home5" role="tab" aria-controls="nav-home5" aria-selected="true">Site View</a>
+                          <a class="nav-item nav-link" id="nav-profile5-tab" data-toggle="tab" href="#nav-profile5" role="tab" aria-controls="nav-profile5" aria-selected="false">Master Plan</a>
+                          <a class="nav-item nav-link" id="nav-contact5-tab" data-toggle="tab" href="#nav-contact5" role="tab" aria-controls="nav-contact5" aria-selected="false">Location Map</a>
+                          <a class="nav-item nav-link" id="nav-others5-tab" data-toggle="tab" href="#nav-others5" role="tab" aria-controls="nav-others5" aria-selected="false">Others </a>
+                        </div>
+                      </nav>
+                      <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-home5" role="tabpanel" aria-labelledby="nav-home5-tab">
+                          <div id="upload_form15">
+                            <label class="filelabel p_file">
+                              <div class="icon">X</div>
+                              <i class="fa fa-paperclip" id="icon1"></i>
+                              <span class="title1">
+                                Add File
+                              </span>
+                              <input class="FileUpload1" id="FileInput" name="site_photos[]" type="file"/>
+                              <img id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                            </label>
+                          </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-profile5" role="tabpanel" aria-labelledby="nav-profile5-tab">
+                          <div id="upload_form16">
+                            <label class="filelabel p_file">
+                              <div class="icon">X</div>
+                              <i class="fa fa-paperclip" id="icon1"></i>
+                              <span class="title1">Add File</span>
+                              <input class="FileUpload1" id="FileInput" name="master_photos[]" type="file"/>
+                              <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                            </label>
+                          </div>      
+                        </div>
+                        <div class="tab-pane fade" id="nav-contact5" role="tabpanel" aria-labelledby="nav-contact5-tab">
+                          <div id="upload_form17">
+                            <label class="filelabel p_file">
+                              <div class="icon">X</div>
+                              <i class="fa fa-paperclip" id="icon1"></i>
+                              <span class="title1">Add File</span>
+                              <input class="FileUpload1" id="FileInput" name="location_photos[]" type="file"/>
+                              <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                            </label>
+                          </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-others5" role="tabpanel" aria-labelledby="nav-others5-tab">
+                          <div id="upload_form18">
+                            <label class="filelabel p_file">
+                              <div class="icon">X</div>
+                              <i class="fa fa-paperclip" id="icon1"></i>
+                              <span class="title1">Add File</span>
+                              <input class="FileUpload1" id="FileInput" name="others_photos[]" type="file"/>
+                              <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <button type="button" id="showButton4" class="btn btn-primary">Continue & Next</button>
+                <div class="hidden" id="showDiv4">
+                  <div class="form-group">
+                    <h6>Additional Features</h6>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label>Overlooking</label>
+                    </div>
+                    <div class="form-group col-md-8">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="overlooking" value="Main Road">Main Road
+                        </label>
+                      </div>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="overlooking" value="Not Available">Not Available
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <h6>Ownership & Approvals</h6>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="">Ownership Status</label>
+                      <select name="ownership_approval" id="ownership_approval" class="form-control @error('ownership_approval') invalid-feedback @enderror">
+                        <option value="">-Select Ownership Approval-</option>
+                        <option value="Freehold" @if(old('ownership_approval') == "Freehold") Selected @endif>Freehold</option>
+                        <option value="Leasehold" @if(old('ownership_approval') == "Leasehold") Selected @endif>Leasehold</option>
+                        <option value="Power of Attorney" @if(old('ownership_approval') == "Power of Attorney") Selected @endif>Power of Attorney</option>
+                        <option value="Co-Operative Society" @if(old('ownership_approval') == "Co-Operative Society") Selected @endif>Co-Operative Society</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="">Approved By</label>
+                      <select name="approved_by" id="approved_by" class="form-control @error('approved_by') invalid-feedback @enderror">
+                        <option value="">-Select Approved By-</option>
+                        <option value="NMRDA" @if(old('approved_by') == "NMRDA") Selected @endif>NMRDA</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Description <span class="text-danger">*</span><span class="text-danger" id="description_err"></span></label>
+                    <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
+                    @error('description')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                  <div class="form-group">
+                    <label>Land Mark</label>
+                    <input type="text" class="form-control @error('land_mark') is-invalid @enderror" id="land_mark"  name="land_mark" value="{{ old('land_mark') }}">
+                    @error('land_mark')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label for="">Listed By</label>
+                    </div>
+                    <div class="form-group col-md-8">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="" name="listed_by" value="Builder">
+                        <label class="form-check-label" for="">Builder</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="" name="listed_by" value="Owner">
+                        <label class="form-check-label" for="">Owner</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="" name="listed_by" value="Agent">
+                        <label class="form-check-label" for="">Agent</label>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <button type="button" id="submitForm3" class="btn btn-primary">Post Your Add</button>
+                </div>
+              </div>
             </form>
           </div>
           <div class="col-md-4 section-md-t3">
@@ -3095,6 +3504,9 @@ $.ajaxSetup({
       if($("#showroom-form").css("display") == "block"){
       $("#showroom-form #showDateDiv").show(1000);
       }
+      if($("#land-form").css("display") == "block"){
+      $("#land-form #showDateDiv").show(1000);
+      }
     }
     else{
       if($("#commercial-form").css("display") == "block")
@@ -3106,6 +3518,9 @@ $.ajaxSetup({
       }
       if($("#showroom-form").css("display") == "block"){
       $("#showroom-form #showDateDiv").hide(1000);
+      }
+      if($("#land-form").css("display") == "block"){
+      $("#land-form #showDateDiv").hide(1000);
       }
     }
   })
@@ -3201,6 +3616,10 @@ function convertNumberToWords(amount) {
     { 
       $('#showroom-form #show_price').html(words_string);
     }
+    if($("#land-form").css("display") == "block")
+    { 
+      $('#land-form #show_price').html(words_string);
+    }
     // return words_string;
 }
 $(document).mouseup(function (e) { 
@@ -3268,6 +3687,28 @@ $(document).mouseup(function (e) {
     } 
     }
   }
+
+  if($("#land-form").css("display") == "block")
+  { 
+    var monthly_rent = $("#land-form #monthly_rent").val();
+    // alert(monthly_rent);
+    if(monthly_rent != ""){
+    if ($(e.target).closest("#land-form #monthly_rent").length === 0) {
+      x=monthly_rent.toString();
+      var lastThree = x.substring(x.length-3);
+      var otherNumbers = x.substring(0,x.length-3);
+      if(otherNumbers != '')
+          lastThree = ',' + lastThree;
+      var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+      $("#land-form #rent_1").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
+      $("#land-form #show_rent1").val('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
+      $("#land-form #rent_2").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
+      $("#land-form #show_rent2").val('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
+      // format.format(4800)  
+      $("#land-form #show_rent").show(1000); 
+    } 
+    }
+  }
 }) 
 
 $('body').on('click', '.a', function () {
@@ -3283,6 +3724,10 @@ $('body').on('click', '.a', function () {
   {
     $("#showroom-form #otherChargesDiv").fadeToggle(1000);
   } 
+  if($("#land-form").css("display") == "block")
+  {
+    $("#land-form #otherChargesDiv").fadeToggle(1000);
+  } 
 })
 $('body').on('change', '#property_type', function () {
     var query = $(this).val();
@@ -3296,6 +3741,7 @@ $('body').on('change', '#property_type', function () {
         $('#rent-lease-form').fadeIn();
         $('#commercial-form').fadeOut();
         $('#showroom-form').fadeOut();
+        $('#land-form').fadeOut();
       }, 2500);
     }
     if((query == 40) || (query == 41) || (query == 42) || (query == 45) || (query == 46))
@@ -3308,6 +3754,7 @@ $('body').on('change', '#property_type', function () {
         $('#commercial-form').fadeIn();
         $('#rent-lease-form').fadeOut();
         $('#showroom-form').fadeOut();
+        $('#land-form').fadeOut();
       }, 2500);
     }
     if((query == 43) || (query == 44))
@@ -3319,7 +3766,21 @@ $('body').on('change', '#property_type', function () {
         showDiv.hide();
         $('#commercial-form').fadeOut();
         $('#rent-lease-form').fadeOut();
+        $('#land-form').fadeOut();
         $('#showroom-form').fadeIn();
+      }, 2500);
+    }
+    if((query == 47) || (query == 48) || (query == 50) || (query == 51) || (query == 52) || (query == 53) || (query == 54) || (query == 55) || (query == 56))
+    {
+      var showDiv = $('.pageloader');
+      if (showDiv.is(":visible")) { return; }
+      showDiv.show();
+      setTimeout(function() {
+        showDiv.hide();
+        $('#commercial-form').fadeOut();
+        $('#rent-lease-form').fadeOut();
+        $('#showroom-form').fadeOut();
+        $('#land-form').fadeIn();
       }, 2500);
     }
 })
@@ -3428,6 +3889,7 @@ $('body').on('click', '#submitForm', function () {
   }
   $("#commercial-form :input").prop("disabled", true);
   $("#showroom-form :input").prop("disabled", true);
+  $("#land-form :input").prop("disabled", true);
   $("#property-form").submit();
 });
 
@@ -3529,6 +3991,7 @@ $('body').on('click', '#submitButton2', function () {
   else{
     $("#rent-lease-form :input").prop("disabled", true);
     $("#showroom-form :input").prop("disabled", true);
+    $("#land-form :input").prop("disabled", true);
     $("#property-form").submit();
   }
 });
@@ -3631,6 +4094,96 @@ $('body').on('click', '#submitForm2', function () {
   else{
     $("#rent-lease-form :input").prop("disabled", true);
     $("#commercial-form :input").prop("disabled", true);
+    $("#land-form :input").prop("disabled", true);
+    $("#property-form").submit();
+  }
+});
+
+
+$('body').on('click', '#showButton4', function () {
+  var city = $('#search-box').val();
+  var locality = $('#locality').val();
+  var address = $('textarea#address').val();
+  var any_construct = $("#land-form input[name='any_construc']:checked").val();
+  var boundary_wall = $("#land-form input[name='boundry_wall']:checked").val();
+  var plot_area = $('#land-form #plot_area').val();
+  var available_from = $("#land-form input[name='available_from']:checked").val();
+  var monthly_rent = $('#land-form #monthly_rent').val();
+  if(city == '')
+  {
+    $("#city_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#city_err").fadeOut(); }, 3000);
+    $("#search-box").focus();
+    return false;
+  }
+  if(locality == '')
+  {
+    $("#locality_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#locality_err").fadeOut(); }, 3000);
+    $("#locality").focus();
+    return false;
+  }
+  if(address == '')
+  {
+    $("#address_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#address_err").fadeOut(); }, 3000);
+    $("#address").focus();
+    return false;
+  }
+  if(any_construct == null)
+  {
+    $("#construct_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#construct_err").fadeOut(); }, 3000);
+    $("#land-form input[name='any_construc']").focus();
+    return false;
+  }
+  if(boundary_wall == null)
+  {
+    $("#wall_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#wall_err").fadeOut(); }, 3000);
+    $("#land-form input[name='boundry_wall']").focus();
+    return false;
+  }
+  if(plot_area == '')
+  {
+    $("#land-form #plot_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#land-form #plot_err").fadeOut(); }, 3000);
+    $("#land-form #plot_area").focus();
+    return false;
+  }
+  if(available_from == null)
+  {
+    $("#land-form #available_from_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#land-form #available_from_err").fadeOut(); }, 3000);
+    $("#land-form input[name='available_from']").focus();
+    return false;
+  }
+  if(monthly_rent == '')
+  {
+    $("#land-form #monthly_rent_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#land-form #monthly_rent_err").fadeOut(); }, 3000);
+    $("#land-form #monthly_rent").focus();
+    return false;
+  }
+  else{
+    $("#showDiv4").removeClass("hidden");
+    $("#showButton4").addClass("hidden");
+  }
+})
+
+$('body').on('click', '#submitForm3', function () {
+  var description = $('#land-form textarea#description').val();
+  if(description == '')
+  {
+    $("#land-form #description_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#land-form #description_err").fadeOut(); }, 3000);
+    $("#land-form #description").focus();
+    return false;
+  }
+  else{
+    $("#rent-lease-form :input").prop("disabled", true);
+    $("#commercial-form :input").prop("disabled", true);
+    $("#showroom-form :input").prop("disabled", true);
     $("#property-form").submit();
   }
 });

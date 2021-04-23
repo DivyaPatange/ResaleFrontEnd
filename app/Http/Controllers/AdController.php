@@ -1327,18 +1327,6 @@ class AdController extends Controller
          $propRent->landmark = $request->landmark;
          $propRent->owner_resides = $request->owner_resides;
          $propRent->land_zone = $request->land_zone;
-         $propRent->metro_station_name = $request->metro_station;
-         $propRent->prop_dist_metro = $request->distance_metro;
-         $propRent->railway_station_name = $request->railway_station;
-         $propRent->prop_dist_rly = $request->distance_railway;
-         $propRent->bus_stand_name = $request->bus_stand;
-         $propRent->prop_dist_bus = $request->distance_bus;
-         $propRent->airport_name = $request->airport;
-         $propRent->prop_dist_airport = $request->distance_airport;
-         $propRent->shopping_mall_name = $request->shopping_mall;
-         $propRent->prop_dist_mall = $request->distance_mall;
-         $propRent->office_name = $request->office_complex;
-         $propRent->prop_dist_office = $request->distance_office;
          $propRent->ideal_business = $request->ideal_business;
          $propRent->will_to_modify_interior = $request->modify_interior;
          $propRent->lock_in_period = $request->lock_period;
@@ -1354,6 +1342,61 @@ class AdController extends Controller
          $propRent->entrance_width_unit = $request->entrance_unit;
          $propRent->width_facing_road = $request->facing_width;
          $propRent->width_facing_road_unit = $request->width_facing_road_unit;
+         $propRent->floor_constru = $request->floor_constru;
+         $propRent->no_open_side = $request->no_of_open_side;
+         $propRent->wt_road_facing_plot = $request->width_of_road;
+         $propRent->any_construction = $request->any_construc;
+         $propRent->boundry_wall = $request->boundry_wall;
+         $propRent->plot_area = $request->plot_area;
+         $propRent->plot_unit = $request->plot_unit;
+         $propRent->plot_length = $request->plot_length;
+         $propRent->plot_width = $request->plot_width;
+         $propRent->corner_plot = $request->corner_plot;
+         $propRent->stamp_duty = $request->stamp_duty;
+         $propRent->booking_token_amount = $request->booking_token_amount;
+         if($request->hasfile('master_photos'))
+        {
+            foreach($request->file('master_photos') as $file6)
+            {
+                $name6 = time().rand(1,100).'.'.$file6->extension();
+                $file6->move(public_path('adPhotos'), $name6);  
+                $files6[] = $name6;  
+            }
+            $propRent->master_photos = implode(",", $files6);
+        }
+        if($request->hasfile('location_photos'))
+        {
+            foreach($request->file('location_photos') as $file7)
+            {
+                $name7 = time().rand(1,100).'.'.$file7->extension();
+                $file7->move(public_path('adPhotos'), $name7);  
+                $files7[] = $name7;  
+            }
+            $propRent->location_photos = implode(",", $files7);
+        }
+        if($request->hasfile('others_photos'))
+        {
+            foreach($request->file('others_photos') as $file8)
+            {
+                $name8 = time().rand(1,100).'.'.$file8->extension();
+                $file8->move(public_path('adPhotos'), $name8);  
+                $files8[] = $name8;  
+            }
+            $propRent->others_photos = implode(",", $files8);
+        }
+        if($request->hasfile('site_photos'))
+        {
+            foreach($request->file('site_photos') as $file9)
+            {
+                $name9 = time().rand(1,100).'.'.$file9->extension();
+                $file9->move(public_path('adPhotos'), $name9);  
+                $files9[] = $name9;  
+            }
+            $propRent->site_photos = implode(",", $files9);
+        }
+        $propRent->ownership_approval = $request->ownership_approval;
+        $propRent->approved_by = $request->approved_by;
+        $propRent->listed_by = $request->listed_by;
          $propRent->save();
          return Redirect::back()->with('success', 'Post Added Successfully');
     }
@@ -1562,5 +1605,10 @@ class AdController extends Controller
         $propSale->save();
         return Redirect::back()->with('success', 'Post Added Successfully!');
 
+    }
+
+    public function myAds()
+    {
+        return view('auth.my-ads');
     }
 }
