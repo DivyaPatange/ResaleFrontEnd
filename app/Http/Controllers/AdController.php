@@ -1258,71 +1258,130 @@ class AdController extends Controller
         $propRent->brokerages = $request->brokerage;
         // dd($request->exterior_photos);
         if($request->hasfile('exterior_photos'))
-        {
+
+         {
+
             foreach($request->file('exterior_photos') as $file)
+
             {
+
                 $name = time().rand(1,100).'.'.$file->extension();
+
                 $file->move(public_path('adPhotos'), $name);  
+
                 $files[] = $name;  
+
             }
+            // dd($files);
             $propRent->exterior_photos = implode(",", $files);
-        }
-        if($request->hasfile('living_photos'))
-        {
+         }
+         
+         if($request->hasfile('living_photos'))
+
+         {
+
             foreach($request->file('living_photos') as $file1)
+
             {
+
                 $name1 = time().rand(1,100).'.'.$file1->extension();
+
                 $file1->move(public_path('adPhotos'), $name1);  
+
                 $files1[] = $name1;  
+
             }
-            $propRent->living_room_photos = implode(",", $files1);
-        }
-        if($request->hasfile('bedroom_photos'))
-        {
+            // dd($files);
+         $propRent->living_room_photos = implode(",", $files1);
+
+         }
+         if($request->hasfile('bedroom_photos'))
+
+         {
+
             foreach($request->file('bedroom_photos') as $file2)
+
             {
+
                 $name2 = time().rand(1,100).'.'.$file2->extension();
+
                 $file2->move(public_path('adPhotos'), $name2);  
+
                 $files2[] = $name2;  
+
             }
-            $propRent->bedroom_photos = implode(",", $files2);
-        }
-        if($request->hasfile('bathroom_photos'))
-        {
+            // dd($files);
+         $propRent->bedroom_photos = implode(",", $files2);
+
+         }
+
+         if($request->hasfile('bathroom_photos'))
+
+         {
+
             foreach($request->file('bathroom_photos') as $file3)
+
             {
+
                 $name3 = time().rand(1,100).'.'.$file3->extension();
+
                 $file3->move(public_path('adPhotos'), $name3);  
+
                 $files3[] = $name3;  
+
             }
-            $propRent->bathroom_photos = implode(",", $files3);
-        }
-        if($request->hasfile('kitchen_photos'))
-        {
+            // dd($files);
+         $propRent->bathroom_photos = implode(",", $files3);
+
+         }
+
+         if($request->hasfile('kitchen_photos'))
+
+         {
+
             foreach($request->file('kitchen_photos') as $file4)
+
             {
+
                 $name4 = time().rand(1,100).'.'.$file4->extension();
+
                 $file4->move(public_path('adPhotos'), $name4);  
+
                 $files4[] = $name4;  
+
             }
-            $propRent->kitchen_photos = implode(",", $files4);
-        }
-        $propRent->tenants_bachelor = $request->tenants_bachelor;
-        $propRent->tenants_non_veg = $request->tenants_non_veg;
-        $propRent->tenants_pets = $request->tenants_pets;
-        $propRent->tenants_company_lease = $request->tenants_company_lease;
-        if($request->add_room){
-        $propRent->add_rooms = implode(",", $request->add_room);
-        }
+            // dd($files);
+         $propRent->kitchen_photos = implode(",", $files4);
+
+         }
+         $propRent->tenants_bachelor = $request->tenants_bachelor;
+         $propRent->tenants_non_veg = $request->tenants_non_veg;
+         $propRent->tenants_pets = $request->tenants_pets;
+         $propRent->tenants_company_lease = $request->tenants_company_lease;
+         if($request->add_room){
+            $propRent->add_rooms = implode(",", $request->add_room);
+         }
          $propRent->facing = $request->facing;
-         $propRent->overlooking = $request->overlooking;
-         $propRent->car_parking = $request->car_parking;
+         if($request->overlooking)
+         {
+            $propRent->overlooking = implode(",", $request->overlooking);
+         }
+         if($request->car_parking)
+         {
+            $propRent->car_parking = implode(",", $request->car_parking);
+         }
          $propRent->lifts_in_tower = $request->lift_in_tower;
          $propRent->mul_unit_available = $request->mul_unit_avail;
          $propRent->water_status = $request->status_of_water;
          $propRent->electricity_status = $request->status_of_electricity;
-         $propRent->flooring = $request->flooring;
-         $propRent->aminities = $request->aminities;
+         if($request->flooring)
+         {
+            $propRent->flooring = implode(",", $request->flooring);
+         }
+         if($request->aminities)
+         {
+            $propRent->aminities = implode(",", $request->aminities);
+         }
          $propRent->description = $request->description;
          $propRent->landmark = $request->landmark;
          $propRent->owner_resides = $request->owner_resides;
@@ -1443,14 +1502,23 @@ class AdController extends Controller
             $propSale->add_rooms = implode(",", $request->add_room);
         }
         $propSale->facing = $request->facing;
-        $propSale->overlooking = $request->overlooking;
+        if($request->overlooking)
+        {
+            $propSale->overlooking = implode(",", $request->overlooking);
+        }
         $propSale->car_parking = $request->car_parking;
         $propSale->mul_flat_avail = $request->mul_flat_available;
         $propSale->rera_registr_no = $request->rera_regis_no;
         $propSale->status_of_water = $request->status_of_water;
         $propSale->status_of_electricity = $request->status_of_electricity;
-        $propSale->flooring = $request->flooring;
-        $propSale->aminities = $request->aminities;
+        if($request->flooring)
+        {
+            $propSale->flooring = implode(",", $request->flooring);
+        }
+        if($request->aminities)
+        {
+            $propSale->aminities = implode(",", $request->aminities);
+        }
         $propSale->ownership_approval = $request->ownership_approval;
         $propSale->approved_by = $request->approved_by;
         $propSale->description = $request->description;

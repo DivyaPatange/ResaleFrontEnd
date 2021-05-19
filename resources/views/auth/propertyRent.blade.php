@@ -279,7 +279,6 @@ $("#suggesstion-locality").hide();
       <div class="col-md-12">
         <div class="title-single-box">
           <h1 class="title-single">The Best Way To Sell Your {{ $subCategory->sub_category }}</h1>
-          <span class="color-text-a">Sale Residential Property.</span>
         </div>
       </div>
     </div>
@@ -309,6 +308,29 @@ $("#suggesstion-locality").hide();
               <input type="hidden" name="sub_category_id"  value="{{ $subCategory->id }}">
               <input type="hidden" name="category_id" value="{{ $category->id }}">
               <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+              <div class="form-group">
+                <h6>Personal Details</h6>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="">I am <span class="text-danger">*<span><span class="text-danger" id="listed_err"><span></label>
+                </div>
+                <div class="form-group col-md-8">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="" name="listed_by" value="Builder">
+                    <label class="form-check-label" for="">Builder</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="" name="listed_by" value="Owner">
+                    <label class="form-check-label" for="">Owner</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="" name="listed_by" value="Agent">
+                    <label class="form-check-label" for="">Agent</label>
+                  </div>
+                </div>
+              </div>
+              <hr>
               <div class="form-row">
                 <div class="form-group col-md-4">
                   <label>Property Type<span class="text-danger">*<span><span  style="color:red" id="pt_err"> </span></label>
@@ -316,9 +338,27 @@ $("#suggesstion-locality").hide();
                 <div class="form-group col-md-8">
                   <select id="property_type" class="form-control @error('property_type') is-invalid @enderror" name="property_type">
                     <option value="">Choose...</option>
+                    <optgroup label="All Residential Property"> 
                     @foreach($type as $t)
+                    @if($t->title == "RESIDENTIAL")
                     <option value="{{ $t->id }}" @if(old('property_type') == $t->id) Selected @endif>{{ $t->type_name }}</option>
+                    @endif
                     @endforeach
+                    </optgroup>
+                    <optgroup label="All Commercial Property"> 
+                    @foreach($type as $t)
+                    @if($t->title == "COMMERCIAL")
+                    <option value="{{ $t->id }}" @if(old('property_type') == $t->id) Selected @endif>{{ $t->type_name }}</option>
+                    @endif
+                    @endforeach
+                    </optgroup>
+                    <optgroup label="All Agricultural Property"> 
+                    @foreach($type as $t)
+                    @if($t->title == "AGRICULTURAL")
+                    <option value="{{ $t->id }}" @if(old('property_type') == $t->id) Selected @endif>{{ $t->type_name }}</option>
+                    @endif
+                    @endforeach
+                    </optgroup>
                   </select>
                 </div>
               </div>
@@ -515,41 +555,10 @@ $("#suggesstion-locality").hide();
                     @enderror
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="number" class="form-control @error('super_build_up_area') invalid-feedback @enderror" name="super_build_up_area" id="super_build_up_area" value="{{ old('super_build_up_area') }}">
+                    <input type="text" class="form-control Stylednumber @error('super_build_up_area') invalid-feedback @enderror" name="super_build_up_area" id="super_build_up_area" value="{{ old('super_build_up_area') }}">
                   </div>
                   <div class="form-group col-md-3">
                     <select name="super_area_unit" id="super_area_unit" class="form-control">
-                      <option value="Sq-ft">Sq-ft</option>
-                      <option value="Sq-yrd">Sq-yrd</option>
-                      <option value="Sq-m">Sq-m</option>
-                      <option value="Acre">Acre</option>
-                      <option value="Bigha">Bigha</option>
-                      <option value="Hectare">Hectare</option>
-                      <option value="Marla">Marla</option>
-                      <option value="Kanal">Kanal</option>
-                      <option value="Biswa1">Biswa1</option>
-                      <option value="Biswa2">Biswa2</option>
-                      <option value="Ground">Ground</option>
-                      <option value="Aankadam">Aankadam</option>
-                      <option value="Rood">Rood</option>
-                      <option value="Chatak">Chatak</option>
-                      <option value="Kottah">Kottah</option>
-                      <option value="Cent">Cent</option>
-                    </select>
-                  </div>
-                  <div class="col-md-5 form-group">
-                    <label for="">Carpet Area <small>(Sq.ft.)</small></label>
-                    @error('carpet_area')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-                  <div class="form-group col-md-4">
-                    <input type="number" id="carpet_area" class="form-control @error('carpet_area') invalid-feedback @enderror" name="carpet_area" value="{{ old('carpet_area') }}">
-                  </div>
-                  <div class="form-group col-md-3">
-                    <select name="carpet_unit" id="carpet_unit" class="form-control">
                       <option value="Sq-ft">Sq-ft</option>
                       <option value="Sq-yrd">Sq-yrd</option>
                       <option value="Sq-m">Sq-m</option>
@@ -577,10 +586,42 @@ $("#suggesstion-locality").hide();
                     @enderror
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="number" id="build_up_area" class="form-control @error('build_up_area') invalid-feedback @enderror" name="build_up_area" value="{{ old('build_up_area') }}">
+                    <input type="text" id="build_up_area" class="form-control Stylednumber @error('build_up_area') invalid-feedback @enderror" name="build_up_area" value="{{ old('build_up_area') }}">
                   </div>
                   <div class="form-group col-md-3">
                     <select name="build_unit" id="build_unit" class="form-control">
+                      <option value="Sq-ft">Sq-ft</option>
+                      <option value="Sq-yrd">Sq-yrd</option>
+                      <option value="Sq-m">Sq-m</option>
+                      <option value="Acre">Acre</option>
+                      <option value="Bigha">Bigha</option>
+                      <option value="Hectare">Hectare</option>
+                      <option value="Marla">Marla</option>
+                      <option value="Kanal">Kanal</option>
+                      <option value="Biswa1">Biswa1</option>
+                      <option value="Biswa2">Biswa2</option>
+                      <option value="Ground">Ground</option>
+                      <option value="Aankadam">Aankadam</option>
+                      <option value="Rood">Rood</option>
+                      <option value="Chatak">Chatak</option>
+                      <option value="Kottah">Kottah</option>
+                      <option value="Cent">Cent</option>
+                    </select>
+                  </div>
+                  
+                  <div class="col-md-5 form-group">
+                    <label for="">Carpet Area <small>(Sq.ft.)</small></label>
+                    @error('carpet_area')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                  <div class="form-group col-md-4">
+                    <input type="text" id="carpet_area" class="form-control Stylednumber @error('carpet_area') invalid-feedback @enderror" name="carpet_area" value="{{ old('carpet_area') }}">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <select name="carpet_unit" id="carpet_unit" class="form-control">
                       <option value="Sq-ft">Sq-ft</option>
                       <option value="Sq-yrd">Sq-yrd</option>
                       <option value="Sq-m">Sq-m</option>
@@ -652,7 +693,7 @@ $("#suggesstion-locality").hide();
                     <label for="">Monthly Rent<span  style="color:red" id="monthly_rent_err"> </span></label>
                   </div>
                   <div class="col-md-8">
-                    <input type="number" class="form-control" id="monthly_rent" name="monthly_rent" onkeyup="convertNumberToWords(this.value)">
+                    <input type="text" class="form-control Stylednumber" id="monthly_rent" name="monthly_rent" onkeyup="convertNumberToWords(this.value)">
                     <span id="show_price" class="text-muted"></span>
                   </div>
                 </div>
@@ -718,13 +759,13 @@ $("#suggesstion-locality").hide();
                     <label for="">Security/Deposit Amount</label>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="number" class="form-control" name="security_amount">
+                    <input type="text" class="form-control Stylednumber" name="security_amount">
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="">Maintenance Charges</label>
-                    <input type="number" name="maintenance_charge" class="form-control">
+                    <input type="text" name="maintenance_charge" class="form-control Stylednumber">
                   </div>
                   <div class="form-group col-md-6">
                     <label for="">Per</label>
@@ -1019,35 +1060,6 @@ $("#suggesstion-locality").hide();
                       @enderror
                     </div>
                     <div class="form-group col-md-6">
-                      <label for="">Overlooking <span class="text-danger">*</span></label>
-                      <select name="overlooking" id="overlooking" class="form-control @error('overlooking') invalid-feedback @enderror">
-                        <option value="">-Select Overlooking-</option>
-                        <option value="Garden/Park" @if(old('overlooking') == "Garden/Park") Selected @endif>Garden/Park</option>
-                        <option value="Pool" @if(old('overlooking') == "Pool") Selected @endif>Pool</option>
-                        <option value="Main Road" @if(old('overlooking') == "Main Road") Selected @endif>Main Road</option>
-                        <option value="Not Available" @if(old('overlooking') == "Not Available") Selected @endif>Not Available</option>
-                      </select>
-                      @error('overlooking')
-                      <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                      </span>
-                      @enderror
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label for="">Car Parking <span class="text-danger">*</span></label>
-                      <select name="car_parking" id="car_parking" class="form-control @error('car_parking') invalid-feedback @enderror">
-                        <option value="">-Select Car Parking-</option>
-                        <option value="Covered" @if(old('car_parking') == "Covered") Selected @endif>Covered</option>
-                        <option value="Open" @if(old('car_parking') == "Open") Selected @endif>Open</option>
-                        <option value="None" @if(old('car_parking') == "None") Selected @endif>None</option>
-                      </select>
-                      @error('car_parking')
-                      <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                      </span>
-                      @enderror
-                    </div>
-                    <div class="form-group col-md-6">
                       <label for="">Lifts in the Tower </label>
                       <select name="lift_in_tower" id="lift_in_tower" class="form-control @error('lift_tower') invalid-feedback @enderror">
                         <option value="">-Select-</option>
@@ -1065,6 +1077,65 @@ $("#suggesstion-locality").hide();
                         <strong>{{ $message }}</strong>
                       </span>
                       @enderror
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <h6>Overlooking</h6>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="overlooking[]" value="Garden/Park">Garden/Park
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="overlooking[]" value="Pool">Pool
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="overlooking[]" value="Main Road">Main Road
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="overlooking[]" value="Not Available">Not Available
+                            </label>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <h6>Car Parking</h6>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="car_parking[]" value="Covered">Covered
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="car_parking[]" value="Open">Open
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="car_parking[]" value="None">None
+                            </label>
+                        </div>
                     </div>
                   </div>
                   <div class="form-row">
@@ -1092,11 +1163,11 @@ $("#suggesstion-locality").hide();
                       <label for="">Status of Water</label>
                       <select name="status_of_water" id="status_of_water" class="form-control @error('status_of_water') invalid-feedback @enderror">
                         <option value="">-Select Status of Water-</option>
-                        <option value="24 hrs" @if(old('status_of_water') == "24 hrs") Selected @endif>24 hrs</option>
-                        <option value="12 hrs" @if(old('status_of_water') == "12 hrs") Selected @endif>12 hrs</option>
-                        <option value="6 hrs" @if(old('status_of_water') == "6 hrs") Selected @endif>6 hrs</option>
-                        <option value="2 hrs" @if(old('status_of_water') == "2 hrs") Selected @endif>2 hrs</option>
-                        <option value="1 hrs" @if(old('status_of_water') == "1 hrs") Selected @endif>1 hrs</option>
+                        <option value="24 HOURS Available" @if(old('status_of_water') == "24 HOURS Available") Selected @endif>24 HOURS Available</option>
+                        <option value="12 HOURS Available" @if(old('status_of_water') == "12 HOURS Available") Selected @endif>12 HOURS Available</option>
+                        <option value="6 HOURS Available" @if(old('status_of_water') == "6 HOURS Available") Selected @endif>6 HOURS Available</option>
+                        <option value="2 HOURS Available" @if(old('status_of_water') == "2 HOURS Available") Selected @endif>2 HOURS Available</option>
+                        <option value="1 HOUR Available" @if(old('status_of_water') == "1 HOUR Available") Selected @endif>1 HOUR Available</option>
                       </select>
                       @error('status_of_water')
                       <span class="invalid-feedback" role="alert">
@@ -1122,68 +1193,118 @@ $("#suggesstion-locality").hide();
                     </div>
                   </div>
                   <div class="form-group">
-                    <h6>Flooring & Aminities</h6>
+                    <h6>Flooring</h6>
                   </div>
                   <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label for="">Flooring</label>
-                      <select name="flooring" id="flooring" class="form-control @error('flooring') invalid-feedback @enderror">
-                        <option value="">-Select Flooring-</option>
-                        <option value="Ceramic Tiles" @if(old('flooring') == "Ceramic Tiles") Selected @endif>Ceramic Tiles</option>
-                        <option value="Marble" @if(old('flooring') == "Marble") Selected @endif>Marble</option>
-                        <option value="Mosaic" @if(old('flooring') == "Mosaic") Selected @endif>Mosaic</option>
-                        <option value="Vetrified" @if(old('flooring') == "Vetrified") Selected @endif>Vetrified</option>
-                        <option value="Granite" @if(old('flooring') == "Granite") Selected @endif>Granite</option>
-                        <option value="Marbonite" @if(old('flooring') == "Marbonite") Selected @endif>Marbonite</option>
-                        <option value="Normal Tiles" @if(old('flooring') == "Normal Tiles") Selected @endif>Normal Tiles</option>
-                        <option value="Kota Stone" @if(old('flooring') == "Kota Stone") Selected @endif>Kota Stone</option>
-                        <option value="Wooden" @if(old('flooring') == "Wooden") Selected @endif>Wooden</option>
-                      </select>
-                      @error('flooring')
-                        <span class="invalid-feedback" role="alert">
-                          <strong>{{ $message }}</strong>
-                        </span>
-                      @enderror
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="flooring[]" value="Ceramic Tiles">Ceramic Tiles
+                            </label>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                      <label for="">Aminities</label>
-                      <select name="aminities" id="aminities" class="form-control @error('aminities') invalid-feedback @enderror">
-                        <option value="">-Select Aminities-</option>
-                        <!-- <option value="Air Conditioner" @if(old('aminities') == "Air Conditioner") Selected @endif>Air Conditioner</option> -->
-                        <!-- <option value="Banquet Hall" @if(old('aminities') == "Banquet Hall") Selected @endif>Banquet Hall</option> -->
-                        <!-- <option value="Bar/Lounge" @if(old('aminities') == "Bar/Lounge") Selected @endif>Bar/Lounge</option> -->
-                        <!-- <option value="Cafeteria Food Court" @if(old('aminities') == "Cafeteria Food Court") Selected @endif>Cafeteria Food Court</option> -->
-                        <!-- <option value="Club House" @if(old('aminities') == "Club House") Selected @endif>Club House</option> -->
-                        <!-- <option value="Conference Room" @if(old('aminities') == "Conference Room") Selected @endif>Conference Room</option> -->
-                        <!-- <option value="DTH Television Facility" @if(old('aminities') == "DTH Television Facility") Selected @endif>DTH Television Facility</option> -->
-                        <option value="Gymnasium" @if(old('aminities') == "Gymnasium") Selected @endif>Gymnasium</option>
-                        <!-- <option value="Intercom Facility" @if(old('aminities') == "Intercom Facility") Selected @endif>Intercom Facility</option> -->
-                        <!-- <option value="Internet Wi-Fi Facility" @if(old('aminities') == "Internet Wi-Fi Facility") Selected @endif>Internet Wi-Fi Facility</option> -->
-                        <option value="Jogging & Strolling Track" @if(old('aminities') == "Jogging & Strolling Track") Selected @endif>Jogging & Strolling Track</option>
-                        <!-- <option value="Laundary Services" @if(old('aminities') == "Laundary Services") Selected @endif>Laundary Services</option> -->
-                        <!-- <option value="Lift" @if(old('aminities') == "Lift") Selected @endif>Lift</option> -->
-                        <!-- <option value="Maintenance Staff" @if(old('aminities') == "Maintenance Staff") Selected @endif>Maintenance Staff</option> -->
-                        <!-- <option value="Outdoor Tennis Court" @if(old('aminities') == "Outdoor Tennis Court") Selected @endif>Outdoor Tennis Court</option> -->
-                        <!-- <option value="Park" @if(old('aminities') == "Park") Selected @endif>Park</option> -->
-                        <option value="Pipe Gas" @if(old('aminities') == "Pipe Gas") Selected @endif>Pipe Gas</option>
-                        <option value="Power Back Up" @if(old('aminities') == "Power Back Up") Selected @endif>Power Back Up</option>
-                        <!-- <option value="Private Terrace" @if(old('aminities') == "Private Terrace") Selected @endif>Private Terrace</option> -->
-                        <!-- <option value="Garden" @if(old('aminities') == "Garden") Selected @endif>Garden</option> -->
-                        <!-- <option value="RO Water System" @if(old('aminities') == "RO Water System") Selected @endif>RO Water System</option> -->
-                        <!-- <option value="Rain Water Harvesting" @if(old('aminities') == "Rain Water Harvesting") Selected @endif>Rain Water Harvesting</option> -->
-                        <option value="Reserve Parking Security" @if(old('aminities') == "Reserve Parking Security") Selected @endif>Reserve Parking Security</option>
-                        <!-- <option value="Services/ Goods Lift" @if(old('aminities') == "Services/ Goods Lift") Selected @endif>Services/ Goods Lift</option> -->
-                        <option value="Swimming Pool" @if(old('aminities') == "Swimming Pool") Selected @endif>Swimming Pool</option>
-                        <!-- <option value="Vastu Compliment" @if(old('aminities') == "Vastu Compliment") Selected @endif>Vastu Compliment</option> -->
-                        <!-- <option value="Visitors Parking" @if(old('aminities') == "Visitors Parking") Selected @endif>Visitors Parking</option> -->
-                        <!-- <option value="Waste Disposal" @if(old('aminities') == "Waste Disposal") Selected @endif>Waste Disposal</option> -->
-                        <!-- <option value="Water Storage" @if(old('aminities') == "Water Storage") Selected @endif>Water Storage</option> -->
-                      </select>
-                      @error('aminities')
-                        <span class="invalid-feedback" role="alert">
-                          <strong>{{ $message }}</strong>
-                        </span>
-                      @enderror
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="flooring[]" value="Marble">Marble
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="flooring[]" value="Mosaic">Mosaic
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="flooring[]" value="Vetrified">Vetrified
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="flooring[]" value="Granite">Granite
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="flooring[]" value="Marbonite">Marbonite
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="flooring[]" value="Normal Tiles">Normal Tiles
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="flooring[]" value="Kota Stone">Kota Stone
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="flooring[]" value="Wooden">Wooden
+                            </label>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <h6>Aminities</h6>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Gymnasium">Gymnasium
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Jogging & Strolling Track">Jogging & Strolling Track
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Pipe Gas">Pipe Gas
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Power Back Up">Power Back Up
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Reserve Parking Security">Reserve Parking Security
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Swimming Pool">Swimming Pool
+                            </label>
+                        </div>
                     </div>
                   </div>
 
@@ -1519,41 +1640,10 @@ $("#suggesstion-locality").hide();
                     @enderror
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="number" class="form-control @error('super_build_up_area') invalid-feedback @enderror" id="super_build_up_area" name="super_build_up_area" value="{{ old('super_build_up_area') }}">
+                    <input type="text" class="form-control Stylednumber @error('super_build_up_area') invalid-feedback @enderror" id="super_build_up_area" name="super_build_up_area" value="{{ old('super_build_up_area') }}">
                   </div>
                   <div class="form-group col-md-3">
                     <select name="super_area_unit" id="super_area_unit" class="form-control">
-                      <option value="Sq-ft">Sq-ft</option>
-                      <option value="Sq-yrd">Sq-yrd</option>
-                      <option value="Sq-m">Sq-m</option>
-                      <option value="Acre">Acre</option>
-                      <option value="Bigha">Bigha</option>
-                      <option value="Hectare">Hectare</option>
-                      <option value="Marla">Marla</option>
-                      <option value="Kanal">Kanal</option>
-                      <option value="Biswa1">Biswa1</option>
-                      <option value="Biswa2">Biswa2</option>
-                      <option value="Ground">Ground</option>
-                      <option value="Aankadam">Aankadam</option>
-                      <option value="Rood">Rood</option>
-                      <option value="Chatak">Chatak</option>
-                      <option value="Kottah">Kottah</option>
-                      <option value="Cent">Cent</option>
-                    </select>
-                  </div>
-                  <div class="col-md-5 form-group">
-                    <label for="">Carpet Area <small>(Sq.ft.)</small></label>
-                    @error('carpet_area')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-                  <div class="form-group col-md-4">
-                    <input type="number" id="carpet_area" class="form-control @error('carpet_area') invalid-feedback @enderror" name="carpet_area" value="{{ old('carpet_area') }}">
-                  </div>
-                  <div class="form-group col-md-3">
-                    <select name="carpet_unit" id="carpet_unit" class="form-control">
                       <option value="Sq-ft">Sq-ft</option>
                       <option value="Sq-yrd">Sq-yrd</option>
                       <option value="Sq-m">Sq-m</option>
@@ -1581,10 +1671,41 @@ $("#suggesstion-locality").hide();
                     @enderror
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="number" id="build_up_area" class="form-control @error('build_up_area') invalid-feedback @enderror" name="build_up_area" value="{{ old('build_up_area') }}">
+                    <input type="text" id="build_up_area" class="form-control Stylednumber @error('build_up_area') invalid-feedback @enderror" name="build_up_area" value="{{ old('build_up_area') }}">
                   </div>
                   <div class="form-group col-md-3">
                     <select name="build_unit" id="build_unit" class="form-control">
+                      <option value="Sq-ft">Sq-ft</option>
+                      <option value="Sq-yrd">Sq-yrd</option>
+                      <option value="Sq-m">Sq-m</option>
+                      <option value="Acre">Acre</option>
+                      <option value="Bigha">Bigha</option>
+                      <option value="Hectare">Hectare</option>
+                      <option value="Marla">Marla</option>
+                      <option value="Kanal">Kanal</option>
+                      <option value="Biswa1">Biswa1</option>
+                      <option value="Biswa2">Biswa2</option>
+                      <option value="Ground">Ground</option>
+                      <option value="Aankadam">Aankadam</option>
+                      <option value="Rood">Rood</option>
+                      <option value="Chatak">Chatak</option>
+                      <option value="Kottah">Kottah</option>
+                      <option value="Cent">Cent</option>
+                    </select>
+                  </div>
+                  <div class="col-md-5 form-group">
+                    <label for="">Carpet Area <small>(Sq.ft.)</small></label>
+                    @error('carpet_area')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                  <div class="form-group col-md-4">
+                    <input type="text" id="carpet_area" class="form-control Stylednumber @error('carpet_area') invalid-feedback @enderror" name="carpet_area" value="{{ old('carpet_area') }}">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <select name="carpet_unit" id="carpet_unit" class="form-control">
                       <option value="Sq-ft">Sq-ft</option>
                       <option value="Sq-yrd">Sq-yrd</option>
                       <option value="Sq-m">Sq-m</option>
@@ -1674,7 +1795,7 @@ $("#suggesstion-locality").hide();
                     <label for="">Monthly Rent<span  style="color:red" id="monthly_rent_err"> </span></label>
                   </div>
                   <div class="col-md-8">
-                    <input type="text" class="form-control" id="monthly_rent" name="monthly_rent" onkeyup="convertNumberToWords(this.value)">
+                    <input type="text" class="form-control Stylednumber" id="monthly_rent" name="monthly_rent" onkeyup="convertNumberToWords(this.value)">
                     <span id="show_price" class="text-muted"></span>
                   </div>
                 </div>
@@ -1740,13 +1861,13 @@ $("#suggesstion-locality").hide();
                     <label for="">Security/Deposit Amount</label>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="number" class="form-control" name="security_amount">
+                    <input type="text" class="form-control Stylednumber" name="security_amount">
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="">Maintenance Charges</label>
-                    <input type="number" name="maintenance_charge" class="form-control">
+                    <input type="text" name="maintenance_charge" class="form-control Stylednumber">
                   </div>
                   <div class="form-group col-md-6">
                     <label for="">Per</label>
@@ -1895,35 +2016,6 @@ $("#suggesstion-locality").hide();
                       @enderror
                     </div>
                     <div class="form-group col-md-6">
-                      <label for="">Overlooking <span class="text-danger">*</span></label>
-                      <select name="overlooking" id="overlooking" class="form-control @error('overlooking') invalid-feedback @enderror">
-                        <option value="">-Select Overlooking-</option>
-                        <option value="Garden/Park" @if(old('overlooking') == "Garden/Park") Selected @endif>Garden/Park</option>
-                        <option value="Pool" @if(old('overlooking') == "Pool") Selected @endif>Pool</option>
-                        <option value="Main Road" @if(old('overlooking') == "Main Road") Selected @endif>Main Road</option>
-                        <option value="Not Available" @if(old('overlooking') == "Not Available") Selected @endif>Not Available</option>
-                      </select>
-                      @error('overlooking')
-                      <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                      </span>
-                      @enderror
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label for="">Car Parking <span class="text-danger">*</span></label>
-                      <select name="car_parking" id="car_parking" class="form-control @error('car_parking') invalid-feedback @enderror">
-                        <option value="">-Select Car Parking-</option>
-                        <option value="Covered" @if(old('car_parking') == "Covered") Selected @endif>Covered</option>
-                        <option value="Open" @if(old('car_parking') == "Open") Selected @endif>Open</option>
-                        <option value="None" @if(old('car_parking') == "None") Selected @endif>None</option>
-                      </select>
-                      @error('car_parking')
-                      <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                      </span>
-                      @enderror
-                    </div>
-                    <div class="form-group col-md-6">
                       <label for="">Lifts in the Tower </label>
                       <select name="lift_in_tower" id="lift_in_tower" class="form-control @error('lift_in_tower') invalid-feedback @enderror">
                         <option value="">-Select-</option>
@@ -2000,11 +2092,11 @@ $("#suggesstion-locality").hide();
                       <label for="">Status of Water</label>
                       <select name="status_of_water" id="status_of_water" class="form-control @error('status_of_water') invalid-feedback @enderror">
                         <option value="">-Select Status of Water-</option>
-                        <option value="24 hrs" @if(old('status_of_water') == "24 hrs") Selected @endif>24 hrs</option>
-                        <option value="12 hrs" @if(old('status_of_water') == "12 hrs") Selected @endif>12 hrs</option>
-                        <option value="6 hrs" @if(old('status_of_water') == "6 hrs") Selected @endif>6 hrs</option>
-                        <option value="2 hrs" @if(old('status_of_water') == "2 hrs") Selected @endif>2 hrs</option>
-                        <option value="1 hrs" @if(old('status_of_water') == "1 hrs") Selected @endif>1 hrs</option>
+                        <option value="24 HOURS Available" @if(old('status_of_water') == "24 HOURS Available") Selected @endif>24 HOURS Available</option>
+                        <option value="12 HOURS Available" @if(old('status_of_water') == "12 HOURS Available") Selected @endif>12 HOURS Available</option>
+                        <option value="6 HOURS Available" @if(old('status_of_water') == "6 HOURS Available") Selected @endif>6 HOURS Available</option>
+                        <option value="2 HOURS Available" @if(old('status_of_water') == "2 HOURS Available") Selected @endif>2 HOURS Available</option>
+                        <option value="1 HOUR Available" @if(old('status_of_water') == "1 HOUR Available") Selected @endif>1 HOUR Available</option>
                       </select>
                       @error('status_of_water')
                       <span class="invalid-feedback" role="alert">
@@ -2033,48 +2125,159 @@ $("#suggesstion-locality").hide();
                     <h6>Amenities</h6>
                   </div>
                   <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label for="">Amenities</label>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Air Conditioner">Air Conditioner
+                            </label>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                      <label for="">Aminities</label>
-                      <select name="aminities" id="aminities" class="form-control @error('aminities') invalid-feedback @enderror">
-                        <option value="">-Select Aminities-</option>
-                        <option value="Air Conditioner" @if(old('aminities') == "Air Conditioner") Selected @endif>Air Conditioner</option>
-                        <option value="CCTV Camera" @if(old('aminities') == "CCTV Camera") Selected @endif>CCTV Camera</option>
-                        <option value="Fire Sprinklers" @if(old('aminities') == "Fire Sprinklers") Selected @endif>Fire Sprinklers</option>
-                        <option value="Cafeteria Food Court" @if(old('aminities') == "Cafeteria Food Court") Selected @endif>Cafeteria Food Court</option>
-                        <option value="Projector" @if(old('aminities') == "Projector") Selected @endif>Projector</option>
-                        <option value="Conference Room" @if(old('aminities') == "Conference Room") Selected @endif>Conference Room</option>
-                        <!-- <option value="DTH Television Facility" @if(old('aminities') == "DTH Television Facility") Selected @endif>DTH Television Facility</option> -->
-                        <!-- <option value="Gymnasium" @if(old('aminities') == "Gymnasium") Selected @endif>Gymnasium</option> -->
-                        <option value="Intercom Facility" @if(old('aminities') == "Intercom Facility") Selected @endif>Intercom Facility</option>
-                        <option value="Internet Wi-Fi Facility" @if(old('aminities') == "Internet Wi-Fi Facility") Selected @endif>Internet Wi-Fi Facility</option>
-                        <option value="Tea/Coffee" @if(old('aminities') == "Tea/Coffee") Selected @endif>Tea/Coffee</option>
-                        <option value="Printer" @if(old('aminities') == "Printer") Selected @endif>Printer</option>
-                        <option value="Lift" @if(old('aminities') == "Lift") Selected @endif>Lift</option>
-                        <option value="Security" @if(old('aminities') == "Security") Selected @endif>Security</option>
-                        <!-- <option value="Outdoor Tennis Court" @if(old('aminities') == "Outdoor Tennis Court") Selected @endif>Outdoor Tennis Court</option> -->
-                        <!-- <option value="Park" @if(old('aminities') == "Park") Selected @endif>Park</option> -->
-                        <option value="Pipe Gas" @if(old('aminities') == "Pipe Gas") Selected @endif>Pipe Gas</option>
-                        <option value="Power Back Up" @if(old('aminities') == "Power Back Up") Selected @endif>Power Back Up</option>
-                        <!-- <option value="Private Terrace" @if(old('aminities') == "Private Terrace") Selected @endif>Private Terrace</option> -->
-                        <!-- <option value="Garden" @if(old('aminities') == "Garden") Selected @endif>Garden</option> -->
-                        <option value="RO Water System" @if(old('aminities') == "RO Water System") Selected @endif>RO Water System</option>
-                        <!-- <option value="Rain Water Harvesting" @if(old('aminities') == "Rain Water Harvesting") Selected @endif>Rain Water Harvesting</option> -->
-                        <option value="Reserve Parking" @if(old('aminities') == "Reserve Parking") Selected @endif>Reserve Parking</option>
-                        <option value="Services/ Goods Lift" @if(old('aminities') == "Services/ Goods Lift") Selected @endif>Services/ Goods Lift</option>
-                        <option value="Swimming Pool" @if(old('aminities') == "Swimming Pool") Selected @endif>Swimming Pool</option>
-                        <option value="Whiteboard" @if(old('aminities') == "Whiteboard") Selected @endif>Whiteboard</option>
-                        <option value="Visitors Parking" @if(old('aminities') == "Visitors Parking") Selected @endif>Visitors Parking</option>
-                        <option value="Wheelchair Accessibility" @if(old('aminities') == "Wheelchair Accessibility") Selected @endif>Wheelchair Accessibility</option>
-                        <option value="Water Storage" @if(old('aminities') == "Water Storage") Selected @endif>Water Storage</option>
-                      </select>
-                      @error('aminities')
-                        <span class="invalid-feedback" role="alert">
-                          <strong>{{ $message }}</strong>
-                        </span>
-                      @enderror
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="CCTV Camera">CCTV Camera
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Fire Sprinklers">Fire Sprinklers
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Cafeteria Food Court">Cafeteria Food Court
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Projector">Projector
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Conference Room">Conference Room
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Intercom Facility">Intercom Facility
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Internet Wi-Fi Facility">Internet Wi-Fi Facility
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Tea/Coffee">Tea/Coffee
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Printer">Printer
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Lift">Lift
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Security">Security
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Pipe Gas">Pipe Gas
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Power Back Up">Power Back Up
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="RO Water System">RO Water System
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Reserve Parking">Reserve Parking
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Services/ Goods Lift">Services/ Goods Lift
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Swimming Pool">Swimming Pool
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Whiteboard">Whiteboard
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Visitors Parking">Visitors Parking
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Wheelchair Accessibility">Wheelchair Accessibility
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Water Storage">Water Storage
+                            </label>
+                        </div>
                     </div>
                   </div>
 
@@ -2403,41 +2606,10 @@ $("#suggesstion-locality").hide();
                     @enderror
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="number" class="form-control @error('super_build_up_area') invalid-feedback @enderror" name="super_build_up_area" id="super_build_up_area" value="{{ old('super_build_up_area') }}">
+                    <input type="text" class="form-control Stylednumber @error('super_build_up_area') invalid-feedback @enderror" name="super_build_up_area" id="super_build_up_area" value="{{ old('super_build_up_area') }}">
                   </div>
                   <div class="form-group col-md-3">
                     <select name="super_area_unit" id="super_area_unit" class="form-control">
-                      <option value="Sq-ft">Sq-ft</option>
-                      <option value="Sq-yrd">Sq-yrd</option>
-                      <option value="Sq-m">Sq-m</option>
-                      <option value="Acre">Acre</option>
-                      <option value="Bigha">Bigha</option>
-                      <option value="Hectare">Hectare</option>
-                      <option value="Marla">Marla</option>
-                      <option value="Kanal">Kanal</option>
-                      <option value="Biswa1">Biswa1</option>
-                      <option value="Biswa2">Biswa2</option>
-                      <option value="Ground">Ground</option>
-                      <option value="Aankadam">Aankadam</option>
-                      <option value="Rood">Rood</option>
-                      <option value="Chatak">Chatak</option>
-                      <option value="Kottah">Kottah</option>
-                      <option value="Cent">Cent</option>
-                    </select>
-                  </div>
-                  <div class="col-md-5 form-group">
-                    <label for="">Carpet Area <small>(Sq.ft.)</small></label>
-                    @error('carpet_area')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-                  <div class="form-group col-md-4">
-                    <input type="number" id="carpet_area" class="form-control @error('carpet_area') invalid-feedback @enderror" name="carpet_area" value="{{ old('carpet_area') }}">
-                  </div>
-                  <div class="form-group col-md-3">
-                    <select name="carpet_unit" id="carpet_unit" class="form-control">
                       <option value="Sq-ft">Sq-ft</option>
                       <option value="Sq-yrd">Sq-yrd</option>
                       <option value="Sq-m">Sq-m</option>
@@ -2465,10 +2637,41 @@ $("#suggesstion-locality").hide();
                     @enderror
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="number" id="build_up_area" class="form-control @error('build_up_area') invalid-feedback @enderror" name="build_up_area" value="{{ old('build_up_area') }}">
+                    <input type="text" id="build_up_area" class="form-control Stylednumber @error('build_up_area') invalid-feedback @enderror" name="build_up_area" value="{{ old('build_up_area') }}">
                   </div>
                   <div class="form-group col-md-3">
                     <select name="build_unit" id="build_unit" class="form-control">
+                      <option value="Sq-ft">Sq-ft</option>
+                      <option value="Sq-yrd">Sq-yrd</option>
+                      <option value="Sq-m">Sq-m</option>
+                      <option value="Acre">Acre</option>
+                      <option value="Bigha">Bigha</option>
+                      <option value="Hectare">Hectare</option>
+                      <option value="Marla">Marla</option>
+                      <option value="Kanal">Kanal</option>
+                      <option value="Biswa1">Biswa1</option>
+                      <option value="Biswa2">Biswa2</option>
+                      <option value="Ground">Ground</option>
+                      <option value="Aankadam">Aankadam</option>
+                      <option value="Rood">Rood</option>
+                      <option value="Chatak">Chatak</option>
+                      <option value="Kottah">Kottah</option>
+                      <option value="Cent">Cent</option>
+                    </select>
+                  </div>
+                  <div class="col-md-5 form-group">
+                    <label for="">Carpet Area <small>(Sq.ft.)</small></label>
+                    @error('carpet_area')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                  <div class="form-group col-md-4">
+                    <input type="text" id="carpet_area" class="form-control Stylednumber @error('carpet_area') invalid-feedback @enderror" name="carpet_area" value="{{ old('carpet_area') }}">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <select name="carpet_unit" id="carpet_unit" class="form-control">
                       <option value="Sq-ft">Sq-ft</option>
                       <option value="Sq-yrd">Sq-yrd</option>
                       <option value="Sq-m">Sq-m</option>
@@ -2493,7 +2696,7 @@ $("#suggesstion-locality").hide();
                     <label for="">Width of Entrance</label>
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="number" class="form-control" name="entrance_width">
+                    <input type="text" class="form-control Stylednumber" name="entrance_width">
                   </div>
                   <div class="form-group col-md-3">
                     <select name="entrance_unit" class="form-control" id="">
@@ -2507,7 +2710,7 @@ $("#suggesstion-locality").hide();
                     <label for="">Width of Facing Road</label>
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="number" class="form-control" name="facing_width">
+                    <input type="text" class="form-control Stylednumber" name="facing_width">
                   </div>
                   <div class="form-group col-md-3">
                     <select name="width_facing_road_unit" class="form-control" id="">
@@ -2586,7 +2789,7 @@ $("#suggesstion-locality").hide();
                     <label for="">Monthly Rent<span  style="color:red" id="monthly_rent_err"> </span></label>
                   </div>
                   <div class="col-md-8">
-                    <input type="text" class="form-control" id="monthly_rent" name="monthly_rent" onkeyup="convertNumberToWords(this.value)">
+                    <input type="text" class="form-control Stylednumber" id="monthly_rent" name="monthly_rent" onkeyup="convertNumberToWords(this.value)">
                     <span id="show_price" class="text-muted"></span>
                   </div>
                 </div>
@@ -2652,13 +2855,13 @@ $("#suggesstion-locality").hide();
                     <label for="">Security/Deposit Amount</label>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="number" class="form-control" name="security_amount">
+                    <input type="text" class="form-control Stylednumber" name="security_amount">
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="">Maintenance Charges</label>
-                    <input type="number" name="maintenance_charge" class="form-control">
+                    <input type="text" name="maintenance_charge" class="form-control Stylednumber">
                   </div>
                   <div class="form-group col-md-6">
                     <label for="">Per</label>
@@ -2786,35 +2989,6 @@ $("#suggesstion-locality").hide();
                       @enderror
                     </div>
                     <div class="form-group col-md-6">
-                      <label for="">Overlooking <span class="text-danger">*</span></label>
-                      <select name="overlooking" id="overlooking" class="form-control @error('overlooking') invalid-feedback @enderror">
-                        <option value="">-Select Overlooking-</option>
-                        <option value="Garden/Park" @if(old('overlooking') == "Garden/Park") Selected @endif>Garden/Park</option>
-                        <option value="Pool" @if(old('overlooking') == "Pool") Selected @endif>Pool</option>
-                        <option value="Main Road" @if(old('overlooking') == "Main Road") Selected @endif>Main Road</option>
-                        <option value="Not Available" @if(old('overlooking') == "Not Available") Selected @endif>Not Available</option>
-                      </select>
-                      @error('overlooking')
-                      <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                      </span>
-                      @enderror
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label for="">Car Parking <span class="text-danger">*</span></label>
-                      <select name="car_parking" id="car_parking" class="form-control @error('car_parking') invalid-feedback @enderror">
-                        <option value="">-Select Car Parking-</option>
-                        <option value="Covered" @if(old('car_parking') == "Covered") Selected @endif>Covered</option>
-                        <option value="Open" @if(old('car_parking') == "Open") Selected @endif>Open</option>
-                        <option value="None" @if(old('car_parking') == "None") Selected @endif>None</option>
-                      </select>
-                      @error('car_parking')
-                      <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                      </span>
-                      @enderror
-                    </div>
-                    <div class="form-group col-md-6">
                       <label for="">Lifts in the Tower </label>
                       <select name="lift_in_tower" id="lift_in_tower" class="form-control @error('lift_in_tower') invalid-feedback @enderror">
                         <option value="">-Select-</option>
@@ -2832,6 +3006,65 @@ $("#suggesstion-locality").hide();
                         <strong>{{ $message }}</strong>
                       </span>
                       @enderror
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <h6>Overlooking</h6>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="overlooking[]" value="Garden/Park">Garden/Park
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="overlooking[]" value="Pool">Pool
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="overlooking[]" value="Main Road">Main Road
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="overlooking[]" value="Not Available">Not Available
+                            </label>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <h6>Car Parking</h6>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="car_parking[]" value="Covered">Covered
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="car_parking[]" value="Open">Open
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="car_parking[]" value="None">None
+                            </label>
+                        </div>
                     </div>
                   </div>
                   <div class="form-row">
@@ -2891,11 +3124,11 @@ $("#suggesstion-locality").hide();
                       <label for="">Status of Water</label>
                       <select name="status_of_water" id="status_of_water" class="form-control @error('status_of_water') invalid-feedback @enderror">
                         <option value="">-Select Status of Water-</option>
-                        <option value="24 hrs" @if(old('status_of_water') == "24 hrs") Selected @endif>24 hrs</option>
-                        <option value="12 hrs" @if(old('status_of_water') == "12 hrs") Selected @endif>12 hrs</option>
-                        <option value="6 hrs" @if(old('status_of_water') == "6 hrs") Selected @endif>6 hrs</option>
-                        <option value="2 hrs" @if(old('status_of_water') == "2 hrs") Selected @endif>2 hrs</option>
-                        <option value="1 hrs" @if(old('status_of_water') == "1 hrs") Selected @endif>1 hrs</option>
+                        <option value="24 HOURS Available" @if(old('status_of_water') == "24 HOURS Available") Selected @endif>24 HOURS Available</option>
+                        <option value="12 HOURS Available" @if(old('status_of_water') == "12 HOURS Available") Selected @endif>12 HOURS Available</option>
+                        <option value="6 HOURS Available" @if(old('status_of_water') == "6 HOURS Available") Selected @endif>6 HOURS Available</option>
+                        <option value="2 HOURS Available" @if(old('status_of_water') == "2 HOURS Available") Selected @endif>2 HOURS Available</option>
+                        <option value="1 HOUR Available" @if(old('status_of_water') == "1 HOUR Available") Selected @endif>1 HOUR Available</option>
                       </select>
                       @error('status_of_water')
                       <span class="invalid-feedback" role="alert">
@@ -2924,48 +3157,159 @@ $("#suggesstion-locality").hide();
                     <h6>Amenities</h6>
                   </div>
                   <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label for="">Amenities</label>
-                    </div>  
-                    <div class="form-group col-md-6">
-                      <label for="">Aminities</label>
-                      <select name="aminities" id="aminities" class="form-control @error('aminities') invalid-feedback @enderror">
-                        <option value="">-Select Aminities-</option>
-                        <option value="Air Conditioner" @if(old('aminities') == "Air Conditioner") Selected @endif>Air Conditioner</option>
-                        <option value="CCTV Camera" @if(old('aminities') == "CCTV Camera") Selected @endif>CCTV Camera</option>
-                        <option value="Fire Sprinklers" @if(old('aminities') == "Fire Sprinklers") Selected @endif>Fire Sprinklers</option>
-                        <option value="Cafeteria Food Court" @if(old('aminities') == "Cafeteria Food Court") Selected @endif>Cafeteria Food Court</option>
-                        <option value="Projector" @if(old('aminities') == "Projector") Selected @endif>Projector</option>
-                        <option value="Conference Room" @if(old('aminities') == "Conference Room") Selected @endif>Conference Room</option>
-                        <!-- <option value="DTH Television Facility" @if(old('aminities') == "DTH Television Facility") Selected @endif>DTH Television Facility</option> -->
-                        <!-- <option value="Gymnasium" @if(old('aminities') == "Gymnasium") Selected @endif>Gymnasium</option> -->
-                        <option value="Intercom Facility" @if(old('aminities') == "Intercom Facility") Selected @endif>Intercom Facility</option>
-                        <option value="Internet Wi-Fi Facility" @if(old('aminities') == "Internet Wi-Fi Facility") Selected @endif>Internet Wi-Fi Facility</option>
-                        <option value="Tea/Coffee" @if(old('aminities') == "Tea/Coffee") Selected @endif>Tea/Coffee</option>
-                        <option value="Printer" @if(old('aminities') == "Printer") Selected @endif>Printer</option>
-                        <option value="Lift" @if(old('aminities') == "Lift") Selected @endif>Lift</option>
-                        <option value="Security" @if(old('aminities') == "Security") Selected @endif>Security</option>
-                        <!-- <option value="Outdoor Tennis Court" @if(old('aminities') == "Outdoor Tennis Court") Selected @endif>Outdoor Tennis Court</option> -->
-                        <!-- <option value="Park" @if(old('aminities') == "Park") Selected @endif>Park</option> -->
-                        <option value="Pipe Gas" @if(old('aminities') == "Pipe Gas") Selected @endif>Pipe Gas</option>
-                        <option value="Power Back Up" @if(old('aminities') == "Power Back Up") Selected @endif>Power Back Up</option>
-                        <!-- <option value="Private Terrace" @if(old('aminities') == "Private Terrace") Selected @endif>Private Terrace</option> -->
-                        <!-- <option value="Garden" @if(old('aminities') == "Garden") Selected @endif>Garden</option> -->
-                        <option value="RO Water System" @if(old('aminities') == "RO Water System") Selected @endif>RO Water System</option>
-                        <!-- <option value="Rain Water Harvesting" @if(old('aminities') == "Rain Water Harvesting") Selected @endif>Rain Water Harvesting</option> -->
-                        <option value="Reserve Parking" @if(old('aminities') == "Reserve Parking") Selected @endif>Reserve Parking</option>
-                        <option value="Services/ Goods Lift" @if(old('aminities') == "Services/ Goods Lift") Selected @endif>Services/ Goods Lift</option>
-                        <option value="Swimming Pool" @if(old('aminities') == "Swimming Pool") Selected @endif>Swimming Pool</option>
-                        <option value="Whiteboard" @if(old('aminities') == "Whiteboard") Selected @endif>Whiteboard</option>
-                        <option value="Visitors Parking" @if(old('aminities') == "Visitors Parking") Selected @endif>Visitors Parking</option>
-                        <option value="Wheelchair Accessibility" @if(old('aminities') == "Wheelchair Accessibility") Selected @endif>Wheelchair Accessibility</option>
-                        <option value="Water Storage" @if(old('aminities') == "Water Storage") Selected @endif>Water Storage</option>
-                      </select>
-                      @error('aminities')
-                        <span class="invalid-feedback" role="alert">
-                          <strong>{{ $message }}</strong>
-                        </span>
-                      @enderror
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Air Conditioner">Air Conditioner
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="CCTV Camera">CCTV Camera
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Fire Sprinklers">Fire Sprinklers
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Cafeteria Food Court">Cafeteria Food Court
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Projector">Projector
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Conference Room">Conference Room
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Intercom Facility">Intercom Facility
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Internet Wi-Fi Facility">Internet Wi-Fi Facility
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Tea/Coffee">Tea/Coffee
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Printer">Printer
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Lift">Lift
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Security">Security
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Pipe Gas">Pipe Gas
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Power Back Up">Power Back Up
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="RO Water System">RO Water System
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Reserve Parking">Reserve Parking
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Services/ Goods Lift">Services/ Goods Lift
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Swimming Pool">Swimming Pool
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Whiteboard">Whiteboard
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Visitors Parking">Visitors Parking
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Wheelchair Accessibility">Wheelchair Accessibility
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Water Storage">Water Storage
+                            </label>
+                        </div>
                     </div>
                   </div>
 
@@ -3015,7 +3359,7 @@ $("#suggesstion-locality").hide();
                     <label for="">Width of Road facing the Plot</label>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="number" class="form-control @error('width_of_road') invalid-feedback @enderror" name="width_of_road" value="{{ old('width_of_road') }}" placeholder="Meters">
+                    <input type="text" class="form-control Stylednumber @error('width_of_road') invalid-feedback @enderror" name="width_of_road" value="{{ old('width_of_road') }}" placeholder="Meters">
                   </div>
                 </div>  
                 <div class="form-group">
@@ -3040,7 +3384,7 @@ $("#suggesstion-locality").hide();
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-6">
-                      <label for="">Bondry wall Made<span class="text-danger">*</span><span class="text-danger" id="wall_err"></span></label>
+                      <label for="">Bondary wall Made<span class="text-danger">*</span><span class="text-danger" id="wall_err"></span></label>
                     </div>
                     <div class="col-md-6">
                       <div class="form-check-inline">
@@ -3064,7 +3408,7 @@ $("#suggesstion-locality").hide();
                     <label for="">Plot Area<span class="text-danger">*</span><span class="text-danger" id="plot_err"></span></label>
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="number" id="plot_area" class="form-control @error('plot_area') invalid-feedback @enderror" name="plot_area" value="{{ old('plot_area') }}">
+                    <input type="text" id="plot_area" class="form-control Stylednumber @error('plot_area') invalid-feedback @enderror" name="plot_area" value="{{ old('plot_area') }}">
                   </div>
                   <div class="form-group col-md-4">
                     <select name="plot_unit" id="plot_unit" class="form-control @error('plot_unit') invalid-feedback @enderror">
@@ -3095,7 +3439,7 @@ $("#suggesstion-locality").hide();
                     <label for="">Plot Length</label>
                   </div>
                   <div class="form-group col-md-8">
-                    <input type="number" class="form-control @error('plot_length') invalid-feedback @enderror" name="plot_length" value="{{ old('plot_length') }}" placeholder="yrd">
+                    <input type="text" class="form-control Stylednumber @error('plot_length') invalid-feedback @enderror" name="plot_length" value="{{ old('plot_length') }}" placeholder="yrd">
                   </div>
                 </div>
                 <div class="form-row">
@@ -3103,7 +3447,7 @@ $("#suggesstion-locality").hide();
                     <label for="">Plot Width</label>
                   </div>
                   <div class="form-group col-md-8">
-                    <input type="number" class="form-control @error('plot_width') invalid-feedback @enderror" name="plot_width" value="{{ old('plot_width') }}" placeholder="yrd">
+                    <input type="text" class="form-control Stylednumber @error('plot_width') invalid-feedback @enderror" name="plot_width" value="{{ old('plot_width') }}" placeholder="yrd">
                   </div>
                 </div>
                 <div class="form-row">
@@ -3148,7 +3492,7 @@ $("#suggesstion-locality").hide();
                     <label for="">Monthly Rent<span  style="color:red" id="monthly_rent_err"> </span></label>
                   </div>
                   <div class="col-md-8">
-                    <input type="number" class="form-control" id="monthly_rent" name="monthly_rent" onkeyup="convertNumberToWords(this.value)">
+                    <input type="text" class="form-control Stylednumber" id="monthly_rent" name="monthly_rent" onkeyup="convertNumberToWords(this.value)">
                     <span id="show_price" class="text-muted"></span>
                   </div>
                 </div>
@@ -3214,7 +3558,7 @@ $("#suggesstion-locality").hide();
                     <label for="">Booking Token Amount</label>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="number" name="booking_token_amount" id="booking_token_amount" class="form-control @error('booking_token_amount') invalid-feedback @enderror" value="{{ old('booking_token_amount') }}">
+                    <input type="text" name="booking_token_amount" id="booking_token_amount" class="form-control Stylednumber @error('booking_token_amount') invalid-feedback @enderror" value="{{ old('booking_token_amount') }}">
                     @error('booking_token_amount')
                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -3321,12 +3665,12 @@ $("#suggesstion-locality").hide();
                     <div class="form-group col-md-8">
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input" name="overlooking" value="Main Road">Main Road
+                          <input type="checkbox" class="form-check-input" name="overlooking[]" value="Main Road">Main Road
                         </label>
                       </div>
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input" name="overlooking" value="Not Available">Not Available
+                          <input type="checkbox" class="form-check-input" name="overlooking[]" value="Not Available">Not Available
                         </label>
                       </div>
                     </div>
@@ -3370,25 +3714,6 @@ $("#suggesstion-locality").hide();
                       <strong>{{ $message }}</strong>
                     </span>
                     @enderror
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-4">
-                      <label for="">Listed By</label>
-                    </div>
-                    <div class="form-group col-md-8">
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="" name="listed_by" value="Builder">
-                        <label class="form-check-label" for="">Builder</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="" name="listed_by" value="Owner">
-                        <label class="form-check-label" for="">Owner</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="" name="listed_by" value="Agent">
-                        <label class="form-check-label" for="">Agent</label>
-                      </div>
-                    </div>
                   </div>
                   <hr>
                   <button type="button" id="submitForm3" class="btn btn-primary">Post Your Add</button>
@@ -3485,6 +3810,40 @@ $("#suggesstion-locality").hide();
 <script src="{{ asset('js/image-upload.js') }}"></script>
 
 <script type=text/javascript>
+String.prototype.replaceAll = function(search, replacement) {
+  var target = this;
+  return target.replace(new RegExp(search, 'g'), replacement);
+};
+$('input.Stylednumber').keyup(function() {
+  var input = $(this).val().replaceAll(',', '');
+  if (input.length < 1)
+    $(this).val('0');
+  else {
+    var formatted = inrFormat(input);
+    if (formatted.indexOf('.') > 0) {
+      var split = formatted.split('.');
+      formatted = split[0] + '.' + split[1].substring(0, 2);
+    }
+    $(this).val(formatted);
+  }
+});
+function inrFormat(val) {
+  var x = val;
+  x = x.toString();
+  var afterPoint = '';
+  if (x.indexOf('.') > 0)
+    afterPoint = x.substring(x.indexOf('.'), x.length);
+  x = Math.floor(x);
+  x = x.toString();
+  var lastThree = x.substring(x.length - 3);
+  var otherNumbers = x.substring(0, x.length - 3);
+  if (otherNumbers != '')
+    lastThree = ',' + lastThree;
+  var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + afterPoint;
+  return res;
+}
+
+
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -3687,7 +4046,7 @@ $(document).mouseup(function (e) {
     } 
     }
   }
-
+  
   if($("#land-form").css("display") == "block")
   { 
     var monthly_rent = $("#land-form #monthly_rent").val();
@@ -3738,10 +4097,10 @@ $('body').on('change', '#property_type', function () {
       showDiv.show();
       setTimeout(function() {
         showDiv.hide();
+        $('#land-form').fadeOut();
         $('#rent-lease-form').fadeIn();
         $('#commercial-form').fadeOut();
         $('#showroom-form').fadeOut();
-        $('#land-form').fadeOut();
       }, 2500);
     }
     if((query == 40) || (query == 41) || (query == 42) || (query == 45) || (query == 46))
@@ -3751,10 +4110,10 @@ $('body').on('change', '#property_type', function () {
       showDiv.show();
       setTimeout(function() {
         showDiv.hide();
+        $('#land-form').fadeOut();
         $('#commercial-form').fadeIn();
         $('#rent-lease-form').fadeOut();
         $('#showroom-form').fadeOut();
-        $('#land-form').fadeOut();
       }, 2500);
     }
     if((query == 43) || (query == 44))
@@ -3764,9 +4123,9 @@ $('body').on('change', '#property_type', function () {
       showDiv.show();
       setTimeout(function() {
         showDiv.hide();
+        $('#land-form').fadeOut();
         $('#commercial-form').fadeOut();
         $('#rent-lease-form').fadeOut();
-        $('#land-form').fadeOut();
         $('#showroom-form').fadeIn();
       }, 2500);
     }
@@ -3785,6 +4144,7 @@ $('body').on('change', '#property_type', function () {
     }
 })
 $('body').on('click', '#showButton1', function () {
+  var listed_by = $('input[name="listed_by"]:checked').val();
   var city = $('#search-box').val();
   var locality = $('#locality').val();
   var address = $('textarea#address').val();
@@ -3796,6 +4156,13 @@ $('body').on('click', '#showButton1', function () {
   var super_build_up_area = $('#super_build_up_area').val();
   var available_from = $("input[name='available_from']:checked").val();
   var monthly_rent = $('#monthly_rent').val();
+  if(listed_by == null)
+  {
+    $("#listed_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#listed_err").fadeOut(); }, 3000);
+    $('input[name="listed_by"]').focus();
+    return false;
+  }
   if(city == '')
   {
     $("#city_err").fadeIn().html("Required");
@@ -3889,11 +4256,11 @@ $('body').on('click', '#submitForm', function () {
   }
   $("#commercial-form :input").prop("disabled", true);
   $("#showroom-form :input").prop("disabled", true);
-  $("#land-form :input").prop("disabled", true);
   $("#property-form").submit();
 });
 
 $('body').on('click', '#showButton2', function () {
+  var listed_by = $('input[name="listed_by"]:checked').val();
   var city = $('#search-box').val();
   var locality = $('#locality').val();
   var address = $('textarea#address').val();
@@ -3904,6 +4271,13 @@ $('body').on('click', '#showButton2', function () {
   var super_build_up_area = $('#commercial-form #super_build_up_area').val();
   var available_from = $("#commercial-form input[name='available_from']:checked").val();
   var monthly_rent = $('#commercial-form #monthly_rent').val();
+  if(listed_by == null)
+  {
+    $("#listed_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#listed_err").fadeOut(); }, 3000);
+    $('input[name="listed_by"]').focus();
+    return false;
+  }
   if(city == '')
   {
     $("#city_err").fadeIn().html("Required");
@@ -3991,12 +4365,12 @@ $('body').on('click', '#submitButton2', function () {
   else{
     $("#rent-lease-form :input").prop("disabled", true);
     $("#showroom-form :input").prop("disabled", true);
-    $("#land-form :input").prop("disabled", true);
     $("#property-form").submit();
   }
 });
 
 $('body').on('click', '#showButton3', function () {
+  var listed_by = $('input[name="listed_by"]:checked').val();
   var city = $('#search-box').val();
   var locality = $('#locality').val();
   var address = $('textarea#address').val();
@@ -4007,6 +4381,13 @@ $('body').on('click', '#showButton3', function () {
   var super_build_up_area = $('#showroom-form #super_build_up_area').val();
   var available_from = $("#showroom-form input[name='available_from']:checked").val();
   var monthly_rent = $('#showroom-form #monthly_rent').val();
+  if(listed_by == null)
+  {
+    $("#listed_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#listed_err").fadeOut(); }, 3000);
+    $('input[name="listed_by"]').focus();
+    return false;
+  }
   if(city == '')
   {
     $("#city_err").fadeIn().html("Required");
@@ -4094,13 +4475,12 @@ $('body').on('click', '#submitForm2', function () {
   else{
     $("#rent-lease-form :input").prop("disabled", true);
     $("#commercial-form :input").prop("disabled", true);
-    $("#land-form :input").prop("disabled", true);
     $("#property-form").submit();
   }
 });
 
-
 $('body').on('click', '#showButton4', function () {
+  var listed_by = $('input[name="listed_by"]:checked').val();
   var city = $('#search-box').val();
   var locality = $('#locality').val();
   var address = $('textarea#address').val();
@@ -4109,6 +4489,13 @@ $('body').on('click', '#showButton4', function () {
   var plot_area = $('#land-form #plot_area').val();
   var available_from = $("#land-form input[name='available_from']:checked").val();
   var monthly_rent = $('#land-form #monthly_rent').val();
+  if(listed_by == null)
+  {
+    $("#listed_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#listed_err").fadeOut(); }, 3000);
+    $('input[name="listed_by"]').focus();
+    return false;
+  }
   if(city == '')
   {
     $("#city_err").fadeIn().html("Required");
