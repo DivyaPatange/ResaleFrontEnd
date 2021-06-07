@@ -209,7 +209,7 @@ border: none;
   background: #FFF url('{{ asset('142.gif')}}') no-repeat 50%;
 }
 
-#country-list{float:left;list-style:none;margin-top:-3px;padding:0;width:190px;position: absolute;}
+#country-list{float:left;list-style:none;margin-top:-3px;padding:0;width:190px;position: absolute;z-index:100}
 #country-list li{padding: 10px; background: #f0f0f0; border-bottom: #bbb9b9 1px solid;}
 #country-list li:hover{background:#ece3d2;cursor: pointer;}
 #search-box{padding: 10px;border-radius:4px;}
@@ -387,14 +387,13 @@ $("#suggesstion-locality").hide();
                   @enderror
                 </div>
               </div>
-              <div class="form-group">
-                <label>Address</label><span class="text-danger">*</span><span  style="color:red" id="address_err"> </span></label>
-                <textarea class="form-control @error('address') is-invalid @enderror" id="address" name="address"></textarea>
-                @error('address')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-                @enderror
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label>Address</label><span class="text-danger">*</span><span  style="color:red" id="address_err"> </span></label>
+                </div>
+                <div class="form-group col-md-8">
+                  <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address">
+                </div>
               </div>
               <div class="pageloader hidden"></div>
               <div class="hidden" id="rent-lease-form">
@@ -417,16 +416,10 @@ $("#suggesstion-locality").hide();
                     </div>
                     <div class="col-md-9">
                       <div class="switch-field">
-                        <input type="radio" id="1" name="bedroom" value="1" @if(old('bedroom') == "1") checked @endif/>
-                        <label for="1">1</label>
-                        <input type="radio" id="2" name="bedroom" value="2" @if(old('bedroom') == "2") checked @endif/>
-                        <label for="2">2</label>
-                        <input type="radio" id="3" name="bedroom" value="3" @if(old('bedroom') == "3") checked @endif/>
-                        <label for="3">3</label>
-                        <input type="radio" id="4" name="bedroom" value="4" @if(old('bedroom') == "4") checked @endif/>
-                        <label for="4">4</label>
-                        <input type="radio" id="5" name="bedroom" value="5" @if(old('bedroom') == "5") checked @endif/>
-                        <label for="5">5</label>
+                        @for($i = 1; $i <= 20; $i++)
+                        <input type="radio" id="{{ $i }}" name="bedroom" value="{{ $i }}" @if(old('bedroom') == $i) checked @endif/>
+                        <label for="{{ $i }}">{{ $i }}</label>
+                        @endfor
                       </div>
                     </div>
                   </div>
@@ -498,7 +491,15 @@ $("#suggesstion-locality").hide();
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="floor">Property Floor No.<span  style="color:red" id="floor_err"> </span></label>
-                        <input type="number" name="property_floor_no" class="form-control @error('property_floor_no') is-invalid @enderror" value="{{ old('property_floor_no') }}" id="property_floor_no">
+                        <select name="property_floor_no" id="property_floor_no" class="form-control @error('property_floor_no') is-invalid @enderror">
+                          <option value="">Choose..</option>
+                          <option value="Lower Basement">Lower Basement</option>
+                          <option value="Upper Basement">Upper Basement</option>
+                          <option value="Ground">Ground</option>
+                          @for($i=1; $i <= 20; $i++)
+                          <option value="{{ $i }}">{{ $i }}</option>
+                          @endfor
+                        </select>
                         @error('property_floor_no')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
@@ -509,7 +510,15 @@ $("#suggesstion-locality").hide();
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="floor">No. of Floor<span  style="color:red" id="total_floor_err"> </span></label>
-                        <input type="number" name="total_floor" class="form-control @error('no_of_floor') is-invalid @enderror" value="{{ old('no_of_floor') }}" id="no_of_floor">
+                        <select name="total_floor" id="no_of_floor" class="form-control @error('total_floor') is-invalid @enderror">
+                          <option value="">Choose..</option>
+                          <option value="Lower Basement">Lower Basement</option>
+                          <option value="Upper Basement">Upper Basement</option>
+                          <option value="Ground">Ground</option>
+                          @for($i=1; $i <= 20; $i++)
+                          <option value="{{ $i }}">{{ $i }}</option>
+                          @endfor
+                        </select>
                         @error('no_of_floor')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
@@ -4095,7 +4104,7 @@ $('body').on('change', '#property_type', function () {
       var showDiv = $('.pageloader');
       if (showDiv.is(":visible")) { return; }
       showDiv.show();
-      setTimeout(function() {
+      setTimeout(function(){
         showDiv.hide();
         $('#land-form').fadeOut();
         $('#rent-lease-form').fadeIn();

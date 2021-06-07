@@ -2,46 +2,44 @@
 @section('title', 'Cars')
 @section('customcss')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" />
+<script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>
 <style>
-.myimg
-{
+  .myimg
+  {
     width:100%;
     height:300px;
-}
-.card-header-a .card-title-a {
-  font-size: 25px;
-}
+  }
+  .card-header-a .card-title-a {
+    font-size: 25px;
+  }
 
-.element {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid grey;
-  padding: 20px;
-  margin:10px;
-}
-#upload_form{
-  display:inline-flex;
-  flex-wrap:wrap;
-}
-.filelabel {
-  width: 110px;
-  height:110px;
-  border: 2px dashed grey;
-  border-radius: 5px;
-  /* display: inline-block; */
-  padding: 5px;
-  transition: border 300ms ease;
-  cursor: pointer;
-  text-align: center;
-  margin: 6px;
-  position:relative;
-}
-.icon{
+  .element {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid grey;
+    padding: 20px;
+    margin:10px;
+  }
+  #upload_form{
+    display:inline-flex;
+    flex-wrap:wrap;
+  }
+  .filelabel {
+    width: 110px;
+    height:110px;
+    border: 2px dashed grey;
+    border-radius: 5px;
+    /* display: inline-block; */
+    padding: 5px;
+    transition: border 300ms ease;
+    cursor: pointer;
+    text-align: center;
+    margin: 6px;
+    position:relative;
+  }
+  .icon{
     position: absolute;
     /* left: 0%; */
     right: 0%;
@@ -50,77 +48,80 @@
     background: black;
     width: 21px;
     color: white;
-}
-.filelabel i {
+  }
+  .filelabel i {
     display: block;
     font-size: 30px;
     padding-bottom: 5px;
-}
-.filelabel i,
-.filelabel .title {
-  color: grey;
-  transition: 200ms color;
-}
-.filelabel:hover {
-  border: 2px solid #1665c4;
-}
-.filelabel:hover i,
-.filelabel:hover .title {
-  color: #1665c4;
-}
-#FileInput{
+  }
+  .filelabel i, .filelabel .title {
+    color: grey;
+    transition: 200ms color;
+  }
+  .filelabel:hover {
+    border: 2px solid #1665c4;
+  }
+  .filelabel:hover i, .filelabel:hover .title {
+    color: #1665c4;
+  }
+  #FileInput{
     display:none;
-}
-.hidden{
+  }
+  .hidden{
     display:none;
-}
+  }
+  .switch-field {
+    display: flex;
+    overflow: hidden;
+    flex-wrap: wrap;
+  }
 
+  .switch-field input {
+    position: absolute !important;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    width: 1px;
+    border: 0;
+    overflow: hidden;
+  }
 
-.switch-field {
-	display: flex;
-	/* margin-bottom: 36px; */
-	overflow: hidden;
-}
+  .switch-field label {
+    background-color: white;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    line-height: 1;
+    text-align: center;
+    padding: 8px 16px;
+    margin-right: -1px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+    transition: all 0.1s ease-in-out;
+  }
 
-.switch-field input {
-	position: absolute !important;
-	clip: rect(0, 0, 0, 0);
-	height: 1px;
-	width: 1px;
-	border: 0;
-	overflow: hidden;
-}
+  .switch-field label:hover {
+    cursor: pointer;
+  }
 
-.switch-field label {
-	background-color: white;
-	color: rgba(0, 0, 0, 0.6);
-	font-size: 14px;
-	line-height: 1;
-	text-align: center;
-	padding: 8px 16px;
-	margin-right: -1px;
-	border: 1px solid rgba(0, 0, 0, 0.2);
-	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
-	transition: all 0.1s ease-in-out;
-}
+  .switch-field input:checked + label {
+    background-color: #a5dc86;
+    box-shadow: none;
+  }
 
-.switch-field label:hover {
-	cursor: pointer;
-}
+  .switch-field label:first-of-type {
+    border-radius: 4px 0 0 4px;
+  }
 
-.switch-field input:checked + label {
-	background-color: #a5dc86;
-	box-shadow: none;
-}
-
-.switch-field label:first-of-type {
-	border-radius: 4px 0 0 4px;
-}
-
-.switch-field label:last-of-type {
-	border-radius: 0 4px 4px 0;
-}
-
+  .switch-field label:last-of-type {
+    border-radius: 0 4px 4px 0;
+  }
+  .select2-container .select2-selection--single{
+    height:34px;
+  }
+  .foo { color: #808080; text-size: smaller; }
+  /* .select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: white;
+    color: black;
+  } */
 </style>
 @endsection
 @section('content')
@@ -129,8 +130,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="title-single-box">
-          <h1 class="title-single">The Best Way To Sell Your {{ $subCategory->sub_category }}</h1>
-         
+          <h1 class="title-single">The Best Way To Sell Your {{ $subCategory->sub_category }}</h1> 
         </div>
       </div>
     </div>
@@ -143,26 +143,57 @@
   <div class="container">
     <div class="row mt-3">
       <div class="col-md-12">
-          @if ($message = Session::get('success'))
-          <div class="alert alert-success" role="alert">
-              <button type="button" class="close" data-dismiss="alert">×</button>	
-                  <strong>{{ $message }}</strong>
-          </div>
-          @endif
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success" role="alert">
+          <button type="button" class="close" data-dismiss="alert">×</button>	
+          <strong>{{ $message }}</strong>
+        </div>
+        @endif
       </div>
     </div>
     <div class="row mt-5">
       <div class="col-sm-12">
         <div class="row">
           <div class="col-md-8">
-            <form method="POST" action="{{ url('save-car-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
+            <form method="POST" id="submitForm" action="{{ url('save-car-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
             @csrf 
               <input type="hidden" name="sub_category_id"  value="{{ $subCategory->id }}">
               <input type="hidden" name="category_id" value="{{ $category->id }}">
               <div class="form-row">
                 <div class="form-group col-md-4">
+                  <label for="">I am <span class="text-danger">*<span><span class="text-danger" id="user_err"><span></label>
+                </div>
+                <div class="form-group col-md-8">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="" name="user_type" value="Individual">
+                    <label class="form-check-label" for="">Individual</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="" name="user_type" value="Dealer">
+                    <label class="form-check-label" for="">Dealer</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row hidden" id="showDiv">
+                <div class="row">
+                  <div class="form-group col-md-4">
+                    <label for="">GST No.<span class="text-danger">*<span><span class="text-danger" id="gst_err"><span></label>
+                  </div>
+                  <div class="form-group col-md-8">
+                    <input type="text" name="gst_no" id="gst_no" class="form-control @error('gst_no') invalid-feedback @enderror" value="{{ old('gst_no') }}">
+                    @error('gst_no')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="form-row">
+                <div class="form-group col-md-4">
                   <label>Brand Name<span class="text-danger">*<span></label>
-                  <select id="brand_name" class="form-control @error('brand_name') is-invalid @enderror" name="brand_name">
+                  <select id="brand_name" class="form-control sel-status @error('brand_name') is-invalid @enderror" name="brand_name">
                     <option value="">Choose...</option>
                     @foreach($brand as $b)
                     <option value="{{ $b->id }}" @if (old('brand_name') == $b->id) selected="selected" @endif>{{ $b->brand_name }}</option>
@@ -176,7 +207,7 @@
                 </div>
                 <div class="form-group col-md-4">
                   <label>Model Name<span class="text-danger">*<span></label>
-                  <select id="model_name" class="form-control @error('model_name') is-invalid @enderror" name="model_name">
+                  <select id="model_name" class="form-control sel-status @error('model_name') is-invalid @enderror" name="model_name">
 
                   </select>
                   @error('model_name')
@@ -187,7 +218,7 @@
                 </div>
                 <div class="form-group col-md-4">
                   <label>Car Varient<span class="text-danger">*<span></label>
-                  <select id="car_varient" class="form-control @error('car_varient') is-invalid @enderror" name="car_varient">
+                  <select id="car_varient" class="form-control sel-status @error('car_varient') is-invalid @enderror" name="car_varient">
                     
                   </select>
                   @error('car_varient')
@@ -289,180 +320,230 @@
                 </span>
                 @enderror
               </div>
-                <div class="form-group">
-                  <label>Ad title <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control @error('ad_title') is-invalid @enderror" id="ad_title" placeholder="(e.g. brand, model, age, type)" name="ad_title" value="{{ old('ad_title') }}">
-                  @error('ad_title')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-                </div>
-                <div class="form-group">
-                  <label>Description <span class="text-danger">*</span></label>
-                  <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
-                  @error('description')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
-                </div>
-                <div class="form-group">
-                  <label>Photos <span class="text-danger">*</span></label><strong>(Upload Upto 25 Photos)</strong>
-                </div>
-                <div id="upload_form">
-                  @for($i=1; $i < 26; $i++)
-                  <label class="filelabel p_file">
-                    <div class="icon">X</div>
-                    <i class="fa fa-paperclip" id="icon{{ $i }}">
-                    </i>
-                    
-                    <span class="title{{ $i }}">
-                        Add File
-                    </span>
-                    <input class="FileUpload{{ $i }}" id="FileInput" name="photos[]" type="file"/>
-                    <img  id="frame{{ $i }}" style="max-width: 90px; max-height: 70px;" class="hidden">
-                  </label>
-                  @endfor
-                </div>
-                @error('photos')
-                    <span class="text-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-                <div class="form-row">
-                    <div class="form-group mb-3 col-md-6">
-                        <label>Colour<span class="text-danger">*</span></label>
-                        <input type="text" name="colour" class="form-control @error('colour') is-invalid @enderror" value="{{ old('colour') }}">
-                        @error('colour')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                    </div>
-                    <div class="form-group mb-3 col-md-6">
-                        <label>Insurance<span class="text-danger">*</span></label>
-                        <input type="text" name="insurance" class="form-control @error('insurance') is-invalid @enderror" value="{{ old('insurance') }}">
-                        @error('insurance')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                    </div>
-                </div>
-                <hr>
-                <div class="form-group">
-                  <h6>Expected Selling</h6>
-                  <div class="row">
-                    <div class="col-md-3">
-                      <label>Price</label><span class="text-danger">*</span>
-                      </label>
-                    </div>
-                    <div class="col-md-9">
-                      <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text"><i class="fa fa-rupee"></i></div>
-                        </div>
-                        <input type="text" class="form-control Stylednumber @error('price') is-invalid @enderror" id="price" placeholder="Price" name="price" value="{{ old('price') }}">
-                      </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-3">
+                    <label>Car Body Type <span class="text-danger">*</span>
+                    </label>
+                  </div>
+                  <div class="col-md-9">
+                    <div class="switch-field">
+                      <input type="radio" name="body_type" id="inlineRadio6" value="SUV" @if(old('body_type') == "SUV") checked @endif>
+                      <label for="inlineRadio6">SUV</label>
+                      <input type="radio" name="body_type" id="inlineRadio7" value="COMPACT SUV" @if(old('body_type') == "COMPACT SUV") checked @endif>
+                      <label for="inlineRadio7">COMPACT SUV</label>
+                      <input type="radio" name="body_type" id="inlineRadio8" value="SEDAN" @if(old('body_type') == "SEDAN") checked @endif>
+                      <label for="inlineRadio8">SEDAN</label>
+                      <input type="radio" name="body_type" id="inlineRadio9" value="COMPACT SEDAN" @if(old('body_type') == "COMPACT SEDAN") checked @endif>
+                      <label for="inlineRadio9">COMPACT SEDAN</label>
+                      <input type="radio" name="body_type" id="inlineRadio10" value="HATCHBACK" @if(old('body_type') == "HATCHBACK") checked @endif>
+                      <label for="inlineRadio10">HATCHBACK</label>
+                      <input type="radio" name="body_type" id="inlineRadio11" value="MUV" @if(old('body_type') == "MUV") checked @endif>
+                      <label for="inlineRadio11">MUV</label>
+                      <input type="radio" name="body_type" id="inlineRadio12" value="VAN" @if(old('body_type') == "VAN") checked @endif>
+                      <label for="inlineRadio12">VAN</label>
                     </div>
                   </div>
-                  @error('price')
+                </div>
+                @error('body_type')
+                <span class="text-danger" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+              </div>
+              <div class="form-group">
+                <label>Ad title <span class="text-danger">*</span></label>
+                <input type="text" class="form-control @error('ad_title') is-invalid @enderror" id="ad_title" placeholder="(e.g. brand, model, age, type)" name="ad_title" value="{{ old('ad_title') }}">
+                @error('ad_title')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+              </div>
+              <div class="form-group">
+                <label>Description <span class="text-danger">*</span></label>
+                <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
+                @error('description')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
+              </div>
+              <div class="form-group">
+                <label>Photos <span class="text-danger">*</span></label><strong>(Upload Upto 25 Photos)</strong>
+              </div>
+              <div id="upload_form">
+                @for($i=1; $i < 26; $i++)
+                <label class="filelabel p_file">
+                  <div class="icon">X</div>
+                  <i class="fa fa-paperclip" id="icon{{ $i }}">
+                  </i>
+                  
+                  <span class="title{{ $i }}">
+                      Add File
+                  </span>
+                  <input class="FileUpload{{ $i }}" id="FileInput" name="photos[]" type="file"/>
+                  <img  id="frame{{ $i }}" style="max-width: 90px; max-height: 70px;" class="hidden">
+                </label>
+                @endfor
+              </div>
+              @error('photos')
+              <span class="text-danger" role="alert">
+                <strong>{{ $message }}</strong>
+              </span>
+              @enderror
+              <div class="form-row">
+                <div class="form-group mb-3 col-md-6">
+                  <label>Colour<span class="text-danger">*</span></label>
+                  <select name="colour" class="form-control sel-status @error('colour') is-invalid @enderror">
+                    <option value="">-Select Colour-</option>
+                    <option value="White" @if(old('colour') == "White") Selected @endif>White</option>
+                    <option value="Black" @if(old('colour') == "Black") Selected @endif>Black</option>
+                    <option value="Silver" @if(old('colour') == "Silver") Selected @endif>Silver</option>
+                    <option value="Red" @if(old('colour') == "Red") Selected @endif>Red</option>
+                    <option value="Blue" @if(old('colour') == "Blue") Selected @endif>Blue</option>
+                    <option value="Grey" @if(old('colour') == "Grey") Selected @endif>Grey</option>
+                    <option value="Beige" @if(old('colour') == "Beige") Selected @endif>Beige</option>
+                    <option value="Brown" @if(old('colour') == "Brown") Selected @endif>Brown</option>
+                    <option value="Gold/Yellow" @if(old('colour') == "Gold/Yellow") Selected @endif>Gold/Yellow</option>
+                    <option value="Green" @if(old('colour') == "Green") Selected @endif>Green</option>
+                    <option value="Purple" @if(old('colour') == "Purple") Selected @endif>Purple</option>
+                    <option value="Maroon" @if(old('colour') == "Maroon") Selected @endif>Maroon</option>
+                    <option value="Others" @if(old('colour') == "Others") Selected @endif>Others</option>
+                  </select>
+                  @error('colour')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
                   @enderror
                 </div>
-                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                <hr>
-                <div class="form-group">
-                    <h6>Fill User Details</h6>
+                <div class="form-group mb-3 col-md-6">
+                  <label>Insurance<span class="text-danger">*</span></label>
+                  <select name="insurance" class="form-control sel-status @error('insurance') is-invalid @enderror">
+                    <option value="">-Choose-</option>
+                    <option value="Comprehensive/Standard" @if(old('insurance') == "Comprehensive/Standard") Selected @endif data-foo="Covers Damages to Your Car and Third Party">Comprehensive/Standard</option>
+                    <option value="Third Party" @if(old('insurance') == "Third Party") Selected @endif>Third Party</option>
+                    <option value="Zero Depreciation" @if(old('insurance') == "Zero Depreciation") Selected @endif>Zero Depreciation</option>
+                    <option value="No Insurance" @if(old('insurance') == "No Insurance") Selected @endif>No Insurance</option>
+                  </select>
+                  @error('insurance')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
                 </div>
-                <div class="form-row">
-                  <div class="form-group col-md-4 mb-3">
-                    <label>Name<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"  name="name" value="{{ Auth::user()->name }}">
-                    @error('name')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
+              </div>
+              <hr>
+              <div class="form-group">
+                <h6>Expected Selling</h6>
+                <div class="row">
+                  <div class="col-md-3">
+                    <label>Price</label><span class="text-danger">*</span></label>
                   </div>
-                  <div class="form-group col-md-4 mb-3">
-                    <label>Email<span class="text-danger">*</span></label>
-                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"  name="email" value="{{ Auth::user()->email }}">
-                    @error('email')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-                  <div class="form-group col-md-4 mb-3">
-                    <label>Mobile Number<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control @error('mobile_no') is-invalid @enderror" id="mobile_no"  name="mobile_no" value="{{ Auth::user()->mobile_no }}">
-                    @error('mobile_no')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
+                  <div class="col-md-9">
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-rupee"></i></div>
+                      </div>
+                      <input type="text" class="form-control Stylednumber @error('price') is-invalid @enderror" id="price" placeholder="Price" name="price" value="{{ old('price') }}">
+                    </div>
                   </div>
                 </div>
-                <div class="form-row">
-                  <div class="form-group col-md-4">
-                    <label>State</label><span class="text-danger">*</span></label>
-                    <select id="state" class="form-control @error('state') is-invalid @enderror" name="state">
-                      <option value="">Choose...</option>
-                      @foreach($state as $s)
-                      <option value="{{ $s->id }}" @if (old('state') == $s->id) selected="selected" @endif>{{ $s->state_name }}</option>
-                      @endforeach
-                    </select>
-                    @error('state')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label for="inputCity">City</label><span class="text-danger">*</span></label>
-                    <select class="form-control @error('city') is-invalid @enderror" id="city" name="city">
-                    </select>
-                    @error('city')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label for="inputLocality">Locality</label><span class="text-danger">*</span></label>
-                    <select class="form-control @error('locality') is-invalid @enderror" id="locality" name="locality">
-                    </select>
-                    @error('locality')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label>Address</label><span class="text-danger">*</span></label>
-                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address">
-                    @error('address')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label>Pin Code</label>
-                    <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code">
-                    @error('pin_code')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-                  
+                @error('price')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+              </div>
+              <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+              <hr>
+              <div class="form-group">
+                <h6>Fill User Details</h6>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4 mb-3">
+                  <label>Name<span class="text-danger">*</span></label>
+                  <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"  name="name" value="{{ Auth::user()->name }}">
+                  @error('name')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
                 </div>
-                <button type="submit" class="btn btn-primary">Post Your Add</button>
+                <div class="form-group col-md-4 mb-3">
+                  <label>Email<span class="text-danger">*</span></label>
+                  <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"  name="email" value="{{ Auth::user()->email }}">
+                  @error('email')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </div>
+                <div class="form-group col-md-4 mb-3">
+                  <label>Mobile Number<span class="text-danger">*</span></label>
+                  <input type="text" class="form-control @error('mobile_no') is-invalid @enderror" id="mobile_no"  name="mobile_no" value="{{ Auth::user()->mobile_no }}">
+                  @error('mobile_no')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label>State</label><span class="text-danger">*</span></label>
+                  <select id="state" class="form-control sel-status @error('state') is-invalid @enderror" name="state">
+                    <option value="">Choose...</option>
+                    @foreach($state as $s)
+                    <option value="{{ $s->id }}" @if (old('state') == $s->id) selected="selected" @endif>{{ $s->state_name }}</option>
+                    @endforeach
+                  </select>
+                  @error('state')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="inputCity">City</label><span class="text-danger">*</span></label>
+                  <select class="form-control sel-status @error('city') is-invalid @enderror" id="city" name="city">
+                  </select>
+                  @error('city')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="inputLocality">Locality</label><span class="text-danger">*</span></label>
+                  <select class="form-control sel-status @error('locality') is-invalid @enderror" id="locality" name="locality">
+                  </select>
+                  @error('locality')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Address</label><span class="text-danger">*</span></label>
+                  <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address">
+                  @error('address')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Pin Code</label>
+                  <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code">
+                  @error('pin_code')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </div> 
+              </div>
+              <button type="button" id="submitButton" class="btn btn-primary">Post Your Add</button>
             </form>
           </div>
           <div class="col-md-4 section-md-t3">
@@ -550,6 +631,7 @@
 <!-- End Contact Single-->
 @endsection
 @section('customjs')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script>
 
 String.prototype.replaceAll = function(search, replacement) {
@@ -759,6 +841,84 @@ function removeField(){
   }else{
     $("#locality").empty();
   }   
+  });
+  $(document).ready(function() {
+    $("input[name$='user_type']").click(function() {
+      var test = $(this).val();
+      if(test=="Individual")
+      {
+        $("#showDiv").hide();
+      }
+      if(test=="Dealer")
+      {
+        $("#showDiv").show();
+      }
+    })
+  })
+  $(document).ready(function() {
+    $(".sel-status").select2();
+  });
+  // $(function(){
+  //   $(".select2").select2({
+  //     matcher: matchCustom,
+  //     templateResult: formatCustom
+  //   });
+  //   function stringMatch(term, candidate) {
+  //     return candidate && candidate.toLowerCase().indexOf(term.toLowerCase()) >= 0;
+  //   }
+
+  //   function matchCustom(params, data) {
+  //     // If there are no search terms, return all of the data
+  //     if ($.trim(params.term) === '') {
+  //       return data;
+  //     }
+  //     // Do not display the item if there is no 'text' property
+  //     // if (typeof data.text === 'undefined') {
+  //     //   return null;
+  //     // }
+  //     // Match text of option
+  //     if (stringMatch(params.term, data.text)) {
+  //       return data;
+  //     }
+  //     // Match attribute "data-foo" of option
+  //     if (stringMatch(params.term, $(data.element).attr('data-foo'))) {
+  //       return data;
+  //     }
+  //     // return null;
+  //   }
+
+  //   function formatCustom(state) {
+  //     return $(
+  //       '<div><div>' + state.text + '</div><div class="foo">'+ $(state.element).attr('data-foo')+ '</div></div>'
+  //     );
+  //   }
+  // })
+  $('body').on('click', '#submitButton', function () {
+    var user_type = $('input[name="user_type"]:checked').val();
+    var gst_no = $('#gst_no').val();
+    // alert(user_type);
+    if(user_type == null)
+    {
+      $("#user_err").fadeIn().html("Required");
+      setTimeout(function(){ $("#user_err").fadeOut(); }, 3000);
+      $('input[name="user_type"]').focus();
+      return false;
+    }
+    if(user_type == "Dealer")
+    {
+      if(gst_no == ""){
+        $("#gst_err").fadeIn().html("Required");
+        setTimeout(function(){ $("#gst_err").fadeOut(); }, 3000);
+        $('#gst_no').focus();
+        return false;
+      }
+      else{
+        $("#submitForm").submit();
+      }
+    }
+    else{
+      $("#submitForm").submit();
+    }
   });
 </script>
 @endsection

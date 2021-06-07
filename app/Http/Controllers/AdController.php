@@ -220,6 +220,9 @@ class AdController extends Controller
             'city' => 'required',
             'pin_code' => 'required',
             'address' => 'required',
+            'user_type' => 'required',
+            'insurance' => 'required',
+            'body_type' => 'required',
         ]);
         $carPost = new Car();
         $carPost->brand_id = $request->brand_name;
@@ -267,6 +270,9 @@ class AdController extends Controller
         $carPost->locality_id = $request->locality;
         $carPost->category_id = $request->category_id;
         $carPost->sub_category_id = $request->sub_category_id;
+        $carPost->user_type = $request->user_type;
+        $carPost->gst_no = $request->gst_no;
+        $carPost->body_type = $request->body_type;
         $carPost->save();
         return redirect()->route('car.post.ad', $carPost->id)->with('success', 'Car Post Added Successfully!');
     }
