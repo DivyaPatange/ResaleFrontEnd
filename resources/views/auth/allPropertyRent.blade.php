@@ -107,26 +107,44 @@
                         <?php
                             $fPhoto = explode(",", $p->exterior_photos);
                         ?>               
-                        <div class="col-md-3 mb-3">
-                            <div class="card border-secondary">
-                                <div class="card-header bg-transparent border-secondary ">
-                                    <img class="img-fluid myimg" src="{{  URL::asset('adPhotos/' . $fPhoto[0]) }}">
-                                </div>
-                                <div class="card-body text-secondary ">
-                                    <div class="card-body p-0" style="font-size:13px">
-                                        <p class="card-text m-0">{{ $p->project_name }}</p>
-                                    <a href="{{ route('property-rent.post.ad', $p->id) }}" class="">Click here to view
-                                        <span class="ion-ios-arrow-forward"></span>
-                                    </a>
-                                    <p class="card-text m-0"> Monthly Rent | <i class="fa fa-inr"></i> {{ $p->monthly_rent }}</p>
-                                    </div>
-                                </div>
-                                <!--<div class="card-footer bg-transparent border-secondary"style="font-size:13px">-->
+                        
+                        <div class="col-md-3 p-1">
+                            <div class="card border-secondary p-2">
+                                <a href="{{ route('property-rent.post.ad', $p->id) }}">
                                 
-                                <!--   rent | $ 12.000</span>-->
-                                <!--</div>-->
+                                    <img class="img-fluid myimg" alt="Image Not Upload" src="{{  URL::asset('adPhotos/' . $fPhoto[0]) }}">
+                                    <p class="card-text m-0 pt-2" style="font-size:12px;text-align: initial;">
+                                        <span style="font-size:15px;font-weight: bold;">
+                                            <i class="fa fa-inr"></i>&nbsp;@if($p->rent_as){{ $p->rent_as }}@endif</span>
+                                       <br>
+                                        
+                                      
+                                        @if(!empty($p->bedroom)){{ $p->bedroom }} @endif BHK ,
+                                        @if($p->carpet_area){{ $p->carpet_area }} {{ $p->carpet_unit }} @endif ,
+                                        
+                                        <br>
+                                         
+                                        @if($p->type_id)
+                                            <?php
+                                                $type = DB::table('types')->where('id', $p->type_id)->first();
+                                            ?>
+                                            {{ $type->type_name }}
+                                        @endif
+                                        <br>
+                                        @if($p->locality){{ $p->locality }} @endif
+                                        
+                                    </p>
+                                   <!-- <p class="card-text m-0 pt-2" style="font-size:12px;">{{ $p->project_name }}&nbsp;&nbsp;&nbsp;&nbsp;<br><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                                   <!-- <span style="font-size:15px">Monthly Rent | <i class="fa fa-inr"></i>-->
+                                   <!-- @if($p->monthly_rent)&#8377;{{ $p->monthly_rent }}@endif-->
+                                   <!--</span>-->
+                                   <!-- </p>-->
+                                
+                                
+                                </a>
+                                
                             </div>
-                        </div> 
+                        </div>
                         @endforeach   
                     </div>
                     @endif

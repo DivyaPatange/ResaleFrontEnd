@@ -56,7 +56,7 @@
     height: 60px;
 }
 .myimg{
-    height:150px;
+    height:180px;
     width:100%;
 }
 .mycard{
@@ -106,25 +106,67 @@
                         @foreach($carPost as $car)     
                         <?php
                             $carPhoto = explode(",", $car->photos);
-                        ?>               
-                        <div class="col-md-3 mb-3">
-                            <div class="card border-secondary">
-                                <div class="card-header bg-transparent border-secondary ">
-                                    <img class="img-fluid myimg" src="{{  URL::asset('adPhotos/' . $carPhoto[0]) }}">
-                                </div>
-                                <div class="card-body text-secondary ">
-                                    <div class="card-body p-0" style="font-size:13px">
-                                        <p class="card-text m-0">{{ $car->ad_title }}</p>
-                                    <a href="{{ route('car.post.ad', $car->id) }}" class="">Click here to view
-                                        <span class="ion-ios-arrow-forward"></span>
-                                    </a>
-                                    <p class="card-text m-0"> Price | <i class="fa fa-inr"></i> {{ $car->price }}</p>
-                                    </div>
-                                </div>
-                                <!--<div class="card-footer bg-transparent border-secondary"style="font-size:13px">-->
+                        ?>
+                        
+                         <div class="col-md-3 p-1">
+                            <div class="card border-secondary p-2">
+                                <a href="{{ route('car.post.ad', $car->id) }}" target="_blank">
                                 
-                                <!--   rent | $ 12.000</span>-->
-                                <!--</div>-->
+                                    <img class="img-fluid myimg" alt="Image Not Upload" src="{{  URL::asset('adPhotos/' . $carPhoto[0]) }}">
+                                    
+                                    <p class="card-text m-0 pt-2" style="font-size:12px;text-align: initial;">
+                                        <span class="float-right">{{ date('j F',strtotime($car->created_at)) }}</span>
+                                        <span style="font-size:14px;font-weight: bold;">
+                                            <i class="fa fa-inr"></i>&nbsp;{{ $car->price }}</span>
+                                       <br>
+                                        @if($car->brand_id)
+                                            <?php
+                                                $brand = DB::table('brands')->where('id', $car->brand_id)->first();
+                                            ?>
+                                            @if(!empty($brand->brand_name)){{ $brand->brand_name}}@endif
+                                        @endif
+                                        @if($car->model_id)
+                    
+                                              <?php
+                                                $modelName = DB::table('models')->where('id', $car->model_id)->first();
+                                              ?>
+                                                {{ $modelName->model_name }}
+                                        @endif<br>
+                                        @if($car->car_varient)
+                    
+                                              <?php
+                                                $varients = DB::table('car_varients')->where('id', $car->car_varient)->first();
+                                              ?>
+                                                {{ $varients->car_varient }}
+                                        @endif
+                                        <br>
+                                        {{ $car->year_of_registration }}
+                                        {{ $car-> kms_driven }}  KM
+                                        {{ $car->fuel_type }}
+                                        <br>
+                                        @if($car->city_id)
+                    
+                                              <?php
+                                                $city = DB::table('cities')->where('id', $car->city_id)->first();
+                                              ?>
+                                                {{ $city->city_name }}
+                                        @endif
+                                        ,
+                                        @if($car->state_id)
+                    
+                                              <?php
+                                                $stat = DB::table('states')->where('id', $car->state_id)->first();
+                                              ?>
+                                                {{ $stat->state_name }}
+                                        @endif
+                                        
+                                        
+                                       
+                                        
+                                        
+                                        
+                                    </p>
+                                </a>
                             </div>
                         </div> 
                         @endforeach   

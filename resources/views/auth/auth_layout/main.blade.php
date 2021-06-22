@@ -63,7 +63,9 @@
   border-left: none;
   /* height: 300px; */
 }
-
+.card{
+  height:295px;  
+} 
   
 
   </style>

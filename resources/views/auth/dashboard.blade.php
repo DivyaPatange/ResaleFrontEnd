@@ -56,14 +56,16 @@
     height: 60px;
 }
 .myimg{
-    height:150px;
-    width:100%;
+    height:180px;
+   
 }
 .mycard{
     border: 1px solid #8080806e;
     padding: 9px;
 }
-
+.card {
+    text-align: center;
+}
 /* Closed submenu icon */
 #sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after {
   content: " \f0d7";
@@ -90,24 +92,30 @@
             @include('auth.auth_layout.sidebar')
             <!-- sidebar-container END -->
             <!-- MAIN -->
-            <div class="col">
+            <div class="col p-0">
                 <?php
                     $cars = DB::table('cars')->limit(4)->orderBy('id', 'DESC')->get();
-                    $commercialVehicle = DB::table('commercial_vehicles')->limit(4)->orderBy('id', 'DESC')->get();
+                    $propertyRent = DB::table('property_rents')->limit(4)->orderBy('id', 'DESC')->get();
                     $mobilePhones = DB::table('mobile_phones')->limit(4)->orderBy('id', 'DESC')->get();
-                    $mobileAccessory = DB::table('mobile_accessories')->limit(4)->orderBy('id', 'DESC')->get();
+                    $jobs = DB::table('jobs')->limit(4)->orderBy('id', 'DESC')->get();
+                    $bikes = DB::table('bikes')->limit(4)->orderBy('id', 'DESC')->get();
+                    $electronics = DB::table('t_v_s')->limit(4)->orderBy('id', 'DESC')->get();
+                    
+                                  
+                                  
+                                    
                 ?>
                 @if(count($cars) > 0)
                 <div class="container">
-                    <div class="row mt-4">
+                    <div class="row mt-2">
                         <div class="col-md-12">
-                            <div class="title-wrap d-flex justify-content-between">
+                            <div class="title-wrap p-0 d-flex justify-content-between">
                                 <div class="title-box">
                                 <h5 class="title-a">Car Post</h5>
                                 </div>
                                 <div class="title-link">
                                     <h5>
-                                        <a href="{{ route('allCarPost') }}">Show All
+                                        <a href="{{ route('allCarPost') }}" target="_blank">Show All
                                         <span class="ion-ios-arrow-forward"></span>
                                         </a>
                                     </h5>
@@ -120,41 +128,89 @@
                         <?php
                             $carPhoto = explode(",", $car->photos);
                         ?>               
-                        <div class="col-md-3 mb-3">
-                            <div class="card border-secondary">
-                                <div class="card-header bg-transparent border-secondary ">
-                                    <img class="img-fluid myimg" src="{{  URL::asset('adPhotos/' . $carPhoto[0]) }}">
-                                </div>
-                                <div class="card-body text-secondary ">
-                                    <div class="card-body p-0" style="font-size:13px">
-                                        <p class="card-text m-0">{{ $car->ad_title }}</p>
-                                    <a href="{{ route('car.post.ad', $car->id) }}" class="">Click here to view
-                                        <span class="ion-ios-arrow-forward"></span>
-                                    </a>
-                                    <p class="card-text m-0"> Price | <i class="fa fa-inr"></i> {{ $car->price }}</p>
-                                    </div>
-                                </div>
-                                <!--<div class="card-footer bg-transparent border-secondary"style="font-size:13px">-->
+                        <div class="col-md-3 p-1">
+                            <div class="card border-secondary p-2">
+                                <a href="{{ route('car.post.ad', $car->id) }}" target="_blank">
                                 
-                                <!--   rent | $ 12.000</span>-->
-                                <!--</div>-->
+                                    <img class="img-fluid myimg" alt="Image Not Upload" src="{{  URL::asset('adPhotos/' . $carPhoto[0]) }}">
+                                    
+                                    <p class="card-text m-0 pt-2" style="font-size:12px;text-align: initial;">
+                                        <span class="float-right">{{ date('j F',strtotime($car->created_at)) }}</span>
+                                        <span style="font-size:14px;font-weight: bold;">
+                                            <i class="fa fa-inr"></i>&nbsp;{{ $car->price }}</span>
+                                       <br>
+                                        @if($car->brand_id)
+                                            <?php
+                                                $brand = DB::table('brands')->where('id', $car->brand_id)->first();
+                                            ?>
+                                            @if(!empty($brand->brand_name)){{ $brand->brand_name}}@endif
+                                        @endif
+                                        @if($car->model_id)
+                    
+                                              <?php
+                                                $modelName = DB::table('models')->where('id', $car->model_id)->first();
+                                              ?>
+                                                {{ $modelName->model_name }}
+                                        @endif
+                                        @if($car->car_varient)
+                    
+                                              <?php
+                                                $varients = DB::table('car_varients')->where('id', $car->car_varient)->first();
+                                              ?>
+                                                {{ $varients->car_varient }}
+                                        @endif
+                                        <br>
+                                        {{ $car->year_of_registration }}&nbsp;&nbsp;|
+                                        {{ $car-> kms_driven }}  KM &nbsp;&nbsp;|
+                                        {{ $car->fuel_type }}
+                                        <br>
+                                       
+                                         @if($car->city_id)
+                    
+                                              <?php
+                                                $city = DB::table('cities')->where('id', $car->city_id)->first();
+                                              ?>
+                                                {{ $city->city_name }}
+                                        @endif 
+                                        ,
+                                         @if($car->state_id)
+                    
+                                              <?php
+                                                $stat = DB::table('states')->where('id', $car->state_id)->first();
+                                              ?>
+                                                {{ $stat->state_name }}
+                                        @endif
+                                        
+                                       
+                                        
+                                        
+                                        
+                                    </p>
+                                </a>
                             </div>
                         </div> 
                         @endforeach   
                     </div>
                 </div>
                 @endif
-                @if(count($commercialVehicle) > 0)
+                @if(count($propertyRent) > 0)
                 <div class="container">
-                    <div class="row mt-4">
+                    <div class="row mt-2">
                         <div class="col-md-12">
-                            <div class="title-wrap d-flex justify-content-between">
+                            <div class="title-wrap p-0 d-flex justify-content-between">
                                 <div class="title-box">
-                                <h5 class="title-a">Commercial Vehicle Post</h5>
+                                <h5 class="title-a">Property for Rent / Lease Post</h5>
                                 </div>
                                 <div class="title-link">
+                                    <?php
+                                        foreach($propertyRent as $pR)
+                                        {
+                                            $subcategory_id = $pR->sub_category_id;
+                                        }
+                                        // dd($subcategory_id);
+                                    ?>
                                     <h5>
-                                        <a href="{{ route('allCommercialVehiclePost') }}">Show All
+                                        <a href="{{ route('sidebar.property-rent.post', $subcategory_id) }}" target="_blank">Show All
                                         <span class="ion-ios-arrow-forward"></span>
                                         </a>
                                     </h5>
@@ -163,28 +219,43 @@
                         </div>
                     </div>
                     <div class="row">   
-                        @foreach($commercialVehicle as $cv)     
+                    @foreach($propertyRent as $p)     
                         <?php
-                            $cvPhoto = explode(",", $cv->photos);
-                        ?>               
-                        <div class="col-md-3 mb-3">
-                            <div class="card border-secondary">
-                                <div class="card-header bg-transparent border-secondary ">
-                                    <img class="img-fluid myimg" src="{{  URL::asset('adPhotos/' . $cvPhoto[0]) }}">
-                                </div>
-                                <div class="card-body text-secondary ">
-                                    <div class="card-body p-0" style="font-size:13px">
-                                        <p class="card-text m-0">{{ $cv->ad_title }}</p>
-                                    <a href="{{ route('commercial-vehicle.post.ad', $cv->id) }}" class="">Click here to view
-                                        <span class="ion-ios-arrow-forward"></span>
-                                    </a>
-                                    <p class="card-text m-0"> Price | <i class="fa fa-inr"></i> {{ $cv->price }}</p>
-                                    </div>
-                                </div>
-                                <!--<div class="card-footer bg-transparent border-secondary"style="font-size:13px">-->
+                            $fPhoto = explode(",", $p->exterior_photos);
+                        ?>              
+                        <div class="col-md-3  p-1">
+                            <div class="card border-secondary p-2">
+                                <a href="{{ route('property-rent.post.ad', $p->id) }}" target="_blank">
                                 
-                                <!--   rent | $ 12.000</span>-->
-                                <!--</div>-->
+                                   <img class="img-fluid myimg" alt="Image Not Upload" src="{{  URL::asset('adPhotos/' . $fPhoto[0]) }}">
+                                   
+                                   
+                                    <p class="card-text m-0 pt-2" style="font-size:12px;text-align: initial;">
+                                        <span style="font-size:15px;font-weight: bold;">
+                                            <i class="fa fa-inr"></i>&nbsp;@if($p->rent_as){{ $p->rent_as }}@endif</span>
+                                       <br>
+                                        
+                                      
+                                        @if(!empty($p->bedroom)){{ $p->bedroom }} @endif BHK ,
+                                        @if($p->carpet_area){{ $p->carpet_area }} {{ $p->carpet_unit }} @endif ,
+                                        
+                                        <br>
+                                         
+                                        @if($p->type_id)
+                                            <?php
+                                                $type = DB::table('types')->where('id', $p->type_id)->first();
+                                            ?>
+                                            {{ $type->type_name }}
+                                        @endif
+                                        <br>
+                                        @if($p->locality){{ $p->locality }} @endif
+                                        
+                                    </p>
+                                    
+                                    <!--<p class="card-text m-0 pt-2" style="font-size:12px;">{{ $p->project_name }}&nbsp;&nbsp;&nbsp;&nbsp;<br><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                                    <!--<span style="font-size:15px">Monthly Rent | <i class="fa fa-inr"></i>{{ $p->monthly_rent }}</span>-->
+                                    <!--</p>-->
+                                </a>
                             </div>
                         </div> 
                         @endforeach   
@@ -193,15 +264,15 @@
                 @endif
                 @if(count($mobilePhones) > 0)
                 <div class="container">
-                    <div class="row mt-4">
+                    <div class="row mt-2">
                         <div class="col-md-12">
-                            <div class="title-wrap d-flex justify-content-between">
+                            <div class="title-wrap p-0 d-flex justify-content-between">
                                 <div class="title-box">
                                 <h5 class="title-a">Mobile Phones Post</h5>
                                 </div>
                                 <div class="title-link">
                                     <h5>
-                                        <a href="{{ route('allMobilePhonePost') }}">Show All
+                                        <a href="{{ route('allMobilePhonePost') }}" target="_blank">Show All
                                         <span class="ion-ios-arrow-forward"></span>
                                         </a>
                                     </h5>
@@ -214,41 +285,53 @@
                         <?php
                             $mobilePhoto = explode(",", $mobile->photos);
                         ?>               
-                        <div class="col-md-3 mb-3">
-                            <div class="card border-secondary">
-                                <div class="card-header bg-transparent border-secondary ">
-                                    <img class="img-fluid myimg" src="{{  URL::asset('adPhotos/' . $mobilePhoto[0]) }}">
-                                </div>
-                                <div class="card-body text-secondary ">
-                                    <div class="card-body p-0" style="font-size:13px">
-                                        <p class="card-text m-0">{{ $mobile->ad_title }}</p>
-                                        <a href="{{ route('mobile-phone.post.ad', $mobile->id) }}" class="">Click here to view
-                                            <span class="ion-ios-arrow-forward"></span>
-                                        </a>
-                                    <p class="card-text m-0"> Price | <i class="fa fa-inr"></i> {{ $mobile->price }}</p>
-                                    </div>
-                                </div>
-                                <!--<div class="card-footer bg-transparent border-secondary"style="font-size:13px">-->
-                                
-                                <!--   rent | $ 12.000</span>-->
-                                <!--</div>-->
+                        <div class="col-md-3 p-1">
+                            <div class="card border-secondary p-2">
+                                <a href="{{ route('mobile-phone.post.ad', $mobile->id) }}" target="_blank">
+                                    <img class="img-fluid myimg" alt="Image Not Upload" src="{{  URL::asset('adPhotos/' . $mobilePhoto[0]) }}">
+                                    <p class="card-text m-0 pt-2" style="font-size:12px;text-align: initial;">
+                                        <span style="font-size:15px;font-weight: bold;"><i class="fa fa-inr"></i>&nbsp;{{ $mobile->price }}</span>
+                                       <br>
+                                       {{ $mobile->ad_title }}
+                                       <br>
+                                       {{ $mobile->year_of_purchase }}
+                                        <br>
+                                        
+                                        {{ $mobile->address }}
+                                        
+                                        
+                                    </p>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                   <!--<p class="card-text m-0 pt-2" style="font-size:12px;">{{ $mobile->ad_title }}&nbsp;&nbsp;&nbsp;&nbsp;<br>-->
+                                   <!--<span style="font-size:15px;font-weight: bold;">-->
+                                   <!--         <i class="fa fa-inr"></i>&nbsp;{{ $mobile->price }}</span>-->
+                                   <!--    <br>-->
+                                       
+                                   <!--<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                                   <!--<span style="font-size:15px">Price | <i class="fa fa-inr"></i>{{ $mobile->price }}</span>-->
+                                   <!-- </p>-->
+                                </a>
                             </div>
                         </div> 
                         @endforeach   
                     </div>
                 </div>
                 @endif
-                @if(count($mobileAccessory) > 0)
+                @if(count($jobs) > 0)
                 <div class="container">
-                    <div class="row mt-4">
+                    <div class="row mt-2">
                         <div class="col-md-12">
-                            <div class="title-wrap d-flex justify-content-between">
+                            <div class="title-wrap p-0 d-flex justify-content-between">
                                 <div class="title-box">
-                                <h5 class="title-a">Mobile Accessories Post</h5>
+                                <h5 class="title-a">Part time Jobs Post</h5>
                                 </div>
                                 <div class="title-link">
                                     <h5>
-                                        <a href="{{ route('allMobileAccessoryPost') }}">Show All
+                                        <a href="#" target="_blank">Show All
                                         <span class="ion-ios-arrow-forward"></span>
                                         </a>
                                     </h5>
@@ -257,38 +340,114 @@
                         </div>
                     </div>
                     <div class="row">   
-                        @foreach($mobileAccessory as $ma)     
+                        @foreach($jobs as $job)     
                         <?php
-                            $maPhoto = explode(",", $ma->photos);
+                            $jobPhoto = explode(",", $job->photos);
                         ?>               
-                        <div class="col-md-3 mb-3">
-                            <div class="card border-secondary">
-                                <div class="card-header bg-transparent border-secondary ">
-                                    <img class="img-fluid myimg" src="{{  URL::asset('adPhotos/' . $maPhoto[0]) }}">
-                                </div>
-                                <div class="card-body text-secondary ">
-                                    <div class="card-body p-0" style="font-size:13px">
-                                        <p class="card-text m-0">{{ $ma->ad_title }}</p>
-                                    <a href="{{ route('mobile-accessory.post.ad', $ma->id) }}" class="">Click here to view
-                                        <span class="ion-ios-arrow-forward"></span>
-                                    </a>
-                                    <p class="card-text m-0"> Price | <i class="fa fa-inr"></i> {{ $ma->price }}</p>
-                                    </div>
-                                </div>
-                                <!--<div class="card-footer bg-transparent border-secondary"style="font-size:13px">-->
+                        <div class="col-md-3 p-1">
+                            <div class="card border-secondary p-2">
+                                <a href="{{ route('job.post.ad', $job->id) }}" target="_blank">
                                 
-                                <!--   rent | $ 12.000</span>-->
-                                <!--</div>-->
+                                    <img class="img-fluid myimg" alt="Image Not Upload" src="{{  URL::asset('adPhotos/' . $jobPhoto[0]) }}">
+                                    <p class="card-text m-0 pt-2" style="font-size:12px;">{{ $job->job_title }}&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                                    <span style="font-size:15px">Salary | Min. <i class="fa fa-inr"></i> {{ $job->min_monthly_salary }} - Max. <i class="fa fa-inr"></i> {{ $job->max_monthly_salary }}</span></p>
+                                </a>
                             </div>
                         </div> 
                         @endforeach   
                     </div>
                 </div>
                 @endif
+                @if(count($bikes) > 0)
+                <div class="container">
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <div class="title-wrap p-0 d-flex justify-content-between">
+                                <div class="title-box">
+                                <h5 class="title-a">Motorcycles Post</h5>
+                                </div>
+                                <div class="title-link">
+                                    <h5>
+                                        <a href="" target="_blank">Show All
+                                        <span class="ion-ios-arrow-forward"></span>
+                                        </a>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row"> 
+                    @foreach($bikes as $bike)     
+                        <?php
+                            $bikePhoto = explode(",", $bike->photos);
+                        ?> 
+                        <div class="col-md-3 p-1">
+                            <div class="card border-secondary p-2">
+                                <a href="{{ route('bike.post.ad', $bike->id) }}" target="_blank">
+                                
+                                     <img class="img-fluid myimg" alt="Image Not Upload" src="{{  URL::asset('adPhotos/' . $bikePhoto[0]) }}">
+                                    <p class="card-text m-0 pt-2" style="font-size:12px;">{{ $bike->ad_title }}&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                                    <span style="font-size:15px">Price | <i class="fa fa-inr"></i>{{ $bike->price }}</span>
+                                    </p>
+                                </a>
+                            </div>
+                        </div> 
+                        @endforeach   
+                    </div>
+                </div>
+                @endif
+                @if(count($electronics) > 0)
+                <div class="container">
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <div class="title-wrap p-0 d-flex justify-content-between">
+                                <div class="title-box">
+                                <h5 class="title-a">Audio / Video / Gaming Post</h5>
+                                </div>
+                                <div class="title-link">
+                                    <h5>
+                                        <a href="" target="_blank">Show All
+                                        <span class="ion-ios-arrow-forward"></span>
+                                        </a>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row"> 
+                    @foreach($electronics as $elec)     
+                        <?php
+                            $elecPhoto = explode(",", $elec->photos);
+                        ?>
+                        <div class="col-md-3 p-1">
+                            <div class="card border-secondary p-2">
+                                <a href="{{ route('electronics.post.ad', $elec->id) }}" target="_blank">
+                                
+                                     <img class="img-fluid myimg" alt="Image Not Upload" src="{{  URL::asset('adPhotos/' . $elecPhoto[0]) }}">
+                                    <p class="card-text m-0 pt-2" style="font-size:12px;">{{ $elec->ad_title }}&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                                    <span style="font-size:15px">Price | <i class="fa fa-inr"></i>{{ $elec->price }}</span>
+                                    </p>
+                                </a>
+                            </div>
+                        </div> 
+                        @endforeach   
+                    </div>
+                </div>
+                @endif
+                
             </div><!-- Main Col END -->
         </div><!-- body-row END -->
     </div>
 </section>
+<!--<section>-->
+<!--    <div class="container-fluid">-->
+<!--        <div class="row">-->
+<!--            <div class="col-12 p-0">-->
+<!--                <img src="{{ asset('PHOTO-2021-02-12-09-31-28.jpg') }}" class="img-fluid">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
 @endsection
 @section('customjs')
 <script>

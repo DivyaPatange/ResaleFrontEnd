@@ -107,26 +107,30 @@
                         <?php
                             $mobilePhoto = explode(",", $mobile->photos);
                         ?>               
-                        <div class="col-md-3 mb-3">
-                            <div class="card border-secondary">
-                                <div class="card-header bg-transparent border-secondary ">
-                                    <img class="img-fluid myimg" src="{{  URL::asset('adPhotos/' . $mobilePhoto[0]) }}">
-                                </div>
-                                <div class="card-body text-secondary ">
-                                    <div class="card-body p-0" style="font-size:13px">
-                                        <p class="card-text m-0">{{ $mobile->ad_title }}</p>
-                                        <a href="{{ route('mobile-phone.post.ad', $mobile->id) }}" class="">Click here to view
-                                            <span class="ion-ios-arrow-forward"></span>
-                                        </a>
-                                    <p class="card-text m-0"> Price | <i class="fa fa-inr"></i> {{ $mobile->price }}</p>
-                                    </div>
-                                </div>
-                                <!--<div class="card-footer bg-transparent border-secondary"style="font-size:13px">-->
+                        
+                        <div class="col-md-3 p-1">
+                            <div class="card border-secondary p-2">
+                                <a href="{{ route('mobile-phone.post.ad', $mobile->id) }}">
                                 
-                                <!--   rent | $ 12.000</span>-->
-                                <!--</div>-->
+                                    <img class="img-fluid myimg" alt="Image Not Upload" src="{{  URL::asset('adPhotos/' . $mobilePhoto[0]) }}">
+                                     <p class="card-text m-0 pt-2" style="font-size:12px;text-align: initial;">
+                                        <span style="font-size:15px;font-weight: bold;"><i class="fa fa-inr"></i>&nbsp;{{ $mobile->price }}</span>
+                                       <br>
+                                       {{ $mobile->ad_title }}
+                                       <br>
+                                       {{ $mobile->year_of_purchase }}
+                                        <br>
+                                        
+                                        {{ $mobile->address }}
+                                        
+                                        
+                                    </p>
+                                    <!--<p class="card-text m-0 pt-2" style="font-size:12px;">{{ $mobile->ad_title }}&nbsp;&nbsp;&nbsp;&nbsp;<br><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                                    <!--<span style="font-size:15px">Price | <i class="fa fa-inr"></i>{{ $mobile->price }}</span>-->
+                                    <!--</p>-->
+                                </a>
                             </div>
-                        </div> 
+                        </div>
                         @endforeach   
                     </div>
                 </div>
