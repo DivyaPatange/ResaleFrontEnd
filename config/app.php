@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Laravel\Socialite\SocialiteServiceProvider::class,
+        'A6digital\Image\DefaultProfileImageServiceProvider',
         /*
          * Application Service Providers...
          */

@@ -13,11 +13,15 @@ class MobileController extends Controller
         $otp = mt_rand(1000,9999);
         $user = User::where('mobile_no', $request->mobile_no)->first();
         if(empty($user)){
+            $img = \DefaultProfileImage::create($request->name, 100, '#666666', '#FFF');
+            $fileName = uniqid() . '.png';
+            $path = file_put_contents($fileName, $img->encode());
             $newUser = User::create([
                 'name' => $request->name,
                 'mobile_no' => $request->mobile_no,
                 'otp' => $otp,
                 'status' => 0,
+                'avatar' => $fileName,
             ]);
         }
         else{

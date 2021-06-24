@@ -694,10 +694,11 @@ function inputChanged(e) {
     fileName = e.target.value.split( '\\' ).pop();
     if (oldfileName == fileName) {return false;}
             var className = $(this).attr("class");
-            console.log(className);
-            var lastChar = className.slice(-1);
+            // console.log(className);
+            var lastChar = className.match(/(\d+)/);
+            console.log(lastChar);
             var inc  = 1 + +lastChar;
-            console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
+            // console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
             var extension = fileName.split('.').pop();
             if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
                 $(".filelabel #icon"+lastChar).remove();

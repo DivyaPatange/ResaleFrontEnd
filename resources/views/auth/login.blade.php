@@ -295,16 +295,14 @@ function onFocusEvent(index) {
 
       success:function(data){
         console.log(data);
-          if(data.success)
-          {
-            $('#referral_name').html(data.mobile_no);
-            $('#myModal').delay(1000).fadeIn(450);
-            setTimeout(function() {
-              $("#myModal").modal('show');
-            }, 1000);
-            
-          }
-
+        if(data.success)
+        {
+          $('#referral_name').html(data.mobile_no);
+          $('#myModal').delay(1000).fadeIn(450);
+          setTimeout(function() {
+            $("#myModal").modal('show');
+          }, 1000);       
+        }
       }
 
     });
