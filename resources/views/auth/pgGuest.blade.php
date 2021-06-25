@@ -819,7 +819,7 @@ $("#suggesstion-locality").hide();
                     </div>
                     <div class="form-group">
                         <label>PG Description <span class="text-danger">*</span><span  style="color:red" id="pg_description_err"> </span></label>
-                        <textarea class="form-control @error('pg_description') is-invalid @enderror" id="pg_description"  name="pg_description">{{ old('pg_description') }}</textarea>
+                        <textarea class="form-control ckeditor @error('pg_description') is-invalid @enderror" id="pg_description"  name="pg_description">{{ old('pg_description') }}</textarea>
                         @error('pg_description')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -940,7 +940,11 @@ $("#suggesstion-locality").hide();
 <!-- End Contact Single-->
 @endsection
 @section('customjs')
+<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 <script>
+$(document).ready(function () {
+  $('.ckeditor').ckeditor();
+});
 function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
@@ -970,7 +974,7 @@ function inputChanged(e) {
     if (oldfileName == fileName) {return false;}
             var className = $(this).attr("class");
             console.log(className);
-            var lastChar = className.slice(-1);
+            var lastChar = className.match(/(\d+)/);
             var inc  = 1 + +lastChar;
             console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
             var extension = fileName.split('.').pop();

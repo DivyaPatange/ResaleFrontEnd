@@ -29,7 +29,7 @@
               </div>
               <div class="property-description">
                 <p class="description color-text-a">
-                  {{ $singlePost->description }}
+                {!! $singlePost->description !!}
                 </p>
               </div>
               <div class="row justify-content-between">

@@ -29,6 +29,7 @@ use App\Models\PropertySale;
 use App\Models\Education;
 use App\Models\Fashion;
 use App\Models\Pet;
+use Image;
 
 class AdController extends Controller
 {
@@ -49,7 +50,7 @@ class AdController extends Controller
         $category = Category::where('id', $subCategory->category_id)->where('status', 1)->first();
         if($subCategory->status == 1)
         {
-            if(($subCategory->sub_category == "Cars") || ($subCategory->sub_category == "Other Vehicles") || ($subCategory->sub_category == "Spare Parts - Accessories"))
+            if(($subCategory->sub_category == "Cars") || ($subCategory->sub_category == "Other Vehicles"))
             {
                 $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 $carVarient = DB::table('car_varients')->where('sub_category_id', $subCategory->id)->get();
@@ -60,7 +61,7 @@ class AdController extends Controller
                 $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 return view('auth.commercialVehicle', compact('subCategory', 'type', 'state', 'category'));
             }
-            if(($subCategory->sub_category == "Sofa & Dining") || ($subCategory->sub_category == "Beds & Wordrobes") || ($subCategory->sub_category == "Home Decor & Gardening") || ($subCategory->sub_category == "Kids Furniture") || ($subCategory->sub_category == "Other House Hold Items"))
+            if(($subCategory->sub_category == "Antiques - Handicrafts") || ($subCategory->sub_category == "Furniture for Hospitality") || ($subCategory->sub_category == "Furniture for Industry") || ($subCategory->sub_category == "Furniture for Shop & Showroom") || ($subCategory->sub_category == "Furniture for Office") || ($subCategory->sub_category == "Household Furniture") || ($subCategory->sub_category == "Kitchenware") || ($subCategory->sub_category == "Kids Furniture") || ($subCategory->sub_category == "Paintings") || ($subCategory->sub_category == "Home Decor & Gardening"))
             {
                 $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 return view('auth.furniture', compact('subCategory', 'type', 'state', 'category'));
@@ -70,7 +71,7 @@ class AdController extends Controller
                 $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 return view('auth.bike', compact('subCategory', 'brand', 'state', 'category'));
             }
-            if($subCategory->sub_category == "Spare Parts")
+            if(($subCategory->sub_category == "Spare Parts") || ($subCategory->sub_category == "Spare Parts - Accessories"))
             {
                 $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 return view('auth.spareParts', compact('subCategory', 'type', 'state', 'category'));
@@ -80,7 +81,7 @@ class AdController extends Controller
                 $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 return view('auth.jobs', compact('subCategory', 'brand', 'state', 'category'));
             }
-            if($subCategory->sub_category == "Mobile Phones")
+            if(($subCategory->sub_category == "Mobile Phones") || ($subCategory->sub_category == "Apple"))
             {
                 $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 return view('auth.mobilePhones', compact('subCategory', 'brand', 'state', 'category'));
@@ -95,9 +96,8 @@ class AdController extends Controller
                 $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 return view('auth.tablets', compact('subCategory', 'type', 'state', 'category'));
             }
-            if(($subCategory->sub_category == "TV / LCD / LED Audio to Video") || ($subCategory->sub_category == "Kitchen & Home Appliances") || ($subCategory->sub_category == "Computers & Laptops") || 
-                ($subCategory->sub_category == "Cameras & Lenses") || ($subCategory->sub_category == "Games & Entertainment") || ($subCategory->sub_category == "Fridge") || ($subCategory->sub_category == "Computer Accessories") || 
-                ($subCategory->sub_category == "Hard Disk, Printer & Monitor") || ($subCategory->sub_category == "ACs & Cooler") || ($subCategory->sub_category == "Washing Machine"))
+            if(($subCategory->sub_category == "Audio / Video / Gaming") || ($subCategory->sub_category == "Home Appliances") || ($subCategory->sub_category == "Computers / Laptops & Accessories") || 
+            ($subCategory->sub_category == "Cameras / Lenses / Accessories") || ($subCategory->sub_category == "Kitchen Appliances") || ($subCategory->sub_category == "ACs & Cooler") || ($subCategory->sub_category == "Other Devices"))
             {
                 $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 return view('auth.tv', compact('subCategory', 'type', 'state', 'category'));
@@ -246,9 +246,13 @@ class AdController extends Controller
 
             {
 
-                $name = time().rand(1,100).'.'.$file->extension();
+                $name = time().'.'.$file->getClientOriginalExtension();
+                $image_resize = Image::make($file->getRealPath());
+                $image_resize->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
 
-                $file->move(public_path('adPhotos'), $name);  
+                $image_resize->save('adPhotos/'.$name);    
 
                 $files[] = $name;  
 
@@ -402,23 +406,18 @@ class AdController extends Controller
         // $files = $request->userfile;
         // dd($request->photos);
         if($request->hasfile('photos'))
-
-         {
-
+        {
             foreach($request->file('photos') as $file)
-
             {
-
-                $name = time().rand(1,100).'.'.$file->extension();
-
-                $file->move(public_path('adPhotos'), $name);  
-
+                $name = time().'.'.$file->getClientOriginalExtension();
+                $image_resize = Image::make($file->getRealPath());
+                $image_resize->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+                $image_resize->save('adPhotos/'.$name);    
                 $files[] = $name;  
-
             }
-            // dd($files);
-
-         }
+        }
         $bikePost->photos = implode(",", $files);
         $bikePost->state_id = $request->state;
         $bikePost->city_id = $request->city;
@@ -467,19 +466,17 @@ class AdController extends Controller
         // $files = $request->userfile;
         // dd($request->photos);
         if($request->hasfile('photos'))
-
-         {
-
+        {
             foreach($request->file('photos') as $file)
-
             {
+                $name = time().'.'.$file->getClientOriginalExtension();
+                $image_resize = Image::make($file->getRealPath());
+                $image_resize->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
 
-                $name = time().rand(1,100).'.'.$file->extension();
-
-                $file->move(public_path('adPhotos'), $name);  
-
+                $image_resize->save('adPhotos/'.$name);  
                 $files[] = $name;  
-
             }
             // dd($files);
 
@@ -532,23 +529,19 @@ class AdController extends Controller
         // $files = $request->userfile;
         // dd($request->photos);
         if($request->hasfile('photos'))
-
-         {
-
+        {
             foreach($request->file('photos') as $file)
-
             {
+                $name = time().'.'.$file->getClientOriginalExtension();
+                $image_resize = Image::make($file->getRealPath());
+                $image_resize->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
 
-                $name = time().rand(1,100).'.'.$file->extension();
-
-                $file->move(public_path('adPhotos'), $name);  
-
+                $image_resize->save('adPhotos/'.$name);    
                 $files[] = $name;  
-
             }
-            // dd($files);
-
-         }
+        }
         $mobilePost->photos = implode(",", $files);
         $mobilePost->state_id = $request->state;
         $mobilePost->city_id = $request->city;
@@ -599,23 +592,21 @@ class AdController extends Controller
         // $files = $request->userfile;
         // dd($request->photos);
         if($request->hasfile('photos'))
-
-         {
-
+        {
             foreach($request->file('photos') as $file)
-
             {
+                $name = time().'.'.$file->getClientOriginalExtension();
+                $image_resize = Image::make($file->getRealPath());
+                $image_resize->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
 
-                $name = time().rand(1,100).'.'.$file->extension();
-
-                $file->move(public_path('adPhotos'), $name);  
+                $image_resize->save('adPhotos/'.$name);    
 
                 $files[] = $name;  
 
             }
-            // dd($files);
-
-         }
+        }
         $mobileAccessory->photos = implode(",", $files);
         $mobileAccessory->state_id = $request->state;
         $mobileAccessory->city_id = $request->city;
@@ -660,9 +651,13 @@ class AdController extends Controller
         {
             foreach($request->file('photos') as $file)
             {
-                $name = time().rand(1,100).'.'.$file->extension();
+                $name = time().'.'.$file->getClientOriginalExtension();
+                $image_resize = Image::make($file->getRealPath());
+                $image_resize->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
 
-                $file->move(public_path('adPhotos'), $name);  
+                $image_resize->save('adPhotos/'.$name);  
 
                 $files[] = $name;  
             }
@@ -722,22 +717,19 @@ class AdController extends Controller
         // $files = $request->userfile;
         // dd($request->photos);
         if($request->hasfile('photos'))
-
-         {
-
+        {
             foreach($request->file('photos') as $file)
-
             {
+                $name = time().'.'.$file->getClientOriginalExtension();
+                $image_resize = Image::make($file->getRealPath());
+                $image_resize->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
 
-                $name = time().rand(1,100).'.'.$file->extension();
-
-                $file->move(public_path('adPhotos'), $name);  
+                $image_resize->save('adPhotos/'.$name);  
 
                 $files[] = $name;  
-
             }
-            // dd($files);
-
         }
         $tablet->photos = implode(",", $files);
         $tablet->state_id = $request->state;
@@ -791,22 +783,19 @@ class AdController extends Controller
         // $files = $request->userfile;
         // dd($request->photos);
         if($request->hasfile('photos'))
-
-         {
-
+        {
             foreach($request->file('photos') as $file)
-
             {
+                $name = time().'.'.$file->getClientOriginalExtension();
+                $image_resize = Image::make($file->getRealPath());
+                $image_resize->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
 
-                $name = time().rand(1,100).'.'.$file->extension();
-
-                $file->move(public_path('adPhotos'), $name);  
+                $image_resize->save('adPhotos/'.$name);  
 
                 $files[] = $name;  
-
             }
-            // dd($files);
-
         }
         $job->photos = implode(",", $files);
         $job->state_id = $request->state;
@@ -846,23 +835,20 @@ class AdController extends Controller
         // $files = $request->userfile;
         // dd($request->photos);
         if($request->hasfile('photos'))
-
-         {
-
+        {
             foreach($request->file('photos') as $file)
-
             {
+                $name = time().'.'.$file->getClientOriginalExtension();
+                $image_resize = Image::make($file->getRealPath());
+                $image_resize->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
 
-                $name = time().rand(1,100).'.'.$file->extension();
-
-                $file->move(public_path('adPhotos'), $name);  
+                $image_resize->save('adPhotos/'.$name);    
 
                 $files[] = $name;  
-
             }
-            // dd($files);
-
-         }
+        }
         $sparePart->photos = implode(",", $files);
         $sparePart->state_id = $request->state;
         $sparePart->city_id = $request->city;
@@ -912,9 +898,13 @@ class AdController extends Controller
 
             {
 
-                $name = time().rand(1,100).'.'.$file->extension();
+                $name = time().'.'.$file->getClientOriginalExtension();
+                $image_resize = Image::make($file->getRealPath());
+                $image_resize->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
 
-                $file->move(public_path('adPhotos'), $name);  
+                $image_resize->save('adPhotos/'.$name);  
 
                 $files[] = $name;  
 
@@ -974,10 +964,13 @@ class AdController extends Controller
             foreach($request->file('photos') as $file)
 
             {
+                $name = time().'.'.$file->getClientOriginalExtension();
+                $image_resize = Image::make($file->getRealPath());
+                $image_resize->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
 
-                $name = time().rand(1,100).'.'.$file->extension();
-
-                $file->move(public_path('adPhotos'), $name);  
+                $image_resize->save('adPhotos/'.$name);    
 
                 $files[] = $name;  
 
@@ -1037,10 +1030,13 @@ class AdController extends Controller
             foreach($request->file('photos') as $file)
 
             {
+                $name = time().'.'.$file->getClientOriginalExtension();
+                $image_resize = Image::make($file->getRealPath());
+                $image_resize->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
 
-                $name = time().rand(1,100).'.'.$file->extension();
-
-                $file->move(public_path('adPhotos'), $name);  
+                $image_resize->save('adPhotos/'.$name);  
 
                 $files[] = $name;  
 
@@ -1097,11 +1093,13 @@ class AdController extends Controller
             foreach($request->file('photos') as $file)
 
             {
+                $name = time().'.'.$file->getClientOriginalExtension();
+                $image_resize = Image::make($file->getRealPath());
+                $image_resize->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
 
-                $name = time().rand(1,100).'.'.$file->extension();
-
-                $file->move(public_path('adPhotos'), $name);  
-
+                $image_resize->save('adPhotos/'.$name);  
                 $files[] = $name;  
 
             }
@@ -1171,10 +1169,13 @@ class AdController extends Controller
             foreach($request->file('photos') as $file)
 
             {
+                $name = time().'.'.$file->getClientOriginalExtension();
+                $image_resize = Image::make($file->getRealPath());
+                $image_resize->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
 
-                $name = time().rand(1,100).'.'.$file->extension();
-
-                $file->move(public_path('adPhotos'), $name);  
+                $image_resize->save('adPhotos/'.$name);  
 
                 $files[] = $name;  
 
@@ -1270,10 +1271,18 @@ class AdController extends Controller
             foreach($request->file('exterior_photos') as $file)
 
             {
+                // $image = $file;
+                // dd($image);
+                // $name = time().rand(1,100).'.'.$file->extension();
+                $name = time().'.'.$file->getClientOriginalExtension();
+                $image_resize = Image::make($file->getRealPath());
+                $image_resize->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
 
-                $name = time().rand(1,100).'.'.$file->extension();
+                $image_resize->save('adPhotos/'.$name);
 
-                $file->move(public_path('adPhotos'), $name);  
+                // $file->move(public_path('adPhotos'), $name);  
 
                 $files[] = $name;  
 
@@ -1290,9 +1299,13 @@ class AdController extends Controller
 
             {
 
-                $name1 = time().rand(1,100).'.'.$file1->extension();
+                $name1 = time().'.'.$file1->getClientOriginalExtension();
+                $image_resize1 = Image::make($file1->getRealPath());
+                $image_resize1->resize(400, null, function ($constraint1) {
+                    $constraint1->aspectRatio();
+                });
 
-                $file1->move(public_path('adPhotos'), $name1);  
+                $image_resize1->save('adPhotos/'.$name1);
 
                 $files1[] = $name1;  
 
@@ -1309,9 +1322,13 @@ class AdController extends Controller
 
             {
 
-                $name2 = time().rand(1,100).'.'.$file2->extension();
+                $name2 = time().'.'.$file2->getClientOriginalExtension();
+                $image_resize2 = Image::make($file2->getRealPath());
+                $image_resize2->resize(400, null, function ($constraint2) {
+                    $constraint2->aspectRatio();
+                });
 
-                $file2->move(public_path('adPhotos'), $name2);  
+                $image_resize2->save('adPhotos/'.$name2);
 
                 $files2[] = $name2;  
 
@@ -1326,12 +1343,15 @@ class AdController extends Controller
          {
 
             foreach($request->file('bathroom_photos') as $file3)
-
             {
 
-                $name3 = time().rand(1,100).'.'.$file3->extension();
+                $name3 = time().'.'.$file3->getClientOriginalExtension();
+                $image_resize3 = Image::make($file3->getRealPath());
+                $image_resize3->resize(400, null, function ($constraint3) {
+                    $constraint3->aspectRatio();
+                });
 
-                $file3->move(public_path('adPhotos'), $name3);  
+                $image_resize3->save('adPhotos/'.$name3);  
 
                 $files3[] = $name3;  
 
@@ -1346,12 +1366,14 @@ class AdController extends Controller
          {
 
             foreach($request->file('kitchen_photos') as $file4)
-
             {
+                $name4 = time().'.'.$file4->getClientOriginalExtension();
+                $image_resize4 = Image::make($file4->getRealPath());
+                $image_resize4->resize(400, null, function ($constraint4) {
+                    $constraint4->aspectRatio();
+                });
 
-                $name4 = time().rand(1,100).'.'.$file4->extension();
-
-                $file4->move(public_path('adPhotos'), $name4);  
+                $image_resize4->save('adPhotos/'.$name4);  
 
                 $files4[] = $name4;  
 
@@ -1423,8 +1445,13 @@ class AdController extends Controller
         {
             foreach($request->file('master_photos') as $file6)
             {
-                $name6 = time().rand(1,100).'.'.$file6->extension();
-                $file6->move(public_path('adPhotos'), $name6);  
+                $name6 = time().'.'.$file6->getClientOriginalExtension();
+                $image_resize6 = Image::make($file6->getRealPath());
+                $image_resize6->resize(400, null, function ($constraint6) {
+                    $constraint6->aspectRatio();
+                });
+
+                $image_resize6->save('adPhotos/'.$name6);  
                 $files6[] = $name6;  
             }
             $propRent->master_photos = implode(",", $files6);
@@ -1433,8 +1460,13 @@ class AdController extends Controller
         {
             foreach($request->file('location_photos') as $file7)
             {
-                $name7 = time().rand(1,100).'.'.$file7->extension();
-                $file7->move(public_path('adPhotos'), $name7);  
+                $name7 = time().'.'.$file7->getClientOriginalExtension();
+                $image_resize7 = Image::make($file7->getRealPath());
+                $image_resize7->resize(400, null, function ($constraint7) {
+                    $constraint7->aspectRatio();
+                });
+
+                $image_resize7->save('adPhotos/'.$name7);    
                 $files7[] = $name7;  
             }
             $propRent->location_photos = implode(",", $files7);
@@ -1443,8 +1475,13 @@ class AdController extends Controller
         {
             foreach($request->file('others_photos') as $file8)
             {
-                $name8 = time().rand(1,100).'.'.$file8->extension();
-                $file8->move(public_path('adPhotos'), $name8);  
+                $name8 = time().'.'.$file8->getClientOriginalExtension();
+                $image_resize8 = Image::make($file8->getRealPath());
+                $image_resize8->resize(400, null, function ($constraint8) {
+                    $constraint8->aspectRatio();
+                });
+
+                $image_resize8->save('adPhotos/'.$name8);   
                 $files8[] = $name8;  
             }
             $propRent->others_photos = implode(",", $files8);
@@ -1453,8 +1490,13 @@ class AdController extends Controller
         {
             foreach($request->file('site_photos') as $file9)
             {
-                $name9 = time().rand(1,100).'.'.$file9->extension();
-                $file9->move(public_path('adPhotos'), $name9);  
+                $name9 = time().'.'.$file9->getClientOriginalExtension();
+                $image_resize9 = Image::make($file9->getRealPath());
+                $image_resize9->resize(400, null, function ($constraint9) {
+                    $constraint9->aspectRatio();
+                });
+
+                $image_resize9->save('adPhotos/'.$name9);  
                 $files9[] = $name9;  
             }
             $propRent->site_photos = implode(",", $files9);
@@ -1534,8 +1576,13 @@ class AdController extends Controller
         {
             foreach($request->file('exterior_photos') as $file)
             {
-                $name = time().rand(1,100).'.'.$file->extension();
-                $file->move(public_path('adPhotos'), $name);  
+                $name = time().'.'.$file->getClientOriginalExtension();
+                $image_resize = Image::make($file->getRealPath());
+                $image_resize->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $image_resize->save('adPhotos/'.$name);  
                 $files[] = $name;  
             }
             $propSale->exterior_photos = implode(",", $files);
@@ -1544,8 +1591,13 @@ class AdController extends Controller
         {
             foreach($request->file('living_photos') as $file1)
             {
-                $name1 = time().rand(1,100).'.'.$file1->extension();
-                $file1->move(public_path('adPhotos'), $name1);  
+                $name1 = time().'.'.$file1->getClientOriginalExtension();
+                $image_resize1 = Image::make($file1->getRealPath());
+                $image_resize1->resize(400, null, function ($constraint1) {
+                    $constraint1->aspectRatio();
+                });
+
+                $image_resize1->save('adPhotos/'.$name1);    
                 $files1[] = $name1;  
             }
             $propSale->living_photos = implode(",", $files1);
@@ -1554,8 +1606,13 @@ class AdController extends Controller
         {
             foreach($request->file('bedroom_photos') as $file2)
             {
-                $name2 = time().rand(1,100).'.'.$file2->extension();
-                $file2->move(public_path('adPhotos'), $name2);  
+                $name2 = time().'.'.$file2->getClientOriginalExtension();
+                $image_resize2 = Image::make($file2->getRealPath());
+                $image_resize2->resize(400, null, function ($constraint2) {
+                    $constraint2->aspectRatio();
+                });
+
+                $image_resize2->save('adPhotos/'.$name2);  
                 $files2[] = $name2;  
             }
             $propSale->bedroom_photos = implode(",", $files2);
@@ -1564,8 +1621,13 @@ class AdController extends Controller
         {
             foreach($request->file('bathroom_photos') as $file3)
             {
-                $name3 = time().rand(1,100).'.'.$file3->extension();
-                $file3->move(public_path('adPhotos'), $name3);  
+                $name3 = time().'.'.$file3->getClientOriginalExtension();
+                $image_resize3 = Image::make($file3->getRealPath());
+                $image_resize3->resize(400, null, function ($constraint3) {
+                    $constraint3->aspectRatio();
+                });
+
+                $image_resize3->save('adPhotos/'.$name3);  
                 $files3[] = $name3;  
             }
             $propSale->bathroom_photos = implode(",", $files3);
@@ -1574,8 +1636,13 @@ class AdController extends Controller
         {
             foreach($request->file('kitchen_photos') as $file4)
             {
-                $name4 = time().rand(1,100).'.'.$file4->extension();
-                $file4->move(public_path('adPhotos'), $name4);  
+                $name4 = time().'.'.$file4->getClientOriginalExtension();
+                $image_resize4 = Image::make($file4->getRealPath());
+                $image_resize4->resize(400, null, function ($constraint4) {
+                    $constraint4->aspectRatio();
+                });
+
+                $image_resize4->save('adPhotos/'.$name4);  
                 $files4[] = $name4;  
             }
             $propSale->kitchen_photos = implode(",", $files4);
@@ -1584,8 +1651,13 @@ class AdController extends Controller
         {
             foreach($request->file('common_photos') as $file5)
             {
-                $name5 = time().rand(1,100).'.'.$file5->extension();
-                $file5->move(public_path('adPhotos'), $name5);  
+                $name5 = time().'.'.$file5->getClientOriginalExtension();
+                $image_resize5 = Image::make($file5->getRealPath());
+                $image_resize5->resize(400, null, function ($constraint5) {
+                    $constraint5->aspectRatio();
+                });
+
+                $image_resize5->save('adPhotos/'.$name5);
                 $files5[] = $name5;  
             }
             $propSale->common_photos = implode(",", $files5);
@@ -1594,8 +1666,13 @@ class AdController extends Controller
         {
             foreach($request->file('master_photos') as $file6)
             {
-                $name6 = time().rand(1,100).'.'.$file6->extension();
-                $file6->move(public_path('adPhotos'), $name6);  
+                $name6 = time().'.'.$file6->getClientOriginalExtension();
+                $image_resize6 = Image::make($file6->getRealPath());
+                $image_resize6->resize(400, null, function ($constraint6) {
+                    $constraint6->aspectRatio();
+                });
+
+                $image_resize6->save('adPhotos/'.$name6);
                 $files6[] = $name6;  
             }
             $propSale->master_photos = implode(",", $files6);
@@ -1604,8 +1681,13 @@ class AdController extends Controller
         {
             foreach($request->file('location_photos') as $file7)
             {
-                $name7 = time().rand(1,100).'.'.$file7->extension();
-                $file7->move(public_path('adPhotos'), $name7);  
+                $name7 = time().'.'.$file7->getClientOriginalExtension();
+                $image_resize7 = Image::make($file7->getRealPath());
+                $image_resize7->resize(400, null, function ($constraint7) {
+                    $constraint7->aspectRatio();
+                });
+
+                $image_resize7->save('adPhotos/'.$name7); 
                 $files7[] = $name7;  
             }
             $propSale->location_photos = implode(",", $files7);
@@ -1614,8 +1696,13 @@ class AdController extends Controller
         {
             foreach($request->file('others_photos') as $file8)
             {
-                $name8 = time().rand(1,100).'.'.$file8->extension();
-                $file8->move(public_path('adPhotos'), $name8);  
+                $name8 = time().'.'.$file8->getClientOriginalExtension();
+                $image_resize8 = Image::make($file8->getRealPath());
+                $image_resize8->resize(400, null, function ($constraint8) {
+                    $constraint8->aspectRatio();
+                });
+
+                $image_resize8->save('adPhotos/'.$name8); 
                 $files8[] = $name8;  
             }
             $propSale->others_photos = implode(",", $files8);
@@ -1624,8 +1711,13 @@ class AdController extends Controller
         {
             foreach($request->file('site_photos') as $file9)
             {
-                $name9 = time().rand(1,100).'.'.$file9->extension();
-                $file9->move(public_path('adPhotos'), $name9);  
+                $name9 = time().'.'.$file9->getClientOriginalExtension();
+                $image_resize9 = Image::make($file9->getRealPath());
+                $image_resize9->resize(400, null, function ($constraint9) {
+                    $constraint9->aspectRatio();
+                });
+
+                $image_resize9->save('adPhotos/'.$name9);  
                 $files9[] = $name9;  
             }
             $propSale->site_photos = implode(",", $files9);

@@ -19,7 +19,7 @@
                 ?>
                 <div class="list-group">
                   @foreach($subCategories as $s)
-                  <a href="{{ route('post-ad-form', $s->id) }}" class="list-group-item list-group-item-action">{{ $s->sub_category }}</a>
+                  <a href="{{ route('post-ad-form', $s->id) }}" target="_blank" class="list-group-item list-group-item-action">{{ $s->sub_category }}</a>
                   @endforeach
                 </div>
               </div>

@@ -81,10 +81,11 @@
       <div class="col-md-12">
         <div class="title-single-box">
           <h1 class="title-single">The Best Way To Sell Your {{ $subCategory->sub_category }}</h1>
-          <span class="color-text-a">Resale99 Makes Selling A Tablets An Easy,Guaranteed Purchase. Free Paperwork. Free data Transfer. Free Online Tablets Valuation. Hassle Free Selling. Free Valuation in 10 Sec. Instant Payment. Book An Appointment. Instant Valuation.</span>
+          <!--<span class="color-text-a">Resale99 Makes Selling A Tablets An Easy,Guaranteed Purchase. Free Paperwork. Free data Transfer. Free Online Tablets Valuation. Hassle Free Selling. Free Valuation in 10 Sec. Instant Payment. Book An Appointment. Instant Valuation.</span>-->
         </div>
       </div>
     </div>
+    @include('auth.auth_layout.changeCategory')
   </div>
 </section>
 <!-- End Intro Single-->
@@ -177,7 +178,7 @@
                     <label>Description <span class="text-danger">*</span></label>
                   </div>
                   <div class="col-md-8">
-                    <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
+                    <textarea class="form-control ckeditor @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
                   </div>
                 </div>
                 @error('description')
@@ -193,15 +194,17 @@
                   </div>
                   <div class="col-md-8">
                     <div id="upload_form">
+                        @for($i=1; $i < 16; $i++)
                       <label class="filelabel p_file">
                         <div class="icon">X</div>
-                        <i class="fa fa-paperclip" id="icon1"></i>
-                        <span class="title1">
+                        <i class="fa fa-paperclip" id="icon{{$i}}"></i>
+                        <span class="title{{$i}}">
                           Add File
                         </span>
-                        <input class="FileUpload1" id="FileInput" name="photos[]" type="file"/>
-                        <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                        <input class="FileUpload{{$i}}" id="FileInput" name="photos[]" type="file"/>
+                        <img  id="frame{{$i}}" style="max-width: 90px; max-height: 70px;" class="hidden">
                       </label>
+                      @endfor
                     </div>
                   </div>
                 </div>
@@ -225,7 +228,7 @@
                       <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fa fa-rupee"></i></div>
                       </div>
-                      <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Price" name="price" value="{{ old('price') }}">
+                      <input type="text" class="form-control Stylednumber @error('price') is-invalid @enderror" id="price" placeholder="Price" name="price" value="{{ old('price') }}">
                     </div>
                   </div>
                 </div>
@@ -306,15 +309,7 @@
                   </span>
                   @enderror
                   </div>
-                  <div class="form-group col-md-6">
-                  <label>Pin Code</label><span class="text-danger">*</span></label>
-                  <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code" value="{{ old('pin_code') }}">
-                  @error('pin_code')
-                  <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
-                  </div>
+                  
                   <div class="form-group col-md-6">
                   <label>Address</label><span class="text-danger">*</span></label>
                   <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
@@ -324,6 +319,16 @@
                   </span>
                   @enderror
                   </div>
+                  <div class="form-group col-md-6">
+                  <label>Pin Code</label><span class="text-danger">*</span></label>
+                  <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code" value="{{ old('pin_code') }}">
+                  @error('pin_code')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                  </div>
+                  
               </div>
               <div class="form-group">
                 <div class="row">
@@ -450,7 +455,45 @@
 <!-- End Contact Single-->
 @endsection
 @section('customjs')
+<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 <script>
+$(document).ready(function () {
+  $('.ckeditor').ckeditor();
+});
+String.prototype.replaceAll = function(search, replacement) {
+  var target = this;
+  return target.replace(new RegExp(search, 'g'), replacement);
+};
+$('input.Stylednumber').keyup(function() {
+  var input = $(this).val().replaceAll(',', '');
+  if (input.length < 1)
+    $(this).val('0');
+  else {
+    var formatted = inrFormat(input);
+    if (formatted.indexOf('.') > 0) {
+      var split = formatted.split('.');
+      formatted = split[0] + '.' + split[1].substring(0, 2);
+    }
+    $(this).val(formatted);
+  }
+});
+function inrFormat(val) {
+  var x = val;
+  x = x.toString();
+  var afterPoint = '';
+  if (x.indexOf('.') > 0)
+    afterPoint = x.substring(x.indexOf('.'), x.length);
+  x = Math.floor(x);
+  x = x.toString();
+  var lastThree = x.substring(x.length - 3);
+  var otherNumbers = x.substring(0, x.length - 3);
+  if (otherNumbers != '')
+    lastThree = ',' + lastThree;
+  var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + afterPoint;
+  return res;
+}
+
+
 function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
@@ -480,7 +523,7 @@ function inputChanged(e) {
     if (oldfileName == fileName) {return false;}
             var className = $(this).attr("class");
             console.log(className);
-            var lastChar = className.slice(-1);
+            var lastChar = className.match(/(\d+)/);
             var inc  = 1 + +lastChar;
             console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
             var extension = fileName.split('.').pop();

@@ -362,7 +362,7 @@
               </div>
               <div class="form-group">
                 <label>Description <span class="text-danger">*</span></label>
-                <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
+                <textarea class="form-control ckeditor @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
                 @error('description')
                   <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
@@ -632,8 +632,11 @@
 @endsection
 @section('customjs')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 <script>
-
+$(document).ready(function () {
+  $('.ckeditor').ckeditor();
+});
 String.prototype.replaceAll = function(search, replacement) {
   var target = this;
   return target.replace(new RegExp(search, 'g'), replacement);

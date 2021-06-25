@@ -321,7 +321,7 @@
                             <div style="font-size: 13px;border-top: 1px solid rgba(0,0,0,.125);">
                                 <h4 class="title-d pt-2">Description</h4>
                                 <p class="description color-text-a" style="width: 30%;">
-                                  {{ $singlePost->description }}
+                                  {!! $singlePost->description !!}
                                 </p>
                             </div>   
                         </div>

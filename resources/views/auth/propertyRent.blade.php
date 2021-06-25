@@ -1551,7 +1551,7 @@ function selectLocality(val) {
                   </div>
                   <div class="form-group">
                     <label for="">Description<span  style="color:red" id="description_err"> </span></label>
-                    <textarea name="description" id="description" class="form-control"></textarea>
+                    <textarea name="description" id="description" class="form-control ckeditor"></textarea>
                   </div>
                   <div class="form-group">
                     <label for="">Landmark</label>
@@ -2593,7 +2593,7 @@ function selectLocality(val) {
                   </div>
                   <div class="form-group">
                     <label for="">Description<span  style="color:red" id="description_err"> </span></label>
-                    <textarea name="description" id="description1" class="form-control"></textarea>
+                    <textarea name="description" id="description1" class="form-control ckeditor"></textarea>
                   </div>
                   <div class="form-group">
                     <label for="">Landmark</label>
@@ -3690,7 +3690,7 @@ function selectLocality(val) {
                   </div>
                   <div class="form-group">
                     <label for="">Description<span  style="color:red" id="description_err"> </span></label>
-                    <textarea name="description" id="description2" class="form-control"></textarea>
+                    <textarea name="description" id="description2" class="form-control ckeditor"></textarea>
                   </div>
                   <div class="form-group">
                     <label for="">Landmark</label>
@@ -3866,7 +3866,7 @@ function selectLocality(val) {
                     <label for="">Plot Area<span class="text-danger">*</span><span class="text-danger" id="plot_err"></span></label>
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="text" id="plot_area" class="form-control Stylednumber @error('plot_area') invalid-feedback @enderror" name="plot_area" value="{{ old('plot_area') }}">
+                    <input type="number" id="plot_area" class="form-control @error('plot_area') invalid-feedback @enderror" name="plot_area" value="{{ old('plot_area') }}">
                   </div>
                   <div class="form-group col-md-4">
                     <select name="plot_unit" id="plot_unit" class="form-control @error('plot_unit') invalid-feedback @enderror">
@@ -3897,7 +3897,7 @@ function selectLocality(val) {
                     <label for="">Plot Length</label>
                   </div>
                   <div class="form-group col-md-8">
-                    <input type="text" class="form-control Stylednumber @error('plot_length') invalid-feedback @enderror" name="plot_length" value="{{ old('plot_length') }}" placeholder="yrd">
+                    <input type="number" class="form-control @error('plot_length') invalid-feedback @enderror" name="plot_length" value="{{ old('plot_length') }}" placeholder="yrd">
                   </div>
                 </div>
                 <div class="form-row">
@@ -3905,7 +3905,7 @@ function selectLocality(val) {
                     <label for="">Plot Width</label>
                   </div>
                   <div class="form-group col-md-8">
-                    <input type="text" class="form-control Stylednumber @error('plot_width') invalid-feedback @enderror" name="plot_width" value="{{ old('plot_width') }}" placeholder="yrd">
+                    <input type="text" class="form-control @error('plot_width') invalid-feedback @enderror" name="plot_width" value="{{ old('plot_width') }}" placeholder="yrd">
                   </div>
                 </div>
                 <div class="form-row">
@@ -4157,7 +4157,7 @@ function selectLocality(val) {
                   </div>
                   <div class="form-group">
                     <label>Description <span class="text-danger">*</span><span class="text-danger" id="description_err"></span></label>
-                    <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
+                    <textarea class="form-control ckeditor @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
                     @error('description')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -4353,8 +4353,11 @@ function selectLocality(val) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 <script src="{{ asset('js/image-upload.js') }}"></script>
-
-<script type=text/javascript>
+<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+<script>
+$(document).ready(function () {
+  $('.ckeditor').ckeditor();
+});
 $('.datepicker').datepicker({
     uiLibrary: 'bootstrap4'
 });
@@ -5397,7 +5400,8 @@ $('#user_city').change(function(){
 });
 
 $(document).ready(function(){
-  var $plot_area = $('#plot_area'), $plot_length = $('#plot_length'), $plot_width = $('#plot_width');
+  var $plot_area = $('#rent-lease-form #plot_area'), $plot_length = $('#rent-lease-form #plot_length'), $plot_width = $('#rent-lease-form #plot_width');
+  // alert($plot_area);
   $plot_length.on('keypress', function(e){
 	if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)){
     e.stopImmediatePropagation();
@@ -5405,6 +5409,19 @@ $(document).ready(function(){
   } }).on('keyup', function(e) {
     console.log('keyup');
     $plot_width.val(($plot_area.val() / $plot_length.val()).toFixed(2));
+	});
+})
+
+$(document).ready(function(){
+  var $plot_area1 = $('#land-form #plot_area'), $plot_length1 = $('#land-form #plot_length'), $plot_width1 = $('#land-form #plot_width');
+  // alert($plot_area1);
+  $plot_length1.on('keypress', function(e){
+	if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)){
+    e.stopImmediatePropagation();
+    return false;
+  } }).on('keyup', function(e) {
+    console.log('keyup');
+    $plot_width1.val(($plot_area1.val() / $plot_length1.val()).toFixed(2));
 	});
 })
 </script>

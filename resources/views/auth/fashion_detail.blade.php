@@ -128,7 +128,7 @@
                         <div class="property-description">
                             <h2 class="title-d mb-5">Description</h2>
                             <p class="description color-text-a">
-                              {{ $singlePost->description }}
+                            {!! $singlePost->description !!}
                             </p>
                         </div>
                     </div>

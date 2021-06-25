@@ -1380,7 +1380,7 @@ $("#suggesstion-locality").hide();
                   <hr>
                   <div class="form-group">
                     <label>Description <span class="text-danger">*</span><span  style="color:red" id="description_err"> </span></label>
-                    <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
+                    <textarea class="form-control ckeditor @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
                     @error('description')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
@@ -2523,7 +2523,7 @@ $("#suggesstion-locality").hide();
                   </div>
                   <div class="form-group">
                     <label for="">Description<span  style="color:red" id="description_err"> </span></label>
-                    <textarea name="description" id="description" class="form-control"></textarea>
+                    <textarea name="description" id="description" class="form-control ckeditor"></textarea>
                   </div>
                   <div class="form-group">
                     <label for="">Landmark</label>
@@ -3035,7 +3035,7 @@ $("#suggesstion-locality").hide();
                   </div>
                   <div class="form-group">
                     <label>Description <span class="text-danger">*</span><span class="text-danger" id="description_err"></span></label>
-                    <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
+                    <textarea class="form-control ckeditor @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
                     @error('description')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -4163,7 +4163,7 @@ $("#suggesstion-locality").hide();
                   <hr>
                   <div class="form-group">
                     <label>Description <span class="text-danger">*</span><span class="text-danger" id="description_err"></span></label>
-                    <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
+                    <textarea class="form-control ckeditor @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
                     @error('description')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
@@ -4528,7 +4528,7 @@ $("#suggesstion-locality").hide();
                   </div>
                   <div class="form-group">
                     <label>Description <span class="text-danger">*</span><span class="text-danger" id="description_err"></span></label>
-                    <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
+                    <textarea class="form-control ckeditor @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
                     @error('description')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -4637,8 +4637,11 @@ $("#suggesstion-locality").hide();
 @endsection
 @section('customjs')
 <script src="{{ asset('js/image-upload1.js') }}"></script>
-
-<script type=text/javascript>
+<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+<script>
+$(document).ready(function () {
+  $('.ckeditor').ckeditor();
+});
 String.prototype.replaceAll = function(search, replacement) {
   var target = this;
   return target.replace(new RegExp(search, 'g'), replacement);

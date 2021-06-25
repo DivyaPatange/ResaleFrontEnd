@@ -236,7 +236,7 @@
                             <div class="row mb-4">
                                 <div class="col-md-12">
                                     <p><b>Description</b></p>
-                                     {{ $singlePost->description }}
+                                    {!! $singlePost->description !!}
                                 </div>
                             </div>
                             @if($singlePost->rent_as)
