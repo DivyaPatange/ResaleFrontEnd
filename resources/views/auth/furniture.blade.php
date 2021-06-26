@@ -86,10 +86,11 @@
       <div class="col-md-12">
         <div class="title-single-box">
           <h1 class="title-single">The Best Way To Sell Your {{ $subCategory->sub_category }}</h1>
-          <span class="color-text-a">Resale99 Makes Selling A Car An Easy,Guaranteed Purchase. Free Paperwork. Free RC Transfer. Free Online Car Valuation. Hassle Free Selling. Free Ownership Transfer. Free Valuation in 10 Sec. Instant Payment. Book An Appointment. Instant Valuation.</span>
+          <!--<span class="color-text-a">Resale99 Makes Selling A Car An Easy,Guaranteed Purchase. Free Paperwork. Free RC Transfer. Free Online Car Valuation. Hassle Free Selling. Free Ownership Transfer. Free Valuation in 10 Sec. Instant Payment. Book An Appointment. Instant Valuation.</span>-->
         </div>
       </div>
     </div>
+     @include('auth.auth_layout.changeCategory')
   </div>
 </section>
 <!-- End Intro Single-->
@@ -188,18 +189,20 @@
                 <label>Photos <span class="text-danger">*</span></label>&nbsp;<small class="text-muted">(Upload upto 12 Photos)</small>
               </div>
               <div class="form-group">
-              <div id="upload_form">
-                <label class="filelabel p_file">
+                <div id="upload_form">
+                  @for($i=1; $i < 13; $i++)
+                <label class="filelabel p_file" id="label{{ $i }}">
                   <div class="icon">X</div>
-                  <i class="fa fa-paperclip" id="icon1">
+                  <i class="fa fa-paperclip" id="icon{{ $i }}">
                   </i>
                   
-                  <span class="title1">
+                  <span class="title{{ $i }}">
                       Add File
                   </span>
-                  <input class="FileUpload1" id="FileInput" name="photos[]" type="file"/>
-                  <img  id="frame1" class="hidden" style="max-width: 90px; max-height: 70px;">
+                  <input class="FileUpload{{ $i }}" id="FileInput" name="photos[]" type="file"/>
+                  <img  id="frame{{ $i }}" class="hidden" style="max-width: 90px; max-height: 70px;">
                 </label>
+                @endfor
               </div>
               </div>
               @error('photos')
@@ -220,7 +223,7 @@
                       <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fa fa-rupee"></i></div>
                       </div>
-                      <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Price" name="price" value="{{ old('price') }}">
+                      <input type="text" class="form-control Stylednumber @error('price') is-invalid @enderror" id="price" placeholder="Price" name="price" value="{{ old('price') }}">
                     </div>
                   </div>
                 </div>
@@ -237,6 +240,16 @@
               </div>
               <div class="form-row">
                 <div class="form-group col-md-4 mb-3">
+                  <?php 
+                    $ext = pathinfo(Auth::user()->avatar, PATHINFO_EXTENSION);
+                  ?>
+                  @if($ext == "")
+                  <img src="{{ Auth::user()->avatar }}" alt="" class="img-fluid rounded-circle">
+                  @else
+                  <img src="{{ asset(Auth::user()->avatar) }}" alt="" class="img-fluid rounded-circle">
+                  @endif
+                </div>
+                <div class="form-group col-md-8 mb-3">
                   <label>Name<span class="text-danger">*</span></label>
                   <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"  name="name" value="{{ Auth::user()->name }}">
                   @error('name')
@@ -245,7 +258,7 @@
                   </span>
                   @enderror
                 </div>
-                <div class="form-group col-md-4 mb-3">
+                <div class="form-group col-md-6 mb-3">
                   <label>Email<span class="text-danger">*</span></label>
                   <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"  name="email" value="{{ Auth::user()->email }}">
                   @error('email')
@@ -254,7 +267,7 @@
                   </span>
                   @enderror
                 </div>
-                <div class="form-group col-md-4 mb-3">
+                <div class="form-group col-md-6 mb-3">
                   <label>Mobile Number<span class="text-danger">*</span></label>
                   <input type="text" class="form-control @error('mobile_no') is-invalid @enderror" id="mobile_no"  name="mobile_no" value="{{ Auth::user()->mobile_no }}">
                   @error('mobile_no')
@@ -301,19 +314,20 @@
                   </span>
                   @enderror
                 </div>
+                
                 <div class="form-group col-md-6">
-                  <label>Pin Code</label><span class="text-danger">*</span></label>
-                  <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code" value="{{ old('pin_code') }}">
-                  @error('pin_code')
+                  <label>Address</label><span class="text-danger">*</span></label>
+                  <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
+                  @error('address')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
                   @enderror
                 </div>
                 <div class="form-group col-md-6">
-                  <label>Address</label><span class="text-danger">*</span></label>
-                  <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
-                  @error('address')
+                  <label>Pin Code</label><span class="text-danger">*</span></label>
+                  <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code" value="{{ old('pin_code') }}">
+                  @error('pin_code')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
@@ -454,6 +468,42 @@
 $(document).ready(function () {
   $('.ckeditor').ckeditor();
 });
+String.prototype.replaceAll = function(search, replacement) {
+  var target = this;
+  return target.replace(new RegExp(search, 'g'), replacement);
+};
+$('input.Stylednumber').keyup(function() {
+  var input = $(this).val().replaceAll(',', '');
+  if (input.length < 1)
+    $(this).val('0');
+  else {
+    var formatted = inrFormat(input);
+    if (formatted.indexOf('.') > 0) {
+      var split = formatted.split('.');
+      formatted = split[0] + '.' + split[1].substring(0, 2);
+    }
+    $(this).val(formatted);
+  }
+});
+function inrFormat(val) {
+  var x = val;
+  x = x.toString();
+  var afterPoint = '';
+  if (x.indexOf('.') > 0)
+    afterPoint = x.substring(x.indexOf('.'), x.length);
+  x = Math.floor(x);
+  x = x.toString();
+  var lastThree = x.substring(x.length - 3);
+  var otherNumbers = x.substring(0, x.length - 3);
+  if (otherNumbers != '')
+    lastThree = ',' + lastThree;
+  var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + afterPoint;
+  return res;
+}
+
+
+
+
 function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
@@ -488,7 +538,7 @@ function inputChanged(e) {
             console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
             var extension = fileName.split('.').pop();
             if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
-                $(".filelabel #icon"+lastChar).remove();
+                $(".filelabel #icon"+lastChar).hide();
                 $('#frame'+lastChar).removeClass("hidden");
                 $('#frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
                 $(".filelabel i, .filelabel .title").css({'color':'#208440'});
@@ -508,21 +558,28 @@ function inputChanged(e) {
             
             if($(".FileUpload"+inc).length > 0) {
                 console.log('exist');
-            }else{
-            $(this).closest('.p_file').after(
-            '<label class="filelabel p_file"><div class="icon">X</div>' +
-            '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
-            '<span class="title'+$next_count+'">Add File</span>' +
-            '<input class="FileUpload'+$next_count+'" id="FileInput" name="photos[]" type="file"/>'+
-            '<img  id="frame'+$next_count+'" class="hidden" style="max-width: 90px; max-height: 70px;">'+
-            '</label>');
             }
+            // else{
+            // $(this).closest('.p_file').after(
+            // '<label class="filelabel p_file"><div class="icon">X</div>' +
+            // '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+            // '<span class="title'+$next_count+'">Add File</span>' +
+            // '<input class="FileUpload'+$next_count+'" id="FileInput" name="photos[]" type="file"/>'+
+            // '<img  id="frame'+$next_count+'" class="hidden" style="max-width: 90px; max-height: 70px;">'+
+            // '</label>');
+            // }
            
 }
 
 function removeField(){
-    $(this).closest('.p_file').remove();
-    return false;
+  var id = $(this).closest('.p_file').attr('id');
+  var lastChar = id.match(/(\d+)/);
+  // alert(id);
+  $("#frame"+lastChar).removeAttr('src');
+  $("#frame"+lastChar).addClass('hidden');
+  $(".title"+lastChar).text('Add File');
+  $(".filelabel #icon"+lastChar).show();
+  return false;
 }
 </script>
 

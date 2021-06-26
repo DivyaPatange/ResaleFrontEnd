@@ -153,7 +153,7 @@
               <div class="form-group">
                 <div id="upload_form">
                   @for($i=1; $i < 11; $i++)
-                  <label class="filelabel p_file">
+                  <label class="filelabel p_file" id="label{{ $i }}">
                     <div class="icon">X</div>
                     <i class="fa fa-paperclip" id="icon{{ $i }}"></i>
                     <span class="title{{ $i }}">Add File</span>
@@ -247,6 +247,16 @@
               </div>
               <div class="form-row">
                 <div class="form-group col-md-4 mb-3">
+                  <?php 
+                    $ext = pathinfo(Auth::user()->avatar, PATHINFO_EXTENSION);
+                  ?>
+                  @if($ext == "")
+                  <img src="{{ Auth::user()->avatar }}" alt="" class="img-fluid rounded-circle">
+                  @else
+                  <img src="{{ asset(Auth::user()->avatar) }}" alt="" class="img-fluid rounded-circle">
+                  @endif
+                </div>
+                <div class="form-group col-md-8 mb-3">
                   <label>Name<span class="text-danger">*</span></label>
                   <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"  name="name" value="{{ Auth::user()->name }}">
                   @error('name')
@@ -255,7 +265,7 @@
                   </span>
                   @enderror
                 </div>
-                <div class="form-group col-md-4 mb-3">
+                <div class="form-group col-md-6 mb-3">
                   <label>Email<span class="text-danger">*</span></label>
                   <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"  name="email" value="{{ Auth::user()->email }}">
                   @error('email')
@@ -264,7 +274,7 @@
                   </span>
                   @enderror
                 </div>
-                <div class="form-group col-md-4 mb-3">
+                <div class="form-group col-md-6 mb-3">
                   <label>Mobile Number<span class="text-danger">*</span></label>
                   <input type="text" class="form-control @error('mobile_no') is-invalid @enderror" id="mobile_no"  name="mobile_no" value="{{ Auth::user()->mobile_no }}">
                   @error('mobile_no')
@@ -531,7 +541,7 @@ function inputChanged(e) {
             console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
             var extension = fileName.split('.').pop();
             if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
-                $(".filelabel #icon"+lastChar).remove();
+                $(".filelabel #icon"+lastChar).hide();
                 $('#frame'+lastChar).removeClass("hidden");
                 $('#frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
                 $(".filelabel i, .filelabel .title").css({'color':'#208440'});
@@ -551,21 +561,28 @@ function inputChanged(e) {
             
             if($(".FileUpload"+inc).length > 0) {
                 console.log('exist');
-            }else{
-            $(this).closest('.p_file').after(
-            '<label class="filelabel p_file"><div class="icon">X</div>' +
-            '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
-            '<span class="title'+$next_count+'">Add File</span>' +
-            '<input class="FileUpload'+$next_count+'" id="FileInput" name="photos[]" type="file"/>'+
-            '<img  id="frame'+$next_count+'" class="hidden" style="max-width: 90px; max-height: 70px;">'+
-            '</label>');
             }
+            // else{
+            // $(this).closest('.p_file').after(
+            // '<label class="filelabel p_file"><div class="icon">X</div>' +
+            // '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+            // '<span class="title'+$next_count+'">Add File</span>' +
+            // '<input class="FileUpload'+$next_count+'" id="FileInput" name="photos[]" type="file"/>'+
+            // '<img  id="frame'+$next_count+'" class="hidden" style="max-width: 90px; max-height: 70px;">'+
+            // '</label>');
+            // }
            
 }
 
 function removeField(){
-    $(this).closest('.p_file').remove();
-    return false;
+  var id = $(this).closest('.p_file').attr('id');
+  var lastChar = id.match(/(\d+)/);
+  // alert(id);
+  $("#frame"+lastChar).removeAttr('src');
+  $("#frame"+lastChar).addClass('hidden');
+  $(".title"+lastChar).text('Add File');
+  $(".filelabel #icon"+lastChar).show();
+  return false;
 }
 </script>
 

@@ -33,13 +33,13 @@ return [
     'google' => [
         'client_id' => '73906380350-qjhm365lbb8r3cnmiifh1rekavoi0pkl.apps.googleusercontent.com',
         'client_secret' => 'Nt_FaLM0Qgk6rysEhVt8Q0in',
-        'redirect' => 'https://resale99.aries.in.net/auth/google/callback',
+        'redirect' => 'https://resale99.com/auth/google/callback',
     ],
 
     'facebook' => [
         'client_id' => '4914858558586977',
         'client_secret' => '44a7205fd5febd97f3738dd650d736e9',
-        'redirect' => 'https://resale99.aries.in.net/auth/facebook/callback',
+        'redirect' => 'https://resale99.com/auth/facebook/callback',
     ],
 
 ];

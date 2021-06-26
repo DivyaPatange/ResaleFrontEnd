@@ -17,6 +17,33 @@ use App\Http\Controllers\DesignController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('about', function(){
+    return view('auth.about');
+});
+Route::get('contact', function(){
+    return view('auth.contact');
+});
+
+Route::get('career', function(){
+    return view('auth.career');
+});
+
+Route::get('video', function(){
+    return view('auth.video');
+});
+
+Route::get('advertise', function(){
+    return view('auth.advertise');
+});
+
+Route::get('blog', function(){
+    return view('auth.blog');
+});
+
+Route::get('featured', function(){
+    return view('auth.featured');
+});
+
 Route::get('/clear-cache', function () {
     $exitCode = Artisan::call('config:clear');
     $exitCode = Artisan::call('cache:clear');

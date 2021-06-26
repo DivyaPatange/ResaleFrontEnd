@@ -58,8 +58,9 @@ class AdController extends Controller
             }
             if($subCategory->sub_category == "Commercial Vehicles")
             {
+                $brand = Brand::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
                 $type = Type::where('sub_category_id', $subCategory->id)->where('status', 1)->get();
-                return view('auth.commercialVehicle', compact('subCategory', 'type', 'state', 'category'));
+                return view('auth.commercialVehicle', compact('subCategory', 'type', 'state', 'category', 'brand'));
             }
             if(($subCategory->sub_category == "Antiques - Handicrafts") || ($subCategory->sub_category == "Furniture for Hospitality") || ($subCategory->sub_category == "Furniture for Industry") || ($subCategory->sub_category == "Furniture for Shop & Showroom") || ($subCategory->sub_category == "Furniture for Office") || ($subCategory->sub_category == "Household Furniture") || ($subCategory->sub_category == "Kitchenware") || ($subCategory->sub_category == "Kids Furniture") || ($subCategory->sub_category == "Paintings") || ($subCategory->sub_category == "Home Decor & Gardening"))
             {

@@ -55,15 +55,26 @@
     background-color: #333;    
     height: 60px;
 }
+/*.myimg{*/
+/*    height:180px;*/
+/*    width:100%;*/
+/*}*/
+/*.mycard{*/
+/*    border: 1px solid #8080806e;*/
+/*    padding: 9px;*/
+/*}*/
+
 .myimg{
     height:180px;
-    width:100%;
+   
 }
 .mycard{
     border: 1px solid #8080806e;
     padding: 9px;
 }
-
+.card {
+    text-align: center;
+}
 /* Closed submenu icon */
 #sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after {
   content: " \f0d7";
@@ -109,7 +120,7 @@
                         ?>
                         
                          <div class="col-md-3 p-1">
-                            <div class="card border-secondary p-2">
+                             <div class="card border-secondary p-2">
                                 <a href="{{ route('car.post.ad', $car->id) }}" target="_blank">
                                 
                                     <img class="img-fluid myimg" alt="Image Not Upload" src="{{  URL::asset('adPhotos/' . $carPhoto[0]) }}">
@@ -131,28 +142,30 @@
                                                 $modelName = DB::table('models')->where('id', $car->model_id)->first();
                                               ?>
                                                 {{ $modelName->model_name }}
-                                        @endif<br>
+                                        @endif
                                         @if($car->car_varient)
                     
                                               <?php
                                                 $varients = DB::table('car_varients')->where('id', $car->car_varient)->first();
                                               ?>
-                                                {{ $varients->car_varient }}
+                                               @if($varients) {{ $varients->car_varient }} @endif
                                         @endif
                                         <br>
-                                        {{ $car->year_of_registration }}
-                                        {{ $car-> kms_driven }}  KM
+                                        {{ $car->year_of_registration }}&nbsp;&nbsp;|
+                                        {{ $car-> kms_driven }}  KM &nbsp;&nbsp;|
                                         {{ $car->fuel_type }}
                                         <br>
-                                        @if($car->city_id)
+                                       
+                                       <span class="float-right pt-2">
+                                         @if($car->city_id)
                     
                                               <?php
                                                 $city = DB::table('cities')->where('id', $car->city_id)->first();
                                               ?>
                                                 {{ $city->city_name }}
-                                        @endif
+                                        @endif 
                                         ,
-                                        @if($car->state_id)
+                                         @if($car->state_id)
                     
                                               <?php
                                                 $stat = DB::table('states')->where('id', $car->state_id)->first();
@@ -160,14 +173,14 @@
                                                 {{ $stat->state_name }}
                                         @endif
                                         
-                                        
-                                       
+                                       </span>
                                         
                                         
                                         
                                     </p>
                                 </a>
                             </div>
+                           
                         </div> 
                         @endforeach   
                     </div>

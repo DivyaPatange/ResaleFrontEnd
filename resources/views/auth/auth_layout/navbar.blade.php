@@ -7,7 +7,7 @@
       </button>
       <a class="navbar-brand text-brand" href="{{ url('/') }}">
           <!--<span class="color-b">Resale99.com</span>-->
-          <img src="{{ asset('assets/img/logo/logo1.png') }}" class="" style="height: 70px;width: 170px;">
+          <img src="{{ asset('assets/img/logo/1.png') }}" class="" style="height: 70px;width: 170px;">
           </a>
             <!--<a href="#" data-toggle="sidebar-colapse" class="bg-dark d-flex align-items-center">-->
             <!--    <div class="d-flex  justify-content-start align-items-center">-->
