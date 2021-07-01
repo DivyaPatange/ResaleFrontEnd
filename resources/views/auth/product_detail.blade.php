@@ -60,7 +60,7 @@
                             ?>
                             @for($i= 0; $i < count($explodePhotos); $i++)
                               <div class="carousel-item-b" style="height: 450px;width: 100%;text-align: center;background-color: whitesmoke;">
-                                <img src="{{  URL::asset('adPhotos/' . $explodePhotos[$i]) }}" alt="" style="max-height: 450px;max-width: 100%;">
+                                <img src="{{  URL::asset('adPhotos/' . $explodePhotos[$i]) }}" alt="" style="max-height: 450px;max-width: 100%; position: absolute; margin: auto; top: 0; left: 0; right: 0; bottom: 0;">
                               </div>
                             @endfor
                         </div>
@@ -71,9 +71,10 @@
                     <div class="card m-0" style="height:200px;font-size: 13px">
                         <div class="card-body">
                              <p class="float-right text-info"><i class='far fa-calendar-alt text-danger pr-2'></i>{{ date('j F',strtotime($singlePost->created_at)) }}</p>
-                             <h4><span class="ion-money">&#8377;</span>&nbsp;{{ $singlePost->price }}</h4>
+                             <h2><b><span class="ion-money">&#8377;</span>&nbsp;{{ $singlePost->price }}</b></h2>
                             
                              <p>&nbsp;&nbsp;
+                             <span style="font-size:18px;">
                             @if($singlePost->brand_id)
                    
                                   <?php
@@ -102,8 +103,10 @@
                             @if($singlePost->colour)
                     
                             {{ $singlePost->colour }}
-                            @endif<br>
-                            
+                            @endif
+                            </span>
+                            <br>
+                            <span style="font-size:15px;">
                               <i class="fa fa-road text-danger p-2"></i>{{ $singlePost->year_of_registration }}&nbsp;&nbsp;<i class="fa fa-dashboard text-danger p-2"></i>{{ $singlePost->kms_driven }}&nbsp;&nbsp;KMS <i class='fas fa-gas-pump text-danger p-2'></i>{{ $singlePost->fuel_type }}<br>
                              
                                
@@ -123,6 +126,7 @@
                                   ?>
                                     {{ $stat->state_name }}
                             @endif
+                            </span>
                             </p>
                               <br>
                            

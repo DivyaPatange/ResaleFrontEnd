@@ -165,6 +165,7 @@
                                         {{ $car->fuel_type }}
                                         <br>
                                        
+                                       <span class="float-right pt-2">
                                          @if($car->city_id)
                     
                                               <?php
@@ -181,7 +182,7 @@
                                                 {{ $stat->state_name }}
                                         @endif
                                         
-                                       
+                                       </span>
                                         
                                         
                                         

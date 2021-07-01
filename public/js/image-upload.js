@@ -301,10 +301,10 @@ function readURL(input) {
       return false;
   }
   
-  // Floor Photos
-  $('body')
-    .delegate('#upload_form5 input[type="file"]', 'change', inputChanged5)
-    .delegate('#upload_form5 .icon', 'click', removeField5);
+// Floor Photos
+$('body')
+  .delegate('#upload_form5 input[type="file"]', 'change', inputChanged5)
+  .delegate('#upload_form5 .icon', 'click', removeField5);
   
   function inputChanged5(e) {
     $current_count = $('#upload_form5 input[type="file"]').length;
@@ -360,10 +360,10 @@ function readURL(input) {
   }
   
   
-  // Master Photos
-  $('body')
-    .delegate('#upload_form6 input[type="file"]', 'change', inputChanged6)
-    .delegate('#upload_form6 .icon', 'click', removeField6);
+// Master Photos
+$('body')
+  .delegate('#upload_form6 input[type="file"]', 'change', inputChanged6)
+  .delegate('#upload_form6 .icon', 'click', removeField6);
   
   function inputChanged6(e) {
     $current_count = $('#upload_form6 input[type="file"]').length;
@@ -407,7 +407,7 @@ function readURL(input) {
     '<label class="filelabel p_file"><div class="icon">X</div>' +
     '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
     '<span class="title'+$next_count+'">Add Photo</span>' +
-    '<input class="FileUpload'+$next_count+'" id="FileInput" name="living_photos[]" type="file"/>'+
+    '<input class="FileUpload'+$next_count+'" id="FileInput" name="common_area[]" type="file"/>'+
     '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
     '</label>');
     }
@@ -466,7 +466,7 @@ function readURL(input) {
     '<label class="filelabel p_file"><div class="icon">X</div>' +
     '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
     '<span class="title'+$next_count+'">Add Photo</span>' +
-    '<input class="FileUpload'+$next_count+'" id="FileInput" name="bedroom_photos[]" type="file"/>'+
+    '<input class="FileUpload'+$next_count+'" id="FileInput" name="bathroom_photos[]" type="file"/>'+
     '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
     '</label>');
     }
@@ -524,7 +524,7 @@ function readURL(input) {
     '<label class="filelabel p_file"><div class="icon">X</div>' +
     '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
     '<span class="title'+$next_count+'">Add Photo</span>' +
-    '<input class="FileUpload'+$next_count+'" id="FileInput" name="bathroom_photos[]" type="file"/>'+
+    '<input class="FileUpload'+$next_count+'" id="FileInput" name="floor_plan_photos[]" type="file"/>'+
     '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
     '</label>');
     }
@@ -596,7 +596,7 @@ function readURL(input) {
     '<label class="filelabel p_file"><div class="icon">X</div>' +
     '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
     '<span class="title'+$next_count+'">Add Photo</span>' +
-    '<input class="FileUpload'+$next_count+'" id="FileInput" name="kitchen_photos[]" type="file"/>'+
+    '<input class="FileUpload'+$next_count+'" id="FileInput" name="other_photos[]" type="file"/>'+
     '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
     '</label>');
     }
@@ -713,7 +713,7 @@ function readURL(input) {
     '<label class="filelabel p_file"><div class="icon">X</div>' +
     '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
     '<span class="title'+$next_count+'">Add Photo</span>' +
-    '<input class="FileUpload'+$next_count+'" id="FileInput" name="living_photos[]" type="file"/>'+
+    '<input class="FileUpload'+$next_count+'" id="FileInput" name="common_area[]" type="file"/>'+
     '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
     '</label>');
     }
@@ -771,7 +771,7 @@ function readURL(input) {
     '<label class="filelabel p_file"><div class="icon">X</div>' +
     '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
     '<span class="title'+$next_count+'">Add Photo</span>' +
-    '<input class="FileUpload'+$next_count+'" id="FileInput" name="bedroom_photos[]" type="file"/>'+
+    '<input class="FileUpload'+$next_count+'" id="FileInput" name="bathroom_photos[]" type="file"/>'+
     '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
     '</label>');
     }
@@ -829,7 +829,7 @@ function readURL(input) {
     '<label class="filelabel p_file"><div class="icon">X</div>' +
     '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
     '<span class="title'+$next_count+'">Add Photo</span>' +
-    '<input class="FileUpload'+$next_count+'" id="FileInput" name="bathroom_photos[]" type="file"/>'+
+    '<input class="FileUpload'+$next_count+'" id="FileInput" name="floor_plan_photos[]" type="file"/>'+
     '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
     '</label>');
     }
@@ -887,7 +887,7 @@ function readURL(input) {
     '<label class="filelabel p_file"><div class="icon">X</div>' +
     '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
     '<span class="title'+$next_count+'">Add Photo</span>' +
-    '<input class="FileUpload'+$next_count+'" id="FileInput" name="kitchen_photos[]" type="file"/>'+
+    '<input class="FileUpload'+$next_count+'" id="FileInput" name="other_photos[]" type="file"/>'+
     '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
     '</label>');
     }
@@ -1122,6 +1122,234 @@ function readURL(input) {
   }
   
   function removeField18(){
+      $(this).closest('.p_file').remove();
+      return false;
+  }
+
+  $('body')
+    .delegate('#upload_form19 input[type="file"]', 'change', inputChanged19)
+    .delegate('#upload_form19 .icon', 'click', removeField19);
+  
+  function inputChanged19(e) {
+    $current_count = $('#upload_form19 input[type="file"]').length;
+    // console.log($current_count);
+    $next_count = $current_count + 1;
+    var labelVal = $(".title"+$current_count).text();
+    var oldfileName = $(this).val();
+    console.log(oldfileName);
+    $("#upload_form19 .filelabel .title").text(labelVal);
+    fileName = e.target.value.split( '\\' ).pop();
+    if (oldfileName == fileName) {return false;}
+    var className = $(this).attr("class");
+    console.log(className);
+    var lastChar = className.match(/(\d+)/);
+    var inc  = 1 + +lastChar;
+    console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
+    var extension = fileName.split('.').pop();
+    if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+      $("#upload_form19 .filelabel #icon"+lastChar).remove();
+      $('#upload_form19 #frame'+lastChar).removeClass("hidden");
+      $('#upload_form19 #frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
+      $("#upload_form19 .filelabel i, .filelabel .title").css({'color':'#208440'});
+      $("#upload_form19 .filelabel").css({'border':' 2px solid #208440'});
+    }
+    if(fileName ){
+      if (fileName.length > 10){
+        $("#upload_form19 .filelabel .title"+lastChar).text(fileName.slice(0,4)+'...'+extension);
+      }
+      else{
+        $("#upload_form19 .filelabel .title"+$current_count).text(fileName);
+      }
+    }
+    else{
+      $("#upload_form19 .filelabel .title").text(labelVal);
+    }
+    if($("#upload_form19 .FileUpload"+inc).length > 0) {
+      console.log('exist');
+    }
+    else{
+    $(this).closest('.p_file').after(
+    '<label class="filelabel p_file"><div class="icon">X</div>' +
+    '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+    '<span class="title'+$next_count+'">Add Photo</span>' +
+    '<input class="FileUpload'+$next_count+'" id="FileInput" name="site_photos[]" type="file"/>'+
+    '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
+    '</label>');
+    }
+  }
+  
+  function removeField19(){
+      $(this).closest('.p_file').remove();
+      return false;
+  }
+
+  $('body')
+    .delegate('#upload_form20 input[type="file"]', 'change', inputChanged20)
+    .delegate('#upload_form20 .icon', 'click', removeField20);
+  
+  function inputChanged20(e) {
+    $current_count = $('#upload_form20 input[type="file"]').length;
+    // console.log($current_count);
+    $next_count = $current_count + 1;
+    var labelVal = $(".title"+$current_count).text();
+    var oldfileName = $(this).val();
+    console.log(oldfileName);
+    $("#upload_form20 .filelabel .title").text(labelVal);
+    fileName = e.target.value.split( '\\' ).pop();
+    if (oldfileName == fileName) {return false;}
+    var className = $(this).attr("class");
+    console.log(className);
+    var lastChar = className.match(/(\d+)/);
+    var inc  = 1 + +lastChar;
+    console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
+    var extension = fileName.split('.').pop();
+    if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+      $("#upload_form20 .filelabel #icon"+lastChar).remove();
+      $('#upload_form20 #frame'+lastChar).removeClass("hidden");
+      $('#upload_form20 #frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
+      $("#upload_form20 .filelabel i, .filelabel .title").css({'color':'#208440'});
+      $("#upload_form20 .filelabel").css({'border':' 2px solid #208440'});
+    }
+    if(fileName ){
+      if (fileName.length > 10){
+        $("#upload_form20 .filelabel .title"+lastChar).text(fileName.slice(0,4)+'...'+extension);
+      }
+      else{
+        $("#upload_form20 .filelabel .title"+$current_count).text(fileName);
+      }
+    }
+    else{
+      $("#upload_form20 .filelabel .title").text(labelVal);
+    }
+    if($("#upload_form20 .FileUpload"+inc).length > 0) {
+      console.log('exist');
+    }
+    else{
+    $(this).closest('.p_file').after(
+    '<label class="filelabel p_file"><div class="icon">X</div>' +
+    '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+    '<span class="title'+$next_count+'">Add Photo</span>' +
+    '<input class="FileUpload'+$next_count+'" id="FileInput" name="master_photos[]" type="file"/>'+
+    '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
+    '</label>');
+    }
+  }
+  
+  function removeField20(){
+    $(this).closest('.p_file').remove();
+    return false;
+  }
+
+  $('body')
+    .delegate('#upload_form21 input[type="file"]', 'change', inputChanged21)
+    .delegate('#upload_form21 .icon', 'click', removeField21);
+  
+  function inputChanged21(e) {
+    $current_count = $('#upload_form21 input[type="file"]').length;
+    // console.log($current_count);
+    $next_count = $current_count + 1;
+    var labelVal = $(".title"+$current_count).text();
+    var oldfileName = $(this).val();
+    console.log(oldfileName);
+    $("#upload_form21 .filelabel .title").text(labelVal);
+    fileName = e.target.value.split( '\\' ).pop();
+    if (oldfileName == fileName) {return false;}
+    var className = $(this).attr("class");
+    console.log(className);
+    var lastChar = className.match(/(\d+)/);
+    var inc  = 1 + +lastChar;
+    console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
+    var extension = fileName.split('.').pop();
+    if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+      $("#upload_form21 .filelabel #icon"+lastChar).remove();
+      $('#upload_form21 #frame'+lastChar).removeClass("hidden");
+      $('#upload_form21 #frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
+      $("#upload_form21 .filelabel i, .filelabel .title").css({'color':'#208440'});
+      $("#upload_form21 .filelabel").css({'border':' 2px solid #208440'});
+    }
+    if(fileName ){
+      if (fileName.length > 10){
+        $("#upload_form21 .filelabel .title"+lastChar).text(fileName.slice(0,4)+'...'+extension);
+      }
+      else{
+        $("#upload_form21 .filelabel .title"+$current_count).text(fileName);
+      }
+    }
+    else{
+      $("#upload_form21 .filelabel .title").text(labelVal);
+    }
+    if($("#upload_form21 .FileUpload"+inc).length > 0) {
+      console.log('exist');
+    }
+    else{
+    $(this).closest('.p_file').after(
+    '<label class="filelabel p_file"><div class="icon">X</div>' +
+    '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+    '<span class="title'+$next_count+'">Add Photo</span>' +
+    '<input class="FileUpload'+$next_count+'" id="FileInput" name="location_photos[]" type="file"/>'+
+    '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
+    '</label>');
+    }
+  }
+  
+  function removeField21(){
+      $(this).closest('.p_file').remove();
+      return false;
+  }
+
+  $('body')
+    .delegate('#upload_form22 input[type="file"]', 'change', inputChanged22)
+    .delegate('#upload_form22 .icon', 'click', removeField22);
+  
+  function inputChanged22(e) {
+    $current_count = $('#upload_form22 input[type="file"]').length;
+    // console.log($current_count);
+    $next_count = $current_count + 1;
+    var labelVal = $(".title"+$current_count).text();
+    var oldfileName = $(this).val();
+    console.log(oldfileName);
+    $("#upload_form22 .filelabel .title").text(labelVal);
+    fileName = e.target.value.split( '\\' ).pop();
+    if (oldfileName == fileName) {return false;}
+    var className = $(this).attr("class");
+    console.log(className);
+    var lastChar = className.match(/(\d+)/);
+    var inc  = 1 + +lastChar;
+    console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
+    var extension = fileName.split('.').pop();
+    if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+      $("#upload_form22 .filelabel #icon"+lastChar).remove();
+      $('#upload_form22 #frame'+lastChar).removeClass("hidden");
+      $('#upload_form22 #frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
+      $("#upload_form22 .filelabel i, .filelabel .title").css({'color':'#208440'});
+      $("#upload_form22 .filelabel").css({'border':' 2px solid #208440'});
+    }
+    if(fileName ){
+      if (fileName.length > 10){
+        $("#upload_form22 .filelabel .title"+lastChar).text(fileName.slice(0,4)+'...'+extension);
+      }
+      else{
+        $("#upload_form22 .filelabel .title"+$current_count).text(fileName);
+      }
+    }
+    else{
+      $("#upload_form22 .filelabel .title").text(labelVal);
+    }
+    if($("#upload_form22 .FileUpload"+inc).length > 0) {
+      console.log('exist');
+    }
+    else{
+    $(this).closest('.p_file').after(
+    '<label class="filelabel p_file"><div class="icon">X</div>' +
+    '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+    '<span class="title'+$next_count+'">Add Photo</span>' +
+    '<input class="FileUpload'+$next_count+'" id="FileInput" name="others_photos[]" type="file"/>'+
+    '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
+    '</label>');
+    }
+  }
+  
+  function removeField22(){
       $(this).closest('.p_file').remove();
       return false;
   }

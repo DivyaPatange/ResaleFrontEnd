@@ -2,13 +2,12 @@
 @section('title', 'Properties')
 @section('customcss')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
 .myimg
 {
-    width:100%;
-    height:300px;
+  width:100%;
+  height:300px;
 }
 .card-header-a .card-title-a {
   font-size: 25px;
@@ -42,19 +41,19 @@
   position:relative;
 }
 .icon{
-    position: absolute;
-    /* left: 0%; */
-    right: 0%;
-    top: -13%;
-    border-radius: 50%;
-    background: black;
-    width: 21px;
-    color: white;
+  position: absolute;
+  /* left: 0%; */
+  right: 0%;
+  top: -13%;
+  border-radius: 50%;
+  background: black;
+  width: 21px;
+  color: white;
 }
 .filelabel i {
-    display: block;
-    font-size: 30px;
-    padding-bottom: 5px;
+  display: block;
+  font-size: 30px;
+  padding-bottom: 5px;
 }
 .filelabel i,
 .filelabel .title {
@@ -69,17 +68,17 @@
   color: #1665c4;
 }
 #FileInput{
-    display:none;
+  display:none;
 }
 .hidden{
-    display:none;
+  display:none;
 }
-
 
 .switch-field {
   display: flex;
   /* margin-bottom: 36px; */
   overflow: hidden;
+  flex-wrap:wrap;
 }
 
 .switch-field input {
@@ -122,19 +121,17 @@
 }
 
 /*add images tab pills start*/
-    nav > .nav.nav-tabs{
-
+nav > .nav.nav-tabs{
   border: none;
   color:#fff;
   background:#272e38;
   border-radius:0;
   font-size: 14px;
-
 }
 nav > div a.nav-item.nav-link,
 nav > div a.nav-item.nav-link.active
 {
-border: none;
+  border: none;
   padding: 8px 7px;
   color:#fff;
   background:#272e38;
@@ -143,15 +140,15 @@ border: none;
 
 nav > div a.nav-item.nav-link.active:after
 {
-content: "";
-position: relative;
-bottom: -40px;
-left: -40%;
-border: 8px solid transparent;
-border-top-color: #e74c3c ;
+  content: "";
+  position: relative;
+  bottom: -40px;
+  left: -40%;
+  border: 8px solid transparent;
+  border-top-color: #e74c3c ;
 }
 .tab-content{
-background: #fdfdfd;
+  background: #fdfdfd;
   line-height: 25px;
   border: 1px solid #ddd;
   border-top:5px solid #e74c3c;
@@ -162,7 +159,7 @@ background: #fdfdfd;
 nav > div a.nav-item.nav-link:hover,
 nav > div a.nav-item.nav-link:focus
 {
-border: none;
+  border: none;
   background: #e74c3c;
   color:#fff;
   border-radius:0;
@@ -219,54 +216,54 @@ border: none;
 $(document).ready(function(){
 	$("#search-box").keyup(function(){
     if( this.value.length > 5 ){
-		$.ajax({
-		type: "GET",
-		url: "{{ route('searchCity') }}",
-		data:'keyword='+$(this).val(),
-		beforeSend: function(){
-			$("#search-box").css("background","#FFF url('{{ asset('35.gif')}}') no-repeat 100%");
-		},
-		success: function(data){
-			$("#suggesstion-box").show();
-			$("#suggesstion-box").html(data);
-			$("#search-box").css("background","#FFF");
-		}
-		});
+      $.ajax({
+        type: "GET",
+        url: "{{ route('searchCity') }}",
+        data:'keyword='+$(this).val(),
+        beforeSend: function(){
+          $("#search-box").css("background","#FFF url('{{ asset('35.gif')}}') no-repeat 100%");
+        },
+        success: function(data){
+          $("#suggesstion-box").show();
+          $("#suggesstion-box").html(data);
+          $("#search-box").css("background","#FFF");
+        }
+      });
     }
 	});
 });
 
 //To select country name
 function selectCountry(val) {
-$("#search-box").val(val);
-$("#suggesstion-box").hide();
+  $("#search-box").val(val);
+  $("#suggesstion-box").hide();
 }
 
 // AJAX call for autocomplete 
 $(document).ready(function(){
 	$("#locality").keyup(function(){
     if( this.value.length > 5 ){
-		$.ajax({
-		type: "GET",
-		url: "{{ route('searchLocality') }}",
-		data:'keyword='+$(this).val(),
-		beforeSend: function(){
-			$("#locality").css("background","#FFF url('{{ asset('35.gif')}}') no-repeat 100%");
-		},
-		success: function(data){
-			$("#suggesstion-locality").show();
-			$("#suggesstion-locality").html(data);
-			$("#locality").css("background","#FFF");
-		}
-		});
+      $.ajax({
+        type: "GET",
+        url: "{{ route('searchLocality') }}",
+        data:'keyword='+$(this).val(),
+        beforeSend: function(){
+          $("#locality").css("background","#FFF url('{{ asset('35.gif')}}') no-repeat 100%");
+        },
+        success: function(data){
+          $("#suggesstion-locality").show();
+          $("#suggesstion-locality").html(data);
+          $("#locality").css("background","#FFF");
+        }
+      });
     }
 	});
 });
 
 //To select country name
 function selectLocality(val) {
-$("#locality").val(val);
-$("#suggesstion-locality").hide();
+  $("#locality").val(val);
+  $("#suggesstion-locality").hide();
 }
 </script>
 @endsection
@@ -303,35 +300,34 @@ $("#suggesstion-locality").hide();
           <div class="col-md-8">
             <!--flat appartment form start-->
             <form method="POST" action="{{ url('save-property-sale-post') }}"  enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;" id="property-sale">
-            @csrf 
+              @csrf 
               <input type="hidden" name="sub_category_id"  value="{{ $subCategory->id }}">
               <input type="hidden" name="category_id" value="{{ $category->id }}">
               <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-              
-                  <div class="form-group">
-                    <h6>Personal Details</h6>
+              <div class="form-group">
+                <h6>Personal Details</h6>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="">I am <span class="text-danger">*<span><span class="text-danger" id="listed_err"><span></label>
+                </div>
+                <div class="form-group col-md-8">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="" name="listed_by" value="Builder">
+                    <label class="form-check-label" for="">Builder</label>
                   </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-4">
-                      <label for="">I am <span class="text-danger">*<span><span class="text-danger" id="listed_err"><span></label>
-                    </div>
-                    <div class="form-group col-md-8">
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="" name="listed_by" value="Builder">
-                        <label class="form-check-label" for="">Builder</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="" name="listed_by" value="Owner">
-                        <label class="form-check-label" for="">Owner</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="" name="listed_by" value="Agent">
-                        <label class="form-check-label" for="">Agent</label>
-                      </div>
-                    </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="" name="listed_by" value="Owner">
+                    <label class="form-check-label" for="">Owner</label>
                   </div>
-                  <hr>
-                <div class="form-row">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="" name="listed_by" value="Agent">
+                    <label class="form-check-label" for="">Agent</label>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="form-row">
                 <div class="form-group col-md-6">
                   <label>Property Type<span class="text-danger">*<span></label>
                 </div>
@@ -390,13 +386,14 @@ $("#suggesstion-locality").hide();
                 </div>
               </div>
               <div class="form-group">
-                <label>Address</label><span class="text-danger">*</span><span  style="color:red" id="address_err"> </span></label>
-                <textarea class="form-control @error('address') is-invalid @enderror" id="address" name="address"></textarea>
-                @error('address')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-                @enderror
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>Address</label><span class="text-danger">*</span><span  style="color:red" id="address_err"> </span></label>
+                  </div>
+                  <div class="col-md-8">
+                    <input class="form-control @error('address') is-invalid @enderror" id="address" name="address">
+                  </div>
+                </div>
               </div>
               <div class="pageloader hidden"></div>
               <div class="hidden" id="flat-form">
@@ -405,6 +402,15 @@ $("#suggesstion-locality").hide();
                     <label>Name of Society<span class="text-danger">*<span><span style="color:red" id="society_err"></span></label>
                     <input  type="text" id="name_of_society" class="form-control @error('project_name') is-invalid @enderror" name="project_name">
                     @error('project_name')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Rera ID<span class="text-danger">*<span><span style="color:red" id="society_err"></span></label>
+                    <input  type="text" id="rera_id" class="form-control @error('rera_id') is-invalid @enderror" name="rera_id">
+                    @error('rera_id')
                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                       </span>
@@ -422,16 +428,10 @@ $("#suggesstion-locality").hide();
                     </div>
                     <div class="col-md-9">
                       <div class="switch-field">
-                        <input type="radio"  name="bedroom" id="1" value="1" @if(old('bedroom') == "1") checked @endif>
-                        <label for="1">1</label>
-                        <input type="radio" type="radio" name="bedroom" id="2" value="2" @if(old('bedroom') == "2") checked @endif>
-                        <label for="2">2</label>
-                        <input type="radio" type="radio" name="bedroom" id="3" value="3" @if(old('bedroom') == "3") checked @endif>
-                        <label for="3">3</label>
-                        <input type="radio" type="radio" name="bedroom" id="4" value="4" @if(old('bedroom') == "4") checked @endif>
-                        <label for="4">4</label>
-                        <input type="radio" type="radio" name="bedroom" id="4+" value="4+" @if(old('bedroom') == "+4") checked @endif>
-                        <label for="4+">4+</label>
+                        @for($i=1; $i < 16; $i++)
+                        <input type="radio"  name="bedroom" id="{{ $i }}" value="{{ $i }}" @if(old('bedroom') == $i) checked @endif>
+                        <label for="{{ $i }}">{{ $i }}</label>
+                        @endfor
                       </div>
                     </div>
                   </div>
@@ -448,16 +448,10 @@ $("#suggesstion-locality").hide();
                     </div>
                     <div class="col-md-9">
                       <div class="switch-field">
-                        <input type="radio"  name="balcony" id="5" value="1" @if(old('balcony') == "1") checked @endif>
-                        <label for="5">1</label>
-                        <input type="radio" type="radio" name="balcony" id="6" value="2" @if(old('balcony') == "2") checked @endif>
-                        <label for="6">2</label>
-                        <input type="radio" type="radio" name="balcony" id="7" value="3" @if(old('balcony') == "3") checked @endif>
-                        <label for="7">3</label>
-                        <input type="radio" type="radio" name="balcony" id="8" value="4" @if(old('balcony') == "4") checked @endif>
-                        <label for="8">4</label>
-                        <input type="radio" type="radio" name="balcony" id="+9" value="4+" @if(old('balcony') == "4+") checked @endif>
-                        <label for="+9">4+</label>
+                        @for($i=1; $i < 16; $i++)
+                        <input type="radio"  name="balcony" id="balcony{{ $i }}" value="{{ $i }}" @if(old('balcony') == $i) checked @endif>
+                        <label for="balcony{{ $i }}">{{ $i }}</label>
+                        @endfor
                       </div>
                     </div>
                   </div>
@@ -475,16 +469,10 @@ $("#suggesstion-locality").hide();
                     </div>
                     <div class="col-md-9">
                       <div class="switch-field">
-                        <input type="radio"  name="bathroom" id="10" value="1" @if(old('bathroom') == "1") checked @endif>
-                        <label for="10">1</label>
-                        <input type="radio" type="radio" name="bathroom" id="11" value="2" @if(old('bathroom') == "2") checked @endif>
-                        <label for="11">2</label>
-                        <input type="radio" type="radio" name="bathroom" id="12" value="3" @if(old('bathroom') == "3") checked @endif>
-                        <label for="12">3</label>
-                        <input type="radio" type="radio" name="bathroom" id="13" value="4" @if(old('bathroom') == "4") checked @endif>
-                        <label for="13">4</label>
-                        <input type="radio" type="radio" name="bathroom" id="14" value="4+" @if(old('bathroom') == "4+") checked @endif>
-                        <label for="14">4+</label>
+                        @for($i=1; $i < 16; $i++)
+                        <input type="radio"  name="bathroom" id="bathroom{{ $i }}" value="{{ $i }}" @if(old('bathroom') == $i) checked @endif>
+                        <label for="bathroom{{ $i }}">{{ $i }}</label>
+                        @endfor
                       </div>
                     </div>
                   </div>
@@ -554,6 +542,100 @@ $("#suggesstion-locality").hide();
                       <strong>{{ $message }}</strong>
                     </span>
                   @enderror
+                </div>
+                <div class="form-row hidden" id="showFurnishedDiv">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>AC</label>
+                                <select name="ac" class="form-control" id="ac">
+                                    <option value="">-Select-</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="3+">3+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Bed</label>
+                                <select name="bed" class="form-control" id="bed">
+                                    <option value="">-Select-</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="3+">3+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Wardrobe</label>
+                                <select name="wardrobe" class="form-control" id="wardrobe">
+                                    <option value="">-Select-</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="3+">3+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>TV</label>
+                                <select name="tv" class="form-control" id="tv">
+                                    <option value="">-Select-</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="3+">3+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check-inline mb-3">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Fridge">Fridge
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check-inline mb-3">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Sofa">Sofa
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check-inline mb-3">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Washing Machine">Washing Machine
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check-inline mb-3">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Dining Table">Dining Table
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check-inline mb-3">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Microwave">Microwave
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check-inline mb-3">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Gas Connection">Gas Connection
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                   <h6>Area</h6>
@@ -735,7 +817,7 @@ $("#suggesstion-locality").hide();
                   </div>
                   <div class="form-group col-md-6">
                     <label for="">Price Per Sq.ft<span class="text-danger">*</span></label>
-                    <input type="text" name="price_per_sq_ft" class="form-control Stylednumber @error('price_per_sq_ft') invalid-feedback @enderror" value="{{ old('price_per_sq_ft') }}">
+                    <input type="text" name="price_per_sq_ft" readonly id="price_per_sq_ft" class="form-control @error('price_per_sq_ft') invalid-feedback @enderror" value="{{ old('price_per_sq_ft') }}">
                     @error('price_per_sq_ft')
                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -770,6 +852,26 @@ $("#suggesstion-locality").hide();
                           <input type="radio" class="form-check-input" name="show_price_as" value="Call For Price">Call For Price
                         </label>
                       </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="plus-minus">
+                    <input type="checkbox" name="" id="a" class="a css-checkbox">
+                    <label for="a" class="css-label">
+                      <span class="fa fa-plus"></span>
+                      <span class="fa fa-minus"></span>
+                    Add Other Charges
+                    </label>
+                  </div>
+                </div>
+                <div id="otherChargesDiv" class="hidden">
+                  <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label for="">Other Charges</label>
+                    </div>
+                    <div class="form-group col-md-8">
+                      <input type="text" class="form-control" name="other_charges">
                     </div>
                   </div>
                 </div>
@@ -4547,8 +4649,7 @@ $("#suggesstion-locality").hide();
                   <hr>
                   <button type="button" id="submitForm5" class="btn btn-primary">Post Your Add</button>
                 </div>
-              </div>
-              
+              </div>              
             </form>
           </div>
           <div class="col-md-4 section-md-t3">
@@ -5061,7 +5162,7 @@ $('body').on('click', '#showButton1', function () {
   var listed_by = $('input[name="listed_by"]:checked').val();
   var city = $('#search-box').val();
   var locality = $('#locality').val();
-  var address = $('textarea#address').val();
+  var address = $('#address').val();
   var name_of_society = $('#name_of_society').val();
   var bedroom = $("input[name='bedroom']:checked").val();
   var floor_no = $('#floor_no').val();
@@ -5178,7 +5279,7 @@ $('body').on('click', '#showButton2', function () {
   var listed_by = $('input[name="listed_by"]:checked').val();
   var city = $('#search-box').val();
   var locality = $('#locality').val();
-  var address = $('textarea#address').val();
+  var address = $('#address').val();
   var name_of_society = $('#com-office-form #name_of_project').val();
   var bathroom = $("#com-office-form input[name='bathroom']:checked").val();
   var floor_no = $('#com-office-form #floor_no').val();
@@ -5298,7 +5399,7 @@ $('body').on('click', '#showButton3', function () {
   var listed_by = $('input[name="listed_by"]:checked').val();
   var city = $('#search-box').val();
   var locality = $('#locality').val();
-  var address = $('textarea#address').val();
+  var address = $('#address').val();
   var any_construct = $("#land-form input[name='any_construc']:checked").val();
   var boundary_wall = $("#land-form input[name='boundry_wall']:checked").val();
   var plot_area = $('#land-form #plot_area').val();
@@ -5394,7 +5495,7 @@ $('body').on('click', '#showButton4', function () {
   var listed_by = $('input[name="listed_by"]:checked').val();
   var city = $('#search-box').val();
   var locality = $('#locality').val();
-  var address = $('textarea#address').val();
+  var address = $('#address').val();
   var name_of_society = $('#com-shop-form #project_name').val();
   var bathroom = $("#com-shop-form input[name='bathroom']:checked").val();
   var floor_no = $('#com-shop-form #floor_no').val();
@@ -5546,7 +5647,7 @@ $('body').on('click', '#showButton5', function () {
   var listed_by = $('input[name="listed_by"]:checked').val();
   var city = $('#search-box').val();
   var locality = $('#locality').val();
-  var address = $('textarea#address').val();
+  var address = $('#address').val();
   var boundry_wall = $("#agri-form input[name='boundry_wall']:checked").val();
   var land_length = $('#agri-form #land_length').val();
   var land_breadth = $('#agri-form #land_breadth').val();
@@ -5636,6 +5737,49 @@ $('body').on('click', '#submitForm5', function () {
   $("#com-shop-form :input").prop("disabled", true);
   $("#property-sale").submit();
   }
+});
+
+$("input[name='furnishing']").change(function(){
+  var furnishing = $(this).val();
+  if((furnishing == "Furnished") || (furnishing == "Semi-Furnished"))
+  {
+    if($("#flat-form").css("display") == "block"){ 
+      $("#flat-form #showFurnishedDiv").show();
+    }
+    if($("#land-form").css("display") == "block"){
+      $("#land-form #showFurnishedDiv").show();
+    }
+    if($("#com-office-form").css("display") == "block"){
+      $("#com-office-form #showFurnishedDiv").show();
+    }
+    if($("#com-shop-form").css("display") == "block"){
+      $("#com-shop-form #showFurnishedDiv").show();
+    }
+  }
+  else{
+    if($("#flat-form").css("display") == "block")
+    { 
+      $("#flat-form #showFurnishedDiv").hide();
+    }
+    if($("#land-form").css("display") == "block"){
+      $("#land-form #showFurnishedDiv").hide();
+    }
+    if($("#com-office-form").css("display") == "block"){
+      $("#com-office-form #showFurnishedDiv").hide();
+    }
+    if($("#com-shop-form").css("display") == "block"){
+      $("#com-shop-form #showFurnishedDiv").hide();
+    }
+  }
+})
+$(document).on("change keyup blur", "#total_price", function() {
+  var super_area = $('#flat-form #super_build_up_area').val();
+  var super_area1 = super_area.replace(/,/g, "");
+  var total_price = $('#total_price').val();
+  var total_price1 = total_price.replace(/,/g, "");
+  var dec = (total_price1 / super_area1).toFixed(2); //its convert 10 into 0.10
+  // alert(dec);
+  $('#flat-form #price_per_sq_ft').val(dec);
 });
 </script>
 @endsection

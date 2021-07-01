@@ -9,8 +9,8 @@
 <style>
 .myimg
 {
-    width:100%;
-    height:300px;
+  width:100%;
+  height:300px;
 }
 .card-header-a .card-title-a {
   font-size: 25px;
@@ -24,7 +24,8 @@
   margin:10px;
 }
 #upload_form, #upload_form1, #upload_form2, #upload_form3, #upload_form4, #upload_form5, #upload_form6, #upload_form7, #upload_form8,
-#upload_form9, #upload_form10, #upload_form11, #upload_form12, #upload_form13, #upload_form14, #upload_form15, #upload_form16, #upload_form17, #upload_form18
+#upload_form9, #upload_form10, #upload_form11, #upload_form12, #upload_form13, #upload_form14, #upload_form15, #upload_form16, #upload_form17, #upload_form18,
+#upload_form19, #upload_form20, #upload_form21, #upload_form22
 {
   display:inline-flex;
   flex-wrap:wrap;
@@ -43,19 +44,19 @@
   position:relative;
 }
 .icon{
-    position: absolute;
-    /* left: 0%; */
-    right: 0%;
-    top: -13%;
-    border-radius: 50%;
-    background: black;
-    width: 21px;
-    color: white;
+  position: absolute;
+  /* left: 0%; */
+  right: 0%;
+  top: -13%;
+  border-radius: 50%;
+  background: black;
+  width: 21px;
+  color: white;
 }
 .filelabel i {
-    display: block;
-    font-size: 30px;
-    padding-bottom: 5px;
+  display: block;
+  font-size: 30px;
+  padding-bottom: 5px;
 }
 .filelabel i,
 .filelabel .title {
@@ -70,16 +71,14 @@
   color: #1665c4;
 }
 #FileInput{
-    display:none;
+  display:none;
 }
 .hidden{
-    display:none;
+  display:none;
 }
-
-
 .switch-field {
 	display: flex;
-    flex-wrap:wrap;
+  flex-wrap:wrap;
 	/* margin-bottom: 36px; */
 	overflow: hidden;
 }
@@ -160,17 +159,15 @@
 /* Tab Pane CSS */
 
 nav > .nav.nav-tabs{
-
-border: none;
+  border: none;
   color:#fff;
   background:white;
   border-radius:0;
-
 }
 nav > div a.nav-item.nav-link,
 nav > div a.nav-item.nav-link.active
 {
-border: none;
+  border: none;
   padding: 8px 7px;
   color:black;
   background:white;
@@ -179,15 +176,15 @@ border: none;
 
 nav > div a.nav-item.nav-link.active:after
 {
-content: "";
-position: relative;
-bottom: -40px;
-left: -40%;
-border: 8px solid transparent;
-border-top-color: #1c79f3;
+  content: "";
+  position: relative;
+  bottom: -40px;
+  left: -40%;
+  border: 8px solid transparent;
+  border-top-color: #1c79f3;
 }
 .tab-content{
-background: #fdfdfd;
+  background: #fdfdfd;
   line-height: 25px;
   border: 1px solid #ddd;
   border-top:3px solid #1c79f3;
@@ -198,7 +195,7 @@ background: #fdfdfd;
 nav > div a.nav-item.nav-link:hover,
 nav > div a.nav-item.nav-link:focus
 {
-border: none;
+  border: none;
   background: #1c79f3;
   color:#fff;
   border-radius:0;
@@ -211,10 +208,10 @@ border: none;
   background: #FFF url('{{ asset('142.gif')}}') no-repeat 50%;
 }
 .select2-container .select2-selection--single{
-    height:34px;
+  height:34px;
 }
 .select2-container{
-    width:100%;
+  width:100% !important;
 }
 #country-list{float:left;list-style:none;margin-top:-3px;padding:0;width:190px;position: absolute;z-index:2;}
 #country-list li{padding: 10px; background: #f0f0f0; border-bottom: #bbb9b9 1px solid;}
@@ -228,55 +225,54 @@ border: none;
 $(document).ready(function(){
 	$("#search-box").keyup(function(){
     if( this.value.length > 5 ){
-		$.ajax({
-		type: "GET",
-		url: "{{ route('searchCity') }}",
-		data:'keyword='+$(this).val(),
-		beforeSend: function(){
-			$("#search-box").css("background","#FFF url('{{ asset('35.gif')}}') no-repeat 100%");
-		},
-		success: function(data){
-			$("#suggesstion-box").show();
-			$("#suggesstion-box").html(data);
-			$("#search-box").css("background","#FFF");
-		}
-		});
+      $.ajax({
+        type: "GET",
+        url: "{{ route('searchCity') }}",
+        data:'keyword='+$(this).val(),
+        beforeSend: function(){
+          $("#search-box").css("background","#FFF url('{{ asset('35.gif')}}') no-repeat 100%");
+        },
+        success: function(data){
+          $("#suggesstion-box").show();
+          $("#suggesstion-box").html(data);
+          $("#search-box").css("background","#FFF");
+        }
+      });
     }
 	});
 });
 
 //To select country name
 function selectCountry(val) {
-    $("#search-box").val(val);
-    $("#suggesstion-box").hide();
+  $("#search-box").val(val);
+  $("#suggesstion-box").hide();
 }
-
 // AJAX call for autocomplete 
 $(document).ready(function(){
 	$("#locality").keyup(function(){
     if( this.value.length > 5 ){
-		$.ajax({
-		type: "GET",
-		url: "{{ route('searchLocality') }}",
-		data:'keyword='+$(this).val(),
-		beforeSend: function(){
-			$("#locality").css("background","#FFF url('{{ asset('35.gif')}}') no-repeat 100%");
-		},
-		success: function(data){
-		  //  alert(data);
-			$("#suggesstion-locality").show();
-			$("#suggesstion-locality").html(data);
-			$("#locality").css("background","#FFF");
-		}
-		});
+      $.ajax({
+        type: "GET",
+        url: "{{ route('searchLocality') }}",
+        data:'keyword='+$(this).val(),
+        beforeSend: function(){
+          $("#locality").css("background","#FFF url('{{ asset('35.gif')}}') no-repeat 100%");
+        },
+        success: function(data){
+          //  alert(data);
+          $("#suggesstion-locality").show();
+          $("#suggesstion-locality").html(data);
+          $("#locality").css("background","#FFF");
+        }
+      });
     }
 	});
 });
 
 //To select country name
 function selectLocality(val) {
-    $("#locality").val(val);
-    $("#suggesstion-locality").hide();
+  $("#locality").val(val);
+  $("#suggesstion-locality").hide();
 }
 </script>
 @endsection
@@ -309,8 +305,7 @@ function selectLocality(val) {
     </div>
     <div class="row mt-5">
       <div class="col-sm-12">
-        <div class="row">
-        
+        <div class="row">        
           <div class="col-md-8">
             <form method="POST" action="{{ url('/save-property-rent-post') }}" id="property-form" enctype="multipart/form-data" class="p-5 mb-3" style="border:2px solid #114a88;">
             @csrf
@@ -345,7 +340,7 @@ function selectLocality(val) {
                   <label>Property Type<span class="text-danger">*<span><span  style="color:red" id="pt_err"> </span></label>
                 </div>
                 <div class="form-group col-md-8">
-                  <select id="property_type" class="form-control @error('property_type') is-invalid @enderror" name="property_type">
+                  <select id="property_type" class="form-control sel-status @error('property_type') is-invalid @enderror" name="property_type">
                     <option value="">Choose...</option>
                     <optgroup label="All Residential Property"> 
                     @foreach($type as $t)
@@ -1687,7 +1682,7 @@ function selectLocality(val) {
                   </div>
                   <div class="form-group col-md-6">
                     <label for="">Land Zone<span  style="color:red" id="land_zone_err"> </span></label>
-                    <select name="land_zone" id="land_zone" class="form-control">
+                    <select name="land_zone" id="land_zone" class="form-control sel-status">
                       <option value="">-Select Land Zone-</option>
                       <option value="Industrial">Industrial</option>
                       <option value="Commercial">Commercial</option>
@@ -1703,18 +1698,72 @@ function selectLocality(val) {
                     </select>
                   </div>
                 </div>
-                <div class="form-row">
+                <div class="form-row" id="idealDiv">
                   <div class="form-group col-md-4">
                     <label for="">Ideal For Businesses</label>
                   </div>
                   <div class="form-group col-md-8">
-                    <input type="text" name="ideal_business" class="form-control">
+                    <select name="ideal_business" class="form-control sel-status">
+                      <option value="">-Choose-</option>
+                      <option value="Call Centre/ BPO">Call Centre/ BPO</option>
+                      <option value="Coaching Centre">Coaching Centre</option>
+                      <option value="Private Consultancy">Private Consultancy</option>
+                      <option value="Doctor Clinic">Doctor Clinic</option>
+                      <option value="Pathology">Pathology</option>
+                      <option value="IT / ITES and Related">IT / ITES and Related</option>
+                      <option value="Studio / Production House">Studio / Production House</option>
+                      <option value="Private Office">Private Office</option>
+                      <option value="Individual Business">Individual Business</option>
+                      <option value="Self Employed Business">Self Employed Business</option>
+                      <option value="Boutique">Boutique</option>
+                      <option value="Boutique Hall">Boutique Hall</option>
+                      <option value="Boutique Office">Boutique Office</option>
+                      <option value="Mobile Service Centre">Mobile Service Centre</option>
+                      <option value="Back Office">Back Office</option>
+                      <option value="Departmental Store">Departmental Store</option>
+                      <option value="Corporate office Setup">Corporate office Setup</option>
+                      <option value="Women Sefety">Women Sefety</option>
+                      <option value="Sales/ Marketing Office">Sales/ Marketing Office</option>
+                      <option value="High security setup">High security setup</option>
+                      <option value="Lounge">Lounge</option>
+                      <option value="Health care">Health care</option>
+                      <option value="Cake Shop">Cake Shop</option>
+                      <option value="Research Centre">Research Centre</option>
+                      <option value="Job Consultancy">Job Consultancy</option>
+                      <option value="Logistic Back office">Logistic Back office</option>
+                      <option value="Bank">Bank</option>
+                      <option value="Financial Institute">Financial Institute</option>
+                      <option value="Govt. Offices">Govt. Offices</option>
+                      <option value="Packaging Back office">Packaging Back office</option>
+                      <option value="Private Company">Private Company</option>
+                      <option value="Advertising ">Advertising</option>
+                      <option value="Lawyers office">Lawyers office</option>
+                      <option value="Law Chamber">Law Chamber</option>
+                      <option value="Law Company">Law Company</option>
+                      <option value="Showroom">Showroom</option>
+                      <option value="Tax Consultants">Tax Consultants</option>
+                      <option value="Travel Agency">Travel Agency</option>
+                      <option value="Grocery Shop">Grocery Shop</option>
+                      <option value="Gold / Jewelers Shop">Gold / Jewelers Shop</option>
+                      <option value="Cloth / Garment Shop">Cloth / Garment Shop</option>
+                      <option value="Cafe / Restaurant">Cafe / Restaurant</option>
+                      <option value="Food Street">Food Street</option>
+                      <option value="Automobile">Automobile</option>
+                      <option value="Electronic">Electronic</option>
+                      <option value="Electrical">Electrical</option>
+                      <option value="Seeds / Fertilizer">Seeds / Fertilizer</option>
+                      <option value="Dairy Product">Dairy Product</option>
+                      <option value="Hardware / Building Material">Hardware / Building Material</option>
+                      <option value="Transport Hub">Transport Hub</option>
+                      <option value="Pharmaceutical">Pharmaceutical</option>
+                      <option value="Medical / Hospital">Medical / Hospital</option>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <h6>Property Feature</h6>
                 </div>
-                <div class="form-row">
+                <div class="form-row commercialDiv">
                   <div class="form-group col-md-4">
                     <label for="">Total Floors<span  style="color:red" id="total_floor1_err"> </span></label>
                   </div>
@@ -1727,7 +1776,7 @@ function selectLocality(val) {
                     </select>
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group commercialDiv">
                   <div class="row">
                     <div class="col-md-4">
                       <label>Furnished Status<span class="text-danger">*</span><span  style="color:red" id="furnishing_err"> </span>
@@ -1749,127 +1798,38 @@ function selectLocality(val) {
                   @enderror
                 </div>
                 <div class="form-row hidden" id="showFurnishedDiv">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>AC</label>
-                                <select name="ac" class="form-control" id="ac">
-                                    <option value="">-Select-</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="3+">3+</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Bed</label>
-                                <select name="bed" class="form-control" id="bed">
-                                    <option value="">-Select-</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="3+">3+</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Wardrobe</label>
-                                <select name="wardrobe" class="form-control" id="wardrobe">
-                                    <option value="">-Select-</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="3+">3+</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>TV</label>
-                                <select name="tv" class="form-control" id="tv">
-                                    <option value="">-Select-</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="3+">3+</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-check-inline mb-3">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Fridge">Fridge
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-check-inline mb-3">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Sofa">Sofa
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-check-inline mb-3">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Washing Machine">Washing Machine
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-check-inline mb-3">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Dining Table">Dining Table
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-check-inline mb-3">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Microwave">Microwave
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-check-inline mb-3">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Gas Connection">Gas Connection
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
                   <div class="row">
-                    <div class="col-md-4">
-                      <label>Washroom <span class="text-danger">*</span>
-                      </label>
-                    </div>
-                    <div class="col-md-8">
-                      <div class="switch-field">
-                        <input type="radio" id="inlineRadio6" name="bathroom" value="1" @if(old('bathroom') == "1") checked @endif/>
-                        <label for="inlineRadio6">1</label>
-                        <input type="radio" id="inlineRadio7" name="bathroom" value="2" @if(old('bathroom') == "2") checked @endif/>
-                        <label for="inlineRadio7">2</label>
-                        <input type="radio" id="inlineRadio8" name="bathroom" value="3" @if(old('bathroom') == "3") checked @endif/>
-                        <label for="inlineRadio8">3</label>
-                        <input type="radio" id="inlineRadio9" name="bathroom" value="4" @if(old('bathroom') == "4") checked @endif/>
-                        <label for="inlineRadio9">4</label>
-                        <input type="radio" id="inlineRadio10" name="bathroom" value="5" @if(old('bathroom') == "5") checked @endif/>
-                        <label for="inlineRadio10">5</label>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Washrooms</label>
+                        <select name="bathroom" class="form-control" id="bathroom">
+                          <option value="">-Select-</option>
+                          @for($i=1; $i < 15; $i++)
+                          <option value="{{ $i }}">{{ $i }}</option>
+                          @endfor
+                        </select>
                       </div>
                     </div>
-                  </div>
-                  @error('bathroom')
-                  <span class="text-danger" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
-                </div>
-                <div class="form-row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Number of Seats</label>
+                        <input type="number" name="no_of_seat" class="form-control" id="no_of_seat">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Cabin/Meeting Rooms</label>
+                        <select name="meeting_room" class="form-control" id="meeting_room">
+                          <option value="">-Select-</option>
+                          @for($i=1; $i < 15; $i++)
+                          <option value="{{ $i }}">{{ $i }}</option>
+                          @endfor
+                        </select>
+                      </div>
+                    </div>
+                  </div>  
+                </div>                
+                <div class="form-row commercialDiv">
                   <div class="form-group col-md-6">
                     <label for="">Willing to modify interiors</label>
                   </div>
@@ -1894,7 +1854,7 @@ function selectLocality(val) {
                     <input type="number" class="form-control" name="lock_period" max="2">
                   </div>
                 </div>
-                <div class="form-row">
+                <div class="form-row commercialDiv">
                   <div class="form-group col-md-6">
                     <label for="">Personal Washroom</label>
                   </div>
@@ -1911,7 +1871,7 @@ function selectLocality(val) {
                     </div>
                   </div>
                 </div>
-                <div class="form-row">
+                <div class="form-row commercialDiv">
                   <div class="form-group col-md-6">
                     <label for="">Pantry/Cafeteria</label>
                   </div>
@@ -1936,7 +1896,104 @@ function selectLocality(val) {
                 <div class="form-group">
                   <h6>Area</h6>
                 </div>
-                <div class="form-row">
+                <div class="form-row" id ="plot_details">
+                  <div class="form-group col-md-5">
+                    <label for="">Plot Area<span class="text-danger">*</span><span  style="color:red" id="plot_err"> </span></label>
+                    @error('plot_area')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                  <div class="form-group col-md-4">
+                    <input type="number" class="form-control @error('plot_area') invalid-feedback @enderror" name="plot_area" id="plot_area" value="{{ old('plot_area') }}">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <select name="plot_unit" id="plot_unit" class="form-control">
+                      <option value="Sq-ft">Sq-ft</option>
+                      <option value="Sq-yrd">Sq-yrd</option>
+                      <option value="Sq-m">Sq-m</option>
+                      <option value="Acre">Acre</option>
+                      <option value="Bigha">Bigha</option>
+                      <option value="Hectare">Hectare</option>
+                      <option value="Marla">Marla</option>
+                      <option value="Kanal">Kanal</option>
+                      <option value="Biswa1">Biswa1</option>
+                      <option value="Biswa2">Biswa2</option>
+                      <option value="Ground">Ground</option>
+                      <option value="Aankadam">Aankadam</option>
+                      <option value="Rood">Rood</option>
+                      <option value="Chatak">Chatak</option>
+                      <option value="Kottah">Kottah</option>
+                      <option value="Cent">Cent</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-5">
+                    <label for="">Plot Length<span class="text-danger">*</span><span  style="color:red" id="plot_length_err"> </span></label>
+                    @error('plot_length')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                  <div class="form-group col-md-4">
+                    <input type="number" class="form-control @error('plot_length') invalid-feedback @enderror" name="plot_length" id="plot_length" value="{{ old('plot_length') }}">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <select name="plot_length_unit" id="plot_length_unit" class="form-control">
+                      <option value="Sq-ft">Sq-ft</option>
+                      <option value="Sq-yrd">Sq-yrd</option>
+                      <option value="Sq-m">Sq-m</option>
+                      <option value="Acre">Acre</option>
+                      <option value="Bigha">Bigha</option>
+                      <option value="Hectare">Hectare</option>
+                      <option value="Marla">Marla</option>
+                      <option value="Kanal">Kanal</option>
+                      <option value="Biswa1">Biswa1</option>
+                      <option value="Biswa2">Biswa2</option>
+                      <option value="Ground">Ground</option>
+                      <option value="Aankadam">Aankadam</option>
+                      <option value="Rood">Rood</option>
+                      <option value="Chatak">Chatak</option>
+                      <option value="Kottah">Kottah</option>
+                      <option value="Cent">Cent</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-5">
+                    <label for="">Plot Width<span class="text-danger">*</span><span  style="color:red" id="plot_width_err"> </span></label>
+                    @error('plot_width')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                  <div class="form-group col-md-4">
+                    <input type="text" class="form-control @error('plot_width') invalid-feedback @enderror" name="plot_width" id="plot_width" value="{{ old('plot_width') }}">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <select name="plot_width_unit" id="plot_width_unit" class="form-control">
+                      <option value="Sq-ft">Sq-ft</option>
+                      <option value="Sq-yrd">Sq-yrd</option>
+                      <option value="Sq-m">Sq-m</option>
+                      <option value="Acre">Acre</option>
+                      <option value="Bigha">Bigha</option>
+                      <option value="Hectare">Hectare</option>
+                      <option value="Marla">Marla</option>
+                      <option value="Kanal">Kanal</option>
+                      <option value="Biswa1">Biswa1</option>
+                      <option value="Biswa2">Biswa2</option>
+                      <option value="Ground">Ground</option>
+                      <option value="Aankadam">Aankadam</option>
+                      <option value="Rood">Rood</option>
+                      <option value="Chatak">Chatak</option>
+                      <option value="Kottah">Kottah</option>
+                      <option value="Cent">Cent</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row commercialDiv">
                   <div class="form-group col-md-5">
                     <label for="">Super Build Up Area<span class="text-danger">*</span><span  style="color:red" id="super_area_err"> </span></label>
                     @error('super_build_up_area')
@@ -2056,7 +2113,7 @@ function selectLocality(val) {
                     </div>
                   </div>
                 </div>
-                <div class="form-row">
+                <div class="form-row commercialDiv">
                   <div class="form-group col-md-6">
                     <label>Age of Construction <span class="text-danger">*</span></label>
                     <select class="form-control @error('age_of_construction') is-invalid @enderror" id="age_of_construction" name="age_of_construction">
@@ -2208,90 +2265,126 @@ function selectLocality(val) {
                 <div class="form-group">
                   <h6>Photos</h6>
                 </div>
-                <div class="form-group">
+                <div class="form-group commercialDiv">
                   <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                       <a class="nav-item nav-link active" id="nav-home1-tab" data-toggle="tab" href="#nav-home1" role="tab" aria-controls="nav-home1" aria-selected="true">Exterior View</a>
-                      <a class="nav-item nav-link" id="nav-profile1-tab" data-toggle="tab" href="#nav-profile1" role="tab" aria-controls="nav-profile1" aria-selected="false">Living Room</a>
-                      <a class="nav-item nav-link" id="nav-contact1-tab" data-toggle="tab" href="#nav-contact1" role="tab" aria-controls="nav-contact1" aria-selected="false">Bedroom</a>
-                      <a class="nav-item nav-link" id="nav-about1-tab" data-toggle="tab" href="#nav-about1" role="tab" aria-controls="nav-about1" aria-selected="false">Bathrooms</a>
-                      <a class="nav-item nav-link" id="nav-kitchen1-tab" data-toggle="tab" href="#nav-kitchen1" role="tab" aria-controls="nav-kitchen1" aria-selected="false">Kitchen</a>
+                      <a class="nav-item nav-link" id="nav-profile1-tab" data-toggle="tab" href="#nav-profile1" role="tab" aria-controls="nav-profile1" aria-selected="false">Common Area</a>
+                      <a class="nav-item nav-link" id="nav-contact1-tab" data-toggle="tab" href="#nav-contact1" role="tab" aria-controls="nav-contact1" aria-selected="false">Washrrom</a>
+                      <a class="nav-item nav-link" id="nav-about1-tab" data-toggle="tab" href="#nav-about1" role="tab" aria-controls="nav-about1" aria-selected="false">Floor Plan</a>
+                      <a class="nav-item nav-link" id="nav-kitchen1-tab" data-toggle="tab" href="#nav-kitchen1" role="tab" aria-controls="nav-kitchen1" aria-selected="false">Others</a>
                     </div>
                   </nav>
                   <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-home1" role="tabpanel" aria-labelledby="nav-home1-tab">
                       <div id="upload_form5">
-                          <label class="filelabel p_file">
+                        <label class="filelabel p_file">
                           <div class="icon">X</div>
-                          <i class="fa fa-paperclip" id="icon1">
-                          </i>
-                          
-                          <span class="title1">
-                              Add Photo
-                          </span>
+                          <i class="fa fa-paperclip" id="icon1"></i>
+                          <span class="title1">Add Photo</span>
                           <input class="FileUpload1" id="FileInput" name="exterior_photos[]" type="file"/>
                           <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
-                          </label>
+                        </label>
                       </div>
                     </div>
                     <div class="tab-pane fade" id="nav-profile1" role="tabpanel" aria-labelledby="nav-profile1-tab">
                       <div id="upload_form6">
-                          <label class="filelabel p_file">
+                        <label class="filelabel p_file">
                           <div class="icon">X</div>
-                          <i class="fa fa-paperclip" id="icon1">
-                          </i>
-                          
-                          <span class="title1">
-                              Add Photo
-                          </span>
-                          <input class="FileUpload1" id="FileInput" name="living_photos[]" type="file"/>
+                          <i class="fa fa-paperclip" id="icon1"></i>                          
+                          <span class="title1">Add Photo</span>
+                          <input class="FileUpload1" id="FileInput" name="common_area[]" type="file"/>
                           <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
-                          </label>
+                        </label>
                       </div>
                     </div>
                     <div class="tab-pane fade" id="nav-contact1" role="tabpanel" aria-labelledby="nav-contact1-tab">
                       <div id="upload_form7">
-                          <label class="filelabel p_file">
+                        <label class="filelabel p_file">
                           <div class="icon">X</div>
-                          <i class="fa fa-paperclip" id="icon1">
-                          </i>
-                          
-                          <span class="title1">
-                              Add Photo
-                          </span>
-                          <input class="FileUpload1" id="FileInput" name="bedroom_photos[]" type="file"/>
+                          <i class="fa fa-paperclip" id="icon1"></i>
+                          <span class="title1">Add Photo</span>
+                          <input class="FileUpload1" id="FileInput" name="bathroom_photos[]" type="file"/>
                           <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
-                          </label>
+                        </label>
                       </div>
                     </div>
                     <div class="tab-pane fade" id="nav-about1" role="tabpanel" aria-labelledby="nav-about1-tab">
                       <div id="upload_form8">
-                          <label class="filelabel p_file">
+                        <label class="filelabel p_file">
                           <div class="icon">X</div>
-                          <i class="fa fa-paperclip" id="icon1">
-                          </i>
-                          
-                          <span class="title1">
-                              Add Photo
-                          </span>
-                          <input class="FileUpload1" id="FileInput" name="bathroom_photos[]" type="file"/>
+                          <i class="fa fa-paperclip" id="icon1"></i>
+                          <span class="title1">Add Photo</span>
+                          <input class="FileUpload1" id="FileInput" name="floor_plan_photos[]" type="file"/>
                           <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
-                          </label>
+                        </label>
                       </div>
                     </div>
                     <div class="tab-pane fade" id="nav-kitchen1" role="tabpanel" aria-labelledby="nav-kitchen1-tab">
                       <div id="upload_form9">
-                          <label class="filelabel p_file">
+                        <label class="filelabel p_file">
                           <div class="icon">X</div>
-                          <i class="fa fa-paperclip" id="icon1">
-                          </i>
-                          
-                          <span class="title1">
-                              Add Photo
-                          </span>
-                          <input class="FileUpload1" id="FileInput" name="kitchen_photos[]" type="file"/>
+                          <i class="fa fa-paperclip" id="icon1"></i>          
+                          <span class="title1">Add Photo</span>
+                          <input class="FileUpload1" id="FileInput" name="other_photos[]" type="file"/>
                           <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
-                          </label>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group imageDiv">
+                  <nav>
+                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                      <a class="nav-item nav-link active" id="nav-home6-tab" data-toggle="tab" href="#nav-home6" role="tab" aria-controls="nav-home6" aria-selected="true">Site View</a>
+                      <a class="nav-item nav-link" id="nav-profile6-tab" data-toggle="tab" href="#nav-profile6" role="tab" aria-controls="nav-profile6" aria-selected="false">Master Plan</a>
+                      <a class="nav-item nav-link" id="nav-contact6-tab" data-toggle="tab" href="#nav-contact6" role="tab" aria-controls="nav-contact6" aria-selected="false">Location Map</a>
+                      <a class="nav-item nav-link" id="nav-kitchen6-tab" data-toggle="tab" href="#nav-kitchen6" role="tab" aria-controls="nav-kitchen6" aria-selected="false">Others</a>
+                    </div>
+                  </nav>
+                  <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home6" role="tabpanel" aria-labelledby="nav-home6-tab">
+                      <div id="upload_form19">
+                        <label class="filelabel p_file">
+                          <div class="icon">X</div>
+                          <i class="fa fa-paperclip" id="icon1"></i>
+                          <span class="title1">Add Photo</span>
+                          <input class="FileUpload1" id="FileInput" name="site_photos[]" type="file"/>
+                          <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                        </label>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile6" role="tabpanel" aria-labelledby="nav-profile6-tab">
+                      <div id="upload_form20">
+                        <label class="filelabel p_file">
+                          <div class="icon">X</div>
+                          <i class="fa fa-paperclip" id="icon1"></i>                          
+                          <span class="title1">Add Photo</span>
+                          <input class="FileUpload1" id="FileInput" name="master_photos[]" type="file"/>
+                          <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                        </label>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-contact6" role="tabpanel" aria-labelledby="nav-contact6-tab">
+                      <div id="upload_form21">
+                        <label class="filelabel p_file">
+                          <div class="icon">X</div>
+                          <i class="fa fa-paperclip" id="icon1"></i>
+                          <span class="title1">Add Photo</span>
+                          <input class="FileUpload1" id="FileInput" name="location_photos[]" type="file"/>
+                          <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                        </label>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-kitchen6" role="tabpanel" aria-labelledby="nav-kitchen6-tab">
+                      <div id="upload_form22">
+                        <label class="filelabel p_file">
+                          <div class="icon">X</div>
+                          <i class="fa fa-paperclip" id="icon1"></i>          
+                          <span class="title1">Add Photo</span>
+                          <input class="FileUpload1" id="FileInput" name="others_photos[]" type="file"/>
+                          <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                        </label>
                       </div>
                     </div>
                   </div>
@@ -2322,7 +2415,7 @@ function selectLocality(val) {
                       </span>
                       @enderror
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-6 commercialDiv">
                       <label for="">Lifts in the Tower </label>
                       <select name="lift_in_tower" id="lift_in_tower" class="form-control @error('lift_in_tower') invalid-feedback @enderror">
                         <option value="">-Select-</option>
@@ -2342,9 +2435,9 @@ function selectLocality(val) {
                       @enderror
                     </div>
                   </div>
-                  <div class="form-row">
+                  <div class="form-row commercialDiv">
                     <div class="form-group col-md-6">
-                      <label for="">Offices on the Floor</label>
+                      <label for="">Shop on the Floor</label>
                     </div>
                     <div class="form-group col-md-6">
                       <input type="number" class="form-control" name="office_floor">
@@ -2367,7 +2460,7 @@ function selectLocality(val) {
                       </div>
                     </div>
                   </div>
-                  <div class="form-row">
+                  <div class="form-row commercialDiv">
                     <div class="form-group col-md-6">
                       <label for="">Building Class</label>
                       <select name="building_class" id="" class="form-control">
@@ -2429,160 +2522,246 @@ function selectLocality(val) {
                     </div>
                   </div>
                   <div class="form-group">
+                    <h6>Overlooking</h6>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="overlooking[]" value="Garden/Park">Garden/Park
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="overlooking[]" value="Main Road">Main Road
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="overlooking[]" value="Not Available">Not Available
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <h6>Car Parking</h6>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <div class="form-check-inline">
+                        <label class="form-check-label" style="display:-webkit-inline-box">
+                          <input type="checkbox" class="form-check-input" name="car_parking[]" value="Covered">Covered &nbsp;
+                          <div class="hidden" id="showCoveredDiv">
+                            <input type="number" placeholder="Enter No." name="cover_no" id="cover_no">
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <div class="form-check-inline">
+                        <label class="form-check-label" style="display:-webkit-inline-box">
+                          <input type="checkbox" class="form-check-input" name="car_parking[]" value="Open">Open &nbsp;
+                          <div class="hidden" id="showOpenDiv">
+                            <input type="number" placeholder="Enter No." name="open_no" id="open_no">
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="car_parking[]" value="None">None
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
                     <h6>Amenities</h6>
                   </div>
                   <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <div class="form-check-inline">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Air Conditioner">Air Conditioner
-                            </label>
-                        </div>
+                    <div class="form-group col-md-4 commercialDiv">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="aminities[]" value="Air Conditioner">Air Conditioner
+                        </label>
+                      </div>
                     </div>
-                    <div class="form-group col-md-4">
-                        <div class="form-check-inline">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" name="aminities[]" value="CCTV Camera">CCTV Camera
-                            </label>
-                        </div>
+                    <div class="form-group col-md-4 commercialDiv">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="aminities[]" value="CCTV Camera">CCTV Camera
+                        </label>
+                      </div>
                     </div>
-                    <div class="form-group col-md-4">
-                        <div class="form-check-inline">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Fire Sprinklers">Fire Sprinklers
-                            </label>
-                        </div>
+                    <div class="form-group col-md-4 commercialDiv">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="aminities[]" value="Fire Sprinklers">Fire Sprinklers
+                        </label>
+                      </div>
                     </div>
-                    <div class="form-group col-md-4">
-                        <div class="form-check-inline">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Cafeteria Food Court">Cafeteria Food Court
-                            </label>
-                        </div>
+                    <div class="form-group col-md-4 commercialDiv">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="aminities[]" value="Cafeteria Food Court">Cafeteria Food Court
+                        </label>
+                      </div>
                     </div>
-                    <div class="form-group col-md-4">
-                        <div class="form-check-inline">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Projector">Projector
-                            </label>
-                        </div>
+                    <div class="form-group col-md-4 commercialDiv">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="aminities[]" value="Projector">Projector
+                        </label>
+                      </div>
                     </div>
-                    <div class="form-group col-md-4">
-                        <div class="form-check-inline">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Conference Room">Conference Room
-                            </label>
-                        </div>
+                    <div class="form-group col-md-4 commercialDiv">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="aminities[]" value="Conference Room">Conference Room
+                        </label>
+                      </div>
                     </div>
-                    <div class="form-group col-md-4">
-                        <div class="form-check-inline">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Intercom Facility">Intercom Facility
-                            </label>
-                        </div>
+                    <div class="form-group col-md-4 commercialDiv">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="aminities[]" value="Intercom Facility">Intercom Facility
+                        </label>
+                      </div>
                     </div>
-                    <div class="form-group col-md-4">
-                        <div class="form-check-inline">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Internet Wi-Fi Facility">Internet Wi-Fi Facility
-                            </label>
-                        </div>
+                    <div class="form-group col-md-4 commercialDiv">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="aminities[]" value="Internet Wi-Fi Facility">Internet Wi-Fi Facility
+                        </label>
+                      </div>
                     </div>
-                    <div class="form-group col-md-4">
-                        <div class="form-check-inline">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Tea/Coffee">Tea/Coffee
-                            </label>
-                        </div>
+                    <div class="form-group col-md-4 commercialDiv">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="aminities[]" value="Tea/Coffee">Tea/Coffee
+                        </label>
+                      </div>
                     </div>
-                    <div class="form-group col-md-4">
-                        <div class="form-check-inline">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Printer">Printer
-                            </label>
-                        </div>
+                    <div class="form-group col-md-4 commercialDiv">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="aminities[]" value="Printer">Printer
+                        </label>
+                      </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4 commercialDiv">
                         <div class="form-check-inline">
                             <label class="form-check-label">
                               <input type="checkbox" class="form-check-input" name="aminities[]" value="Lift">Lift
                             </label>
                         </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4 commercialDiv">
                         <div class="form-check-inline">
                             <label class="form-check-label">
                               <input type="checkbox" class="form-check-input" name="aminities[]" value="Security">Security
                             </label>
                         </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4 commercialDiv">
                         <div class="form-check-inline">
                             <label class="form-check-label">
                               <input type="checkbox" class="form-check-input" name="aminities[]" value="Pipe Gas">Pipe Gas
                             </label>
                         </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4 commercialDiv">
                         <div class="form-check-inline">
                             <label class="form-check-label">
                               <input type="checkbox" class="form-check-input" name="aminities[]" value="Power Back Up">Power Back Up
                             </label>
                         </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4 commercialDiv">
                         <div class="form-check-inline">
                             <label class="form-check-label">
                               <input type="checkbox" class="form-check-input" name="aminities[]" value="RO Water System">RO Water System
                             </label>
                         </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4 commercialDiv">
                         <div class="form-check-inline">
                             <label class="form-check-label">
                               <input type="checkbox" class="form-check-input" name="aminities[]" value="Reserve Parking">Reserve Parking
                             </label>
                         </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4 commercialDiv">
                         <div class="form-check-inline">
                             <label class="form-check-label">
                               <input type="checkbox" class="form-check-input" name="aminities[]" value="Services/ Goods Lift">Services/ Goods Lift
                             </label>
                         </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4 commercialDiv">
                         <div class="form-check-inline">
                             <label class="form-check-label">
                               <input type="checkbox" class="form-check-input" name="aminities[]" value="Swimming Pool">Swimming Pool
                             </label>
                         </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4 commercialDiv">
                         <div class="form-check-inline">
                             <label class="form-check-label">
                               <input type="checkbox" class="form-check-input" name="aminities[]" value="Whiteboard">Whiteboard
                             </label>
                         </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4 commercialDiv">
                         <div class="form-check-inline">
                             <label class="form-check-label">
                               <input type="checkbox" class="form-check-input" name="aminities[]" value="Visitors Parking">Visitors Parking
                             </label>
                         </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4 commercialDiv">
                         <div class="form-check-inline">
                             <label class="form-check-label">
                               <input type="checkbox" class="form-check-input" name="aminities[]" value="Wheelchair Accessibility">Wheelchair Accessibility
                             </label>
                         </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4 commercialDiv">
                         <div class="form-check-inline">
                             <label class="form-check-label">
                               <input type="checkbox" class="form-check-input" name="aminities[]" value="Water Storage">Water Storage
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <div class="form-check-inline">
+                          <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" name="aminities[]" value="Security">Security 
+                          </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Reserve Parking">Reserve Parking 
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Visitors Parking">Visitors Parking 
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Water Storage">Water Storage 
                             </label>
                         </div>
                     </div>
@@ -2605,6 +2784,16 @@ function selectLocality(val) {
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-4 mb-3">
+                      <?php 
+                        $ext = pathinfo(Auth::user()->avatar, PATHINFO_EXTENSION);
+                      ?>
+                      @if($ext == "")
+                      <img src="{{ Auth::user()->avatar }}" alt="" class="img-fluid rounded-circle">
+                      @else
+                      <img src="{{ asset(Auth::user()->avatar) }}" alt="" class="img-fluid rounded-circle">
+                      @endif
+                    </div>
+                    <div class="form-group col-md-8 mb-3">
                       <label>Name<span class="text-danger">*</span></label>
                       <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"  name="name" value="{{ Auth::user()->name }}">
                       @error('name')
@@ -2613,7 +2802,7 @@ function selectLocality(val) {
                       </span>
                       @enderror
                     </div>
-                    <div class="form-group col-md-4 mb-3">
+                    <div class="form-group col-md-6 mb-3">
                       <label>Email<span class="text-danger">*</span></label>
                       <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"  name="email" value="{{ Auth::user()->email }}">
                       @error('email')
@@ -2622,7 +2811,7 @@ function selectLocality(val) {
                       </span>
                       @enderror
                     </div>
-                    <div class="form-group col-md-4 mb-3">
+                    <div class="form-group col-md-6 mb-3">
                       <label>Mobile Number<span class="text-danger">*</span></label>
                       <input type="text" class="form-control @error('mobile_no') is-invalid @enderror" id="mobile_no"  name="mobile_no" value="{{ Auth::user()->mobile_no }}">
                       @error('mobile_no')
@@ -2758,125 +2947,37 @@ function selectLocality(val) {
                   @enderror
                 </div>
                 <div class="form-row hidden" id="showFurnishedDiv">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>AC</label>
-                                <select name="ac" class="form-control" id="ac">
-                                    <option value="">-Select-</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="3+">3+</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Bed</label>
-                                <select name="bed" class="form-control" id="bed">
-                                    <option value="">-Select-</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="3+">3+</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Wardrobe</label>
-                                <select name="wardrobe" class="form-control" id="wardrobe">
-                                    <option value="">-Select-</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="3+">3+</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>TV</label>
-                                <select name="tv" class="form-control" id="tv">
-                                    <option value="">-Select-</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="3+">3+</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-check-inline mb-3">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Fridge">Fridge
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-check-inline mb-3">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Sofa">Sofa
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-check-inline mb-3">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Washing Machine">Washing Machine
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-check-inline mb-3">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Dining Table">Dining Table
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-check-inline mb-3">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Microwave">Microwave
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-check-inline mb-3">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Gas Connection">Gas Connection
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
                   <div class="row">
-                    <div class="col-md-4">
-                      <label>Washroom <span class="text-danger">*</span></label>
-                    </div>
-                    <div class="col-md-8">
-                      <div class="switch-field">
-                        <input type="radio" id="inlineRadio11" name="bathroom" value="1" @if(old('bathroom') == "1") checked @endif/>
-                        <label for="inlineRadio11">1</label>
-                        <input type="radio" id="inlineRadio12" name="bathroom" value="2" @if(old('bathroom') == "2") checked @endif/>
-                        <label for="inlineRadio12">2</label>
-                        <input type="radio" id="inlineRadio13" name="bathroom" value="3" @if(old('bathroom') == "3") checked @endif/>
-                        <label for="inlineRadio13">3</label>
-                        <input type="radio" id="inlineRadio14" name="bathroom" value="4" @if(old('bathroom') == "4") checked @endif/>
-                        <label for="inlineRadio14">4</label>
-                        <input type="radio" id="inlineRadio15" name="bathroom" value="5" @if(old('bathroom') == "5") checked @endif/>
-                        <label for="inlineRadio15">5</label>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Washrooms</label>
+                        <select name="bathroom" class="form-control" id="bathroom">
+                          <option value="">-Select-</option>
+                          @for($i=1; $i < 15; $i++)
+                          <option value="{{ $i }}">{{ $i }}</option>
+                          @endfor
+                        </select>
                       </div>
                     </div>
-                  </div>
-                  @error('bathroom')
-                  <span class="text-danger" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
-                </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Number of Seats</label>
+                        <input type="number" name="no_of_seat" class="form-control" id="no_of_seat">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Cabin/Meeting Rooms</label>
+                        <select name="meeting_room" class="form-control" id="meeting_room">
+                          <option value="">-Select-</option>
+                          @for($i=1; $i < 15; $i++)
+                          <option value="{{ $i }}">{{ $i }}</option>
+                          @endfor
+                        </select>
+                      </div>
+                    </div>
+                  </div>  
+                </div>  
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="">Lock in Period (In Years)</label>
@@ -3265,10 +3366,10 @@ function selectLocality(val) {
                   <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                       <a class="nav-item nav-link active" id="nav-home2-tab" data-toggle="tab" href="#nav-home2" role="tab" aria-controls="nav-home2" aria-selected="true">Exterior View</a>
-                      <a class="nav-item nav-link" id="nav-profile2-tab" data-toggle="tab" href="#nav-profile2" role="tab" aria-controls="nav-profile2" aria-selected="false">Living Room</a>
-                      <a class="nav-item nav-link" id="nav-contact2-tab" data-toggle="tab" href="#nav-contact2" role="tab" aria-controls="nav-contact2" aria-selected="false">Bedroom</a>
-                      <a class="nav-item nav-link" id="nav-about2-tab" data-toggle="tab" href="#nav-about2" role="tab" aria-controls="nav-about2" aria-selected="false">Bathrooms</a>
-                      <a class="nav-item nav-link" id="nav-kitchen2-tab" data-toggle="tab" href="#nav-kitchen2" role="tab" aria-controls="nav-kitchen2" aria-selected="false">Kitchen</a>
+                      <a class="nav-item nav-link" id="nav-profile2-tab" data-toggle="tab" href="#nav-profile2" role="tab" aria-controls="nav-profile2" aria-selected="false">Common Area</a>
+                      <a class="nav-item nav-link" id="nav-contact2-tab" data-toggle="tab" href="#nav-contact2" role="tab" aria-controls="nav-contact2" aria-selected="false">Washroom</a>
+                      <a class="nav-item nav-link" id="nav-about2-tab" data-toggle="tab" href="#nav-about2" role="tab" aria-controls="nav-about2" aria-selected="false">Floor Plan</a>
+                      <a class="nav-item nav-link" id="nav-kitchen2-tab" data-toggle="tab" href="#nav-kitchen2" role="tab" aria-controls="nav-kitchen2" aria-selected="false">Others</a>
                     </div>
                   </nav>
                   <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
@@ -3289,7 +3390,7 @@ function selectLocality(val) {
                           <div class="icon">X</div>
                           <i class="fa fa-paperclip" id="icon1"></i>
                           <span class="title1">Add Photo</span>
-                          <input class="FileUpload1" id="FileInput" name="living_photos[]" type="file"/>
+                          <input class="FileUpload1" id="FileInput" name="common_area[]" type="file"/>
                           <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                         </label>
                       </div>
@@ -3300,7 +3401,7 @@ function selectLocality(val) {
                           <div class="icon">X</div>
                           <i class="fa fa-paperclip" id="icon1"></i>
                           <span class="title1">Add Photo</span>
-                          <input class="FileUpload1" id="FileInput" name="bedroom_photos[]" type="file"/>
+                          <input class="FileUpload1" id="FileInput" name="bathroom_photos[]" type="file"/>
                           <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                         </label>
                       </div>
@@ -3311,7 +3412,7 @@ function selectLocality(val) {
                           <div class="icon">X</div>
                           <i class="fa fa-paperclip" id="icon1"></i>
                           <span class="title1">Add Photo</span>
-                          <input class="FileUpload1" id="FileInput" name="bathroom_photos[]" type="file"/>
+                          <input class="FileUpload1" id="FileInput" name="floor_plan_photos[]" type="file"/>
                           <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                         </label>
                       </div>
@@ -3322,7 +3423,7 @@ function selectLocality(val) {
                           <div class="icon">X</div>
                           <i class="fa fa-paperclip" id="icon1"></i>
                           <span class="title1">Add Photo</span>
-                          <input class="FileUpload1" id="FileInput" name="kitchen_photos[]" type="file"/>
+                          <input class="FileUpload1" id="FileInput" name="other_photos[]" type="file"/>
                           <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                         </label>
                       </div>
@@ -3702,6 +3803,16 @@ function selectLocality(val) {
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-4 mb-3">
+                      <?php 
+                        $ext = pathinfo(Auth::user()->avatar, PATHINFO_EXTENSION);
+                      ?>
+                      @if($ext == "")
+                      <img src="{{ Auth::user()->avatar }}" alt="" class="img-fluid rounded-circle">
+                      @else
+                      <img src="{{ asset(Auth::user()->avatar) }}" alt="" class="img-fluid rounded-circle">
+                      @endif
+                    </div>
+                    <div class="form-group col-md-8 mb-3">
                       <label>Name<span class="text-danger">*</span></label>
                       <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"  name="name" value="{{ Auth::user()->name }}">
                       @error('name')
@@ -3710,7 +3821,7 @@ function selectLocality(val) {
                       </span>
                       @enderror
                     </div>
-                    <div class="form-group col-md-4 mb-3">
+                    <div class="form-group col-md-6 mb-3">
                       <label>Email<span class="text-danger">*</span></label>
                       <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"  name="email" value="{{ Auth::user()->email }}">
                       @error('email')
@@ -3719,7 +3830,7 @@ function selectLocality(val) {
                       </span>
                       @enderror
                     </div>
-                    <div class="form-group col-md-4 mb-3">
+                    <div class="form-group col-md-6 mb-3">
                       <label>Mobile Number<span class="text-danger">*</span></label>
                       <input type="text" class="form-control @error('mobile_no') is-invalid @enderror" id="mobile_no"  name="mobile_no" value="{{ Auth::user()->mobile_no }}">
                       @error('mobile_no')
@@ -4179,6 +4290,16 @@ function selectLocality(val) {
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-4 mb-3">
+                      <?php 
+                        $ext = pathinfo(Auth::user()->avatar, PATHINFO_EXTENSION);
+                      ?>
+                      @if($ext == "")
+                      <img src="{{ Auth::user()->avatar }}" alt="" class="img-fluid rounded-circle">
+                      @else
+                      <img src="{{ asset(Auth::user()->avatar) }}" alt="" class="img-fluid rounded-circle">
+                      @endif
+                    </div>
+                    <div class="form-group col-md-8 mb-3">
                       <label>Name<span class="text-danger">*</span></label>
                       <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"  name="name" value="{{ Auth::user()->name }}">
                       @error('name')
@@ -4187,7 +4308,7 @@ function selectLocality(val) {
                       </span>
                       @enderror
                     </div>
-                    <div class="form-group col-md-4 mb-3">
+                    <div class="form-group col-md-6 mb-3">
                       <label>Email<span class="text-danger">*</span></label>
                       <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"  name="email" value="{{ Auth::user()->email }}">
                       @error('email')
@@ -4196,7 +4317,7 @@ function selectLocality(val) {
                       </span>
                       @enderror
                     </div>
-                    <div class="form-group col-md-4 mb-3">
+                    <div class="form-group col-md-6 mb-3">
                       <label>Mobile Number<span class="text-danger">*</span></label>
                       <input type="text" class="form-control @error('mobile_no') is-invalid @enderror" id="mobile_no"  name="mobile_no" value="{{ Auth::user()->mobile_no }}">
                       @error('mobile_no')
@@ -4359,7 +4480,7 @@ $(document).ready(function () {
   $('.ckeditor').ckeditor();
 });
 $('.datepicker').datepicker({
-    uiLibrary: 'bootstrap4'
+  uiLibrary: 'bootstrap4'
 });
 String.prototype.replaceAll = function(search, replacement) {
   var target = this;
@@ -4371,7 +4492,8 @@ $('input.Stylednumber').keyup(function() {
     $(this).val('0');
   else {
     var formatted = inrFormat(input);
-    if (formatted.indexOf('.') > 0) {
+    if (formatted.indexOf('.') > 0) 
+    {
       var split = formatted.split('.');
       formatted = split[0] + '.' + split[1].substring(0, 2);
     }
@@ -4396,189 +4518,191 @@ function inrFormat(val) {
 
 
 $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
 });
 $("input[name='available_from']").change(function(){
-    var available_from = $(this).val();
-    // alert(available_from);
-    if(available_from == "Select Date")
-    {
-      if($("#commercial-form").css("display") == "block"){ 
+  var available_from = $(this).val();
+  if(available_from == "Select Date")
+  {
+    if($("#commercial-form").css("display") == "block"){ 
       $("#commercial-form #showDateDiv").show(1000);
-      }
-      if($("#rent-lease-form").css("display") == "block"){
-      $("#rent-lease-form #showDateDiv").show(1000);
-      }
-      if($("#showroom-form").css("display") == "block"){
-      $("#showroom-form #showDateDiv").show(1000);
-      }
-      if($("#land-form").css("display") == "block"){
-      $("#land-form #showDateDiv").show(1000);
-      }
     }
-    else{
-      if($("#commercial-form").css("display") == "block")
-      { 
-        $("#commercial-form #showDateDiv").hide(1000);
-      }
-      if($("#rent-lease-form").css("display") == "block"){
-      $("#rent-lease-form #showDateDiv").hide(1000);
-      }
-      if($("#showroom-form").css("display") == "block"){
-      $("#showroom-form #showDateDiv").hide(1000);
-      }
-      if($("#land-form").css("display") == "block"){
-      $("#land-form #showDateDiv").hide(1000);
-      }
-    }
-  })
-
-$("input[name='furnishing']").change(function(){
-    var furnishing = $(this).val();
-    if((furnishing == "Furnished") || (furnishing == "Semi-Furnished"))
-    {
-      if($("#commercial-form").css("display") == "block"){ 
-      $("#commercial-form #showFurnishedDiv").show();
-      }
-      if($("#rent-lease-form").css("display") == "block"){
-      $("#rent-lease-form #showFurnishedDiv").show();
-      }
-      if($("#showroom-form").css("display") == "block"){
-      $("#showroom-form #showFurnishedDiv").show();
-      }
-      if($("#land-form").css("display") == "block"){
-      $("#land-form #showFurnishedDiv").show();
-      }
-    }
-    else{
-      if($("#commercial-form").css("display") == "block")
-      { 
-        $("#commercial-form #showFurnishedDiv").hide();
-      }
-      if($("#rent-lease-form").css("display") == "block"){
-      $("#rent-lease-form #showFurnishedDiv").hide();
-      }
-      if($("#showroom-form").css("display") == "block"){
-      $("#showroom-form #showFurnishedDiv").hide();
-      }
-      if($("#land-form").css("display") == "block"){
-      $("#land-form #showFurnishedDiv").hide();
-      }
-    }
-  })
-
-$("input[name='car_parking[]']").change(function(){
-    var car_parking = $(this).val();
     if($("#rent-lease-form").css("display") == "block"){
-        $("#rent-lease-form #show"+car_parking+"Div").toggle(1000);
+      $("#rent-lease-form #showDateDiv").show(1000);
     }
     if($("#showroom-form").css("display") == "block"){
-        $("#showroom-form #show"+car_parking+"Div").toggle(1000);
+      $("#showroom-form #showDateDiv").show(1000);
     }
+    if($("#land-form").css("display") == "block"){
+      $("#land-form #showDateDiv").show(1000);
+    }
+  }
+  else{
+    if($("#commercial-form").css("display") == "block")
+    { 
+      $("#commercial-form #showDateDiv").hide(1000);
+    }
+    if($("#rent-lease-form").css("display") == "block"){
+      $("#rent-lease-form #showDateDiv").hide(1000);
+    }
+    if($("#showroom-form").css("display") == "block"){
+      $("#showroom-form #showDateDiv").hide(1000);
+    }
+    if($("#land-form").css("display") == "block"){
+      $("#land-form #showDateDiv").hide(1000);
+    }
+  }
+})
+
+$("input[name='furnishing']").change(function(){
+  var furnishing = $(this).val();
+  if((furnishing == "Furnished") || (furnishing == "Semi-Furnished"))
+  {
+    if($("#commercial-form").css("display") == "block"){ 
+      $("#commercial-form #showFurnishedDiv").show();
+    }
+    if($("#rent-lease-form").css("display") == "block"){
+      $("#rent-lease-form #showFurnishedDiv").show();
+    }
+    if($("#showroom-form").css("display") == "block"){
+      $("#showroom-form #showFurnishedDiv").show();
+    }
+    if($("#land-form").css("display") == "block"){
+      $("#land-form #showFurnishedDiv").show();
+    }
+  }
+  else{
+    if($("#commercial-form").css("display") == "block")
+    { 
+      $("#commercial-form #showFurnishedDiv").hide();
+    }
+    if($("#rent-lease-form").css("display") == "block"){
+      $("#rent-lease-form #showFurnishedDiv").hide();
+    }
+    if($("#showroom-form").css("display") == "block"){
+      $("#showroom-form #showFurnishedDiv").hide();
+    }
+    if($("#land-form").css("display") == "block"){
+      $("#land-form #showFurnishedDiv").hide();
+    }
+  }
+})
+
+$("input[name='car_parking[]']").change(function(){
+  var car_parking = $(this).val();
+  if($("#rent-lease-form").css("display") == "block"){
+    $("#rent-lease-form #show"+car_parking+"Div").toggle(1000);
+  }
+  if($("#showroom-form").css("display") == "block"){
+    $("#showroom-form #show"+car_parking+"Div").toggle(1000);
+  }
+  if($("#commercial-form").css("display") == "block"){
+    $("#commercial-form #show"+car_parking+"Div").toggle(1000);
+  }
 })
 
 $(document).ready(function() {
-    $(".sel-status").select2();
+  $(".sel-status").select2();
 });
 
 function convertNumberToWords(amount) {
-    var words = new Array();
-    words[0] = '';
-    words[1] = 'One';
-    words[2] = 'Two';
-    words[3] = 'Three';
-    words[4] = 'Four';
-    words[5] = 'Five';
-    words[6] = 'Six';
-    words[7] = 'Seven';
-    words[8] = 'Eight';
-    words[9] = 'Nine';
-    words[10] = 'Ten';
-    words[11] = 'Eleven';
-    words[12] = 'Twelve';
-    words[13] = 'Thirteen';
-    words[14] = 'Fourteen';
-    words[15] = 'Fifteen';
-    words[16] = 'Sixteen';
-    words[17] = 'Seventeen';
-    words[18] = 'Eighteen';
-    words[19] = 'Nineteen';
-    words[20] = 'Twenty';
-    words[30] = 'Thirty';
-    words[40] = 'Forty';
-    words[50] = 'Fifty';
-    words[60] = 'Sixty';
-    words[70] = 'Seventy';
-    words[80] = 'Eighty';
-    words[90] = 'Ninety';
-    amount = amount.toString();
-    var atemp = amount.split(".");
-    var number = atemp[0].split(",").join("");
-    var n_length = number.length;
-    var words_string = "";
-    if (n_length <= 9) {
-        var n_array = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0);
-        var received_n_array = new Array();
-        for (var i = 0; i < n_length; i++) {
-            received_n_array[i] = number.substr(i, 1);
+  var words = new Array();
+  words[0] = '';
+  words[1] = 'One';
+  words[2] = 'Two';
+  words[3] = 'Three';
+  words[4] = 'Four';
+  words[5] = 'Five';
+  words[6] = 'Six';
+  words[7] = 'Seven';
+  words[8] = 'Eight';
+  words[9] = 'Nine';
+  words[10] = 'Ten';
+  words[11] = 'Eleven';
+  words[12] = 'Twelve';
+  words[13] = 'Thirteen';
+  words[14] = 'Fourteen';
+  words[15] = 'Fifteen';
+  words[16] = 'Sixteen';
+  words[17] = 'Seventeen';
+  words[18] = 'Eighteen';
+  words[19] = 'Nineteen';
+  words[20] = 'Twenty';
+  words[30] = 'Thirty';
+  words[40] = 'Forty';
+  words[50] = 'Fifty';
+  words[60] = 'Sixty';
+  words[70] = 'Seventy';
+  words[80] = 'Eighty';
+  words[90] = 'Ninety';
+  amount = amount.toString();
+  var atemp = amount.split(".");
+  var number = atemp[0].split(",").join("");
+  var n_length = number.length;
+  var words_string = "";
+  if(n_length <= 9) {
+    var n_array = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0);
+    var received_n_array = new Array();
+    for (var i = 0; i < n_length; i++) {
+      received_n_array[i] = number.substr(i, 1);
+    }
+    for (var i = 9 - n_length, j = 0; i < 9; i++, j++) {
+      n_array[i] = received_n_array[j];
+    }
+    for(var i = 0, j = 1; i < 9; i++, j++) {
+      if (i == 0 || i == 2 || i == 4 || i == 7) {
+        if (n_array[i] == 1) {
+          n_array[j] = 10 + parseInt(n_array[j]);
+          n_array[i] = 0;
         }
-        for (var i = 9 - n_length, j = 0; i < 9; i++, j++) {
-            n_array[i] = received_n_array[j];
-        }
-        for (var i = 0, j = 1; i < 9; i++, j++) {
-            if (i == 0 || i == 2 || i == 4 || i == 7) {
-                if (n_array[i] == 1) {
-                    n_array[j] = 10 + parseInt(n_array[j]);
-                    n_array[i] = 0;
-                }
-            }
-        }
-        value = "";
-        for (var i = 0; i < 9; i++) {
-            if (i == 0 || i == 2 || i == 4 || i == 7) {
-                value = n_array[i] * 10;
-            } else {
-                value = n_array[i];
-            }
-            if (value != 0) {
-                words_string += words[value] + " ";
-            }
-            if ((i == 1 && value != 0) || (i == 0 && value != 0 && n_array[i + 1] == 0)) {
-                words_string += "Crores ";
-            }
-            if ((i == 3 && value != 0) || (i == 2 && value != 0 && n_array[i + 1] == 0)) {
-                words_string += "Lakhs ";
-            }
-            if ((i == 5 && value != 0) || (i == 4 && value != 0 && n_array[i + 1] == 0)) {
-                words_string += "Thousand ";
-            }
-            if (i == 6 && value != 0 && (n_array[i + 1] != 0 && n_array[i + 2] != 0)) {
-                words_string += "Hundred and ";
-            } else if (i == 6 && value != 0) {
-                words_string += "Hundred ";
-            }
-        }
-        words_string = words_string.split("  ").join(" ");
+      }
     }
-    if($("#rent-lease-form").css("display") == "block")
-    { 
-      $('#rent-lease-form #show_price').html(words_string);
+    value = "";
+    for(var i = 0; i < 9; i++) {
+      if (i == 0 || i == 2 || i == 4 || i == 7) {
+        value = n_array[i] * 10;
+      } 
+      else {
+        value = n_array[i];
+      }
+      if (value != 0) {
+        words_string += words[value] + " ";
+      }
+      if ((i == 1 && value != 0) || (i == 0 && value != 0 && n_array[i + 1] == 0)) {
+        words_string += "Crores ";
+      }
+      if ((i == 3 && value != 0) || (i == 2 && value != 0 && n_array[i + 1] == 0)) {
+        words_string += "Lakhs ";
+      }
+      if ((i == 5 && value != 0) || (i == 4 && value != 0 && n_array[i + 1] == 0)) {
+        words_string += "Thousand ";
+      }
+      if (i == 6 && value != 0 && (n_array[i + 1] != 0 && n_array[i + 2] != 0)) {
+        words_string += "Hundred and ";
+      } else if (i == 6 && value != 0) {
+        words_string += "Hundred ";
+      }
     }
-    if($("#commercial-form").css("display") == "block")
-    { 
-      $('#commercial-form #show_price').html(words_string);
-    }
-    if($("#showroom-form").css("display") == "block")
-    { 
-      $('#showroom-form #show_price').html(words_string);
-    }
-    if($("#land-form").css("display") == "block")
-    { 
-      $('#land-form #show_price').html(words_string);
-    }
-    // return words_string;
+    words_string = words_string.split("  ").join(" ");
+  }
+  if($("#rent-lease-form").css("display") == "block")
+  { 
+    $('#rent-lease-form #show_price').html(words_string);
+  }
+  if($("#commercial-form").css("display") == "block")
+  { 
+    $('#commercial-form #show_price').html(words_string);
+  }
+  if($("#showroom-form").css("display") == "block")
+  { 
+    $('#showroom-form #show_price').html(words_string);
+  }
+  if($("#land-form").css("display") == "block")
+  { 
+    $('#land-form #show_price').html(words_string);
+  }
 }
 
 function convertNumberToWords1(amount) {
@@ -4676,72 +4800,66 @@ function convertNumberToWords1(amount) {
   { 
     $('#land-form #security_price').html(words_string);
   }
-    // return words_string;
 }
 
 $(document).mouseup(function (e) { 
-  // rest code here 
   if($("#commercial-form").css("display") == "block")
   { 
     var monthly_rent = $("#commercial-form #monthly_rent").val();
-    // alert(monthly_rent);
     if(monthly_rent != ""){
-    if ($(e.target).closest("#commercial-form #monthly_rent").length === 0) {
-      x=monthly_rent.toString();
-      var lastThree = x.substring(x.length-3);
-      var otherNumbers = x.substring(0,x.length-3);
-      if(otherNumbers != '')
-          lastThree = '' + lastThree;
-      var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
-      $("#commercial-form #show_rent1").val(res);
-      $("#commercial-form #rent_1").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
-      $("#commercial-form #rent_2").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
-      $("#commercial-form #show_rent2").val(res+' Negotiable');
-      // format.format(4800)  
-      $("#commercial-form #show_rent").show(1000); 
-    } 
+      if ($(e.target).closest("#commercial-form #monthly_rent").length === 0) {
+        x=monthly_rent.toString();
+        var lastThree = x.substring(x.length-3);
+        var otherNumbers = x.substring(0,x.length-3);
+        if(otherNumbers != '')
+        lastThree = '' + lastThree;
+        var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+        $("#commercial-form #show_rent1").val(res);
+        $("#commercial-form #rent_1").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
+        $("#commercial-form #rent_2").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
+        $("#commercial-form #show_rent2").val(res+' Negotiable');
+        $("#commercial-form #show_rent").show(1000); 
+      } 
     }
   }
   if($("#rent-lease-form").css("display") == "block")
   { 
     var monthly_rent = $("#rent-lease-form #monthly_rent").val();
-    // alert(monthly_rent);
     if(monthly_rent != ""){
-    if ($(e.target).closest("#rent-lease-form #monthly_rent").length === 0) {
-      x=monthly_rent.toString();
-      var lastThree = x.substring(x.length-3);
-      var otherNumbers = x.substring(0,x.length-3);
-      if(otherNumbers != '')
-          lastThree = '' + lastThree;
-      var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
-      $("#rent-lease-form #rent_1").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
-      $("#rent-lease-form #show_rent1").val(res);
-      $("#rent-lease-form #rent_2").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
-      $("#rent-lease-form #show_rent2").val(res+' Negotiable');
-      // format.format(4800)  
-      $("#rent-lease-form #show_rent").show(1000); 
-    } 
+      if ($(e.target).closest("#rent-lease-form #monthly_rent").length === 0) {
+        x=monthly_rent.toString();
+        var lastThree = x.substring(x.length-3);
+        var otherNumbers = x.substring(0,x.length-3);
+        if(otherNumbers != '')
+        lastThree = '' + lastThree;
+        var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+        $("#rent-lease-form #rent_1").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
+        $("#rent-lease-form #show_rent1").val(res);
+        $("#rent-lease-form #rent_2").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
+        $("#rent-lease-form #show_rent2").val(res+' Negotiable');
+        // format.format(4800)  
+        $("#rent-lease-form #show_rent").show(1000); 
+      } 
     }
   }
   if($("#showroom-form").css("display") == "block")
   { 
     var monthly_rent = $("#showroom-form #monthly_rent").val();
-    // alert(monthly_rent);
     if(monthly_rent != ""){
-    if ($(e.target).closest("#showroom-form #monthly_rent").length === 0) {
-      x=monthly_rent.toString();
-      var lastThree = x.substring(x.length-3);
-      var otherNumbers = x.substring(0,x.length-3);
-      if(otherNumbers != '')
-          lastThree = '' + lastThree;
-      var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
-      $("#showroom-form #rent_1").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
-      $("#showroom-form #show_rent1").val('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
-      $("#showroom-form #rent_2").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
-      $("#showroom-form #show_rent2").val('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
-      // format.format(4800)  
-      $("#showroom-form #show_rent").show(1000); 
-    } 
+      if ($(e.target).closest("#showroom-form #monthly_rent").length === 0) {
+        x=monthly_rent.toString();
+        var lastThree = x.substring(x.length-3);
+        var otherNumbers = x.substring(0,x.length-3);
+        if(otherNumbers != '')
+        lastThree = '' + lastThree;
+        var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+        $("#showroom-form #rent_1").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
+        $("#showroom-form #show_rent1").val('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
+        $("#showroom-form #rent_2").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
+        $("#showroom-form #show_rent2").val('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
+        // format.format(4800)  
+        $("#showroom-form #show_rent").show(1000); 
+      } 
     }
   }
   
@@ -4750,20 +4868,20 @@ $(document).mouseup(function (e) {
     var monthly_rent = $("#land-form #monthly_rent").val();
     // alert(monthly_rent);
     if(monthly_rent != ""){
-    if ($(e.target).closest("#land-form #monthly_rent").length === 0) {
-      x=monthly_rent.toString();
-      var lastThree = x.substring(x.length-3);
-      var otherNumbers = x.substring(0,x.length-3);
-      if(otherNumbers != '')
-          lastThree = '' + lastThree;
-      var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
-      $("#land-form #rent_1").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
-      $("#land-form #show_rent1").val('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
-      $("#land-form #rent_2").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
-      $("#land-form #show_rent2").val('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
-      // format.format(4800)  
-      $("#land-form #show_rent").show(1000); 
-    } 
+      if ($(e.target).closest("#land-form #monthly_rent").length === 0) {
+        x=monthly_rent.toString();
+        var lastThree = x.substring(x.length-3);
+        var otherNumbers = x.substring(0,x.length-3);
+        if(otherNumbers != '')
+        lastThree = '' + lastThree;
+        var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+        $("#land-form #rent_1").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
+        $("#land-form #show_rent1").val('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
+        $("#land-form #rent_2").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
+        $("#land-form #show_rent2").val('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
+        // format.format(4800)  
+        $("#land-form #show_rent").show(1000); 
+      } 
     }
   }
 }) 
@@ -4827,96 +4945,86 @@ $('body').on('click', '.a', function () {
   } 
 })
 $('body').on('change', '#property_type', function () {
-    var query = $(this).val();
-    var listed_by = $('input[name="listed_by"]:checked').val();
-    if((query == 34) || (query == 35) || (query == 36) || (query == 37) || (query == 38) || (query == 39) || (query == 40))
-    {
-      var showDiv = $('.pageloader');
-      if (showDiv.is(":visible")) { return; }
-      showDiv.show();
-      setTimeout(function() {
-        showDiv.hide();
-        $('#land-form').fadeOut();
-        $('#rent-lease-form').fadeIn();
-        $('#commercial-form').fadeOut();
-        $('#showroom-form').fadeOut();
-        
-        if((query == 35) || (query ==36))
-        {
-          $("#plot_details").show();
-        }
-        else{
-          $("#plot_details").hide();
-        }
-        if(listed_by == "Owner")
-        {
-          $("#rent-lease-form #brokerageDiv").hide(); 
-        }
-        else{
-          $("#rent-lease-form #brokerageDiv").show(); 
-        }
-      }, 2500);
-    }
-    if((query == 41) || (query == 42) || (query == 45) || (query == 46))
-    {
-      var showDiv = $('.pageloader');
-      if (showDiv.is(":visible")) { return; }
-      showDiv.show();
-      setTimeout(function() {
-        showDiv.hide();
-        $('#land-form').fadeOut();
-        $('#commercial-form').fadeIn();
-        $('#rent-lease-form').fadeOut();
-        $('#showroom-form').fadeOut();
-        if(listed_by == "Owner")
-        {
-          $("#commercial-form #brokerageDiv").hide(); 
-        }
-        else{
-          $("#commercial-form #brokerageDiv").show(); 
-        }
-      }, 2500);
-    }
-    if((query == 43) || (query == 44))
-    {
-      var showDiv = $('.pageloader');
-      if (showDiv.is(":visible")) { return; }
-      showDiv.show();
-      setTimeout(function() {
-        showDiv.hide();
-        $('#land-form').fadeOut();
-        $('#commercial-form').fadeOut();
-        $('#rent-lease-form').fadeOut();
-        $('#showroom-form').fadeIn();
-        if(listed_by == "Owner")
-        {
-          $("#showroom-form #brokerageDiv").hide(); 
-        }
-        else{
-          $("#showroom-form #brokerageDiv").show(); 
-        }
-      }, 2500);
-    }
-    if((query == 47) || (query == 48) || (query == 50) || (query == 51) || (query == 52) || (query == 53) || (query == 54) || (query == 55) || (query == 56))
-    {
-      var showDiv = $('.pageloader');
-      if (showDiv.is(":visible")) { return; }
-      showDiv.show();
-      setTimeout(function() {
-        showDiv.hide();
-        $('#commercial-form').fadeOut();
-        $('#rent-lease-form').fadeOut();
-        $('#showroom-form').fadeOut();
-        $('#land-form').fadeIn();
-        if(listed_by == "Owner")
-        {
-          $("#land-form #brokerageDiv").hide(); 
-        }
-        else{
-          $("#land-form #brokerageDiv").show(); 
-        }
-      }, 2500);
-    }
+  var query = $(this).val();
+  var listed_by = $('input[name="listed_by"]:checked').val();
+  if((query == 34) || (query == 35) || (query == 36) || (query == 37) || (query == 38) || (query == 39) || (query == 40))
+  {
+    var showDiv = $('.pageloader');
+    if (showDiv.is(":visible")) { return; }
+    showDiv.show();
+    setTimeout(function() {
+      showDiv.hide();
+      $('#land-form').fadeOut();
+      $('#rent-lease-form').fadeIn();
+      $('#commercial-form').fadeOut();
+      $('#showroom-form').fadeOut();
+      
+      if((query == 35) || (query ==36))
+      {
+        $("#plot_details").show();
+      }
+      else{
+        $("#plot_details").hide();
+      }
+    }, 2500);
+  }
+  if((query == 41) || (query == 42) || (query == 45) || (query == 46))
+  {
+    var showDiv = $('.pageloader');
+    if (showDiv.is(":visible")) { return; }
+    showDiv.show();
+    setTimeout(function() {
+      showDiv.hide();
+      $('#land-form').fadeOut();
+      $('#commercial-form').fadeIn();
+      $('#rent-lease-form').fadeOut();
+      $('#showroom-form').fadeOut();
+      if(query == 42)
+      {
+        $('#idealDiv').hide();
+      }
+      else{
+        $('#idealDiv').show();
+      }
+      if(query == 45)
+      {
+        $("#commercial-form #imageDiv").show();
+        $("#commercial-form #plot_details").show();
+        $('.commercialDiv').hide();
+      }
+      else{
+        $("#commercial-form #imageDiv").hide();
+        $("#commercial-form #plot_details").hide();
+        $('.commercialDiv').show();
+      }
+    }, 2500);
+  }
+  if((query == 43) || (query == 44))
+  {
+    var showDiv = $('.pageloader');
+    if (showDiv.is(":visible")) { return; }
+    showDiv.show();
+    setTimeout(function() {
+      showDiv.hide();
+      $('#land-form').fadeOut();
+      $('#commercial-form').fadeOut();
+      $('#rent-lease-form').fadeOut();
+      $('#showroom-form').fadeIn();
+    }, 2500);
+  }
+  if((query == 47) || (query == 48) || (query == 50) || (query == 51) || (query == 52) || (query == 53) || (query == 54) || (query == 55) || (query == 56))
+  {
+    var showDiv = $('.pageloader');
+    if (showDiv.is(":visible")) { return; }
+    showDiv.show();
+    setTimeout(function() {
+      showDiv.hide();
+      $('#commercial-form').fadeOut();
+      $('#rent-lease-form').fadeOut();
+      $('#showroom-form').fadeOut();
+      $('#land-form').fadeIn();
+    }, 2500);
+  }
 })
 $('body').on('click', '#showButton1', function () {
   var listed_by = $('input[name="listed_by"]:checked').val();
@@ -5350,29 +5458,27 @@ $('body').on('click', '#submitForm3', function () {
   }
 });
  $('#user_state').change(function(){
-  var stateID = $(this).val();  
-//   alert(brandID);
+  var stateID = $(this).val(); 
   if(stateID){
     $.ajax({
       type:"GET",
       url:"{{url('/get-city-list')}}?state_id="+stateID,
       success:function(res){        
-      if(res){
-        $("#user_city").empty();
-        $("#user_city").append('<option value="">Select City</option>');
-        $.each(res,function(key,value){
-          $("#user_city").append('<option value="'+key+'">'+value+'</option>');
-        });
-      
-      }else{
-        $("#user_city").empty();
-      }
+        if(res){
+          $("#user_city").empty();
+          $("#user_city").append('<option value="">Select City</option>');
+          $.each(res,function(key,value){
+            $("#user_city").append('<option value="'+key+'">'+value+'</option>');
+          });      
+        }else{
+          $("#user_city").empty();
+        }
       }
     });
   }else{
     $("#user_city").empty();
   }   
-  });
+});
 
 
 $('#user_city').change(function(){
@@ -5382,16 +5488,15 @@ $('#user_city').change(function(){
       type:"GET",
       url:"{{url('/get-locality-list')}}?city_id="+cityID,
       success:function(res){        
-      if(res){
-        $("#user_locality").empty();
-        $("#user_locality").append('<option value="">Select Locality</option>');
-        $.each(res,function(key,value){
-          $("#user_locality").append('<option value="'+key+'">'+value+'</option>');
-        });
-      
-      }else{
-        $("#user_locality").empty();
-      }
+        if(res){
+          $("#user_locality").empty();
+          $("#user_locality").append('<option value="">Select Locality</option>');
+          $.each(res,function(key,value){
+            $("#user_locality").append('<option value="'+key+'">'+value+'</option>');
+          });      
+        }else{
+          $("#user_locality").empty();
+        }
       }
     });
   }else{
@@ -5401,7 +5506,6 @@ $('#user_city').change(function(){
 
 $(document).ready(function(){
   var $plot_area = $('#rent-lease-form #plot_area'), $plot_length = $('#rent-lease-form #plot_length'), $plot_width = $('#rent-lease-form #plot_width');
-  // alert($plot_area);
   $plot_length.on('keypress', function(e){
 	if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)){
     e.stopImmediatePropagation();
