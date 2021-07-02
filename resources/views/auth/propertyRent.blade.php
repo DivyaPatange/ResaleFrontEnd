@@ -830,7 +830,7 @@ function selectLocality(val) {
                     @enderror
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="text" class="form-control @error('plot_width') invalid-feedback @enderror" name="plot_width" id="plot_width" value="{{ old('plot_width') }}">
+                    <input type="text" readonly class="form-control @error('plot_width') invalid-feedback @enderror" name="plot_width" id="plot_width" value="{{ old('plot_width') }}">
                   </div>
                   <div class="form-group col-md-3">
                     <select name="plot_width_unit" id="plot_width_unit" class="form-control">
@@ -1763,17 +1763,46 @@ function selectLocality(val) {
                 <div class="form-group">
                   <h6>Property Feature</h6>
                 </div>
-                <div class="form-row commercialDiv">
-                  <div class="form-group col-md-4">
-                    <label for="">Total Floors<span  style="color:red" id="total_floor1_err"> </span></label>
-                  </div>
-                  <div class="form-group col-md-8">
-                    <select name="total_floor" class="form-control sel-status" id="total_floor1" style="width:100%;">
-                      <option value="">-Select-</option>
-                      @for($i=1; $i <= 200; $i++)
-                      <option value="{{ $i }}">{{ $i }}</option>
-                      @endfor
-                    </select>
+                <div class="form-group commercialDiv">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="property_floor_no">Floor No.<span  style="color:red" id="floor_err"> </span></label>
+                        <select name="property_floor_no" class="form-control sel-status @error('property_floor_no') is-invalid @enderror" id="property_floor_no" style="width:100%">
+                          <option value="">-Choose-</option>
+                          <option value="Lower Basement">Lower Basement</option>
+                          <option value="Upper Basement">Upper Basement</option>
+                          <option value="Ground">Ground</option>
+                          @for($i=1; $i <= 20; $i++)
+                          <option value="{{ $i }}">{{ $i }}</option>
+                          @endfor
+                        </select>
+                        @error('property_floor_no')
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="floor">Total Floor<span  style="color:red" id="total_floor_err"> </span></label>
+                        <select name="total_floor" id="no_of_floor" class="form-control sel-status @error('total_floor') is-invalid @enderror" style="width:100%;">
+                          <option value="">Choose..</option>
+                          <option value="Lower Basement">Lower Basement</option>
+                          <option value="Upper Basement">Upper Basement</option>
+                          <option value="Ground">Ground</option>
+                          @for($i=1; $i <= 20; $i++)
+                          <option value="{{ $i }}">{{ $i }}</option>
+                          @endfor
+                        </select>
+                        @error('total_floor')
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="form-group commercialDiv">
@@ -1896,103 +1925,6 @@ function selectLocality(val) {
                 <div class="form-group">
                   <h6>Area</h6>
                 </div>
-                <div class="form-row" id ="plot_details">
-                  <div class="form-group col-md-5">
-                    <label for="">Plot Area<span class="text-danger">*</span><span  style="color:red" id="plot_err"> </span></label>
-                    @error('plot_area')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-                  <div class="form-group col-md-4">
-                    <input type="number" class="form-control @error('plot_area') invalid-feedback @enderror" name="plot_area" id="plot_area" value="{{ old('plot_area') }}">
-                  </div>
-                  <div class="form-group col-md-3">
-                    <select name="plot_unit" id="plot_unit" class="form-control">
-                      <option value="Sq-ft">Sq-ft</option>
-                      <option value="Sq-yrd">Sq-yrd</option>
-                      <option value="Sq-m">Sq-m</option>
-                      <option value="Acre">Acre</option>
-                      <option value="Bigha">Bigha</option>
-                      <option value="Hectare">Hectare</option>
-                      <option value="Marla">Marla</option>
-                      <option value="Kanal">Kanal</option>
-                      <option value="Biswa1">Biswa1</option>
-                      <option value="Biswa2">Biswa2</option>
-                      <option value="Ground">Ground</option>
-                      <option value="Aankadam">Aankadam</option>
-                      <option value="Rood">Rood</option>
-                      <option value="Chatak">Chatak</option>
-                      <option value="Kottah">Kottah</option>
-                      <option value="Cent">Cent</option>
-                    </select>
-                  </div>
-
-                  <div class="form-group col-md-5">
-                    <label for="">Plot Length<span class="text-danger">*</span><span  style="color:red" id="plot_length_err"> </span></label>
-                    @error('plot_length')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-                  <div class="form-group col-md-4">
-                    <input type="number" class="form-control @error('plot_length') invalid-feedback @enderror" name="plot_length" id="plot_length" value="{{ old('plot_length') }}">
-                  </div>
-                  <div class="form-group col-md-3">
-                    <select name="plot_length_unit" id="plot_length_unit" class="form-control">
-                      <option value="Sq-ft">Sq-ft</option>
-                      <option value="Sq-yrd">Sq-yrd</option>
-                      <option value="Sq-m">Sq-m</option>
-                      <option value="Acre">Acre</option>
-                      <option value="Bigha">Bigha</option>
-                      <option value="Hectare">Hectare</option>
-                      <option value="Marla">Marla</option>
-                      <option value="Kanal">Kanal</option>
-                      <option value="Biswa1">Biswa1</option>
-                      <option value="Biswa2">Biswa2</option>
-                      <option value="Ground">Ground</option>
-                      <option value="Aankadam">Aankadam</option>
-                      <option value="Rood">Rood</option>
-                      <option value="Chatak">Chatak</option>
-                      <option value="Kottah">Kottah</option>
-                      <option value="Cent">Cent</option>
-                    </select>
-                  </div>
-
-                  <div class="form-group col-md-5">
-                    <label for="">Plot Width<span class="text-danger">*</span><span  style="color:red" id="plot_width_err"> </span></label>
-                    @error('plot_width')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-                  <div class="form-group col-md-4">
-                    <input type="text" class="form-control @error('plot_width') invalid-feedback @enderror" name="plot_width" id="plot_width" value="{{ old('plot_width') }}">
-                  </div>
-                  <div class="form-group col-md-3">
-                    <select name="plot_width_unit" id="plot_width_unit" class="form-control">
-                      <option value="Sq-ft">Sq-ft</option>
-                      <option value="Sq-yrd">Sq-yrd</option>
-                      <option value="Sq-m">Sq-m</option>
-                      <option value="Acre">Acre</option>
-                      <option value="Bigha">Bigha</option>
-                      <option value="Hectare">Hectare</option>
-                      <option value="Marla">Marla</option>
-                      <option value="Kanal">Kanal</option>
-                      <option value="Biswa1">Biswa1</option>
-                      <option value="Biswa2">Biswa2</option>
-                      <option value="Ground">Ground</option>
-                      <option value="Aankadam">Aankadam</option>
-                      <option value="Rood">Rood</option>
-                      <option value="Chatak">Chatak</option>
-                      <option value="Kottah">Kottah</option>
-                      <option value="Cent">Cent</option>
-                    </select>
-                  </div>
-                </div>
                 <div class="form-row commercialDiv">
                   <div class="form-group col-md-5">
                     <label for="">Super Build Up Area<span class="text-danger">*</span><span  style="color:red" id="super_area_err"> </span></label>
@@ -2069,6 +2001,103 @@ function selectLocality(val) {
                   </div>
                   <div class="form-group col-md-3">
                     <select name="carpet_unit" id="carpet_unit" class="form-control">
+                      <option value="Sq-ft">Sq-ft</option>
+                      <option value="Sq-yrd">Sq-yrd</option>
+                      <option value="Sq-m">Sq-m</option>
+                      <option value="Acre">Acre</option>
+                      <option value="Bigha">Bigha</option>
+                      <option value="Hectare">Hectare</option>
+                      <option value="Marla">Marla</option>
+                      <option value="Kanal">Kanal</option>
+                      <option value="Biswa1">Biswa1</option>
+                      <option value="Biswa2">Biswa2</option>
+                      <option value="Ground">Ground</option>
+                      <option value="Aankadam">Aankadam</option>
+                      <option value="Rood">Rood</option>
+                      <option value="Chatak">Chatak</option>
+                      <option value="Kottah">Kottah</option>
+                      <option value="Cent">Cent</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row" id ="plot_details">
+                  <div class="form-group col-md-5">
+                    <label for="">Plot Area<span class="text-danger">*</span><span  style="color:red" id="plot_err"> </span></label>
+                    @error('plot_area')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                  <div class="form-group col-md-4">
+                    <input type="number" class="form-control @error('plot_area') invalid-feedback @enderror" name="plot_area" id="plot_area" value="{{ old('plot_area') }}">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <select name="plot_unit" id="plot_unit" class="form-control">
+                      <option value="Sq-ft">Sq-ft</option>
+                      <option value="Sq-yrd">Sq-yrd</option>
+                      <option value="Sq-m">Sq-m</option>
+                      <option value="Acre">Acre</option>
+                      <option value="Bigha">Bigha</option>
+                      <option value="Hectare">Hectare</option>
+                      <option value="Marla">Marla</option>
+                      <option value="Kanal">Kanal</option>
+                      <option value="Biswa1">Biswa1</option>
+                      <option value="Biswa2">Biswa2</option>
+                      <option value="Ground">Ground</option>
+                      <option value="Aankadam">Aankadam</option>
+                      <option value="Rood">Rood</option>
+                      <option value="Chatak">Chatak</option>
+                      <option value="Kottah">Kottah</option>
+                      <option value="Cent">Cent</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-5">
+                    <label for="">Plot Length<span class="text-danger">*</span><span  style="color:red" id="plot_length_err"> </span></label>
+                    @error('plot_length')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                  <div class="form-group col-md-4">
+                    <input type="number" class="form-control @error('plot_length') invalid-feedback @enderror" name="plot_length" id="plot_length" value="{{ old('plot_length') }}">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <select name="plot_length_unit" id="plot_length_unit" class="form-control">
+                      <option value="Sq-ft">Sq-ft</option>
+                      <option value="Sq-yrd">Sq-yrd</option>
+                      <option value="Sq-m">Sq-m</option>
+                      <option value="Acre">Acre</option>
+                      <option value="Bigha">Bigha</option>
+                      <option value="Hectare">Hectare</option>
+                      <option value="Marla">Marla</option>
+                      <option value="Kanal">Kanal</option>
+                      <option value="Biswa1">Biswa1</option>
+                      <option value="Biswa2">Biswa2</option>
+                      <option value="Ground">Ground</option>
+                      <option value="Aankadam">Aankadam</option>
+                      <option value="Rood">Rood</option>
+                      <option value="Chatak">Chatak</option>
+                      <option value="Kottah">Kottah</option>
+                      <option value="Cent">Cent</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-5">
+                    <label for="">Plot Width<span class="text-danger">*</span><span  style="color:red" id="plot_width_err"> </span></label>
+                    @error('plot_width')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                  <div class="form-group col-md-4">
+                    <input type="text" readonly class="form-control @error('plot_width') invalid-feedback @enderror" name="plot_width" id="plot_width" value="{{ old('plot_width') }}">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <select name="plot_width_unit" id="plot_width_unit" class="form-control">
                       <option value="Sq-ft">Sq-ft</option>
                       <option value="Sq-yrd">Sq-yrd</option>
                       <option value="Sq-m">Sq-m</option>
@@ -2265,7 +2294,7 @@ function selectLocality(val) {
                 <div class="form-group">
                   <h6>Photos</h6>
                 </div>
-                <div class="form-group commercialDiv">
+                <div class="form-group commercialDiv" id="exteriorDiv">
                   <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                       <a class="nav-item nav-link active" id="nav-home1-tab" data-toggle="tab" href="#nav-home1" role="tab" aria-controls="nav-home1" aria-selected="true">Exterior View</a>
@@ -2333,7 +2362,7 @@ function selectLocality(val) {
                     </div>
                   </div>
                 </div>
-                <div class="form-group imageDiv">
+                <div class="form-group" id="imageDiv">
                   <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                       <a class="nav-item nav-link active" id="nav-home6-tab" data-toggle="tab" href="#nav-home6" role="tab" aria-controls="nav-home6" aria-selected="true">Site View</a>
@@ -2762,6 +2791,20 @@ function selectLocality(val) {
                         <div class="form-check-inline">
                             <label class="form-check-label">
                               <input type="checkbox" class="form-check-input" name="aminities[]" value="Water Storage">Water Storage 
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Lift">Lift
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="aminities[]" value="Power Backup">Power Backup 
                             </label>
                         </div>
                     </div>
@@ -3903,7 +3946,7 @@ function selectLocality(val) {
                   <h6>Property Feature</h6>
                 </div>
                 <div class="form-row">
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-6" id="floorDiv">
                     <label for="">Floors Allowed for construction</label>
                     <select name="floor_constru" id="floor_constru" class="form-control @error('floor_constru') invalid-feedback @enderror">
                       <option value="">-Select floors Allowed for construction-</option>
@@ -3913,8 +3956,25 @@ function selectLocality(val) {
                     </select>
                   </div>
                   <div class="form-group col-md-6">
+                    <label for="">Land Zone<span  style="color:red" id="land_zone_err"> </span></label>
+                    <select name="land_zone" id="land_zone" class="form-control sel-status">
+                      <option value="">-Select Land Zone-</option>
+                      <option value="Industrial">Industrial</option>
+                      <option value="Commercial">Commercial</option>
+                      <option value="Residential">Residential</option>
+                      <option value="Transport & Communication">Transport & Communication</option>
+                      <option value="Public Utilities">Public Utilities</option>
+                      <option value="Public & Semi Public Use">Public & Semi Public Use</option>
+                      <option value="Open Spaces">Open Spaces</option>
+                      <option value="Agricultural Zone">Agricultural Zone</option>
+                      <option value="Special Economic Zone">Special Economic Zone</option>
+                      <option value="Natural Conservation Zone">Natural Conservation Zone</option>
+                      <option value="Government Use">Government Use</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
                     <label for="">No. of Open Side</label>
-                    <select name="no_of_open_side" id="no_of_open_side" class="form-control @error('no_of_open_side') invalid-feedback @enderror">
+                    <select name="no_of_open_side" id="no_of_open_side" class="sel-status form-control @error('no_of_open_side') invalid-feedback @enderror">
                       <option value="">-Select No. of Open Side-</option>
                       <option value="1" @if(old('no_of_open_side') == "1") Selected @endif>1</option>
                       <option value="2" @if(old('no_of_open_side') == "2") Selected @endif>2</option>
@@ -3923,12 +3983,139 @@ function selectLocality(val) {
                     </select>
                   </div>
                 </div>
+                <div class="form-row" id="idealDiv">
+                  <div class="form-group col-md-4">
+                    <label for="">Ideal For Businesses</label>
+                  </div>
+                  <div class="form-group col-md-8">
+                    <select name="ideal_business" class="form-control sel-status">
+                      <option value="">-Choose-</option>
+                      <option value="Call Centre/ BPO">Call Centre/ BPO</option>
+                      <option value="Coaching Centre">Coaching Centre</option>
+                      <option value="Private Consultancy">Private Consultancy</option>
+                      <option value="Doctor Clinic">Doctor Clinic</option>
+                      <option value="Pathology">Pathology</option>
+                      <option value="IT / ITES and Related">IT / ITES and Related</option>
+                      <option value="Studio / Production House">Studio / Production House</option>
+                      <option value="Private Office">Private Office</option>
+                      <option value="Individual Business">Individual Business</option>
+                      <option value="Self Employed Business">Self Employed Business</option>
+                      <option value="Boutique">Boutique</option>
+                      <option value="Boutique Hall">Boutique Hall</option>
+                      <option value="Boutique Office">Boutique Office</option>
+                      <option value="Mobile Service Centre">Mobile Service Centre</option>
+                      <option value="Back Office">Back Office</option>
+                      <option value="Departmental Store">Departmental Store</option>
+                      <option value="Corporate office Setup">Corporate office Setup</option>
+                      <option value="Women Sefety">Women Sefety</option>
+                      <option value="Sales/ Marketing Office">Sales/ Marketing Office</option>
+                      <option value="High security setup">High security setup</option>
+                      <option value="Lounge">Lounge</option>
+                      <option value="Health care">Health care</option>
+                      <option value="Cake Shop">Cake Shop</option>
+                      <option value="Research Centre">Research Centre</option>
+                      <option value="Job Consultancy">Job Consultancy</option>
+                      <option value="Logistic Back office">Logistic Back office</option>
+                      <option value="Bank">Bank</option>
+                      <option value="Financial Institute">Financial Institute</option>
+                      <option value="Govt. Offices">Govt. Offices</option>
+                      <option value="Packaging Back office">Packaging Back office</option>
+                      <option value="Private Company">Private Company</option>
+                      <option value="Advertising ">Advertising</option>
+                      <option value="Lawyers office">Lawyers office</option>
+                      <option value="Law Chamber">Law Chamber</option>
+                      <option value="Law Company">Law Company</option>
+                      <option value="Showroom">Showroom</option>
+                      <option value="Tax Consultants">Tax Consultants</option>
+                      <option value="Travel Agency">Travel Agency</option>
+                      <option value="Grocery Shop">Grocery Shop</option>
+                      <option value="Gold / Jewelers Shop">Gold / Jewelers Shop</option>
+                      <option value="Cloth / Garment Shop">Cloth / Garment Shop</option>
+                      <option value="Cafe / Restaurant">Cafe / Restaurant</option>
+                      <option value="Food Street">Food Street</option>
+                      <option value="Automobile">Automobile</option>
+                      <option value="Electronic">Electronic</option>
+                      <option value="Electrical">Electrical</option>
+                      <option value="Seeds / Fertilizer">Seeds / Fertilizer</option>
+                      <option value="Dairy Product">Dairy Product</option>
+                      <option value="Hardware / Building Material">Hardware / Building Material</option>
+                      <option value="Transport Hub">Transport Hub</option>
+                      <option value="Pharmaceutical">Pharmaceutical</option>
+                      <option value="Medical / Hospital">Medical / Hospital</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group" id="propFloorDiv">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="floor">Property Floor No.<span  style="color:red" id="floor_err"> </span></label>
+                        <select name="property_floor_no" class="form-control sel-status @error('property_floor_no') is-invalid @enderror" id="property_floor_no" style="width:100%">
+                          <option value="">-Choose-</option>
+                          <option value="Lower Basement">Lower Basement</option>
+                          <option value="Upper Basement">Upper Basement</option>
+                          <option value="Ground">Ground</option>
+                          @for($i=1; $i <= 20; $i++)
+                          <option value="{{ $i }}">{{ $i }}</option>
+                          @endfor
+                        </select>
+                        @error('property_floor_no')
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="floor">No. of Floor<span  style="color:red" id="total_floor_err"> </span></label>
+                        <select name="total_floor" id="no_of_floor" class="form-control sel-status @error('total_floor') is-invalid @enderror" style="width:100%;">
+                          <option value="">Choose..</option>
+                          <option value="Lower Basement">Lower Basement</option>
+                          <option value="Upper Basement">Upper Basement</option>
+                          <option value="Ground">Ground</option>
+                          @for($i=1; $i <= 20; $i++)
+                          <option value="{{ $i }}">{{ $i }}</option>
+                          @endfor
+                        </select>
+                        @error('total_floor')
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div class="form-row">
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-5">
                     <label for="">Width of Road facing the Plot</label>
                   </div>
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-4">
                     <input type="text" class="form-control Stylednumber @error('width_of_road') invalid-feedback @enderror" name="width_of_road" value="{{ old('width_of_road') }}" placeholder="Meters">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <select name="road_facing_unit" id="road_facing_unit" class="form-control @error('road_facing_unit') invalid-feedback @enderror">
+                      <option value="Sq-ft">Sq-ft</option>
+                      <option value="Sq-yrd">Sq-yrd</option>
+                      <option value="Sq-m">Sq-m</option>
+                      <option value="Acre">Acre</option>
+                      <option value="Bigha">Bigha</option>
+                      <option value="Hectare">Hectare</option>
+                      <option value="Marla">Marla</option>
+                      <option value="Kanal">Kanal</option>
+                      <option value="Biswa1">Biswa1</option>
+                      <option value="Biswa2">Biswa2</option>
+                      <option value="Ground">Ground</option>
+                      <option value="Aankadam">Aankadam</option>
+                      <option value="Rood">Rood</option>
+                      <option value="Chatak">Chatak</option>
+                      <option value="Kottah">Kottah</option>
+                      <option value="Cent">Cent</option>
+                      <option value="Perch">Perch</option>
+                      <option value="Guntha">Guntha</option>
+                      <option value="Are">Are</option>
+                    </select>
                   </div>
                 </div>  
                 <div class="form-group">
@@ -3969,17 +4156,132 @@ function selectLocality(val) {
                     </div>
                   </div>
                 </div>
+                <div class="form-row" id="constructionDiv">
+                  <div class="form-group col-md-6">
+                    <label>Age of Construction <span class="text-danger">*</span></label>
+                    <select class="form-control @error('age_of_construction') is-invalid @enderror" id="age_of_construction" name="age_of_construction">
+                      <option value="">-Select-</option>
+                      <option value="New Construction">New Construction</option>
+                      <option value="Less than 5 years">Less than 5 years</option>
+                      <option value="5 to 10 years">5 to 10 years</option>
+                      <option value="10 to 15 years">10 to 15 years</option>
+                      <option value="15 to 20 years">15 to 20 years</option>
+                      <option value="Above 20 years">Above 20 years</option>
+                    </select>
+                    @error('age_of_construction')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                </div>
                 <div class="form-group">
                   <h6>Area</h6>
                 </div>
+                <div class="form-row" id="areaDiv">
+                  <div class="form-group col-md-5">
+                    <label for="">Super Build Up Area<span class="text-danger">*</span><span  style="color:red" id="super_area_err"> </span></label>
+                    @error('super_build_up_area')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                  <div class="form-group col-md-4">
+                    <input type="text" class="form-control Stylednumber @error('super_build_up_area') invalid-feedback @enderror" name="super_build_up_area" id="super_build_up_area" value="{{ old('super_build_up_area') }}">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <select name="super_area_unit" id="super_area_unit" class="form-control">
+                      <option value="Sq-ft">Sq-ft</option>
+                      <option value="Sq-yrd">Sq-yrd</option>
+                      <option value="Sq-m">Sq-m</option>
+                      <option value="Acre">Acre</option>
+                      <option value="Bigha">Bigha</option>
+                      <option value="Hectare">Hectare</option>
+                      <option value="Marla">Marla</option>
+                      <option value="Kanal">Kanal</option>
+                      <option value="Biswa1">Biswa1</option>
+                      <option value="Biswa2">Biswa2</option>
+                      <option value="Ground">Ground</option>
+                      <option value="Aankadam">Aankadam</option>
+                      <option value="Rood">Rood</option>
+                      <option value="Chatak">Chatak</option>
+                      <option value="Kottah">Kottah</option>
+                      <option value="Cent">Cent</option>
+                    </select>
+                  </div>
+                  <div class="col-md-5 form-group">
+                    <label for="">Build Up Area <small>(Sq.ft.)</small></label>
+                    @error('build_up_area')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                  <div class="form-group col-md-4">
+                    <input type="text" id="build_up_area" class="form-control Stylednumber @error('build_up_area') invalid-feedback @enderror" name="build_up_area" value="{{ old('build_up_area') }}">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <select name="build_unit" id="build_unit" class="form-control">
+                      <option value="Sq-ft">Sq-ft</option>
+                      <option value="Sq-yrd">Sq-yrd</option>
+                      <option value="Sq-m">Sq-m</option>
+                      <option value="Acre">Acre</option>
+                      <option value="Bigha">Bigha</option>
+                      <option value="Hectare">Hectare</option>
+                      <option value="Marla">Marla</option>
+                      <option value="Kanal">Kanal</option>
+                      <option value="Biswa1">Biswa1</option>
+                      <option value="Biswa2">Biswa2</option>
+                      <option value="Ground">Ground</option>
+                      <option value="Aankadam">Aankadam</option>
+                      <option value="Rood">Rood</option>
+                      <option value="Chatak">Chatak</option>
+                      <option value="Kottah">Kottah</option>
+                      <option value="Cent">Cent</option>
+                    </select>
+                  </div>
+                  
+                  <div class="col-md-5 form-group">
+                    <label for="">Carpet Area <small>(Sq.ft.)</small></label>
+                    @error('carpet_area')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                  <div class="form-group col-md-4">
+                    <input type="text" id="carpet_area" class="form-control Stylednumber @error('carpet_area') invalid-feedback @enderror" name="carpet_area" value="{{ old('carpet_area') }}">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <select name="carpet_unit" id="carpet_unit" class="form-control">
+                      <option value="Sq-ft">Sq-ft</option>
+                      <option value="Sq-yrd">Sq-yrd</option>
+                      <option value="Sq-m">Sq-m</option>
+                      <option value="Acre">Acre</option>
+                      <option value="Bigha">Bigha</option>
+                      <option value="Hectare">Hectare</option>
+                      <option value="Marla">Marla</option>
+                      <option value="Kanal">Kanal</option>
+                      <option value="Biswa1">Biswa1</option>
+                      <option value="Biswa2">Biswa2</option>
+                      <option value="Ground">Ground</option>
+                      <option value="Aankadam">Aankadam</option>
+                      <option value="Rood">Rood</option>
+                      <option value="Chatak">Chatak</option>
+                      <option value="Kottah">Kottah</option>
+                      <option value="Cent">Cent</option>
+                    </select>
+                  </div>
+                </div>
                 <div class="form-row">
-                  <div class="col-md-4">
+                  <div class="col-md-5">
                     <label for="">Plot Area<span class="text-danger">*</span><span class="text-danger" id="plot_err"></span></label>
                   </div>
                   <div class="form-group col-md-4">
                     <input type="number" id="plot_area" class="form-control @error('plot_area') invalid-feedback @enderror" name="plot_area" value="{{ old('plot_area') }}">
                   </div>
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-3">
                     <select name="plot_unit" id="plot_unit" class="form-control @error('plot_unit') invalid-feedback @enderror">
                       <option value="Sq-ft">Sq-ft</option>
                       <option value="Sq-yrd">Sq-yrd</option>
@@ -4004,19 +4306,68 @@ function selectLocality(val) {
                   </div>
                 </div>
                 <div class="form-row">
-                  <div class="col-md-4">
-                    <label for="">Plot Length</label>
+                  <div class="form-group col-md-5">
+                    <label for="">Plot Length<span class="text-danger">*</span><span  style="color:red" id="plot_length_err"> </span></label>
+                    @error('plot_length')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                   </div>
-                  <div class="form-group col-md-8">
-                    <input type="number" class="form-control @error('plot_length') invalid-feedback @enderror" name="plot_length" value="{{ old('plot_length') }}" placeholder="yrd">
+                  <div class="form-group col-md-4">
+                    <input type="number" class="form-control @error('plot_length') invalid-feedback @enderror" name="plot_length" id="plot_length" value="{{ old('plot_length') }}">
                   </div>
-                </div>
-                <div class="form-row">
-                  <div class="col-md-4">
-                    <label for="">Plot Width</label>
+                  <div class="form-group col-md-3">
+                    <select name="plot_length_unit" id="plot_length_unit" class="form-control">
+                      <option value="Sq-ft">Sq-ft</option>
+                      <option value="Sq-yrd">Sq-yrd</option>
+                      <option value="Sq-m">Sq-m</option>
+                      <option value="Acre">Acre</option>
+                      <option value="Bigha">Bigha</option>
+                      <option value="Hectare">Hectare</option>
+                      <option value="Marla">Marla</option>
+                      <option value="Kanal">Kanal</option>
+                      <option value="Biswa1">Biswa1</option>
+                      <option value="Biswa2">Biswa2</option>
+                      <option value="Ground">Ground</option>
+                      <option value="Aankadam">Aankadam</option>
+                      <option value="Rood">Rood</option>
+                      <option value="Chatak">Chatak</option>
+                      <option value="Kottah">Kottah</option>
+                      <option value="Cent">Cent</option>
+                    </select>
                   </div>
-                  <div class="form-group col-md-8">
-                    <input type="text" class="form-control @error('plot_width') invalid-feedback @enderror" name="plot_width" value="{{ old('plot_width') }}" placeholder="yrd">
+
+                  <div class="form-group col-md-5">
+                    <label for="">Plot Width<span class="text-danger">*</span><span  style="color:red" id="plot_width_err"> </span></label>
+                    @error('plot_width')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                  <div class="form-group col-md-4">
+                    <input type="text" readonly class="form-control @error('plot_width') invalid-feedback @enderror" name="plot_width" id="plot_width" value="{{ old('plot_width') }}">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <select name="plot_width_unit" id="plot_width_unit" class="form-control">
+                      <option value="Sq-ft">Sq-ft</option>
+                      <option value="Sq-yrd">Sq-yrd</option>
+                      <option value="Sq-m">Sq-m</option>
+                      <option value="Acre">Acre</option>
+                      <option value="Bigha">Bigha</option>
+                      <option value="Hectare">Hectare</option>
+                      <option value="Marla">Marla</option>
+                      <option value="Kanal">Kanal</option>
+                      <option value="Biswa1">Biswa1</option>
+                      <option value="Biswa2">Biswa2</option>
+                      <option value="Ground">Ground</option>
+                      <option value="Aankadam">Aankadam</option>
+                      <option value="Rood">Rood</option>
+                      <option value="Chatak">Chatak</option>
+                      <option value="Kottah">Kottah</option>
+                      <option value="Cent">Cent</option>
+                    </select>
                   </div>
                 </div>
                 <div class="form-row">
@@ -4115,20 +4466,27 @@ function selectLocality(val) {
                     </div>
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="stampDiv">
                   <div class="form-check-inline">
                     <label class="form-check-label">
                       <input type="checkbox" name="stamp_duty" class="form-check-input" value="1" checked>Stamp Duty & Registration Charges Excluded.
                     </label>
                   </div>
                 </div>
+                <div class="form-group" id="chargesDiv">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="checkbox" name="ele_water_charges" class="form-check-input" value="1" checked>Electricity & Water charges excluded.
+                    </label>
+                  </div>
+                </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <label for="">Booking Token Amount</label>
+                    <label for="">Security Deposit Amount</label>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" name="booking_token_amount" id="booking_token_amount" class="form-control Stylednumber @error('booking_token_amount') invalid-feedback @enderror" value="{{ old('booking_token_amount') }}">
-                    @error('booking_token_amount')
+                    <input type="text" name="security_amount" id="security_amount" class="form-control Stylednumber @error('security_amount') invalid-feedback @enderror" value="{{ old('security_amount') }}">
+                    @error('security_amount')
                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                       </span>
@@ -4143,15 +4501,13 @@ function selectLocality(val) {
                     <select name="brokerage" id="brokerage" class="form-control">
                       <option value="">-Select Brokerage-</option>
                       <option value="No Brokerage">No Brokerage</option>
-                      <option value="0.25 %">0.25 %</option>
-                      <option value="0.5 %">0.5 %</option>
-                      <option value="0.75 %">0.75 %</option>
-                      <option value="1 %">1 %</option>
-                      <option value="1.5 %">1.5 %</option>
-                      <option value="2 %">2 %</option>
-                      <option value="3 %">3 %</option>
-                      <option value="4 %">4 %</option>
-                      <option value="5 %">5 %</option>
+                      <option value="10 Days">10 Days</option>
+                      <option value="15 Days">15 Days</option>
+                      <option value="20 Days">20 Days</option>
+                      <option value="25 Days">25 Days</option>
+                      <option value="30 Days">30 Days</option>
+                      <option value="45 Days">45 Days</option>
+                      <option value="Others">Others</option>
                     </select>
                   </div>
                 </div>
@@ -4244,10 +4600,10 @@ function selectLocality(val) {
                       </div>
                     </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group ownershipDiv">
                     <h6>Ownership & Approvals</h6>
                   </div>
-                  <div class="form-row">
+                  <div class="form-row ownershipDiv">
                     <div class="form-group col-md-6">
                       <label for="">Ownership Status</label>
                       <select name="ownership_approval" id="ownership_approval" class="form-control @error('ownership_approval') invalid-feedback @enderror">
@@ -4264,6 +4620,43 @@ function selectLocality(val) {
                         <option value="">-Select Approved By-</option>
                         <option value="NMRDA" @if(old('approved_by') == "NMRDA") Selected @endif>NMRDA</option>
                       </select>
+                    </div>
+                  </div>
+                  <div class="form-group waterStatus">
+                    <h6>Status of Water & Electricity</h6>
+                  </div>
+                  <div class="form-row waterStatus">
+                    <div class="form-group col-md-6">
+                      <label for="">Status of Water</label>
+                      <select name="status_of_water" id="status_of_water" class="form-control @error('status_of_water') invalid-feedback @enderror">
+                        <option value="">-Select Status of Water-</option>
+                        <option value="24 HOURS Available" @if(old('status_of_water') == "24 HOURS Available") Selected @endif>24 HOURS Available</option>
+                        <option value="12 HOURS Available" @if(old('status_of_water') == "12 HOURS Available") Selected @endif>12 HOURS Available</option>
+                        <option value="6 HOURS Available" @if(old('status_of_water') == "6 HOURS Available") Selected @endif>6 HOURS Available</option>
+                        <option value="2 HOURS Available" @if(old('status_of_water') == "2 HOURS Available") Selected @endif>2 HOURS Available</option>
+                        <option value="1 HOUR Available" @if(old('status_of_water') == "1 HOUR Available") Selected @endif>1 HOUR Available</option>
+                      </select>
+                      @error('status_of_water')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="">Status of Electricity</label>
+                      <select name="status_of_electricity" id="status_of_electricity" class="form-control @error('status_of_electricity') invalid-feedback @enderror">
+                        <option value="">-Select Status of Electricity-</option>
+                        <option value="No Power Cut" @if(old('status_of_electricity') == "No Power Cut") Selected @endif>No Power Cut</option>
+                        <option value="less than 3 hrs" @if(old('status_of_electricity') == "less than 3 hrs") Selected @endif>less than 3 hrs</option>
+                        <option value="2 to 4 hrs Power Cut" @if(old('status_of_electricity') == "2 to 4 hrs Power Cut") Selected @endif>2 to 4 hrs Power Cut</option>
+                        <option value="4 to 6 hrs Power Cut" @if(old('status_of_electricity') == "4 to 6 hrs Power Cut") Selected @endif>4 to 6 hrs Power Cut</option>
+                        <option value="above 6 hrs Power Cut" @if(old('status_of_electricity') == "above 6 hrs Power Cut") Selected @endif>above 6 hrs Power Cut</option>
+                      </select>
+                      @error('status_of_electricity')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
                   </div>
                   <div class="form-group">
@@ -4958,7 +5351,13 @@ $('body').on('change', '#property_type', function () {
       $('#rent-lease-form').fadeIn();
       $('#commercial-form').fadeOut();
       $('#showroom-form').fadeOut();
-      
+      if(listed_by == "Owner")
+      {
+        $("#rent-lease-form #brokerageDiv").hide(); 
+      }
+      else{
+        $("#rent-lease-form #brokerageDiv").show();
+      }
       if((query == 35) || (query ==36))
       {
         $("#plot_details").show();
@@ -4979,6 +5378,13 @@ $('body').on('change', '#property_type', function () {
       $('#commercial-form').fadeIn();
       $('#rent-lease-form').fadeOut();
       $('#showroom-form').fadeOut();
+      if(listed_by == "Owner")
+      {
+        $("#commercial-form #brokerageDiv").hide(); 
+      }
+      else{
+        $("#commercial-form #brokerageDiv").show();
+      }
       if(query == 42)
       {
         $('#idealDiv').hide();
@@ -4986,16 +5392,23 @@ $('body').on('change', '#property_type', function () {
       else{
         $('#idealDiv').show();
       }
-      if(query == 45)
-      {
-        $("#commercial-form #imageDiv").show();
-        $("#commercial-form #plot_details").show();
+      if(query == 45){
         $('.commercialDiv').hide();
+        // $('.warehouseDiv').hide();
       }
       else{
-        $("#commercial-form #imageDiv").hide();
-        $("#commercial-form #plot_details").hide();
         $('.commercialDiv').show();
+      }
+      if((query == 45) || (query == 46))
+      {
+        $("#commercial-form #plot_details").show();
+        $("#commercial-form #imageDiv").show();
+        $("#commercial-form #exteriorDiv").hide();
+      }
+      else{
+        $("#commercial-form #plot_details").hide();
+        $("#commercial-form #imageDiv").hide();
+        $("#commercial-form #exteriorDiv").show();
       }
     }, 2500);
   }
@@ -5010,6 +5423,13 @@ $('body').on('change', '#property_type', function () {
       $('#commercial-form').fadeOut();
       $('#rent-lease-form').fadeOut();
       $('#showroom-form').fadeIn();
+      if(listed_by == "Owner")
+      {
+        $("#showroom-form #brokerageDiv").hide(); 
+      }
+      else{
+        $("#showroom-form #brokerageDiv").show();
+      }
     }, 2500);
   }
   if((query == 47) || (query == 48) || (query == 50) || (query == 51) || (query == 52) || (query == 53) || (query == 54) || (query == 55) || (query == 56))
@@ -5023,6 +5443,54 @@ $('body').on('change', '#property_type', function () {
       $('#rent-lease-form').fadeOut();
       $('#showroom-form').fadeOut();
       $('#land-form').fadeIn();
+      if(listed_by == "Owner")
+      {
+        $("#land-form #brokerageDiv").hide(); 
+      }
+      else{
+        $("#land-form #brokerageDiv").show();
+      }
+      if(query == 48)
+      {
+        $("#land-form #floorDiv").hide();
+        $("#land-form #idealDiv").hide();
+        $("#propFloorDiv").show();
+        $("#areaDiv").show();
+        $("#land-form #stampDiv").hide();
+        $("#land-form #chargesDiv").show();
+        $("#land-form .ownershipDiv").hide();
+        $("#land-form .waterStatus").show();
+      }else if(query == 47)
+      {
+        $("#land-form #floorDiv").hide();
+        $("#land-form #idealDiv").show();
+        $("#propFloorDiv").hide();
+        $("#land-form #stampDiv").hide();
+        $("#land-form #chargesDiv").show();
+        $("#land-form .ownershipDiv").hide();
+        $("#land-form .waterStatus").show();
+        $("#areaDiv").hide();
+      }
+      else if(query == 50){
+        $("#land-form #floorDiv").hide();
+        $("#land-form #idealDiv").show();
+        $("#propFloorDiv").hide();
+        $("#areaDiv").show();
+        $("#land-form #stampDiv").hide();
+        $("#land-form #chargesDiv").show();
+        $("#land-form .ownershipDiv").hide();
+        $("#land-form .waterStatus").show();
+      }
+      else{
+        $("#land-form #floorDiv").show();
+        $("#land-form #idealDiv").hide();
+        $("#propFloorDiv").hide();
+        $("#areaDiv").hide();
+        $("#land-form #stampDiv").show();
+        $("#land-form #chargesDiv").hide();
+        $("#land-form .ownershipDiv").show();
+        $("#land-form .waterStatus").hide();
+      }
     }, 2500);
   }
 })
@@ -5149,7 +5617,7 @@ $('body').on('click', '#showButton2', function () {
   var address = $('textarea#address').val();
   var project_name = $('#project_name1').val();
   var land_zone = $('#land_zone').val();
-  var no_of_floor = $('#total_floor1').val();
+  var no_of_floor = $('#commercial-form #no_of_floor').val();
   var furnishing = $("#commercial-form input[name='furnishing']:checked").val();
   var super_build_up_area = $('#commercial-form #super_build_up_area').val();
   var available_from = $("#commercial-form input[name='available_from']:checked").val();
@@ -5198,9 +5666,9 @@ $('body').on('click', '#showButton2', function () {
   }
   if(no_of_floor == '')
   {
-    $("#total_floor1_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#total_floor1_err").fadeOut(); }, 3000);
-    $("#total_floor1").focus();
+    $("#commercial-form #total_floor_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#commercial-form #total_floor_err").fadeOut(); }, 3000);
+    $("#commercial-form #no_of_floor").focus();
     return false;
   }
   if(furnishing == null)
