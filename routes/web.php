@@ -74,7 +74,6 @@ Route::get('/commercial-showroom', function(){
 });
 
 
-
 Route::get('/', function () {
     return view('auth.dashboard');
 })->name('dashboard');
@@ -90,6 +89,12 @@ Route::get('/sidebar', function () {
 
 Route::get('/my-ads', [AdController::class, 'myAds'])->name('my-ad');
 Auth::routes();
+
+Route::get('/flat-apartment-form', [AdController::class, 'flatApartmentForm']);
+Route::get('/residential-house-form', [AdController::class, 'residentialHouseForm']);
+Route::get('/com-office-form', [AdController::class, 'comOfficeForm']);
+Route::get('/it-office-form', [AdController::class, 'itOfficeForm']);
+Route::get('/com-land-form', [AdController::class, 'comLandForm']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
