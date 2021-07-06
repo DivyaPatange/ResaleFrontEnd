@@ -1,8 +1,7 @@
+<div class="form-group">
+    <h6>Property Feature</h6>
+</div>
 <div class="form-row">
-    <div class="col-md-6 form-group">
-        <label for="">Name of Project Office Complex<span class="text-danger">*</span><span  style="color:red" id="project_name_err"> </span></label>
-        <input type="text" name="project_name" class="form-control" id="project_name">
-    </div>
     <div class="form-group col-md-6">
         <label for="">Land Zone<span  style="color:red" id="land_zone_err"> </span></label>
         <select name="land_zone" id="land_zone" class="form-control sel-status">
@@ -18,6 +17,16 @@
             <option value="Special Economic Zone">Special Economic Zone</option>
             <option value="Natural Conservation Zone">Natural Conservation Zone</option>
             <option value="Government Use">Government Use</option>
+        </select>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="">No. of Open Side</label>
+        <select name="no_of_open_side" id="no_of_open_side" class="sel-status form-control @error('no_of_open_side') invalid-feedback @enderror">
+            <option value="">-Select No. of Open Side-</option>
+            <option value="1" @if(old('no_of_open_side') == "1") Selected @endif>1</option>
+            <option value="2" @if(old('no_of_open_side') == "2") Selected @endif>2</option>
+            <option value="3" @if(old('no_of_open_side') == "3") Selected @endif>3</option>
+            <option value="4" @if(old('no_of_open_side') == "4") Selected @endif>4</option>
         </select>
     </div>
 </div>
@@ -83,29 +92,15 @@
         </select>
     </div>
 </div>
-<div class="form-group">
-    <h6>Property Feature</h6>
-</div>
-<div class="form-row">
-    <div class="form-group col-md-6">
-        <label for="">Lock in Period (In Years)</label>
-    </div>
-    <div class="form-group col-md-6">
-        <input type="number" class="form-control" name="lock_period" max="2">
-    </div>
-</div>
-<div class="form-group">
-    <h6>Area</h6>
-</div>
 <div class="form-row">
     <div class="form-group col-md-5">
-        <label for="">Plot Area<span class="text-danger">*</span><span  style="color:red" id="plot_err"> </span></label>
+        <label for="">Width of Road facing the Plot</label>
     </div>
     <div class="form-group col-md-4">
-        <input type="number" class="form-control @error('plot_area') invalid-feedback @enderror" name="plot_area" id="plot_area" value="{{ old('plot_area') }}">
+        <input type="text" class="form-control Stylednumber @error('width_of_road') invalid-feedback @enderror" name="width_of_road" value="{{ old('width_of_road') }}" placeholder="Meters">
     </div>
     <div class="form-group col-md-3">
-        <select name="plot_unit" id="plot_unit" class="form-control">
+        <select name="road_facing_unit" id="road_facing_unit" class="form-control @error('road_facing_unit') invalid-feedback @enderror">
             <option value="Sq-ft">Sq-ft</option>
             <option value="Sq-yrd">Sq-yrd</option>
             <option value="Sq-m">Sq-m</option>
@@ -122,8 +117,99 @@
             <option value="Chatak">Chatak</option>
             <option value="Kottah">Kottah</option>
             <option value="Cent">Cent</option>
+            <option value="Perch">Perch</option>
+            <option value="Guntha">Guntha</option>
+            <option value="Are">Are</option>
         </select>
     </div>
+</div>  
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-6">
+            <label for="">Any construction Done <span class="text-danger">*</span><span class="text-danger" id="construct_err"></span></label>
+        </div>
+        <div class="col-md-6">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="any_construc" value="Yes">Yes
+                </label>
+            </div>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="any_construc" value="No">No
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-6">
+            <label for="">Bondary wall Made<span class="text-danger">*</span><span class="text-danger" id="wall_err"></span></label>
+        </div>
+        <div class="col-md-6">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="boundry_wall" value="Yes">Yes
+                </label>
+            </div>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="boundry_wall" value="No">No
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label>Age of Construction <span class="text-danger">*</span></label>
+        <select class="form-control @error('age_of_construction') is-invalid @enderror" id="age_of_construction" name="age_of_construction">
+            <option value="">-Select-</option>
+            <option value="New Construction">New Construction</option>
+            <option value="Less than 5 years">Less than 5 years</option>
+            <option value="5 to 10 years">5 to 10 years</option>
+            <option value="10 to 15 years">10 to 15 years</option>
+            <option value="15 to 20 years">15 to 20 years</option>
+            <option value="Above 20 years">Above 20 years</option>
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <h6>Area</h6>
+</div>
+<div class="form-row">
+    <div class="col-md-5">
+        <label for="">Plot Area<span class="text-danger">*</span><span class="text-danger" id="plot_err"></span></label>
+    </div>
+    <div class="form-group col-md-4">
+        <input type="number" id="plot_area" class="form-control @error('plot_area') invalid-feedback @enderror" name="plot_area" value="{{ old('plot_area') }}">
+    </div>
+    <div class="form-group col-md-3">
+        <select name="plot_unit" id="plot_unit" class="form-control @error('plot_unit') invalid-feedback @enderror">
+            <option value="Sq-ft">Sq-ft</option>
+            <option value="Sq-yrd">Sq-yrd</option>
+            <option value="Sq-m">Sq-m</option>
+            <option value="Acre">Acre</option>
+            <option value="Bigha">Bigha</option>
+            <option value="Hectare">Hectare</option>
+            <option value="Marla">Marla</option>
+            <option value="Kanal">Kanal</option>
+            <option value="Biswa1">Biswa1</option>
+            <option value="Biswa2">Biswa2</option>
+            <option value="Ground">Ground</option>
+            <option value="Aankadam">Aankadam</option>
+            <option value="Rood">Rood</option>
+            <option value="Chatak">Chatak</option>
+            <option value="Kottah">Kottah</option>
+            <option value="Cent">Cent</option>
+            <option value="Perch">Perch</option>
+            <option value="Guntha">Guntha</option>
+            <option value="Are">Are</option>
+        </select>
+    </div>
+</div>
+<div class="form-row">
     <div class="form-group col-md-5">
         <label for="">Plot Length<span class="text-danger">*</span><span  style="color:red" id="plot_length_err"> </span></label>
     </div>
@@ -177,6 +263,15 @@
         </select>
     </div>
 </div>
+<div class="form-row">
+    <div class="form-group col-md-12">
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" value="1" name="corner_plot">This is Corner Plot 
+            </label>
+        </div>
+    </div>
+</div>
 <div class="form-group">
     <h6>Transaction Type/Property Availability</h6>
 </div>
@@ -186,40 +281,22 @@
     </div>
     <div class="col-md-6 form-group">
         <div class="form-check-inline">
-        <label class="form-check-label" style="display:-webkit-inline-box">
+            <label class="form-check-label" style="display:-webkit-inline-box">
             <input type="radio" class="form-check-input" name="available_from" value="Select Date">Select Date &nbsp;
             <div class="hidden" id="showDateDiv">
                 <input class="form-control datepicker" placeholder="DD/MM/YYYY" name="available_date" width="175px">
             </div>
-        </label>
+            </label>
         </div>
     </div>
     <div class="col-md-3 form-group">
         <div class="form-check-inline">
             <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="available_from" value="Immediately">Immediately
+            <input type="radio" class="form-check-input" name="available_from" value="Immediately">Immediately
             </label>
         </div>
     </div>
 </div>
-<div class="form-row">
-    <div class="form-group col-md-6">
-        <label for="">Currently Rent Out</label>
-    </div>
-    <div class="form-group col-md-6">
-        <div class="form-check-inline">
-            <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="rent_out" value="Yes">Yes
-            </label>
-        </div>
-        <div class="form-check-inline">
-            <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="rent_out" value="No">No
-            </label>
-        </div>
-    </div>
-</div>
-<hr>
 <div class="form-group">
     <h6>Rent/Lease Detail</h6>
 </div>
@@ -239,33 +316,33 @@
         </div>
         <div class="form-group col-md-3">
             <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="show_rent_as" id="show_rent1" value="">
-                    <span id="rent_1"></span>
-                </label>
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" id="show_rent1" name="show_rent_as" value="">
+                <span id="rent_1"></span>
+            </label>
             </div>
         </div>
         <div class="form-group col-md-3">
             <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="show_rent_as" id="show_rent2" value="">
-                    <span id="rent_2"></span>
-                </label>
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" id="show_rent2" name="show_rent_as" value="">
+                <span id="rent_2"></span>
+            </label>
             </div>
         </div>
         <div class="form-group col-md-3">
             <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="show_rent_as" value="Call For Price">Call For Price
-                </label>
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="show_rent_as" value="Call For Price">Call For Price
+            </label>
             </div>
         </div>
     </div>
 </div>
 <div class="form-group">
     <div class="plus-minus">
-        <input type="checkbox" name="" id="a1" class="a css-checkbox">
-        <label for="a1" class="css-label">
+        <input type="checkbox" name="" id="a" class="a css-checkbox">
+        <label for="a" class="css-label">
             <span class="fa fa-plus"></span>
             <span class="fa fa-minus"></span>
             Add Other Charges
@@ -291,27 +368,10 @@
 </div>
 <div class="form-row">
     <div class="form-group col-md-6">
-        <label for="">Security/Deposit Amount</label>
+        <label for="">Security Deposit Amount</label>
     </div>
     <div class="form-group col-md-6">
-        <input type="text" class="form-control Stylednumber" name="security_amount" onkeyup="convertNumberToWords1(this.value)">
-        <span id="security_price" class="text-muted"></span>
-    </div>
-</div>
-<div class="form-row">
-    <div class="form-group col-md-6">
-        <label for="">Maintenance Charges</label>
-        <input type="text" name="maintenance_charge" class="form-control Stylednumber">
-    </div>
-    <div class="form-group col-md-6">
-        <label for="">Per</label>
-        <select name="m_charges_per" id="m_charges_per" class="form-control">
-            <option value="Monthly">Monthly</option>
-            <option value="Quarterly">Quarterly</option>
-            <option value="Yearly">Yearly</option>
-            <option value="One-Time">One-Time</option>
-            <option value="Per Sq. Unit Monthly">Per Sq. Unit Monthly</option>
-        </select>
+        <input type="text" name="security_amount" id="security_amount" class="form-control Stylednumber @error('security_amount') invalid-feedback @enderror" value="{{ old('security_amount') }}">
     </div>
 </div>
 <div class="form-row" id="brokerageDiv">
@@ -332,105 +392,94 @@
         </select>
     </div>
 </div>
+<hr>
 <div class="form-group">
     <h6>Photos</h6>
 </div>
-<div class="form-group">
-    <nav>
-        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-home6-tab" data-toggle="tab" href="#nav-home6" role="tab" aria-controls="nav-home6" aria-selected="true">Site View</a>
-            <a class="nav-item nav-link" id="nav-profile6-tab" data-toggle="tab" href="#nav-profile6" role="tab" aria-controls="nav-profile6" aria-selected="false">Master Plan</a>
-            <a class="nav-item nav-link" id="nav-contact6-tab" data-toggle="tab" href="#nav-contact6" role="tab" aria-controls="nav-contact6" aria-selected="false">Location Map</a>
-            <a class="nav-item nav-link" id="nav-kitchen6-tab" data-toggle="tab" href="#nav-kitchen6" role="tab" aria-controls="nav-kitchen6" aria-selected="false">Others</a>
-        </div>
-    </nav>
-    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-home6" role="tabpanel" aria-labelledby="nav-home6-tab">
-            <div id="upload_form8">
-            <label class="filelabel p_file">
-                <div class="icon">X</div>
-                <i class="fa fa-paperclip" id="icon1"></i>
-                <span class="title1">Add Photo</span>
-                <input class="FileUpload1" id="FileInput" name="site_photos[]" type="file"/>
-                <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
-            </label>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="nav-profile6" role="tabpanel" aria-labelledby="nav-profile6-tab">
-            <div id="upload_form9">
-            <label class="filelabel p_file">
-                <div class="icon">X</div>
-                <i class="fa fa-paperclip" id="icon1"></i>                          
-                <span class="title1">Add Photo</span>
-                <input class="FileUpload1" id="FileInput" name="master_photos[]" type="file"/>
-                <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
-            </label>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="nav-contact6" role="tabpanel" aria-labelledby="nav-contact6-tab">
-            <div id="upload_form10">
-            <label class="filelabel p_file">
-                <div class="icon">X</div>
-                <i class="fa fa-paperclip" id="icon1"></i>
-                <span class="title1">Add Photo</span>
-                <input class="FileUpload1" id="FileInput" name="location_photos[]" type="file"/>
-                <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
-            </label>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="nav-kitchen6" role="tabpanel" aria-labelledby="nav-kitchen6-tab">
-            <div id="upload_form6">
-            <label class="filelabel p_file">
-                <div class="icon">X</div>
-                <i class="fa fa-paperclip" id="icon1"></i>          
-                <span class="title1">Add Photo</span>
-                <input class="FileUpload1" id="FileInput" name="others_photos[]" type="file"/>
-                <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
-            </label>
+<div class="form-group mt-3">
+    <div class="row">
+        <div class="col-md-12">
+            <nav>
+                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-home5-tab" data-toggle="tab" href="#nav-home5" role="tab" aria-controls="nav-home5" aria-selected="true">Site View</a>
+                    <a class="nav-item nav-link" id="nav-profile5-tab" data-toggle="tab" href="#nav-profile5" role="tab" aria-controls="nav-profile5" aria-selected="false">Master Plan</a>
+                    <a class="nav-item nav-link" id="nav-contact5-tab" data-toggle="tab" href="#nav-contact5" role="tab" aria-controls="nav-contact5" aria-selected="false">Location Map</a>
+                    <a class="nav-item nav-link" id="nav-others5-tab" data-toggle="tab" href="#nav-others5" role="tab" aria-controls="nav-others5" aria-selected="false">Others </a>
+                </div>
+            </nav>
+            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home5" role="tabpanel" aria-labelledby="nav-home5-tab">
+                    <div id="upload_form8">
+                        <label class="filelabel p_file">
+                            <div class="icon">X</div>
+                            <i class="fa fa-paperclip" id="icon1"></i>
+                            <span class="title1">Add Photo</span>
+                            <input class="FileUpload1" id="FileInput" name="site_photos[]" type="file"/>
+                            <img id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                        </label>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-profile5" role="tabpanel" aria-labelledby="nav-profile5-tab">
+                    <div id="upload_form9">
+                        <label class="filelabel p_file">
+                            <div class="icon">X</div>
+                            <i class="fa fa-paperclip" id="icon1"></i>
+                            <span class="title1">Add Photo</span>
+                            <input class="FileUpload1" id="FileInput" name="master_photos[]" type="file"/>
+                            <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                        </label>
+                    </div>      
+                </div>
+                <div class="tab-pane fade" id="nav-contact5" role="tabpanel" aria-labelledby="nav-contact5-tab">
+                    <div id="upload_form10">
+                        <label class="filelabel p_file">
+                            <div class="icon">X</div>
+                            <i class="fa fa-paperclip" id="icon1"></i>
+                            <span class="title1">Add Photo</span>
+                            <input class="FileUpload1" id="FileInput" name="location_photos[]" type="file"/>
+                            <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                        </label>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-others5" role="tabpanel" aria-labelledby="nav-others5-tab">
+                    <div id="upload_form7">
+                        <label class="filelabel p_file">
+                            <div class="icon">X</div>
+                            <i class="fa fa-paperclip" id="icon1"></i>
+                            <span class="title1">Add Photo</span>
+                            <input class="FileUpload1" id="FileInput" name="other_photos[]" type="file"/>
+                            <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
+                        </label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <hr>
-<button type="button" class="btn btn-primary" id="showButton2">Continue & Next</button>
-<div class="hidden" id="showDiv2">
+<button type="button" id="showButton4" class="btn btn-primary">Continue & Next</button>
+<div class="hidden" id="showDiv4">
     <div class="form-group">
         <h6>Additional Features</h6>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="">Facing <span class="text-danger">*</span></label>
-            <select name="facing" id="facing" class="form-control @error('facing') invalid-feedback @enderror">
-                <option value="">-Select Facing-</option>
-                <option value="East" @if(old('facing') == "East") Selected @endif>East</option>
-                <option value="West" @if(old('facing') == "West") Selected @endif>West</option>
-                <option value="North" @if(old('facing') == "North") Selected @endif>North</option>
-                <option value="South" @if(old('facing') == "South") Selected @endif>South</option>
-                <option value="North East" @if(old('facing') == "North East") Selected @endif>North East</option>
-                <option value="North West" @if(old('facing') == "North West") Selected @endif>North West</option>
-                <option value="South East" @if(old('facing') == "South East") Selected @endif>South East</option>
-                <option value="South West" @if(old('facing') == "South West") Selected @endif>South West</option>
-            </select>
+        <div class="form-group col-md-4">
+            <label>Overlooking</label>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="">Multiple Units Available</label>
-        </div>
-        <div class="col-md-6">
+        <div class="form-group col-md-8">
             <div class="form-check-inline">
                 <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="mul_unit_avail" value="Yes">Yes
+                    <input type="checkbox" class="form-check-input" name="overlooking[]" value="Main Road">Main Road
                 </label>
             </div>
             <div class="form-check-inline">
                 <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="mul_unit_avail" value="No">No
+                    <input type="checkbox" class="form-check-input" name="overlooking[]" value="Not Available">Not Available
                 </label>
             </div>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group waterStatus">
         <h6>Status of Water & Electricity</h6>
     </div>
     <div class="form-row">
@@ -458,106 +507,12 @@
         </div>
     </div>
     <div class="form-group">
-        <h6>Overlooking</h6>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="overlooking[]" value="Garden/Park">Garden/Park
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-6">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="overlooking[]" value="Main Road">Main Road
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-6">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="overlooking[]" value="Not Available">Not Available
-                </label>
-            </div>
-        </div>
+        <label>Description <span class="text-danger">*</span><span class="text-danger" id="description_err" style="display: block;"></span></label>
+        <textarea class="form-control ckeditor @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
     </div>
     <div class="form-group">
-        <h6>Car Parking</h6>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <div class="form-check-inline">
-                <label class="form-check-label" style="display:-webkit-inline-box">
-                    <input type="checkbox" class="form-check-input" name="car_parking[]" value="Covered">Covered &nbsp;
-                    <div class="hidden" id="showCoveredDiv">
-                        <input type="number" placeholder="Enter No." name="cover_no" id="cover_no">
-                    </div>
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-6">
-            <div class="form-check-inline">
-                <label class="form-check-label" style="display:-webkit-inline-box">
-                    <input type="checkbox" class="form-check-input" name="car_parking[]" value="Open">Open &nbsp;
-                    <div class="hidden" id="showOpenDiv">
-                        <input type="number" placeholder="Enter No." name="open_no" id="open_no">
-                    </div>
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-6">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="car_parking[]" value="None">None
-                </label>
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <h6>Amenities</h6>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" name="aminities[]" value="Security">Security 
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Reserve Parking">Reserve Parking 
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Visitors Parking">Visitors Parking 
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Water Storage">Water Storage 
-                </label>
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <h6>Description & Landmarks</h6>
-    </div>
-    <div class="form-group">
-        <label for="">Description<span  style="color:red" id="description_err"> </span></label>
-        <textarea name="description" id="description" class="form-control ckeditor"></textarea>
-    </div>
-    <div class="form-group">
-        <label for="">Landmark</label>
-        <input type="text" name="landmark" class="form-control">
+        <label>Land Mark</label>
+        <input type="text" class="form-control @error('land_mark') is-invalid @enderror" id="land_mark"  name="land_mark" value="{{ old('land_mark') }}">
     </div>
     <hr>
     <div class="form-group">
@@ -616,7 +571,7 @@
             <input type="number" class="form-control @error('pin_code') is-invalid @enderror" id="pin_code" name="pin_code">
         </div> 
     </div>
-    <button type="button" id="submitButton2" class="btn btn-primary">Post Your Add</button>
+    <button type="button" id="submitForm3" class="btn btn-primary">Post Your Add</button>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
@@ -629,13 +584,13 @@ $(function() {
 $(document).ready(function () {
     $('.ckeditor').ckeditor();
 });
-$('body').on('click', '#showButton2', function () {
+$('body').on('click', '#showButton4', function () {
   var listed_by = $('input[name="listed_by"]:checked').val();
   var city = $('#search-box').val();
   var locality = $('#locality').val();
-  var address = $('textarea#address').val();
-  var project_name = $('#project_name').val();
-  var land_zone = $('#land_zone').val();
+  var address = $('#address').val();
+  var any_construct = $("input[name='any_construc']:checked").val();
+  var boundary_wall = $("input[name='boundry_wall']:checked").val();
   var plot_area = $('#plot_area').val();
   var plot_length = $('#plot_length').val();
   var available_from = $("input[name='available_from']:checked").val();
@@ -668,18 +623,18 @@ $('body').on('click', '#showButton2', function () {
     $("#address").focus();
     return false;
   }
-  if(project_name == '')
+  if(any_construct == null)
   {
-    $("#project_name_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#project_name_err").fadeOut(); }, 3000);
-    $("#project_name").focus();
+    $("#construct_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#construct_err").fadeOut(); }, 3000);
+    $("input[name='any_construc']").focus();
     return false;
   }
-  if(land_zone == '')
+  if(boundary_wall == null)
   {
-    $("#land_zone_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#land_zone_err").fadeOut(); }, 3000);
-    $("#land_zone").focus();
+    $("#wall_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#wall_err").fadeOut(); }, 3000);
+    $("input[name='boundry_wall']").focus();
     return false;
   }
   if(plot_area == '')
@@ -711,21 +666,22 @@ $('body').on('click', '#showButton2', function () {
     return false;
   }
   else{
-    $("#showDiv2").removeClass("hidden");
-    $("#showButton2").addClass("hidden");
+    $("#showDiv4").removeClass("hidden");
+    $("#showButton4").addClass("hidden");
   }
 })
-$('body').on('click', '#submitButton2', function () {
-  var description = $('textarea#description').val();
-  if(description == '')
-  {
-    $("#description_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#description_err").fadeOut(); }, 3000);
-    $("#description").focus();
-    return false;
-  }
-  else{
-    $("#property-form").submit();
-  }
+
+$('body').on('click', '#submitForm3', function () {
+    var description = $('textarea#description').val();
+    if(description == '')
+    {
+        $("#description_err").fadeIn().html("Required");
+        setTimeout(function(){ $("#description_err").fadeOut(); }, 3000);
+        $("textarea#description").focus();
+        return false;
+    }
+    else{
+        $("#property-form").submit();
+    }
 });
 </script>

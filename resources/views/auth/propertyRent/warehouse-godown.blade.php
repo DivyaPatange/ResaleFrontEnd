@@ -86,6 +86,105 @@
 <div class="form-group">
     <h6>Property Feature</h6>
 </div>
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="property_floor_no">Floor No.<span  style="color:red" id="floor_err"> </span></label>
+                <select name="property_floor_no" class="form-control sel-status" id="property_floor_no" style="width:100%">
+                    <option value="">-Choose-</option>
+                    <option value="Lower Basement">Lower Basement</option>
+                    <option value="Upper Basement">Upper Basement</option>
+                    <option value="Ground">Ground</option>
+                    @for($i=1; $i <= 20; $i++)
+                    <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="floor">Total Floor<span  style="color:red" id="total_floor_err"> </span></label>
+                <select name="total_floor" id="no_of_floor" class="form-control sel-status" style="width:100%;">
+                    <option value="">Choose..</option>
+                    <option value="Lower Basement">Lower Basement</option>
+                    <option value="Upper Basement">Upper Basement</option>
+                    <option value="Ground">Ground</option>
+                    @for($i=1; $i <= 20; $i++)
+                    <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-4">
+            <label>Furnished Status<span class="text-danger">*</span><span  style="color:red" id="furnishing_err"> </span>
+            </label>
+        </div>
+        <div class="col-md-8">
+            <div class="switch-field">
+                <input type="radio" id="Furnished1" name="furnishing" value="Furnished"/>
+                <label for="Furnished1">Furnished</label>
+                <input type="radio" id="SFurnished" name="furnishing" value="Semi-Furnished"/>
+                <label for="SFurnished">Semi-Furnished</label>
+                <input type="radio" id="Unfurnished1" name="furnishing" value="Unfurnished"/>
+                <label for="Unfurnished1">Unfurnished</label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-row hidden" id="showFurnishedDiv">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Washrooms</label>
+                <select name="bathroom" class="form-control" id="bathroom">
+                    <option value="">-Select-</option>
+                    @for($i=1; $i < 15; $i++)
+                    <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Number of Seats</label>
+                <input type="number" name="no_of_seat" class="form-control" id="no_of_seat">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Cabin/Meeting Rooms</label>
+                <select name="meeting_room" class="form-control" id="meeting_room">
+                    <option value="">-Select-</option>
+                    @for($i=1; $i < 15; $i++)
+                    <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                </select>
+            </div>
+        </div>
+    </div>  
+</div>                
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="">Willing to modify interiors</label>
+    </div>
+    <div class="form-group col-md-6">
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="modify_interior" value="Yes">Yes
+            </label>
+        </div>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="modify_interior" value="No">No
+            </label>
+        </div>
+    </div>
+</div>
 <div class="form-row">
     <div class="form-group col-md-6">
         <label for="">Lock in Period (In Years)</label>
@@ -94,8 +193,127 @@
         <input type="number" class="form-control" name="lock_period" max="2">
     </div>
 </div>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="">Personal Washroom</label>
+    </div>
+    <div class="form-group col-md-6">
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="personal_washroom" value="Yes">Yes
+            </label>
+        </div>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="personal_washroom" value="No">No
+            </label>
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="">Pantry/Cafeteria</label>
+    </div>
+    <div class="form-group col-md-6">
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="pantry_cafe" value="Dry">Dry
+            </label>
+        </div>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="pantry_cafe" value="Wet">Wet
+            </label>
+        </div>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="pantry_cafe" value="Not Available">Not Available
+            </label>
+        </div>
+    </div>
+</div>
 <div class="form-group">
     <h6>Area</h6>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-5">
+        <label for="">Super Build Up Area<span class="text-danger">*</span><span  style="color:red" id="super_area_err"> </span></label>
+    </div>
+    <div class="form-group col-md-4">
+        <input type="text" class="form-control Stylednumber @error('super_build_up_area') invalid-feedback @enderror" id="super_build_up_area" name="super_build_up_area" value="{{ old('super_build_up_area') }}">
+    </div>
+    <div class="form-group col-md-3">
+        <select name="super_area_unit" id="super_area_unit" class="form-control">
+            <option value="Sq-ft">Sq-ft</option>
+            <option value="Sq-yrd">Sq-yrd</option>
+            <option value="Sq-m">Sq-m</option>
+            <option value="Acre">Acre</option>
+            <option value="Bigha">Bigha</option>
+            <option value="Hectare">Hectare</option>
+            <option value="Marla">Marla</option>
+            <option value="Kanal">Kanal</option>
+            <option value="Biswa1">Biswa1</option>
+            <option value="Biswa2">Biswa2</option>
+            <option value="Ground">Ground</option>
+            <option value="Aankadam">Aankadam</option>
+            <option value="Rood">Rood</option>
+            <option value="Chatak">Chatak</option>
+            <option value="Kottah">Kottah</option>
+            <option value="Cent">Cent</option>
+        </select>
+    </div>
+    <div class="col-md-5 form-group">
+        <label for="">Build Up Area <small>(Sq.ft.)</small></label>
+    </div>
+    <div class="form-group col-md-4">
+        <input type="text" id="build_up_area" class="form-control Stylednumber @error('build_up_area') invalid-feedback @enderror" name="build_up_area" value="{{ old('build_up_area') }}">
+    </div>
+    <div class="form-group col-md-3">
+        <select name="build_unit" id="build_unit" class="form-control">
+            <option value="Sq-ft">Sq-ft</option>
+            <option value="Sq-yrd">Sq-yrd</option>
+            <option value="Sq-m">Sq-m</option>
+            <option value="Acre">Acre</option>
+            <option value="Bigha">Bigha</option>
+            <option value="Hectare">Hectare</option>
+            <option value="Marla">Marla</option>
+            <option value="Kanal">Kanal</option>
+            <option value="Biswa1">Biswa1</option>
+            <option value="Biswa2">Biswa2</option>
+            <option value="Ground">Ground</option>
+            <option value="Aankadam">Aankadam</option>
+            <option value="Rood">Rood</option>
+            <option value="Chatak">Chatak</option>
+            <option value="Kottah">Kottah</option>
+            <option value="Cent">Cent</option>
+        </select>
+    </div>
+    <div class="col-md-5 form-group">
+        <label for="">Carpet Area <small>(Sq.ft.)</small></label>
+    </div>
+    <div class="form-group col-md-4">
+        <input type="text" id="carpet_area" class="form-control Stylednumber @error('carpet_area') invalid-feedback @enderror" name="carpet_area" value="{{ old('carpet_area') }}">
+    </div>
+    <div class="form-group col-md-3">
+        <select name="carpet_unit" id="carpet_unit" class="form-control">
+            <option value="Sq-ft">Sq-ft</option>
+            <option value="Sq-yrd">Sq-yrd</option>
+            <option value="Sq-m">Sq-m</option>
+            <option value="Acre">Acre</option>
+            <option value="Bigha">Bigha</option>
+            <option value="Hectare">Hectare</option>
+            <option value="Marla">Marla</option>
+            <option value="Kanal">Kanal</option>
+            <option value="Biswa1">Biswa1</option>
+            <option value="Biswa2">Biswa2</option>
+            <option value="Ground">Ground</option>
+            <option value="Aankadam">Aankadam</option>
+            <option value="Rood">Rood</option>
+            <option value="Chatak">Chatak</option>
+            <option value="Kottah">Kottah</option>
+            <option value="Cent">Cent</option>
+        </select>
+    </div>
 </div>
 <div class="form-row">
     <div class="form-group col-md-5">
@@ -200,6 +418,20 @@
                 <input type="radio" class="form-check-input" name="available_from" value="Immediately">Immediately
             </label>
         </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label>Age of Construction <span class="text-danger">*</span></label>
+        <select class="form-control" id="age_of_construction" name="age_of_construction">
+            <option value="">-Select-</option>
+            <option value="New Construction">New Construction</option>
+            <option value="Less than 5 years">Less than 5 years</option>
+            <option value="5 to 10 years">5 to 10 years</option>
+            <option value="10 to 15 years">10 to 15 years</option>
+            <option value="15 to 20 years">15 to 20 years</option>
+            <option value="Above 20 years">Above 20 years</option>
+        </select>
     </div>
 </div>
 <div class="form-row">
@@ -400,7 +632,7 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="">Facing <span class="text-danger">*</span></label>
-            <select name="facing" id="facing" class="form-control @error('facing') invalid-feedback @enderror">
+            <select name="facing" id="facing" class="form-control sel-status @error('facing') invalid-feedback @enderror">
                 <option value="">-Select Facing-</option>
                 <option value="East" @if(old('facing') == "East") Selected @endif>East</option>
                 <option value="West" @if(old('facing') == "West") Selected @endif>West</option>
@@ -411,6 +643,28 @@
                 <option value="South East" @if(old('facing') == "South East") Selected @endif>South East</option>
                 <option value="South West" @if(old('facing') == "South West") Selected @endif>South West</option>
             </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="">Lifts in the Tower </label>
+            <select name="lift_in_tower" id="lift_in_tower" class="form-control @error('lift_in_tower') invalid-feedback @enderror">
+                <option value="">-Select-</option>
+                <option value="None" @if(old('lift_tower') == "None") Selected @endif>None</option>
+                <option value="1" @if(old('lift_tower') == "1") Selected @endif>1</option>
+                <option value="2" @if(old('lift_tower') == "2") Selected @endif>2</option>
+                <option value="3" @if(old('lift_tower') == "3") Selected @endif>3</option>
+                <option value="4" @if(old('lift_tower') == "4") Selected @endif>4</option>
+                <option value="5" @if(old('lift_tower') == "5") Selected @endif>5</option>
+                <option value="6" @if(old('lift_tower') == "6") Selected @endif>6</option>
+                <option value="7" @if(old('lift_tower') == "7") Selected @endif>7</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="">Shop on the Floor</label>
+        </div>
+        <div class="form-group col-md-6">
+            <input type="number" class="form-control" name="office_floor">
         </div>
     </div>
     <div class="form-row">
@@ -428,6 +682,30 @@
                     <input type="radio" class="form-check-input" name="mul_unit_avail" value="No">No
                 </label>
             </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="">Building Class</label>
+            <select name="building_class" id="" class="form-control">
+                <option value="">-Select Building Class-</option>
+                <option value="Not Applicable">Not Applicable</option>
+                <option value="Grade A+">Grade A+</option>
+                <option value="Grade A">Grade A</option>
+                <option value="Grade B">Grade B</option>
+                <option value="Grade C">Grade C</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="">LEED Certification</label>
+            <select name="leed_certification" id="" class="form-control">
+                <option value="">-Select LEED Certification-</option>
+                <option value="Not Applicable">Not Applicable</option>
+                <option value="Certified">Certified</option>
+                <option value="Silver Certified">Silver Certified</option>
+                <option value="Gold Certified">Gold Certified</option>
+                <option value="Platinum Certified">Platinum Certified</option>
+            </select>
         </div>
     </div>
     <div class="form-group">
@@ -522,28 +800,28 @@
         <div class="form-group col-md-4">
             <div class="form-check-inline">
                 <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" name="aminities[]" value="Security">Security 
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Lift">Lift
                 </label>
             </div>
         </div>
         <div class="form-group col-md-4">
             <div class="form-check-inline">
                 <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Reserve Parking">Reserve Parking 
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Power Backup">Power Backup
                 </label>
             </div>
         </div>
         <div class="form-group col-md-4">
             <div class="form-check-inline">
                 <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Visitors Parking">Visitors Parking 
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Reserve Parking">Reserve Parking
                 </label>
             </div>
         </div>
         <div class="form-group col-md-4">
             <div class="form-check-inline">
                 <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Water Storage">Water Storage 
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Security">Security
                 </label>
             </div>
         </div>
@@ -633,9 +911,12 @@ $('body').on('click', '#showButton2', function () {
   var listed_by = $('input[name="listed_by"]:checked').val();
   var city = $('#search-box').val();
   var locality = $('#locality').val();
-  var address = $('textarea#address').val();
+  var address = $('#address').val();
   var project_name = $('#project_name').val();
   var land_zone = $('#land_zone').val();
+  var no_of_floor = $('#no_of_floor').val();
+  var furnishing = $("input[name='furnishing']:checked").val();
+  var super_build_up_area = $('#super_build_up_area').val();
   var plot_area = $('#plot_area').val();
   var plot_length = $('#plot_length').val();
   var available_from = $("input[name='available_from']:checked").val();
@@ -680,6 +961,27 @@ $('body').on('click', '#showButton2', function () {
     $("#land_zone_err").fadeIn().html("Required");
     setTimeout(function(){ $("#land_zone_err").fadeOut(); }, 3000);
     $("#land_zone").focus();
+    return false;
+  }
+  if(no_of_floor == '')
+  {
+    $("#total_floor_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#total_floor_err").fadeOut(); }, 3000);
+    $("#no_of_floor").focus();
+    return false;
+  }
+  if(furnishing == null)
+  {
+    $("#furnishing_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#furnishing_err").fadeOut(); }, 3000);
+    $("input[name='furnishing']").focus();
+    return false;
+  }
+  if(super_build_up_area == '')
+  {
+    $("#super_area_err").fadeIn().html("Required");
+    setTimeout(function(){ $("#super_area_err").fadeOut(); }, 3000);
+    $("#super_build_up_area").focus();
     return false;
   }
   if(plot_area == '')

@@ -1813,4 +1813,53 @@ class AdController extends Controller
         $state = State::where('status', 1)->get();
         return view('auth.propertyRent.com-land', compact('cities', 'state'));
     }
+
+    public function warehouseGodownForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertyRent.warehouse-godown', compact('cities', 'state'));
+    }
+
+    public function comShowroomForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertyRent.com-showroom', compact('cities', 'state'));
+    }
+
+    public function industrialLandForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertyRent.industrial-land', compact('cities', 'state'));
+    }
+
+    public function industrialBuildingForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertyRent.industrial-building', compact('cities', 'state'));
+    }
+
+    public function industrialShedForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertyRent.industrial-shed', compact('cities', 'state'));
+    }
+
+    public function agriculturalLandForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertyRent.agricultural-land', compact('cities', 'state'));
+    }
+
+    public function farmHouseLandForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertyRent.farmHouse-land', compact('cities', 'state'));
+    }
 }
