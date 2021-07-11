@@ -1214,17 +1214,20 @@ class AdController extends Controller
     {
         if($request->ajax()) {
             // select country name from database
-            $data = DB::table('localities')->where('locality', 'LIKE', $request->keyword.'%')->get();
-
-            $output = '';
-            if (count($data)>0) {
-                $output .= '<ul id="country-list">';
-                foreach ($data as $row){
-                    $output .= '<li onclick="selectLocality(\''.$row->locality.'\');">'.$row->locality.'</li>';
+            $city = DB::table('cities')->where('city_name', $request->city)->first();
+            if(!empty($city)){
+                $data = DB::table('localities')->where('city_id', $city->id)->where('locality', 'LIKE', $request->keyword.'%')->get();
+    
+                $output = '';
+                if (count($data)>0) {
+                    $output .= '<ul id="country-list">';
+                    foreach ($data as $row){
+                        $output .= '<li onclick="selectLocality(\''.$row->locality.'\');">'.$row->locality.'</li>';
+                    }
+                    $output .= '</ul>';
                 }
-                $output .= '</ul>';
+                return $output;
             }
-            return $output;
         }
     }
 
@@ -1861,5 +1864,61 @@ class AdController extends Controller
         $cities = City::where('status', 1)->get();
         $state = State::where('status', 1)->get();
         return view('auth.propertyRent.farmHouse-land', compact('cities', 'state'));
+    }
+
+    public function flatSaleForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertySale.flat-apartment', compact('cities', 'state'));
+    }
+
+    public function residentialPenthouseForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertySale.residential-penthouse', compact('cities', 'state'));
+    }
+
+    public function residentialLandForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertySale.residential-land', compact('cities', 'state'));
+    }
+
+    public function builderApartmentForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertySale.builder-apartment', compact('cities', 'state'));
+    }
+
+    public function residentialVillaForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertySale.residential-villa', compact('cities', 'state'));
+    }
+
+    public function residentialHouseSaleForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertySale.residential-house', compact('cities', 'state'));
+    }
+
+    public function studioApartmentForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertySale.studio-apartment', compact('cities', 'state'));
+    }
+
+    public function comOfficeSpaceForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertySale.comOffice-space', compact('cities', 'state'));
     }
 }

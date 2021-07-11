@@ -3,6 +3,7 @@
 @section('customcss')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" />
 <style>
 .myimg
 {
@@ -30,7 +31,7 @@
 .filelabel {
   width: 110px;
   height:110px;
-  border: 2px dashed grey;
+  border: 2px solid #3688f4;
   border-radius: 5px;
   /* display: inline-block; */
   padding: 5px;
@@ -133,8 +134,8 @@ nav > div a.nav-item.nav-link.active
 {
   border: none;
   padding: 8px 7px;
-  color:#fff;
-  background:#272e38;
+  color:black;
+  background:white;
   border-radius:0;
 }
 
@@ -145,14 +146,14 @@ nav > div a.nav-item.nav-link.active:after
   bottom: -40px;
   left: -40%;
   border: 8px solid transparent;
-  border-top-color: #e74c3c ;
+  border-top-color: #1c79f3;
 }
 .tab-content{
   background: #fdfdfd;
   line-height: 25px;
   border: 1px solid #ddd;
-  border-top:5px solid #e74c3c;
-  border-bottom:5px solid #e74c3c;
+  border-top:3px solid #1c79f3;
+  border-bottom:2px solid #1c79f3;
   padding:30px 25px;
 }
 
@@ -160,7 +161,7 @@ nav > div a.nav-item.nav-link:hover,
 nav > div a.nav-item.nav-link:focus
 {
   border: none;
-  background: #e74c3c;
+  background: #1c79f3;
   color:#fff;
   border-radius:0;
   transition:background 0.20s linear;
@@ -203,7 +204,13 @@ nav > div a.nav-item.nav-link:focus
   height: 65px;
   background: #FFF url('{{ asset('142.gif')}}') no-repeat 50%;
 }
-#country-list{float:left;list-style:none;margin-top:-3px;padding:0;width:190px;position: absolute;}
+.select2-container .select2-selection--single{
+  height:34px;
+}
+.select2-container{
+  width:100% !important;
+}
+#country-list{float:left;list-style:none;margin-top:-3px;padding:0;width:190px;position: absolute; z-index:2;}
 #country-list li{padding: 10px; background: #f0f0f0; border-bottom: #bbb9b9 1px solid;}
 #country-list li:hover{background:#ece3d2;cursor: pointer;}
 #search-box{padding: 10px;border-radius:4px;}
@@ -241,23 +248,33 @@ function selectCountry(val) {
 
 // AJAX call for autocomplete 
 $(document).ready(function(){
-	$("#locality").keyup(function(){
-    if( this.value.length > 5 ){
+  $("#locality").keyup(function(){ 
+    var city = $('#search-box').val();
+    var locality = $(this).val();
+    if(city == '')
+    {
+      $("#city_err").fadeIn().html("Required");
+      setTimeout(function(){ $("#city_err").fadeOut(); }, 3000);
+      $("#search-box").focus();
+      return false;
+    }
+    if(locality.length > 5 ){
       $.ajax({
         type: "GET",
         url: "{{ route('searchLocality') }}",
-        data:'keyword='+$(this).val(),
+        data:{city:city, 'keyword':locality},
         beforeSend: function(){
           $("#locality").css("background","#FFF url('{{ asset('35.gif')}}') no-repeat 100%");
         },
         success: function(data){
+          //  alert(data);
           $("#suggesstion-locality").show();
           $("#suggesstion-locality").html(data);
           $("#locality").css("background","#FFF");
         }
       });
     }
-	});
+  });
 });
 
 //To select country name
@@ -328,11 +345,11 @@ function selectLocality(val) {
               </div>
               <hr>
               <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                   <label>Property Type<span class="text-danger">*<span></label>
                 </div>
-                <div class="form-group col-md-6">
-                  <select id="property_type" class="form-control @error('property_type') is-invalid @enderror" name="property_type">
+                <div class="form-group col-md-8">
+                  <select id="property_type" class="form-control sel-status @error('property_type') is-invalid @enderror" name="property_type">
                     <option value="">Choose...</option>
                     <optgroup label="All Residential Property"> 
                     @foreach($type as $t)
@@ -356,11 +373,6 @@ function selectLocality(val) {
                     @endforeach
                     </optgroup>
                   </select>
-                  @error('property_type')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
                 </div>
               </div>
               <div class="form-row">
@@ -396,6 +408,7 @@ function selectLocality(val) {
                 </div>
               </div>
               <div class="pageloader hidden"></div>
+              <div id="container"></div>
               <div class="hidden" id="flat-form">
                 <div class="form-row">
                   <div class="form-group col-md-6">
@@ -4737,94 +4750,68 @@ function selectLocality(val) {
 <!-- End Contact Single-->
 @endsection
 @section('customjs')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script src="{{ asset('js/image-upload1.js') }}"></script>
-<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 <script>
-$(document).ready(function () {
-  $('.ckeditor').ckeditor();
+$(function() {
+  $(".sel-status").select2();
 });
-String.prototype.replaceAll = function(search, replacement) {
-  var target = this;
-  return target.replace(new RegExp(search, 'g'), replacement);
-};
-$('input.Stylednumber').keyup(function() {
-  var input = $(this).val().replaceAll(',', '');
-  if (input.length < 1)
-    $(this).val('0');
-  else {
-    var formatted = inrFormat(input);
-    if (formatted.indexOf('.') > 0) {
-      var split = formatted.split('.');
-      formatted = split[0] + '.' + split[1].substring(0, 2);
-    }
-    $(this).val(formatted);
-  }
-});
-function inrFormat(val) {
-  var x = val;
-  x = x.toString();
-  var afterPoint = '';
-  if (x.indexOf('.') > 0)
-    afterPoint = x.substring(x.indexOf('.'), x.length);
-  x = Math.floor(x);
-  x = x.toString();
-  var lastThree = x.substring(x.length - 3);
-  var otherNumbers = x.substring(0, x.length - 3);
-  if (otherNumbers != '')
-    lastThree = ',' + lastThree;
-  var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + afterPoint;
-  return res;
-}
 
-
-$('body').on('click', '.a', function () {
-  if($("#com-office-form").css("display") == "block")
-  { 
-    $("#com-office-form #otherChargesDiv").fadeToggle(1000); 
-  }
-  if($("#land-form").css("display") == "block")
-  {
-    $("#land-form #otherChargesDiv").fadeToggle(1000);
-  } 
-  if($("#com-shop-form").css("display") == "block")
-  {
-    $("#com-shop-form #otherChargesDiv").fadeToggle(1000);
-  }
-  if($("#agri-form").css("display") == "block")
-  {
-    $("#agri-form #otherChargesDiv").fadeToggle(1000);
-  } 
-})
 $('body').on('change', '#property_type', function () {
-    var query = $(this).val();
-    if((query == 57) || (query == 61) || (query == 64) || (query == 65) || (query == 66))
+  var query = $(this).val();
+  var listed_by = $('input[name="listed_by"]:checked').val();
+  var showDiv = $('.pageloader');
+  if (showDiv.is(":visible")) { return; }
+  showDiv.show();
+  setTimeout(function() {
+    showDiv.hide();
+    if(query == 57)
     {
-      var showDiv = $('.pageloader');
-      if (showDiv.is(":visible")) { return; }
-      showDiv.show();
-      setTimeout(function() {
-        showDiv.hide();
-        $('#flat-form').fadeIn();
-        $('#com-office-form').fadeOut();
-        $('#land-form').fadeOut();
-        $('#com-shop-form').fadeOut();
-        $('#agri-form').fadeOut();
-      }, 2500);
+      $('#container').load('/flat-sale-form');
     }
-    if((query == 60) || (query == 59) || (query == 541))
+    if(query == 61)
     {
-      var showDiv = $('.pageloader');
-      if (showDiv.is(":visible")) { return; }
-      showDiv.show();
-      setTimeout(function() {
-        showDiv.hide();
-        $('#flat-form').fadeOut();
-        $('#com-office-form').fadeIn();
-        $('#land-form').fadeOut();
-        $('#com-shop-form').fadeOut();
-        $('#agri-form').fadeOut();
-      }, 2500);
+      $('#container').load('/residential-penthouse-form');
     }
+    if(query == 62)
+    {
+      $('#container').load('/residential-land-form');
+    }
+    if(query == 64)
+    {
+      $('#container').load('/builder-apartment-form');
+    }
+    if(query == 65)
+    {
+      $('#container').load('/residential-villa-form');
+    }
+    if(query == 66)
+    {
+      $('#container').load('/residential-house-sale-form');
+    }
+    if(query == 541)
+    {
+      $('#container').load('/studio-apartment-form');
+    }
+    if(query == 60)
+    {
+      $('#container').load('/com-office-space-form');
+    }
+  }, 2500);
+    // if((query == 60) || (query == 59) || (query == 541))
+    // {
+    //   var showDiv = $('.pageloader');
+    //   if (showDiv.is(":visible")) { return; }
+    //   showDiv.show();
+    //   setTimeout(function() {
+    //     showDiv.hide();
+    //     $('#flat-form').fadeOut();
+    //     $('#com-office-form').fadeIn();
+    //     $('#land-form').fadeOut();
+    //     $('#com-shop-form').fadeOut();
+    //     $('#agri-form').fadeOut();
+    //   }, 2500);
+    // }
     if((query == 70) || (query == 72) || (query == 62) || (query == 68) || (query == 74))
     {
       var showDiv = $('.pageloader');
@@ -4867,399 +4854,15 @@ $('body').on('change', '#property_type', function () {
         $('#agri-form').fadeIn();
       }, 2500);
     }
-})
-$("input[name='posses_status']").change(function(){
-  var posses_status = $(this).val();
-  if(posses_status == "Under Construction")
-  {
-    if($("#flat-form").css("display") == "block"){ 
-      $("#flat-form #possesDiv1").show();
-      $("#flat-form #possesDiv2").hide();
+    if(listed_by == "Owner")
+    {
+      $("#brokerageDiv").hide(); 
     }
-    if($("#com-office-form").css("display") == "block"){ 
-      $("#com-office-form #possesDiv1").show();
-      $("#com-office-form #possesDiv2").hide();
+    else{
+      $("#brokerageDiv").show();
     }
-    if($("#land-form").css("display") == "block"){ 
-      $("#land-form #possesDiv1").show();
-      $("#land-form #possesDiv2").hide();
-    }
-    if($("#com-shop-form").css("display") == "block"){ 
-      $("#com-shop-form #possesDiv1").show();
-      $("#com-shop-form #possesDiv2").hide();
-    }
-    if($("#agri-form").css("display") == "block"){ 
-      $("#agri-form #possesDiv1").show();
-      $("#agri-form #possesDiv2").hide();
-    }
-  }
-  else{
-    if($("#flat-form").css("display") == "block"){
-      $("#flat-form #possesDiv2").show(); 
-      $("#flat-form #possesDiv1").hide();
-    }
-    if($("#com-office-form").css("display") == "block"){
-      $("#com-office-form #possesDiv2").show(); 
-      $("#com-office-form #possesDiv1").hide();
-    }
-    if($("#land-form").css("display") == "block"){
-      $("#land-form #possesDiv2").show(); 
-      $("#land-form #possesDiv1").hide();
-    }
-    if($("#com-shop-form").css("display") == "block"){
-      $("#com-shop-form #possesDiv2").show(); 
-      $("#com-shop-form #possesDiv1").hide();
-    }
-    if($("#agri-form").css("display") == "block"){
-      $("#agri-form #possesDiv2").show(); 
-      $("#agri-form #possesDiv1").hide();
-    }
-  }
-})
-function convertNumberToWords(amount) {
-    var words = new Array();
-    words[0] = '';
-    words[1] = 'One';
-    words[2] = 'Two';
-    words[3] = 'Three';
-    words[4] = 'Four';
-    words[5] = 'Five';
-    words[6] = 'Six';
-    words[7] = 'Seven';
-    words[8] = 'Eight';
-    words[9] = 'Nine';
-    words[10] = 'Ten';
-    words[11] = 'Eleven';
-    words[12] = 'Twelve';
-    words[13] = 'Thirteen';
-    words[14] = 'Fourteen';
-    words[15] = 'Fifteen';
-    words[16] = 'Sixteen';
-    words[17] = 'Seventeen';
-    words[18] = 'Eighteen';
-    words[19] = 'Nineteen';
-    words[20] = 'Twenty';
-    words[30] = 'Thirty';
-    words[40] = 'Forty';
-    words[50] = 'Fifty';
-    words[60] = 'Sixty';
-    words[70] = 'Seventy';
-    words[80] = 'Eighty';
-    words[90] = 'Ninety';
-    amount = amount.toString();
-    var atemp = amount.split(".");
-    var number = atemp[0].split(",").join("");
-    var n_length = number.length;
-    var words_string = "";
-    if (n_length <= 9) {
-        var n_array = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0);
-        var received_n_array = new Array();
-        for (var i = 0; i < n_length; i++) {
-            received_n_array[i] = number.substr(i, 1);
-        }
-        for (var i = 9 - n_length, j = 0; i < 9; i++, j++) {
-            n_array[i] = received_n_array[j];
-        }
-        for (var i = 0, j = 1; i < 9; i++, j++) {
-            if (i == 0 || i == 2 || i == 4 || i == 7) {
-                if (n_array[i] == 1) {
-                    n_array[j] = 10 + parseInt(n_array[j]);
-                    n_array[i] = 0;
-                }
-            }
-        }
-        value = "";
-        for (var i = 0; i < 9; i++) {
-            if (i == 0 || i == 2 || i == 4 || i == 7) {
-                value = n_array[i] * 10;
-            } else {
-                value = n_array[i];
-            }
-            if (value != 0) {
-                words_string += words[value] + " ";
-            }
-            if ((i == 1 && value != 0) || (i == 0 && value != 0 && n_array[i + 1] == 0)) {
-                words_string += "Crores ";
-            }
-            if ((i == 3 && value != 0) || (i == 2 && value != 0 && n_array[i + 1] == 0)) {
-                words_string += "Lakhs ";
-            }
-            if ((i == 5 && value != 0) || (i == 4 && value != 0 && n_array[i + 1] == 0)) {
-                words_string += "Thousand ";
-            }
-            if (i == 6 && value != 0 && (n_array[i + 1] != 0 && n_array[i + 2] != 0)) {
-                words_string += "Hundred and ";
-            } else if (i == 6 && value != 0) {
-                words_string += "Hundred ";
-            }
-        }
-        words_string = words_string.split("  ").join(" ");
-    }
-    if($("#flat-form").css("display") == "block")
-    { 
-      $('#flat-form #show_price').html(words_string);
-    }
-    if($("#com-office-form").css("display") == "block")
-    { 
-      $('#com-office-form #show_price').html(words_string);
-    }
-    if($("#land-form").css("display") == "block")
-    { 
-      $('#land-form #show_price').html(words_string);
-    }
-    if($("#com-shop-form").css("display") == "block")
-    { 
-      $('#com-shop-form #show_price').html(words_string);
-    }
-    if($("#agri-form").css("display") == "block")
-    { 
-      $('#agri-form #show_price').html(words_string);
-    }
-    // return words_string;
-}
-$(document).mouseup(function (e) { 
-  // rest code here 
-  if($("#flat-form").css("display") == "block")
-  { 
-    var total_price = $("#flat-form #total_price").val();
-    // alert(monthly_rent);
-    if(total_price != ""){
-    if ($(e.target).closest("#flat-form #total_price").length === 0) {
-      x=total_price.toString();
-      var lastThree = x.substring(x.length-3);
-      var otherNumbers = x.substring(0,x.length-3);
-      if(otherNumbers != '')
-          lastThree = '' + lastThree;
-      var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
-      $("#flat-form #show_rent1").val(res);
-      $("#flat-form #rent_1").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
-      $("#flat-form #rent_2").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
-      $("#flat-form #show_rent2").val(res+' Negotiable');
-      // format.format(4800)  
-      $("#flat-form #show_rent").show(1000); 
-    } 
-    }
-  }
-  if($("#com-office-form").css("display") == "block")
-  { 
-    var total_price = $("#com-office-form #total_price").val();
-    // alert(total_price);
-    if(total_price != ""){
-    if ($(e.target).closest("#com-office-form #total_price").length === 0) {
-      x=total_price.toString();
-      var lastThree = x.substring(x.length-3);
-      var otherNumbers = x.substring(0,x.length-3);
-      if(otherNumbers != '')
-          lastThree = '' + lastThree;
-      var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
-      $("#com-office-form #rent_1").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
-      $("#com-office-form #show_rent1").val(res);
-      $("#com-office-form #rent_2").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
-      $("#com-office-form #show_rent2").val(res+' Negotiable');
-      // format.format(4800)  
-      $("#com-office-form #show_rent").show(1000); 
-    } 
-    }
-  }
-  if($("#land-form").css("display") == "block")
-  { 
-    var total_price = $("#land-form #total_price").val();
-    // alert(monthly_rent);
-    if(total_price != ""){
-    if ($(e.target).closest("#land-form #total_price").length === 0) {
-      x=total_price.toString();
-      var lastThree = x.substring(x.length-3);
-      var otherNumbers = x.substring(0,x.length-3);
-      if(otherNumbers != '')
-          lastThree = '' + lastThree;
-      var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
-      $("#land-form #show_rent1").val(res);
-      $("#land-form #rent_1").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
-      $("#land-form #rent_2").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
-      $("#land-form #show_rent2").val(res+' Negotiable');
-      // format.format(4800)  
-      $("#land-form #show_rent").show(1000); 
-    } 
-    }
-  }
-  if($("#com-shop-form").css("display") == "block")
-  { 
-    var total_price = $("#com-shop-form #total_price").val();
-    // alert(monthly_rent);
-    if(total_price != ""){
-    if ($(e.target).closest("#com-shop-form #total_price").length === 0) {
-      x=total_price.toString();
-      var lastThree = x.substring(x.length-3);
-      var otherNumbers = x.substring(0,x.length-3);
-      if(otherNumbers != '')
-          lastThree = '' + lastThree;
-      var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
-      $("#com-shop-form #show_rent1").val(res);
-      $("#com-shop-form #rent_1").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
-      $("#com-shop-form #rent_2").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
-      $("#com-shop-form #show_rent2").val(res+' Negotiable');
-      // format.format(4800)  
-      $("#com-shop-form #show_rent").show(1000); 
-    } 
-    }
-  }
-  if($("#agri-form").css("display") == "block")
-  { 
-    var total_price = $("#agri-form #total_price").val();
-    // alert(monthly_rent);
-    if(total_price != ""){
-    if ($(e.target).closest("#agri-form #total_price").length === 0) {
-      x=total_price.toString();
-      var lastThree = x.substring(x.length-3);
-      var otherNumbers = x.substring(0,x.length-3);
-      if(otherNumbers != '')
-          lastThree = '' + lastThree;
-      var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
-      $("#agri-form #show_rent1").val(res);
-      $("#agri-form #rent_1").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res);
-      $("#agri-form #rent_2").html('<i class="fa fa-inr text-dark">&nbsp;</i>'+res+' Negotiable');
-      $("#agri-form #show_rent2").val(res+' Negotiable');
-      // format.format(4800)  
-      $("#agri-form #show_rent").show(1000); 
-    } 
-    }
-  }
-}) 
-String.prototype.replaceAll = function(search, replacement) {
-  var target = this;
-  return target.replace(new RegExp(search, 'g'), replacement);
-};
-$('input.Stylednumber').keyup(function() {
-  var input = $(this).val().replaceAll(',', '');
-  if (input.length < 1)
-    $(this).val('0');
-  else {
-    var formatted = inrFormat(input);
-    if (formatted.indexOf('.') > 0) {
-      var split = formatted.split('.');
-      formatted = split[0] + '.' + split[1].substring(0, 2);
-    }
-    $(this).val(formatted);
-  }
 });
-function inrFormat(val) {
-  var x = val;
-  x = x.toString();
-  var afterPoint = '';
-  if (x.indexOf('.') > 0)
-    afterPoint = x.substring(x.indexOf('.'), x.length);
-  x = Math.floor(x);
-  x = x.toString();
-  var lastThree = x.substring(x.length - 3);
-  var otherNumbers = x.substring(0, x.length - 3);
-  if (otherNumbers != '')
-    lastThree = ',' + lastThree;
-  var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + afterPoint;
-  return res;
-}
 
-$('body').on('click', '#showButton1', function () {
-  var listed_by = $('input[name="listed_by"]:checked').val();
-  var city = $('#search-box').val();
-  var locality = $('#locality').val();
-  var address = $('#address').val();
-  var name_of_society = $('#name_of_society').val();
-  var bedroom = $("input[name='bedroom']:checked").val();
-  var floor_no = $('#floor_no').val();
-  var no_of_floor = $('#total_floor').val();
-  var furnishing = $("input[name='furnishing']:checked").val();
-  var super_build_up_area = $('#super_build_up_area').val();
-  var transaction_type = $("input[name='transaction_type']:checked").val();
-  var total_price = $("#total_price").val();
-  if(listed_by == null)
-  {
-    $("#listed_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#listed_err").fadeOut(); }, 3000);
-    $('input[name="listed_by"]').focus();
-    return false;
-  }
-  if(city == '')
-  {
-    $("#city_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#city_err").fadeOut(); }, 3000);
-    $("#search-box").focus();
-    return false;
-  }
-  if(locality == '')
-  {
-    $("#locality_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#locality_err").fadeOut(); }, 3000);
-    $("#locality").focus();
-    return false;
-  }
-  if(address == '')
-  {
-    $("#address_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#address_err").fadeOut(); }, 3000);
-    $("#address").focus();
-    return false;
-  }
-  if(name_of_society == '')
-  {
-    $("#society_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#society_err").fadeOut(); }, 3000);
-    $("#name_of_society").focus();
-    return false;
-  }
-  if(bedroom == null)
-  {
-    $("#bedroom_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#bedroom_err").fadeOut(); }, 3000);
-    $("input[name='bedroom']").focus();
-    return false;
-  }
-  if(floor_no == '')
-  {
-    $("#floor_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#floor_err").fadeOut(); }, 3000);
-    $("#floor_no").focus();
-    return false;
-  }
-  if(no_of_floor == '')
-  {
-    $("#total_floor_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#total_floor_err").fadeOut(); }, 3000);
-    $("#no_of_floor").focus();
-    return false;
-  }
-  if(furnishing == null)
-  {
-    $("#furnished_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#furnished_err").fadeOut(); }, 3000);
-    $("input[name='furnishing']").focus();
-    return false;
-  }
-  if(super_build_up_area == '')
-  {
-    $("#super_area_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#super_area_err").fadeOut(); }, 3000);
-    $("#super_build_up_area").focus();
-    return false;
-  }
-  if(transaction_type == null)
-  {
-    $("#trans_type_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#trans_type_err").fadeOut(); }, 3000);
-    $("input[name='transaction_type']").focus();
-    return false;
-  }
-  if(total_price == '')
-  {
-    $("#price_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#price_err").fadeOut(); }, 3000);
-    $("#total_price").focus();
-    return false;
-  }
-  else{
-    $("#showDiv1").removeClass("hidden");
-    $("#showButton1").addClass("hidden");
-  }
-})
 $('body').on('click', '#submitForm', function () {
   var description = $('textarea#description').val();
   if(description == '')
@@ -5274,221 +4877,6 @@ $('body').on('click', '#submitForm', function () {
   $("#com-shop-form :input").prop("disabled", true);
   $("#agri-form :input").prop("disabled", true);
   $("#property-sale").submit();
-});
-$('body').on('click', '#showButton2', function () {
-  var listed_by = $('input[name="listed_by"]:checked').val();
-  var city = $('#search-box').val();
-  var locality = $('#locality').val();
-  var address = $('#address').val();
-  var name_of_society = $('#com-office-form #name_of_project').val();
-  var bathroom = $("#com-office-form input[name='bathroom']:checked").val();
-  var floor_no = $('#com-office-form #floor_no').val();
-  var no_of_floor = $('#com-office-form #total_floor').val();
-  var furnishing = $("#com-office-form input[name='furnishing']:checked").val();
-  var covered_area = $('#com-office-form #covered_area').val();
-  var transaction_type = $("#com-office-form input[name='transaction_type']:checked").val();
-  var total_price = $("#com-office-form #total_price").val();
-  if(listed_by == null)
-  {
-    $("#listed_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#listed_err").fadeOut(); }, 3000);
-    $('input[name="listed_by"]').focus();
-    return false;
-  }
-  if(city == '')
-  {
-    $("#city_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#city_err").fadeOut(); }, 3000);
-    $("#search-box").focus();
-    return false;
-  }
-  if(locality == '')
-  {
-    $("#locality_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#locality_err").fadeOut(); }, 3000);
-    $("#locality").focus();
-    return false;
-  }
-  if(address == '')
-  {
-    $("#address_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#address_err").fadeOut(); }, 3000);
-    $("#address").focus();
-    return false;
-  }
-  if(name_of_society == '')
-  {
-    $("#project_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#project_err").fadeOut(); }, 3000);
-    $("#com-office-form #name_of_project").focus();
-    return false;
-  }
-  if(bathroom == null)
-  {
-    $("#bathroom_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#bathroom_err").fadeOut(); }, 3000);
-    $("#com-office-form input[name='bathroom']").focus();
-    return false;
-  }
-  if(floor_no == '')
-  {
-    $("#com-office-form #floor_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#com-office-form #floor_err").fadeOut(); }, 3000);
-    $("#com-office-form #floor_no").focus();
-    return false;
-  }
-  if(no_of_floor == '')
-  {
-    $("#com-office-form #total_floor_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#com-office-form #total_floor_err").fadeOut(); }, 3000);
-    $("#com-office-form #total_floor").focus();
-    return false;
-  }
-  if(furnishing == null)
-  {
-    $("#com-office-form #furnished_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#com-office-form #furnished_err").fadeOut(); }, 3000);
-    $("#com-office-form input[name='furnishing']").focus();
-    return false;
-  }
-  if(covered_area == '')
-  {
-    $("#com-office-form #covered_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#com-office-form #covered_err").fadeOut(); }, 3000);
-    $("#com-office-form #covered_area").focus();
-    return false;
-  }
-  if(transaction_type == null)
-  {
-    $("#com-office-form #trans_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#com-office-form #trans_err").fadeOut(); }, 3000);
-    $("#com-office-form input[name='transaction_type']").focus();
-    return false;
-  }
-  if(total_price == '')
-  {
-    $("#com-office-form #price_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#com-office-form #price_err").fadeOut(); }, 3000);
-    $("#com-office-form #total_price").focus();
-    return false;
-  }
-  else{
-    $("#showDiv2").removeClass("hidden");
-    $("#showButton2").addClass("hidden");
-  }
-})
-$('body').on('click', '#submitForm2', function () {
-  var description = $('#com-office-form textarea#description').val();
-  // alert(description);
-  if(description == '')
-  {
-    $("#com-office-form #description_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#com-office-form #description_err").fadeOut(); }, 3000);
-    $("#com-office-form #description").focus();
-    return false;
-  }
-  else{
-  $("#flat-form :input").prop("disabled", true);
-  $("#land-form :input").prop("disabled", true);
-  $("#com-shop-form :input").prop("disabled", true);
-  $("#agri-form :input").prop("disabled", true);
-  $("#property-sale").submit();
-  }
-});
-$('body').on('click', '#showButton3', function () {
-  var listed_by = $('input[name="listed_by"]:checked').val();
-  var city = $('#search-box').val();
-  var locality = $('#locality').val();
-  var address = $('#address').val();
-  var any_construct = $("#land-form input[name='any_construc']:checked").val();
-  var boundary_wall = $("#land-form input[name='boundry_wall']:checked").val();
-  var plot_area = $('#land-form #plot_area').val();
-  var transaction_type = $("#land-form input[name='transaction_type']:checked").val();
-  var total_price = $("#land-form #total_price").val();
-  if(listed_by == null)
-  {
-    $("#listed_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#listed_err").fadeOut(); }, 3000);
-    $('input[name="listed_by"]').focus();
-    return false;
-  }
-  if(city == '')
-  {
-    $("#city_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#city_err").fadeOut(); }, 3000);
-    $("#search-box").focus();
-    return false;
-  }
-  if(locality == '')
-  {
-    $("#locality_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#locality_err").fadeOut(); }, 3000);
-    $("#locality").focus();
-    return false;
-  }
-  if(address == '')
-  {
-    $("#address_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#address_err").fadeOut(); }, 3000);
-    $("#address").focus();
-    return false;
-  }
-  if(any_construct == null)
-  {
-    $("#construct_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#construct_err").fadeOut(); }, 3000);
-    $("#land-form input[name='any_construc']").focus();
-    return false;
-  }
-  if(boundary_wall == null)
-  {
-    $("#wall_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#wall_err").fadeOut(); }, 3000);
-    $("#land-form input[name='boundry_wall']").focus();
-    return false;
-  }
-  if(plot_area == '')
-  {
-    $("#land-form #plot_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#land-form #plot_err").fadeOut(); }, 3000);
-    $("#land-form #plot_area").focus();
-    return false;
-  }
-  if(transaction_type == null)
-  {
-    $("#land-form #trans_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#land-form #trans_err").fadeOut(); }, 3000);
-    $("#land-form input[name='transaction_type']").focus();
-    return false;
-  }
-  if(total_price == '')
-  {
-    $("#land-form #price_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#land-form #price_err").fadeOut(); }, 3000);
-    $("#land-form #total_price").focus();
-    return false;
-  }
-  else{
-    $("#showDiv3").removeClass("hidden");
-    $("#showButton3").addClass("hidden");
-  }
-})
-$('body').on('click', '#submitForm3', function () {
-  var description = $('#land-form textarea#description').val();
-  if(description == '')
-  {
-    $("#land-form #description_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#land-form #description_err").fadeOut(); }, 3000);
-    $("#land-form #description").focus();
-    return false;
-  }
-  else{
-  $("#flat-form :input").prop("disabled", true);
-  $("#com-office :input").prop("disabled", true);
-  $("#com-shop-form :input").prop("disabled", true);
-  $("#agri-form :input").prop("disabled", true);
-  $("#property-sale").submit();
-  }
 });
 
 $('body').on('click', '#showButton4', function () {
@@ -5739,47 +5127,7 @@ $('body').on('click', '#submitForm5', function () {
   }
 });
 
-$("input[name='furnishing']").change(function(){
-  var furnishing = $(this).val();
-  if((furnishing == "Furnished") || (furnishing == "Semi-Furnished"))
-  {
-    if($("#flat-form").css("display") == "block"){ 
-      $("#flat-form #showFurnishedDiv").show();
-    }
-    if($("#land-form").css("display") == "block"){
-      $("#land-form #showFurnishedDiv").show();
-    }
-    if($("#com-office-form").css("display") == "block"){
-      $("#com-office-form #showFurnishedDiv").show();
-    }
-    if($("#com-shop-form").css("display") == "block"){
-      $("#com-shop-form #showFurnishedDiv").show();
-    }
-  }
-  else{
-    if($("#flat-form").css("display") == "block")
-    { 
-      $("#flat-form #showFurnishedDiv").hide();
-    }
-    if($("#land-form").css("display") == "block"){
-      $("#land-form #showFurnishedDiv").hide();
-    }
-    if($("#com-office-form").css("display") == "block"){
-      $("#com-office-form #showFurnishedDiv").hide();
-    }
-    if($("#com-shop-form").css("display") == "block"){
-      $("#com-shop-form #showFurnishedDiv").hide();
-    }
-  }
-})
-$(document).on("change keyup blur", "#total_price", function() {
-  var super_area = $('#flat-form #super_build_up_area').val();
-  var super_area1 = super_area.replace(/,/g, "");
-  var total_price = $('#total_price').val();
-  var total_price1 = total_price.replace(/,/g, "");
-  var dec = (total_price1 / super_area1).toFixed(2); //its convert 10 into 0.10
-  // alert(dec);
-  $('#flat-form #price_per_sq_ft').val(dec);
-});
+
+
 </script>
 @endsection

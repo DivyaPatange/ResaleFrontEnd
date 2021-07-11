@@ -24,8 +24,7 @@
   margin:10px;
 }
 #upload_form, #upload_form1, #upload_form2, #upload_form3, #upload_form4, #upload_form5, #upload_form6, #upload_form7, #upload_form8,
-#upload_form9, #upload_form10, #upload_form11, #upload_form12, #upload_form13, #upload_form14, #upload_form15, #upload_form16, #upload_form17, #upload_form18,
-#upload_form19, #upload_form20, #upload_form21, #upload_form22
+#upload_form9, #upload_form10
 {
   display:inline-flex;
   flex-wrap:wrap;
@@ -249,24 +248,33 @@ function selectCountry(val) {
 }
 // AJAX call for autocomplete 
 $(document).ready(function(){
-	$("#locality").keyup(function(){
-    if( this.value.length > 5 ){
-      $.ajax({
-        type: "GET",
-        url: "{{ route('searchLocality') }}",
-        data:'keyword='+$(this).val(),
-        beforeSend: function(){
-          $("#locality").css("background","#FFF url('{{ asset('35.gif')}}') no-repeat 100%");
-        },
-        success: function(data){
-          //  alert(data);
-          $("#suggesstion-locality").show();
-          $("#suggesstion-locality").html(data);
-          $("#locality").css("background","#FFF");
+  $("#locality").keyup(function(){ 
+      var city = $('#search-box').val();
+        var locality = $(this).val();
+        if(city == '')
+        {
+            $("#city_err").fadeIn().html("Required");
+            setTimeout(function(){ $("#city_err").fadeOut(); }, 3000);
+            $("#search-box").focus();
+            return false;
         }
-      });
-    }
-	});
+        if(locality.length > 5 ){
+            $.ajax({
+                type: "GET",
+                url: "{{ route('searchLocality') }}",
+                data:{city:city, 'keyword':locality},
+                beforeSend: function(){
+                  $("#locality").css("background","#FFF url('{{ asset('35.gif')}}') no-repeat 100%");
+                },
+                success: function(data){
+                  //  alert(data);
+                  $("#suggesstion-locality").show();
+                  $("#suggesstion-locality").html(data);
+                  $("#locality").css("background","#FFF");
+                }
+            });
+        }
+  });
 });
 
 //To select country name
@@ -505,126 +513,60 @@ $(function() {
 $('body').on('change', '#property_type', function () {
   var query = $(this).val();
   var listed_by = $('input[name="listed_by"]:checked').val();
-  if((query == 34) || (query == 37) || (query == 38) || (query == 39) || (query == 40))
-  {
-    var showDiv = $('.pageloader');
-    if (showDiv.is(":visible")) { return; }
-    showDiv.show();
-    setTimeout(function() {
-      showDiv.hide();
+  var showDiv = $('.pageloader');
+  if (showDiv.is(":visible")) { return; }
+  showDiv.show();
+  setTimeout(function() {
+    showDiv.hide();
+    if((query == 34) || (query == 37) || (query == 38) || (query == 39) || (query == 40))
+    {
       $('#container').load('/flat-apartment-form');
-    }, 2500);
-  }
-  else if((query == 35) || (query == 36))
-  {
-    var showDiv = $('.pageloader');
-    if (showDiv.is(":visible")) { return; }
-    showDiv.show();
-    setTimeout(function() {
-      showDiv.hide();
+    }
+    else if((query == 35) || (query == 36))
+    {
       $('#container').load('/residential-house-form');
-    }, 2500);
-  }
-  else if(query == 41)
-  {
-    var showDiv = $('.pageloader');
-    if (showDiv.is(":visible")) { return; }
-    showDiv.show();
-    setTimeout(function() {
-      showDiv.hide();
+    }
+    else if(query == 41)
+    {
       $('#container').load('/com-office-form');
-    }, 2500);
-  }
-  else if(query == 42)
-  {
-    var showDiv = $('.pageloader');
-    if (showDiv.is(":visible")) { return; }
-    showDiv.show();
-    setTimeout(function() {
-      showDiv.hide();
+    }
+    else if(query == 42)
+    {
       $('#container').load('/it-office-form');
-    }, 2500);
-  }
-  else if(query == 45)
-  {
-    var showDiv = $('.pageloader');
-    if (showDiv.is(":visible")) { return; }
-    showDiv.show();
-    setTimeout(function() {
-      showDiv.hide();
+    }
+    else if(query == 45)
+    {
       $('#container').load('/com-land-form');
-    }, 2500);
-  }
-  else if(query == 46)
-  {
-    var showDiv = $('.pageloader');
-    if (showDiv.is(":visible")) { return; }
-    showDiv.show();
-    setTimeout(function() {
-      showDiv.hide();
+    }
+    else if(query == 46)
+    {
       $('#container').load('/warehouse-godown-form');
-    }, 2500);
-  }
-  else if((query == 43) || (query == 44))
-  {
-    var showDiv = $('.pageloader');
-    if (showDiv.is(":visible")) { return; }
-    showDiv.show();
-    setTimeout(function() {
-      showDiv.hide();
+    }
+    else if((query == 43) || (query == 44))
+    {
       $('#container').load('/com-showroom-form');
-    }, 2500);
-  }
-  else if(query == 47)
-  {
-    var showDiv = $('.pageloader');
-    if (showDiv.is(":visible")) { return; }
-    showDiv.show();
-    setTimeout(function() {
-      showDiv.hide();
+    }
+    else if(query == 47)
+    {
       $('#container').load('/industrial-land-form');
-    }, 2500);
-  }
-  else if(query == 48)
-  {
-    var showDiv = $('.pageloader');
-    if (showDiv.is(":visible")) { return; }
-    showDiv.show();
-    setTimeout(function() {
-      showDiv.hide();
+    }
+    else if(query == 48)
+    {
       $('#container').load('/industrial-building-form');
-    }, 2500);
-  }
-  else if(query == 50)
-  {
-    var showDiv = $('.pageloader');
-    if (showDiv.is(":visible")) { return; }
-    showDiv.show();
-    setTimeout(function() {
-      showDiv.hide();
+    }
+    else if(query == 50)
+    {
       $('#container').load('/industrial-shed-form');
-    }, 2500);
-  }
-  else if(query == 51)
-  {
-    var showDiv = $('.pageloader');
-    if (showDiv.is(":visible")) { return; }
-    showDiv.show();
-    setTimeout(function() {
-      showDiv.hide();
+    }
+    else if(query == 51)
+    {
       $('#container').load('/agricultural-land-form');
-    }, 2500);
-  }
-  else if((query == 53) || (query == 54))
-  {
-    var showDiv = $('.pageloader');
-    if (showDiv.is(":visible")) { return; }
-    showDiv.show();
-    setTimeout(function() {
-      showDiv.hide();
+    }
+    else if((query == 53) || (query == 54))
+    {
       $('#container').load('/farmHouse-land-form');
-    }, 2500);
-  }
+    }
+  }, 2500);
   if(listed_by == "Owner")
   {
     $("#brokerageDiv").hide(); 
@@ -633,51 +575,5 @@ $('body').on('change', '#property_type', function () {
     $("#brokerageDiv").show();
   }
 })
-$('#user_state').change(function(){
-  var stateID = $(this).val(); 
-  if(stateID){
-    $.ajax({
-      type:"GET",
-      url:"{{url('/get-city-list')}}?state_id="+stateID,
-      success:function(res){        
-        if(res){
-          $("#user_city").empty();
-          $("#user_city").append('<option value="">Select City</option>');
-          $.each(res,function(key,value){
-            $("#user_city").append('<option value="'+key+'">'+value+'</option>');
-          });      
-        }else{
-          $("#user_city").empty();
-        }
-      }
-    });
-  }else{
-    $("#user_city").empty();
-  }   
-});
-
-
-$('#user_city').change(function(){
-  var cityID = $(this).val();  
-  if(cityID){
-    $.ajax({
-      type:"GET",
-      url:"{{url('/get-locality-list')}}?city_id="+cityID,
-      success:function(res){        
-        if(res){
-          $("#user_locality").empty();
-          $("#user_locality").append('<option value="">Select Locality</option>');
-          $.each(res,function(key,value){
-            $("#user_locality").append('<option value="'+key+'">'+value+'</option>');
-          });      
-        }else{
-          $("#user_locality").empty();
-        }
-      }
-    });
-  }else{
-    $("#user_locality").empty();
-  }   
-});
 </script>
 @endsection

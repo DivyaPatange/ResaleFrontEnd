@@ -103,6 +103,15 @@ Route::get('/industrial-shed-form', [AdController::class, 'industrialShedForm'])
 Route::get('/agricultural-land-form', [AdController::class, 'agriculturalLandForm']);
 Route::get('/farmHouse-land-form', [AdController::class, 'farmHouseLandForm']);
 
+Route::get('/flat-sale-form', [AdController::class, 'flatSaleForm']);
+Route::get('/residential-penthouse-form', [AdController::class, 'residentialPenthouseForm']);
+Route::get('/residential-land-form', [AdController::class, 'residentialLandForm']);
+Route::get('/builder-apartment-form', [AdController::class, 'builderApartmentForm']);
+Route::get('/residential-villa-form', [AdController::class, 'residentialVillaForm']);
+Route::get('/residential-house-sale-form', [AdController::class, 'residentialHouseSaleForm']);
+Route::get('/studio-apartment-form', [AdController::class, 'studioApartmentForm']);
+Route::get('/com-office-space-form', [AdController::class, 'comOfficeSpaceForm']);
+
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle']);

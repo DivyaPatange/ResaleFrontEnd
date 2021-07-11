@@ -772,4 +772,49 @@ $('body').on('click', '#submitForm3', function () {
         $("#property-form").submit();
     }
 });
+$('#user_state').change(function(){
+    var stateID = $(this).val(); 
+    if(stateID){
+        $.ajax({
+            type:"GET",
+            url:"{{url('/get-city-list')}}?state_id="+stateID,
+            success:function(res){        
+                if(res){
+                    $("#user_city").empty();
+                    $("#user_city").append('<option value="">Select City</option>');
+                    $.each(res,function(key,value){
+                        $("#user_city").append('<option value="'+key+'">'+value+'</option>');
+                    });      
+                }else{
+                $("#user_city").empty();
+                }
+            }
+        });
+    }else{
+        $("#user_city").empty();
+    }   
+});
+
+$('#user_city').change(function(){
+    var cityID = $(this).val();  
+    if(cityID){
+        $.ajax({
+            type:"GET",
+            url:"{{url('/get-locality-list')}}?city_id="+cityID,
+            success:function(res){        
+                if(res){
+                    $("#user_locality").empty();
+                    $("#user_locality").append('<option value="">Select Locality</option>');
+                    $.each(res,function(key,value){
+                        $("#user_locality").append('<option value="'+key+'">'+value+'</option>');
+                    });      
+                }else{
+                    $("#user_locality").empty();
+                }
+            }
+        });
+    }else{
+        $("#user_locality").empty();
+    }   
+});
 </script>
