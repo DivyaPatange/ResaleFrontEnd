@@ -512,64 +512,62 @@ function removeField8(){
   return false;
 }
 
-
-    // Floor Photos
-    $('body')
-    .delegate('#upload_form16 input[type="file"]', 'change', inputChanged16)
-    .delegate('#upload_form16 .icon', 'click', removeField16);
+// Floor Photos
+$('body')
+.delegate('#upload_form9 input[type="file"]', 'change', inputChanged9)
+.delegate('#upload_form9 .icon', 'click', removeField9);
   
-  function inputChanged16(e) {
-    $current_count = $('#upload_form16 input[type="file"]').length;
-    // console.log($current_count);
-    $next_count = $current_count + 1;
-    var labelVal = $(".title"+$current_count).text();
-    var oldfileName = $(this).val();
-    console.log(oldfileName);
-    $("#upload_form16 .filelabel .title").text(labelVal);
-    fileName = e.target.value.split( '\\' ).pop();
-    if (oldfileName == fileName) {return false;}
-    var className = $(this).attr("class");
-    console.log(className);
-    var lastChar = className.match(/(\d+)/);
-    var inc  = 1 + +lastChar;
-    console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
-    var extension = fileName.split('.').pop();
-    if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
-      $("#upload_form16 .filelabel #icon"+lastChar).remove();
-      $('#upload_form16 #frame'+lastChar).removeClass("hidden");
-      $('#upload_form16 #frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
-      $("#upload_form16 .filelabel i, .filelabel .title").css({'color':'#208440'});
-      $("#upload_form16 .filelabel").css({'border':' 2px solid #208440'});
-    }
-    if(fileName ){
-      if (fileName.length > 10){
-        $("#upload_form16 .filelabel .title"+lastChar).text(fileName.slice(0,4)+'...'+extension);
-      }
-      else{
-        $("#upload_form16 .filelabel .title"+$current_count).text(fileName);
-      }
+function inputChanged9(e) {
+  $current_count = $('#upload_form9 input[type="file"]').length;
+  // console.log($current_count);
+  $next_count = $current_count + 1;
+  var labelVal = $(".title"+$current_count).text();
+  var oldfileName = $(this).val();
+  console.log(oldfileName);
+  $("#upload_form9 .filelabel .title").text(labelVal);
+  fileName = e.target.value.split( '\\' ).pop();
+  if (oldfileName == fileName) {return false;}
+  var className = $(this).attr("class");
+  console.log(className);
+  var lastChar = className.match(/(\d+)/);
+  var inc  = 1 + +lastChar;
+  console.log($(this).closest('.p_file').hasClass(".FileUpload"+inc));
+  var extension = fileName.split('.').pop();
+  if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+    $("#upload_form9 .filelabel #icon"+lastChar).remove();
+    $('#upload_form9 #frame'+lastChar).removeClass("hidden");
+    $('#upload_form9 #frame'+lastChar).attr('src', URL.createObjectURL(e.target.files[0]));
+    $("#upload_form9 .filelabel i, .filelabel .title").css({'color':'#208440'});
+    $("#upload_form9 .filelabel").css({'border':' 2px solid #208440'});
+  }
+  if(fileName ){
+    if (fileName.length > 10){
+      $("#upload_form9 .filelabel .title"+lastChar).text(fileName.slice(0,4)+'...'+extension);
     }
     else{
-      $("#upload_form16 .filelabel .title").text(labelVal);
-    }
-    if($("#upload_form16 .FileUpload"+inc).length > 0) {
-      console.log('exist');
-    }
-    else{
-    $(this).closest('.p_file').after(
-    '<label class="filelabel p_file"><div class="icon">X</div>' +
-    '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
-    '<span class="title'+$next_count+'">Add File</span>' +
-    '<input class="FileUpload'+$next_count+'" id="FileInput" name="common_photos[]" type="file"/>'+
-    '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
-    '</label>');
+      $("#upload_form9 .filelabel .title"+$current_count).text(fileName);
     }
   }
-  
-  function removeField16(){
-      $(this).closest('.p_file').remove();
-      return false;
+  else{
+    $("#upload_form9 .filelabel .title").text(labelVal);
   }
+  if($("#upload_form9 .FileUpload"+inc).length > 0) {
+    console.log('exist');
+  }
+  else{
+  $(this).closest('.p_file').after(
+  '<label class="filelabel p_file"><div class="icon">X</div>' +
+  '<i class="fa fa-paperclip" id="icon'+$next_count+'"></i>' +
+  '<span class="title'+$next_count+'">Add File</span>' +
+  '<input class="FileUpload'+$next_count+'" id="FileInput" name="common_photos[]" type="file"/>'+
+  '<img  id="frame'+$next_count+'" style="max-width: 90px; max-height: 70px;" class="hidden">'+
+  '</label>');
+  }
+}
+function removeField9(){
+  $(this).closest('.p_file').remove();
+  return false;
+}
 
    // Floor Photos
    $('body')

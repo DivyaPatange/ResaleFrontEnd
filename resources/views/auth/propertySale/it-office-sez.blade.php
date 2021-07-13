@@ -480,7 +480,8 @@
     <label for="">Booking Token Amount</label>
   </div>
   <div class="form-group col-md-6">
-    <input type="text" name="booking_token_amount" id="booking_token_amount" class="Stylednumber form-control @error('booking_token_amount') invalid-feedback @enderror" value="{{ old('booking_token_amount') }}">
+    <input type="text" name="booking_token_amount" id="booking_token_amount" class="Stylednumber form-control @error('booking_token_amount') invalid-feedback @enderror" value="{{ old('booking_token_amount') }}" onkeyup="convertNumberToWords1(this.value)">
+    <span id="show_price1" class="text-muted"></span>
   </div>
 </div>
 <div class="form-row">
@@ -1028,15 +1029,15 @@ $(document).ready(function () {
     $('.ckeditor').ckeditor();
 });
 $(document).on("change keyup blur", "#total_price", function() {
-  var covered_area = $('#covered_area').val();
-  var covered_area1 = covered_area.replace(/,/g, "");
-  var total_price = $('#total_price').val();
-  var total_price1 = total_price.replace(/,/g, "");
-  if(covered_area != ""){
-    var dec = (total_price1 / covered_area1).toFixed(2); //its convert 10 into 0.10
-    // alert(dec);
-    $('#price_per_sq_ft').val(dec);
-  }
+    var covered_area = $('#covered_area').val();
+    var covered_area1 = covered_area.replace(/,/g, "");
+    var total_price = $('#total_price').val();
+    var total_price1 = total_price.replace(/,/g, "");
+    if(covered_area != ""){
+      var dec = (total_price1 / covered_area1).toFixed(2); //its convert 10 into 0.10
+      // alert(dec);
+      $('#price_per_sq_ft').val(dec);
+    }
 });
 $('body').on('click', '#showButton', function () {
   var listed_by = $('input[name="listed_by"]:checked').val();

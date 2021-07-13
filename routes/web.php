@@ -111,6 +111,12 @@ Route::get('/residential-villa-form', [AdController::class, 'residentialVillaFor
 Route::get('/residential-house-sale-form', [AdController::class, 'residentialHouseSaleForm']);
 Route::get('/studio-apartment-form', [AdController::class, 'studioApartmentForm']);
 Route::get('/com-office-space-form', [AdController::class, 'comOfficeSpaceForm']);
+Route::get('/it-office-sez-form', [AdController::class, 'itOfficeSezForm']);
+Route::get('/com-shop-sale-form', [AdController::class, 'comShopSaleForm']);
+Route::get('/com-showroom-sale-form', [AdController::class, 'comShowroomSaleForm']);
+Route::get('/com-land-sale-form', [AdController::class, 'comLandSaleForm']);
+Route::get('/warehouse-godown-sale-form', [AdController::class, 'warehouseGodownSaleForm']);
+Route::get('/industrial-land-sale-form', [AdController::class, 'industrialLandSaleForm']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
