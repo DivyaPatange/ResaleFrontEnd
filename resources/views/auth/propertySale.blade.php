@@ -3688,6 +3688,10 @@ $('body').on('change', '#property_type', function () {
     {
       $('#container').load('/industrial-land-sale-form');
     }
+    if(query == 71)
+    {
+      $('#container').load('/industrial-building-sale-form');
+    }
   }, 2500);
     // if((query == 60) || (query == 59) || (query == 541))
     // {

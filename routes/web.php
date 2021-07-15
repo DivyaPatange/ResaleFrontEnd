@@ -117,6 +117,7 @@ Route::get('/com-showroom-sale-form', [AdController::class, 'comShowroomSaleForm
 Route::get('/com-land-sale-form', [AdController::class, 'comLandSaleForm']);
 Route::get('/warehouse-godown-sale-form', [AdController::class, 'warehouseGodownSaleForm']);
 Route::get('/industrial-land-sale-form', [AdController::class, 'industrialLandSaleForm']);
+Route::get('/industrial-building-sale-form', [AdController::class, 'industrialBuildingSaleForm']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

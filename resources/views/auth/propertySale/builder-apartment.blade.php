@@ -538,8 +538,8 @@
     </div>
 </div>
 <hr>
-<button type="button" id="showButton1" class="btn btn-primary">Continue & Next</button>
-<div class="hidden" id="showDiv1">
+<button type="button" id="showButton" class="btn btn-primary">Continue & Next</button>
+<div class="hidden" id="showDiv">
     <div class="form-group">
         <h6>Additional Feature</h6>
     </div>
@@ -1117,7 +1117,7 @@ $(document).on("change keyup blur", "#total_price", function() {
         $('#price_per_sq_ft').val(dec);
     }
 });
-$('body').on('click', '#showButton1', function () {
+$('body').on('click', '#showButton', function () {
     var listed_by = $('input[name="listed_by"]:checked').val();
     var city = $('#search-box').val();
     var locality = $('#locality').val();
@@ -1215,8 +1215,8 @@ $('body').on('click', '#showButton1', function () {
         return false;
     }
     else{
-        $("#showDiv1").removeClass("hidden");
-        $("#showButton1").addClass("hidden");
+        $("#showDiv").removeClass("hidden");
+        $("#showButton").addClass("hidden");
     }
 })
 

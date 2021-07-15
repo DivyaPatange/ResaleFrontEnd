@@ -1963,4 +1963,11 @@ class AdController extends Controller
         $state = State::where('status', 1)->get();
         return view('auth.propertySale.industrial-land', compact('cities', 'state'));
     }
+
+    public function industrialBuildingSaleForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertySale.industrial-building', compact('cities', 'state'));
+    }
 }
