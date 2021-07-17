@@ -1970,4 +1970,39 @@ class AdController extends Controller
         $state = State::where('status', 1)->get();
         return view('auth.propertySale.industrial-building', compact('cities', 'state'));
     }
+
+    public function industrialShedSaleForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertySale.industrial-shed', compact('cities', 'state'));
+    }
+
+    public function agriculturalLandSaleForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertySale.agri-land', compact('cities', 'state'));
+    }
+
+    public function layoutLandSaleForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertySale.layout-land', compact('cities', 'state'));
+    }
+
+    public function farmHouseLandSaleForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertySale.farmHouse-land', compact('cities', 'state'));
+    }
+
+    public function farmHouseSaleForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertySale.farm-house', compact('cities', 'state'));
+    }
 }

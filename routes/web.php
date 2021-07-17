@@ -118,6 +118,11 @@ Route::get('/com-land-sale-form', [AdController::class, 'comLandSaleForm']);
 Route::get('/warehouse-godown-sale-form', [AdController::class, 'warehouseGodownSaleForm']);
 Route::get('/industrial-land-sale-form', [AdController::class, 'industrialLandSaleForm']);
 Route::get('/industrial-building-sale-form', [AdController::class, 'industrialBuildingSaleForm']);
+Route::get('/industrial-shed-sale-form', [AdController::class, 'industrialShedSaleForm']);
+Route::get('/agricultural-land-sale-form', [AdController::class, 'agriculturalLandSaleForm']);
+Route::get('/layout-land-sale-form', [AdController::class, 'layoutLandSaleForm']);
+Route::get('/farmHouse-land-sale-form', [AdController::class, 'farmHouseLandSaleForm']);
+Route::get('/farm-house-sale-form', [AdController::class, 'farmHouseSaleForm']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

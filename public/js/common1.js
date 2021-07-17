@@ -232,24 +232,24 @@ $(document).mouseup(function (e) {
     }
 }) 
 
-$(document).on("change keyup blur", "#total_price", function() {
-    var super_area = $('#super_build_up_area').val();
-    var plot_area = $('#plot_area').val();
-    var super_area1 = super_area.replace(/,/g, "");
-    var total_price = $('#total_price').val();
-    var total_price1 = total_price.replace(/,/g, "");
-    // alert(plot_area);
-    if(super_area != ""){
-        var dec = (total_price1 / super_area1).toFixed(2); //its convert 10 into 0.10
-        // alert(dec);
-        $('#price_per_sq_ft').val(dec);
-    }
-    if(plot_area != ""){
-        var dec = (total_price1 / plot_area).toFixed(2); //its convert 10 into 0.10
-        // alert(dec);
-        $('#price_per_sq_ft').val(dec);
-    }
-});
+// $(document).on("change keyup blur", "#total_price", function() {
+//     var super_area = $('#super_build_up_area').val();
+//     var plot_area = $('#plot_area').val();
+//     var super_area1 = super_area.replace(/,/g, "");
+//     var total_price = $('#total_price').val();
+//     var total_price1 = total_price.replace(/,/g, "");
+//     // alert(plot_area);
+//     if(super_area != ""){
+//         var dec = (total_price1 / super_area1).toFixed(2); //its convert 10 into 0.10
+//         // alert(dec);
+//         $('#price_per_sq_ft').val(dec);
+//     }
+//     if(plot_area != ""){
+//         var dec = (total_price1 / plot_area).toFixed(2); //its convert 10 into 0.10
+//         // alert(dec);
+//         $('#price_per_sq_ft').val(dec);
+//     }
+// });
 
 $("input[name='furnishing']").change(function(){
     var furnishing = $(this).val();
