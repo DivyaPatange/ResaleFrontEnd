@@ -5,7 +5,7 @@
     </div>
     <div class="form-group col-md-6">
         <label for="">Land Zone<span  style="color:red" id="land_zone_err"> </span></label>
-        <select name="land_zone" id="land_zone" class="form-control sel-status">
+        <select name="land_zone" id="land_zone" class="form-control">
             <option value="">-Select Land Zone-</option>
             <option value="Industrial">Industrial</option>
             <option value="Commercial">Commercial</option>
@@ -29,7 +29,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="property_floor_no">Floor No.<span  style="color:red" id="floor_err"> </span></label>
-                <select name="property_floor_no" class="form-control sel-status" id="property_floor_no" style="width:100%">
+                <select name="property_floor_no" class="form-control" id="property_floor_no" style="width:100%">
                     <option value="">-Choose-</option>
                     <option value="Lower Basement">Lower Basement</option>
                     <option value="Upper Basement">Upper Basement</option>
@@ -43,7 +43,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="floor">Total Floor<span  style="color:red" id="total_floor_err"> </span></label>
-                <select name="total_floor" id="no_of_floor" class="form-control sel-status" style="width:100%;">
+                <select name="total_floor" id="no_of_floor" class="form-control" style="width:100%;">
                     <option value="">Choose..</option>
                     <option value="Lower Basement">Lower Basement</option>
                     <option value="Upper Basement">Upper Basement</option>
@@ -58,11 +58,11 @@
 </div>
 <div class="form-group">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <label>Furnished Status<span class="text-danger">*</span><span  style="color:red" id="furnishing_err"> </span>
             </label>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="switch-field">
                 <input type="radio" id="Furnished" name="furnishing" value="Furnished"/>
                 <label for="Furnished">Furnished</label>
@@ -107,10 +107,10 @@
     </div>  
 </div>                
 <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-5">
         <label for="">Willing to modify interiors</label>
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-7">
         <div class="form-check-inline">
             <label class="form-check-label">
                 <input type="radio" class="form-check-input" name="modify_interior" value="Yes">Yes
@@ -124,18 +124,18 @@
     </div>
 </div>
 <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-5">
         <label for="">Lock in Period (In Years)</label>
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-7">
         <input type="number" class="form-control" name="lock_period" max="2">
     </div>
 </div>
 <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-5">
         <label for="">Personal Washroom</label>
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-7">
         <div class="form-check-inline">
             <label class="form-check-label">
                 <input type="radio" class="form-check-input" name="personal_washroom" value="Yes">Yes
@@ -149,10 +149,10 @@
     </div>
 </div>
 <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-5">
         <label for="">Pantry/Cafeteria</label>
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-7">
         <div class="form-check-inline">
             <label class="form-check-label">
                 <input type="radio" class="form-check-input" name="pantry_cafe" value="Dry">Dry
@@ -265,7 +265,7 @@
         <label class="form-check-label" style="display:-webkit-inline-box">
             <input type="radio" class="form-check-input" name="available_from" value="Select Date">Select Date &nbsp;
             <div class="hidden" id="showDateDiv">
-                <input class="form-control datepicker" placeholder="DD/MM/YYYY" name="available_date" width="175px">
+                <input class="form-control datepicker" placeholder="DD/MM/YYYY" name="available_date" width="175px" onfocus="(this.type='date')">
             </div>
         </label>
         </div>
@@ -330,7 +330,7 @@
         <div class="form-group col-md-3">
             <div class="form-check-inline">
                 <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="show_rent_as" id="show_rent1" value="">
+                    <input type="radio" class="form-check-input" name="show_rent_as" id="show_rent1" value="" checked>
                     <span id="rent_1"></span>
                 </label>
             </div>
@@ -499,9 +499,9 @@
     <div class="form-group">
         <h6>Additional Features</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
-            <label for="">Facing <span class="text-danger">*</span></label>
+            <h6>Facing <span class="text-danger">*</span></h6>
             <select name="facing" id="facing" class="form-control @error('facing') invalid-feedback @enderror">
                 <option value="">-Select Facing-</option>
                 <option value="East" @if(old('facing') == "East") Selected @endif>East</option>
@@ -515,7 +515,7 @@
             </select>
         </div>
         <div class="form-group col-md-6">
-            <label for="">Lifts in the Tower </label>
+            <h6>Lifts in the Tower </h6>
             <select name="lift_in_tower" id="lift_in_tower" class="form-control @error('lift_in_tower') invalid-feedback @enderror">
                 <option value="">-Select-</option>
                 <option value="None" @if(old('lift_tower') == "None") Selected @endif>None</option>
@@ -529,15 +529,15 @@
             </select>
         </div>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
-            <label for="">Shop on the Floor</label>
+            <label for="">Office on the Floor</label>
         </div>
         <div class="form-group col-md-6">
             <input type="number" class="form-control" name="office_floor">
         </div>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
             <label for="">Multiple Units Available</label>
         </div>
@@ -554,7 +554,7 @@
             </div>
         </div>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
             <label for="">Building Class</label>
             <select name="building_class" id="" class="form-control">
@@ -581,7 +581,7 @@
     <div class="form-group">
         <h6>Status of Water & Electricity</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
             <label for="">Status of Water</label>
             <select name="status_of_water" id="status_of_water" class="form-control @error('status_of_water') invalid-feedback @enderror">
@@ -608,7 +608,7 @@
     <div class="form-group">
         <h6>Overlooking</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
             <div class="form-check-inline">
                 <label class="form-check-label">
@@ -634,7 +634,7 @@
     <div class="form-group">
         <h6>Car Parking</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
             <div class="form-check-inline">
                 <label class="form-check-label" style="display:-webkit-inline-box">
@@ -666,7 +666,7 @@
     <div class="form-group">
         <h6>Amenities</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-4">
             <div class="form-check-inline">
                 <label class="form-check-label">
@@ -827,7 +827,7 @@
     </div>
     <div class="form-group">
         <label for="">Description<span  style="color:red" id="description_err"> </span></label>
-        <textarea name="description" id="description" class="form-control ckeditor"></textarea>
+        <textarea name="description" id="description" class="form-control"></textarea>
     </div>
     <div class="form-group">
         <label for="">Landmark</label>
@@ -894,14 +894,10 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 <script src="{{ asset('js/common.js') }}"></script>
 <script>
 $(function() {
   $(".sel-status").select2();
-});
-$(document).ready(function () {
-    $('.ckeditor').ckeditor();
 });
 $('body').on('click', '#showButton2', function () {
   var listed_by = $('input[name="listed_by"]:checked').val();

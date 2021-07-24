@@ -96,6 +96,7 @@ Route::get('/com-office-form', [AdController::class, 'comOfficeForm']);
 Route::get('/it-office-form', [AdController::class, 'itOfficeForm']);
 Route::get('/com-land-form', [AdController::class, 'comLandForm']);
 Route::get('/warehouse-godown-form', [AdController::class, 'warehouseGodownForm']);
+Route::get('/com-shop-form', [AdController::class, 'comShopForm']);
 Route::get('/com-showroom-form', [AdController::class, 'comShowroomForm']);
 Route::get('/industrial-land-form', [AdController::class, 'industrialLandForm']);
 Route::get('/industrial-building-form', [AdController::class, 'industrialBuildingForm']);

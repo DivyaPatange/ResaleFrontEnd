@@ -5,7 +5,7 @@
     </div>
     <div class="form-group col-md-6">
         <label for="">Land Zone<span  style="color:red" id="land_zone_err"> </span></label>
-        <select name="land_zone" id="land_zone" class="form-control sel-status">
+        <select name="land_zone" id="land_zone" class="form-control">
             <option value="">-Select Land Zone-</option>
             <option value="Industrial">Industrial</option>
             <option value="Commercial">Commercial</option>
@@ -22,11 +22,11 @@
     </div>
 </div>
 <div class="form-row">
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-5">
         <label for="">Ideal For Businesses</label>
     </div>
-    <div class="form-group col-md-8">
-        <select name="ideal_business" class="form-control sel-status">
+    <div class="form-group col-md-7">
+        <select name="ideal_business[]" class="form-control mul-select" multiple="true">
             <option value="">-Choose-</option>
             <option value="Call Centre/ BPO">Call Centre/ BPO</option>
             <option value="Coaching Centre">Coaching Centre</option>
@@ -87,10 +87,10 @@
     <h6>Property Feature</h6>
 </div>
 <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-5">
         <label for="">Lock in Period (In Years)</label>
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-7">
         <input type="number" class="form-control" name="lock_period" max="2">
     </div>
 </div>
@@ -189,7 +189,7 @@
         <label class="form-check-label" style="display:-webkit-inline-box">
             <input type="radio" class="form-check-input" name="available_from" value="Select Date">Select Date &nbsp;
             <div class="hidden" id="showDateDiv">
-                <input class="form-control datepicker" placeholder="DD/MM/YYYY" name="available_date" width="175px">
+                <input class="form-control datepicker" placeholder="DD/MM/YYYY" name="available_date" width="175px" onfocus="(this.type='date')">
             </div>
         </label>
         </div>
@@ -203,10 +203,10 @@
     </div>
 </div>
 <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-5">
         <label for="">Currently Rent Out</label>
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-7">
         <div class="form-check-inline">
             <label class="form-check-label">
                 <input type="radio" class="form-check-input" name="rent_out" value="Yes">Yes
@@ -240,7 +240,7 @@
         <div class="form-group col-md-3">
             <div class="form-check-inline">
                 <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="show_rent_as" id="show_rent1" value="">
+                    <input type="radio" class="form-check-input" name="show_rent_as" id="show_rent1" value="" checked>
                     <span id="rent_1"></span>
                 </label>
             </div>
@@ -397,9 +397,9 @@
     <div class="form-group">
         <h6>Additional Features</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
-            <label for="">Facing <span class="text-danger">*</span></label>
+            <h6>Facing <span class="text-danger">*</span></h6>
             <select name="facing" id="facing" class="form-control @error('facing') invalid-feedback @enderror">
                 <option value="">-Select Facing-</option>
                 <option value="East" @if(old('facing') == "East") Selected @endif>East</option>
@@ -413,7 +413,7 @@
             </select>
         </div>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
             <label for="">Multiple Units Available</label>
         </div>
@@ -433,7 +433,7 @@
     <div class="form-group">
         <h6>Status of Water & Electricity</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
             <label for="">Status of Water</label>
             <select name="status_of_water" id="status_of_water" class="form-control @error('status_of_water') invalid-feedback @enderror">
@@ -460,7 +460,7 @@
     <div class="form-group">
         <h6>Overlooking</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
             <div class="form-check-inline">
                 <label class="form-check-label">
@@ -486,7 +486,7 @@
     <div class="form-group">
         <h6>Car Parking</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
             <div class="form-check-inline">
                 <label class="form-check-label" style="display:-webkit-inline-box">
@@ -518,11 +518,25 @@
     <div class="form-group">
         <h6>Amenities</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-4">
             <div class="form-check-inline">
                 <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" name="aminities[]" value="Security">Security 
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Lift">Lift 
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Power Backup">Power Backup 
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Security">Security 
                 </label>
             </div>
         </div>
@@ -553,7 +567,7 @@
     </div>
     <div class="form-group">
         <label for="">Description<span  style="color:red" id="description_err"> </span></label>
-        <textarea name="description" id="description" class="form-control ckeditor"></textarea>
+        <textarea name="description" id="description" class="form-control"></textarea>
     </div>
     <div class="form-group">
         <label for="">Landmark</label>
@@ -620,15 +634,16 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 <script src="{{ asset('js/common.js') }}"></script>
 <script>
 $(function() {
   $(".sel-status").select2();
 });
-$(document).ready(function () {
-    $('.ckeditor').ckeditor();
-});
+$(document).ready(function() { 
+    $(".mul-select").select2({ 
+      tags: true, 
+    }); 
+}) 
 $('body').on('click', '#showButton2', function () {
   var listed_by = $('input[name="listed_by"]:checked').val();
   var city = $('#search-box').val();

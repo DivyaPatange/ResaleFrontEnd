@@ -4,16 +4,16 @@
 <div class="form-row">
     <div class="form-group col-md-6">
         <label for="">Floors Allowed for construction</label>
-        <select name="floor_constru" id="floor_constru" class="form-control sel-status @error('floor_constru') invalid-feedback @enderror">
+        <select name="floor_constru" id="floor_constru" class="form-control @error('floor_constru') invalid-feedback @enderror">
             <option value="">-Select floors Allowed for construction-</option>
-            @for($i=1; $i <= 201 ;$i++)
+            @for($i=1; $i <= 20 ;$i++)
             <option value="{{$i}}">{{$i}}</option>
             @endfor
         </select>
     </div>
     <div class="form-group col-md-6">
         <label for="">No. of Open Side</label>
-        <select name="no_of_open_side" id="no_of_open_side" class="sel-status form-control @error('no_of_open_side') invalid-feedback @enderror">
+        <select name="no_of_open_side" id="no_of_open_side" class="form-control @error('no_of_open_side') invalid-feedback @enderror">
             <option value="">-Select No. of Open Side-</option>
             <option value="1" @if(old('no_of_open_side') == "1") Selected @endif>1</option>
             <option value="2" @if(old('no_of_open_side') == "2") Selected @endif>2</option>
@@ -24,70 +24,58 @@
 </div>
 <div class="form-group">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <label>Bedroom<span class="text-danger">*</span><span  style="color:red" id="bedroom_err"> </span>
             </label>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-8">
             <div class="switch-field">
-            @for($i=1; $i<21; $i++)
-            <input type="radio" id="{{ $i }}" name="bedroom" value="{{ $i }}" @if(old('bedroom') == $i) checked @endif/>
-            <label for="{{ $i }}">{{ $i }}</label>
-            @endfor
+                @for($i=1; $i<=15; $i++)
+                <input type="radio" id="{{ $i }}" name="bedroom" value="{{ $i }}" @if(old('bedroom') == $i) checked @endif/>
+                <label for="{{ $i }}">{{ $i }}</label>
+                @endfor
             </div>
         </div>
     </div>
 </div>
 <div class="form-group">
     <div class="row">
-    <div class="col-md-3">
-        <label>Balcony <span class="text-danger">*</span></label>
-    </div>
-    <div class="col-md-9">
-        <div class="switch-field">
-        <input type="radio" id="balcony1" name="balcony" value="1" @if(old('balcony') == "1") checked @endif/>
-        <label for="balcony1">1</label>
-        <input type="radio" id="balcony2" name="balcony" value="2" @if(old('balcony') == "2") checked @endif/>
-        <label for="balcony2">2</label>
-        <input type="radio" id="balcony3" name="balcony" value="3" @if(old('balcony') == "3") checked @endif/>
-        <label for="balcony3">3</label>
-        <input type="radio" id="balcony4" name="balcony" value="4" @if(old('balcony') == "4") checked @endif/>
-        <label for="balcony4">4</label>
-        <input type="radio" id="balcony5" name="balcony" value="5" @if(old('balcony') == "5") checked @endif/>
-        <label for="balcony5">5</label>
+        <div class="col-md-4">
+            <label>Balcony <span class="text-danger">*</span></label>
         </div>
-    </div>
+        <div class="col-md-8">
+            <div class="switch-field">
+                @for($i=1; $i<=15; $i++)
+                <input type="radio" id="balcony{{ $i }}" name="balcony" value="{{ $i }}" @if(old('balcony') == $i) checked @endif/>
+                <label for="balcony{{ $i }}">{{ $i }}</label>
+                @endfor
+            </div>
+        </div>
     </div>
 </div>
 <div class="form-group">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <label>Bathroom <span class="text-danger">*</span>
             </label>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-8">
             <div class="switch-field">
-                <input type="radio" id="inlineRadio1" name="bathroom" value="1" @if(old('bathroom') == "1") checked @endif/>
-                <label for="inlineRadio1">1</label>
-                <input type="radio" id="inlineRadio2" name="bathroom" value="2" @if(old('bathroom') == "2") checked @endif/>
-                <label for="inlineRadio2">2</label>
-                <input type="radio" id="inlineRadio3" name="bathroom" value="3" @if(old('bathroom') == "3") checked @endif/>
-                <label for="inlineRadio3">3</label>
-                <input type="radio" id="inlineRadio4" name="bathroom" value="4" @if(old('bathroom') == "4") checked @endif/>
-                <label for="inlineRadio4">4</label>
-                <input type="radio" id="inlineRadio5" name="bathroom" value="5" @if(old('bathroom') == "5") checked @endif/>
-                <label for="inlineRadio5">5</label>
+                @for($i=1; $i<=15; $i++)
+                <input type="radio" id="inlineRadio{{ $i }}" name="bathroom" value="{{ $i }}" @if(old('bathroom') == $i) checked @endif/>
+                <label for="inlineRadio{{ $i }}">{{ $i }}</label>
+                @endfor
             </div>
         </div>
     </div>
 </div>
 <div class="form-group">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <label>Furnishing<span class="text-danger">*</span><span  style="color:red" id="furnishing_err"> </span>
             </label>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-8">
             <div class="switch-field">
                 <input type="radio" id="Furnished" name="furnishing" value="Furnished" @if(old('furnishing') == "Furnished") checked @endif/>
                 <label for="Furnished">Furnished</label>
@@ -198,7 +186,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="floor">Property Floor No.<span  style="color:red" id="floor_err"> </span></label>
-                <select name="property_floor_no" class="form-control sel-status @error('property_floor_no') is-invalid @enderror" id="property_floor_no" style="width:100%">
+                <select name="property_floor_no" class="form-control @error('property_floor_no') is-invalid @enderror" id="property_floor_no" style="width:100%">
                     <option value="">-Choose-</option>
                     <option value="Lower Basement">Lower Basement</option>
                     <option value="Upper Basement">Upper Basement</option>
@@ -212,10 +200,8 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="floor">No. of Floor<span  style="color:red" id="total_floor_err"> </span></label>
-                <select name="total_floor" id="no_of_floor" class="form-control sel-status @error('total_floor') is-invalid @enderror" style="width:100%;">
+                <select name="total_floor" id="no_of_floor" class="form-control @error('total_floor') is-invalid @enderror" style="width:100%;">
                     <option value="">Choose..</option>
-                    <option value="Lower Basement">Lower Basement</option>
-                    <option value="Upper Basement">Upper Basement</option>
                     <option value="Ground">Ground</option>
                     @for($i=1; $i <= 10; $i++)
                     <option value="{{ $i }}">{{ $i }}</option>
@@ -258,10 +244,10 @@
 </div>  
 <div class="form-group">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <label for="">Any construction Done <span class="text-danger">*</span><span class="text-danger" id="construct_err"></span></label>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="form-check-inline">
                 <label class="form-check-label">
                     <input type="radio" class="form-check-input" name="any_construc" value="Yes">Yes
@@ -277,10 +263,10 @@
 </div>
 <div class="form-group">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <label for="">Bondary wall Made<span class="text-danger">*</span><span class="text-danger" id="wall_err"></span></label>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="form-check-inline">
                 <label class="form-check-label">
                     <input type="radio" class="form-check-input" name="boundry_wall" value="Yes">Yes
@@ -392,6 +378,7 @@
         </select>
     </div>
 </div>
+<hr>
 <div class="form-row">
     <div class="col-md-5">
         <label for="">Plot Area<span class="text-danger">*</span><span class="text-danger" id="plot_err"></span></label>
@@ -499,7 +486,7 @@
             <label class="form-check-label" style="display:-webkit-inline-box">
                 <input type="radio" class="form-check-input" name="available_from" value="Select Date">Select Date &nbsp;
                 <div class="hidden" id="showDateDiv">
-                    <input class="form-control datepicker" placeholder="DD/MM/YYYY" name="available_date" width="175px">
+                    <input class="form-control datepicker" placeholder="DD/MM/YYYY" name="available_date" width="175px" onfocus="(this.type='date')">
                 </div>
             </label>
         </div>
@@ -532,7 +519,7 @@
         <div class="form-group col-md-3">
             <div class="form-check-inline">
                 <label class="form-check-label">
-                    <input type="radio" class="form-check-input" id="show_rent1" name="show_rent_as" value="">
+                    <input type="radio" class="form-check-input" id="show_rent1" name="show_rent_as" value="" checked>
                     <span id="rent_1"></span>
                 </label>
             </div>
@@ -587,6 +574,22 @@
     </div>
     <div class="form-group col-md-6">
         <input type="text" name="security_amount" id="security_amount" class="form-control Stylednumber @error('security_amount') invalid-feedback @enderror" value="{{ old('security_amount') }}">
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="">Maintenance Charges</label>
+        <input type="text" name="maintenance_charge" class="form-control Stylednumber">
+    </div>
+    <div class="form-group col-md-6">
+        <label for="">Per</label>
+        <select name="m_charges_per" id="m_charges_per" class="form-control">
+            <option value="Monthly">Monthly</option>
+            <option value="Quarterly">Quarterly</option>
+            <option value="Yearly">Yearly</option>
+            <option value="One-Time">One-Time</option>
+            <option value="Per Sq. Unit Monthly">Per Sq. Unit Monthly</option>
+        </select>
     </div>
 </div>
 <div class="form-row" id="brokerageDiv">
@@ -677,7 +680,65 @@
     <div class="form-group">
         <h6>Additional Features</h6>
     </div>
-    <div class="form-row">
+    <div class="form-group">
+        <label for="">Additional Rooms</label>
+    </div>
+    <div class="form-row mb-3">
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="add_room[]" value="Pooja Room">Pooja Room
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="add_room[]" value="Study">Study
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="add_room[]" value="Store">Store
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="add_room[]" value="Servant Room">Servant Room
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="add_room[]" value="None of these">None of these
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-row mb-3">
+        <div class="form-group col-md-4">
+            <label for="">Facing <span class="text-danger">*</span></label>
+        </div>
+        <div class="form-group col-md-8">
+            <select name="facing" id="facing" class="form-control @error('facing') invalid-feedback @enderror">
+                <option value="">-Select Facing-</option>
+                <option value="East" @if(old('facing') == "East") Selected @endif>East</option>
+                <option value="West" @if(old('facing') == "West") Selected @endif>West</option>
+                <option value="North" @if(old('facing') == "North") Selected @endif>North</option>
+                <option value="South" @if(old('facing') == "South") Selected @endif>South</option>
+                <option value="North East" @if(old('facing') == "North East") Selected @endif>North East</option>
+                <option value="North West" @if(old('facing') == "North West") Selected @endif>North West</option>
+                <option value="South East" @if(old('facing') == "South East") Selected @endif>South East</option>
+                <option value="South West" @if(old('facing') == "South West") Selected @endif>South West</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-row mb-3">
         <div class="form-group col-md-4">
             <label>Overlooking</label>
         </div>
@@ -695,9 +756,85 @@
         </div>
     </div>
     <div class="form-group">
+        <h6>Car Parking</h6>
+    </div>
+    <div class="form-row mb-3">
+        <div class="form-group col-md-6">
+            <div class="form-check-inline">
+                <label class="form-check-label" style="display:-webkit-inline-box">
+                    <input type="checkbox" class="form-check-input" name="car_parking[]" value="Covered">Covered &nbsp;
+                    <div class="hidden" id="showCoveredDiv">
+                        <input type="number" placeholder="Enter No." name="cover_no" id="cover_no">
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <div class="form-check-inline">
+                <label class="form-check-label" style="display:-webkit-inline-box">
+                    <input type="checkbox" class="form-check-input" name="car_parking[]" value="Open">Open &nbsp;
+                    <div class="hidden" id="showOpenDiv">
+                        <input type="number" placeholder="Enter No." name="open_no" id="open_no">
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="car_parking[]" value="None">None
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-row mb-3">
+        <div class="form-group col-md-6">
+            <label for="">Multiple Units Available</label>
+        </div>
+        <div class="col-md-6">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="mul_unit_avail" value="Yes">Yes
+                </label>
+            </div>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="mul_unit_avail" value="No">No
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <h6>Status of Water & Electricity</h6>
+    </div>
+    <div class="form-row mb-3">
+        <div class="form-group col-md-6">
+            <label for="">Status of Water</label>
+            <select name="status_of_water" id="status_of_water" class="form-control @error('status_of_water') invalid-feedback @enderror">
+                <option value="">-Select Status of Water-</option>
+                <option value="24 HOURS Available" @if(old('status_of_water') == "24 HOURS Available") Selected @endif>24 HOURS Available</option>
+                <option value="12 HOURS Available" @if(old('status_of_water') == "12 HOURS Available") Selected @endif>12 HOURS Available</option>
+                <option value="6 HOURS Available" @if(old('status_of_water') == "6 HOURS Available") Selected @endif>6 HOURS Available</option>
+                <option value="2 HOURS Available" @if(old('status_of_water') == "2 HOURS Available") Selected @endif>2 HOURS Available</option>
+                <option value="1 HOUR Available" @if(old('status_of_water') == "1 HOUR Available") Selected @endif>1 HOUR Available</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="">Status of Electricity</label>
+            <select name="status_of_electricity" id="status_of_electricity" class="form-control @error('status_of_electricity') invalid-feedback @enderror">
+                <option value="">-Select Status of Electricity-</option>
+                <option value="No Power Cut" @if(old('status_of_electricity') == "No Power Cut") Selected @endif>No Power Cut</option>
+                <option value="less than 3 hrs" @if(old('status_of_electricity') == "less than 3 hrs") Selected @endif>less than 3 hrs</option>
+                <option value="2 to 4 hrs Power Cut" @if(old('status_of_electricity') == "2 to 4 hrs Power Cut") Selected @endif>2 to 4 hrs Power Cut</option>
+                <option value="4 to 6 hrs Power Cut" @if(old('status_of_electricity') == "4 to 6 hrs Power Cut") Selected @endif>4 to 6 hrs Power Cut</option>
+                <option value="above 6 hrs Power Cut" @if(old('status_of_electricity') == "above 6 hrs Power Cut") Selected @endif>above 6 hrs Power Cut</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
         <h6>Ownership & Approvals</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
             <label for="">Ownership Status</label>
             <select name="ownership_approval" id="ownership_approval" class="form-control @error('ownership_approval') invalid-feedback @enderror">
@@ -717,8 +854,137 @@
         </div>
     </div>
     <div class="form-group">
+        <h6>Flooring</h6>
+    </div>
+    <div class="form-row mb-3">
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="flooring[]" value="Ceramic Tiles">Ceramic Tiles
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="flooring[]" value="Marble">Marble
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="flooring[]" value="Mosaic">Mosaic
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="flooring[]" value="Vetrified">Vetrified
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="flooring[]" value="Granite">Granite
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="flooring[]" value="Marbonite">Marbonite
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="flooring[]" value="Normal Tiles">Normal Tiles
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="flooring[]" value="Kota Stone">Kota Stone
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="flooring[]" value="Wooden">Wooden
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <h6>Amenities</h6>
+    </div>
+    <div class="form-row mb-3">
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Gymnasium">Gymnasium
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Jogging & Strolling Track">Jogging & Strolling Track
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Pipe Gas">Pipe Gas
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Power Back Up">Power Back Up
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Reserve Parking Security">Reserve Parking Security
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Swimming Pool">Swimming Pool
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Lift">Lift
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Security">Security
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
         <label>Description <span class="text-danger">*</span><span class="text-danger" id="description_err" style="display:block"></span></label>
-        <textarea class="form-control ckeditor @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
+        <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
     </div>
     <div class="form-group">
         <label>Land Mark</label>

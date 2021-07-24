@@ -147,38 +147,6 @@
         </div>
     </div>
 </div>
-<div class="form-row hidden" id="showFurnishedDiv">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>Washrooms</label>
-                <select name="bathroom" class="form-control" id="bathroom">
-                    <option value="">-Select-</option>
-                    @for($i=1; $i < 15; $i++)
-                    <option value="{{ $i }}">{{ $i }}</option>
-                    @endfor
-                </select>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>Number of Seats</label>
-                <input type="number" name="no_of_seat" class="form-control" id="no_of_seat">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>Cabin/Meeting Rooms</label>
-                <select name="meeting_room" class="form-control" id="meeting_room">
-                    <option value="">-Select-</option>
-                    @for($i=1; $i < 15; $i++)
-                    <option value="{{ $i }}">{{ $i }}</option>
-                    @endfor
-                </select>
-            </div>
-        </div>
-    </div>  
-</div>  
 <div class="form-row">
     <div class="form-group col-md-5">
         <label for="">Lock in Period (In Years)</label>
@@ -189,7 +157,7 @@
 </div>
 <div class="form-row">
     <div class="form-group col-md-5">
-        <label for="">Corner Showroom</label>
+        <label for="">Corner Shop</label>
     </div>
     <div class="form-group col-md-7">
         <div class="form-check-inline">
@@ -343,7 +311,6 @@
         </select>
     </div>
 </div>
-<hr>
 <div class="form-row">
     <div class="form-group col-md-5">
         <label for="">Width of Entrance</label>
@@ -700,7 +667,7 @@
     </div>
     <div class="form-row mb-3">
         <div class="form-group col-md-6">
-            <label for="">Showroom on the Floor</label>
+            <label for="">Shop on the Floor</label>
         </div>
         <div class="form-group col-md-6">
             <input type="number" class="form-control" name="office_floor">

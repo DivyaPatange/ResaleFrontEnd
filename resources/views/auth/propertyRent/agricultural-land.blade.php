@@ -4,16 +4,16 @@
 <div class="form-row">
     <div class="form-group col-md-6">
         <label for="">Floors Allowed for construction</label>
-        <select name="floor_constru" id="floor_constru" class="form-control sel-status @error('floor_constru') invalid-feedback @enderror">
+        <select name="floor_constru" id="floor_constru" class="form-control @error('floor_constru') invalid-feedback @enderror">
             <option value="">-Select floors Allowed for construction-</option>
-            @for($i=1; $i <= 201 ;$i++)
+            @for($i=1; $i <= 20 ;$i++)
             <option value="{{$i}}">{{$i}}</option>
             @endfor
         </select>
     </div>
     <div class="form-group col-md-6">
         <label for="">No. of Open Side</label>
-        <select name="no_of_open_side" id="no_of_open_side" class="sel-status form-control @error('no_of_open_side') invalid-feedback @enderror">
+        <select name="no_of_open_side" id="no_of_open_side" class="form-control @error('no_of_open_side') invalid-feedback @enderror">
             <option value="">-Select No. of Open Side-</option>
             <option value="1" @if(old('no_of_open_side') == "1") Selected @endif>1</option>
             <option value="2" @if(old('no_of_open_side') == "2") Selected @endif>2</option>
@@ -27,7 +27,7 @@
         <label for="">Width of Road facing the Plot</label>
     </div>
     <div class="form-group col-md-4">
-        <input type="text" class="form-control Stylednumber @error('width_of_road') invalid-feedback @enderror" name="width_of_road" value="{{ old('width_of_road') }}" placeholder="Meters">
+        <input type="text" class="form-control Stylednumber @error('width_of_road') invalid-feedback @enderror" name="width_of_road" value="{{ old('width_of_road') }}">
     </div>
     <div class="form-group col-md-3">
         <select name="road_facing_unit" id="road_facing_unit" class="form-control @error('road_facing_unit') invalid-feedback @enderror">
@@ -55,10 +55,10 @@
 </div>  
 <div class="form-group">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <label for="">Any construction Done <span class="text-danger">*</span><span class="text-danger" id="construct_err"></span></label>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="form-check-inline">
                 <label class="form-check-label">
                     <input type="radio" class="form-check-input" name="any_construc" value="Yes">Yes
@@ -74,10 +74,10 @@
 </div>
 <div class="form-group">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <label for="">Bondary wall Made<span class="text-danger">*</span><span class="text-danger" id="wall_err"></span></label>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="form-check-inline">
                 <label class="form-check-label">
                     <input type="radio" class="form-check-input" name="boundry_wall" value="Yes">Yes
@@ -214,7 +214,7 @@
             <label class="form-check-label" style="display:-webkit-inline-box">
                 <input type="radio" class="form-check-input" name="available_from" value="Select Date">Select Date &nbsp;
                 <div class="hidden" id="showDateDiv">
-                    <input class="form-control datepicker" placeholder="DD/MM/YYYY" name="available_date" width="175px">
+                    <input class="form-control datepicker" placeholder="DD/MM/YYYY" name="available_date" width="175px" onfocus="(this.type='date')">
                 </div>
             </label>
         </div>
@@ -247,7 +247,7 @@
         <div class="form-group col-md-3">
             <div class="form-check-inline">
                 <label class="form-check-label">
-                    <input type="radio" class="form-check-input" id="show_rent1" name="show_rent_as" value="">
+                    <input type="radio" class="form-check-input" id="show_rent1" name="show_rent_as" value="" checked>
                     <span id="rent_1"></span>
                 </label>
             </div>
@@ -292,7 +292,7 @@
 <div class="form-group" id="stampDiv">
     <div class="form-check-inline">
         <label class="form-check-label">
-            <input type="checkbox" name="stamp_duty" class="form-check-input" value="1" checked>Stamp Duty & Registration Charges Excluded.
+            <input type="checkbox" name="ele_water_charges" class="form-check-input" value="1" checked>Electricity & Water charges excluded.
         </label>
     </div>
 </div>
@@ -392,7 +392,7 @@
     <div class="form-group">
         <h6>Additional Features</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-4">
             <label>Overlooking</label>
         </div>
@@ -412,7 +412,7 @@
     <div class="form-group">
         <h6>Ownership & Approvals</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
             <label for="">Ownership Status</label>
             <select name="ownership_approval" id="ownership_approval" class="form-control @error('ownership_approval') invalid-feedback @enderror">
@@ -434,7 +434,7 @@
     <div class="form-group">
         <h6>Status of Water & Electricity</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
             <label for="">Status of Water</label>
             <select name="status_of_water" id="status_of_water" class="form-control @error('status_of_water') invalid-feedback @enderror">
@@ -465,7 +465,7 @@
     </div>
     <div class="form-group">
         <label>Description <span class="text-danger">*</span><span class="text-danger" id="description_err" style="display: block;"></span></label>
-        <textarea class="form-control ckeditor @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
+        <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
     </div>
     <div class="form-group">
         <label>Land Mark</label>
@@ -532,14 +532,10 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 <script src="{{ asset('js/common.js') }}"></script>
 <script>
 $(function() {
   $(".sel-status").select2();
-});
-$(document).ready(function () {
-    $('.ckeditor').ckeditor();
 });
 $('body').on('click', '#showButton4', function () {
   var listed_by = $('input[name="listed_by"]:checked').val();

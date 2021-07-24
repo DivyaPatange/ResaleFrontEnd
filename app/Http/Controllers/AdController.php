@@ -1418,7 +1418,9 @@ class AdController extends Controller
          $propRent->landmark = $request->landmark;
          $propRent->owner_resides = $request->owner_resides;
          $propRent->land_zone = $request->land_zone;
-         $propRent->ideal_business = $request->ideal_business;
+         if($request->ideal_business){
+            $propRent->ideal_business = implode(",", $request->ideal_business);
+         }
          $propRent->will_to_modify_interior = $request->modify_interior;
          $propRent->lock_in_period = $request->lock_period;
          $propRent->personal_washroom = $request->personal_washroom;
@@ -1829,6 +1831,13 @@ class AdController extends Controller
         $cities = City::where('status', 1)->get();
         $state = State::where('status', 1)->get();
         return view('auth.propertyRent.com-showroom', compact('cities', 'state'));
+    }
+
+    public function comShopForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertyRent.com-shop', compact('cities', 'state'));
     }
 
     public function industrialLandForm()

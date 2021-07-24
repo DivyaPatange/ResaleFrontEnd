@@ -667,11 +667,11 @@ function removeField(){
   });
 
   $(document).ready(function() { 
-            $(".mul-select").select2({ 
-                placeholder: "Select Sub Role", 
-                tags: true, 
-            }); 
-        }) 
+    $(".mul-select").select2({ 
+      placeholder: "Select Sub Role", 
+      tags: true, 
+    }); 
+  }) 
   function selectOnlyThis(id){
   var myCheckbox = document.getElementsByName("job_type");
   Array.prototype.forEach.call(myCheckbox,function(el){

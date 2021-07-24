@@ -4,7 +4,7 @@
 <div class="form-row">
     <div class="form-group col-md-6">
         <label for="">Land Zone<span  style="color:red" id="land_zone_err"> </span></label>
-        <select name="land_zone" id="land_zone" class="form-control sel-status">
+        <select name="land_zone" id="land_zone" class="form-control">
             <option value="">-Select Land Zone-</option>
             <option value="Industrial">Industrial</option>
             <option value="Commercial">Commercial</option>
@@ -21,7 +21,7 @@
     </div>
     <div class="form-group col-md-6">
         <label for="">No. of Open Side</label>
-        <select name="no_of_open_side" id="no_of_open_side" class="sel-status form-control @error('no_of_open_side') invalid-feedback @enderror">
+        <select name="no_of_open_side" id="no_of_open_side" class="form-control @error('no_of_open_side') invalid-feedback @enderror">
             <option value="">-Select No. of Open Side-</option>
             <option value="1" @if(old('no_of_open_side') == "1") Selected @endif>1</option>
             <option value="2" @if(old('no_of_open_side') == "2") Selected @endif>2</option>
@@ -30,36 +30,30 @@
         </select>
     </div>
 </div>
-<div class="form-group">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="floor">Property Floor No.<span  style="color:red" id="floor_err"> </span></label>
-                <select name="property_floor_no" class="form-control sel-status @error('property_floor_no') is-invalid @enderror" id="property_floor_no" style="width:100%">
-                    <option value="">-Choose-</option>
-                    <option value="Lower Basement">Lower Basement</option>
-                    <option value="Upper Basement">Upper Basement</option>
-                    <option value="Ground">Ground</option>
-                    @for($i=1; $i <= 20; $i++)
-                    <option value="{{ $i }}">{{ $i }}</option>
-                    @endfor
-                </select>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="floor">No. of Floor<span  style="color:red" id="total_floor_err"> </span></label>
-                <select name="total_floor" id="no_of_floor" class="form-control sel-status @error('total_floor') is-invalid @enderror" style="width:100%;">
-                    <option value="">Choose..</option>
-                    <option value="Lower Basement">Lower Basement</option>
-                    <option value="Upper Basement">Upper Basement</option>
-                    <option value="Ground">Ground</option>
-                    @for($i=1; $i <= 20; $i++)
-                    <option value="{{ $i }}">{{ $i }}</option>
-                    @endfor
-                </select>
-            </div>
-        </div>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="floor">Property Floor No.<span  style="color:red" id="floor_err"> </span></label>
+        <select name="property_floor_no" class="form-control @error('property_floor_no') is-invalid @enderror" id="property_floor_no" style="width:100%">
+            <option value="">-Choose-</option>
+            <option value="Lower Basement">Lower Basement</option>
+            <option value="Upper Basement">Upper Basement</option>
+            <option value="Ground">Ground</option>
+            @for($i=1; $i <= 20; $i++)
+            <option value="{{ $i }}">{{ $i }}</option>
+            @endfor
+        </select>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="floor">No. of Floor<span  style="color:red" id="total_floor_err"> </span></label>
+        <select name="total_floor" id="no_of_floor" class="form-control @error('total_floor') is-invalid @enderror" style="width:100%;">
+            <option value="">Choose..</option>
+            <option value="Lower Basement">Lower Basement</option>
+            <option value="Upper Basement">Upper Basement</option>
+            <option value="Ground">Ground</option>
+            @for($i=1; $i <= 20; $i++)
+            <option value="{{ $i }}">{{ $i }}</option>
+            @endfor
+        </select>
     </div>
 </div>
 <div class="form-row">
@@ -95,10 +89,10 @@
 </div>  
 <div class="form-group">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <label for="">Any construction Done <span class="text-danger">*</span><span class="text-danger" id="construct_err"></span></label>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="form-check-inline">
                 <label class="form-check-label">
                     <input type="radio" class="form-check-input" name="any_construc" value="Yes">Yes
@@ -114,10 +108,10 @@
 </div>
 <div class="form-group">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <label for="">Bondary wall Made<span class="text-danger">*</span><span class="text-danger" id="wall_err"></span></label>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="form-check-inline">
                 <label class="form-check-label">
                     <input type="radio" class="form-check-input" name="boundry_wall" value="Yes">Yes
@@ -228,6 +222,7 @@
         </select>
     </div>
 </div>
+<hr>
 <div class="form-row">
     <div class="col-md-5">
         <label for="">Plot Area<span class="text-danger">*</span><span class="text-danger" id="plot_err"></span></label>
@@ -334,7 +329,7 @@
             <label class="form-check-label" style="display:-webkit-inline-box">
             <input type="radio" class="form-check-input" name="available_from" value="Select Date">Select Date &nbsp;
             <div class="hidden" id="showDateDiv">
-                <input class="form-control datepicker" placeholder="DD/MM/YYYY" name="available_date" width="175px">
+                <input class="form-control datepicker" placeholder="DD/MM/YYYY" name="available_date" width="175px" onfocus="(this.type='date')">
             </div>
             </label>
         </div>
@@ -367,7 +362,7 @@
         <div class="form-group col-md-3">
             <div class="form-check-inline">
             <label class="form-check-label">
-                <input type="radio" class="form-check-input" id="show_rent1" name="show_rent_as" value="">
+                <input type="radio" class="form-check-input" id="show_rent1" name="show_rent_as" value="" checked>
                 <span id="rent_1"></span>
             </label>
             </div>
@@ -422,6 +417,22 @@
     </div>
     <div class="form-group col-md-6">
         <input type="text" name="security_amount" id="security_amount" class="form-control Stylednumber @error('security_amount') invalid-feedback @enderror" value="{{ old('security_amount') }}">
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="">Maintenance Charges</label>
+        <input type="text" name="maintenance_charge" class="form-control Stylednumber">
+    </div>
+    <div class="form-group col-md-6">
+        <label for="">Per</label>
+        <select name="m_charges_per" id="m_charges_per" class="form-control">
+            <option value="Monthly">Monthly</option>
+            <option value="Quarterly">Quarterly</option>
+            <option value="Yearly">Yearly</option>
+            <option value="One-Time">One-Time</option>
+            <option value="Per Sq. Unit Monthly">Per Sq. Unit Monthly</option>
+        </select>
     </div>
 </div>
 <div class="form-row" id="brokerageDiv">
@@ -512,7 +523,7 @@
     <div class="form-group">
         <h6>Additional Features</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-4">
             <label>Overlooking</label>
         </div>
@@ -525,6 +536,57 @@
             <div class="form-check-inline">
                 <label class="form-check-label">
                     <input type="checkbox" class="form-check-input" name="overlooking[]" value="Not Available">Not Available
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-row mb-3">
+        <div class="form-group col-md-4">
+            <label for="">Lifts in the Tower </label>
+        </div>
+        <div class="form-group col-md-8">
+            <select name="lift_in_tower" id="lift_in_tower" class="form-control @error('lift_tower') invalid-feedback @enderror">
+                <option value="">-Select-</option>
+                <option value="None" @if(old('lift_tower') == "None") Selected @endif>None</option>
+                <option value="1" @if(old('lift_tower') == "1") Selected @endif>1</option>
+                <option value="2" @if(old('lift_tower') == "2") Selected @endif>2</option>
+                <option value="3" @if(old('lift_tower') == "3") Selected @endif>3</option>
+                <option value="4" @if(old('lift_tower') == "4") Selected @endif>4</option>
+                <option value="5" @if(old('lift_tower') == "5") Selected @endif>5</option>
+                <option value="6" @if(old('lift_tower') == "6") Selected @endif>6</option>
+                <option value="7" @if(old('lift_tower') == "7") Selected @endif>7</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <h6>Amenities</h6>
+    </div>
+    <div class="form-row mb-3">
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Lift">Lift
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Power Backup">Power Backup
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Reserve Parking">Reserve Parking
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Security">Security
                 </label>
             </div>
         </div>
@@ -558,7 +620,7 @@
     </div>
     <div class="form-group">
         <label>Description <span class="text-danger">*</span><span class="text-danger" id="description_err" style="display: block;"></span></label>
-        <textarea class="form-control ckeditor @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
+        <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
     </div>
     <div class="form-group">
         <label>Land Mark</label>

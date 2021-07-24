@@ -6,6 +6,7 @@
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" />
 <script src="//demo.itsolutionstuff.com/plugin/jquery.js"></script>
+<!-- <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">  -->
 <style>
 .myimg
 {
@@ -97,7 +98,7 @@
 	font-size: 14px;
 	line-height: 1;
 	text-align: center;
-	padding: 8px 16px;
+	padding: 8px 15px;
 	margin-right: -1px;
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
@@ -211,6 +212,9 @@ nav > div a.nav-item.nav-link:focus
 }
 .select2-container{
   width:100% !important;
+}
+.select2-results__option{
+  padding:0px 6px;
 }
 #country-list{float:left;list-style:none;margin-top:-3px;padding:0;width:190px;position: absolute;z-index:2;}
 #country-list li{padding: 10px; background: #f0f0f0; border-bottom: #bbb9b9 1px solid;}
@@ -348,7 +352,7 @@ function selectLocality(val) {
                   <label>Property Type<span class="text-danger">*<span><span  style="color:red" id="pt_err"> </span></label>
                 </div>
                 <div class="form-group col-md-8">
-                  <select id="property_type" class="form-control sel-status @error('property_type') is-invalid @enderror" name="property_type">
+                  <select id="property_type" class="form-control @error('property_type') is-invalid @enderror" name="property_type">
                     <option value="">Choose...</option>
                     <optgroup label="All Residential Property"> 
                     @foreach($type as $t)
@@ -378,8 +382,10 @@ function selectLocality(val) {
                 <h6>Property Location</h6>
               </div>
               <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                   <label>City<span class="text-danger">*<span><span  style="color:red" id="city_err"> </span></label>
+                </div>
+                <div class="form-group col-md-8">
                   <input class="form-control" type="text" id="search-box" name="city">
                   <div id="suggesstion-box"></div>
                   @error('city')
@@ -388,8 +394,10 @@ function selectLocality(val) {
                   </span>
                   @enderror
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                   <label for="inputLocality">Locality<span class="text-danger">*</span><span  style="color:red" id="locality_err"> </span></label>
+                </div>
+                <div class="form-group col-md-8">
                   <input type="text" class="form-control @error('locality') is-invalid @enderror" id="locality" name="locality">
                   <div id="suggesstion-locality"></div>
                   @error('locality')
@@ -542,7 +550,11 @@ $('body').on('change', '#property_type', function () {
     {
       $('#container').load('/warehouse-godown-form');
     }
-    else if((query == 43) || (query == 44))
+    else if(query == 43)
+    {
+      $('#container').load('/com-shop-form');
+    }
+    else if(query == 44)
     {
       $('#container').load('/com-showroom-form');
     }

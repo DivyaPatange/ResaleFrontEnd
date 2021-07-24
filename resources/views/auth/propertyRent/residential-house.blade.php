@@ -1,77 +1,58 @@
 <div class="form-row">
-    <div class="col-md-6 form-group">
-    <label for="">Name of Project Society<span class="text-danger">*</span><span  style="color:red" id="project_name_err"> </span></label>
-    <input type="text" name="project_name" class="form-control" id="project_name">
+    <div class="col-md-4 form-group">
+        <label for="">Name of Project Society<span class="text-danger">*</span><span  style="color:red" id="project_name_err"> </span></label>
     </div>
-    <div class="form-group col-md-6">
+    <div class="col-md-8 form-group">
+        <input type="text" name="project_name" class="form-control" id="project_name">
     </div>
 </div>
+<hr>
 <div class="form-group">
     <h6>Property Feature</h6>
 </div>
 <div class="form-group">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <label>Bedroom<span class="text-danger">*</span><span  style="color:red" id="bedroom_err"> </span>
             </label>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-8">
             <div class="switch-field">
-            @for($i=1; $i<21; $i++)
-            <input type="radio" id="{{ $i }}" name="bedroom" value="{{ $i }}" @if(old('bedroom') == $i) checked @endif/>
-            <label for="{{ $i }}">{{ $i }}</label>
-            @endfor
-            <!--<input type="radio" id="2" name="bedroom" value="2" @if(old('bedroom') == "2") checked @endif/>-->
-            <!--<label for="2">2</label>-->
-            <!--<input type="radio" id="3" name="bedroom" value="3" @if(old('bedroom') == "3") checked @endif/>-->
-            <!--<label for="3">3</label>-->
-            <!--<input type="radio" id="4" name="bedroom" value="4" @if(old('bedroom') == "4") checked @endif/>-->
-            <!--<label for="4">4</label>-->
-            <!--<input type="radio" id="5" name="bedroom" value="5" @if(old('bedroom') == "5") checked @endif/>-->
-            <!--<label for="5">5</label>-->
+                @for($i=1; $i<=15; $i++)
+                <input type="radio" id="{{ $i }}" name="bedroom" value="{{ $i }}" @if(old('bedroom') == $i) checked @endif/>
+                <label for="{{ $i }}">{{ $i }}</label>
+                @endfor
             </div>
         </div>
     </div>
 </div>
 <div class="form-group">
     <div class="row">
-    <div class="col-md-3">
-        <label>Balcony <span class="text-danger">*</span></label>
-    </div>
-    <div class="col-md-9">
-        <div class="switch-field">
-        <input type="radio" id="balcony1" name="balcony" value="1" @if(old('balcony') == "1") checked @endif/>
-        <label for="balcony1">1</label>
-        <input type="radio" id="balcony2" name="balcony" value="2" @if(old('balcony') == "2") checked @endif/>
-        <label for="balcony2">2</label>
-        <input type="radio" id="balcony3" name="balcony" value="3" @if(old('balcony') == "3") checked @endif/>
-        <label for="balcony3">3</label>
-        <input type="radio" id="balcony4" name="balcony" value="4" @if(old('balcony') == "4") checked @endif/>
-        <label for="balcony4">4</label>
-        <input type="radio" id="balcony5" name="balcony" value="5" @if(old('balcony') == "5") checked @endif/>
-        <label for="balcony5">5</label>
+        <div class="col-md-4">
+            <label>Balcony <span class="text-danger">*</span></label>
         </div>
-    </div>
+        <div class="col-md-8">
+            <div class="switch-field">
+                @for($i=1; $i<=15; $i++)
+                <input type="radio" id="balcony{{ $i }}" name="balcony" value="{{ $i }}" @if(old('balcony') == $i) checked @endif/>
+                <label for="balcony{{ $i }}">{{ $i }}</label>
+                @endfor
+            </div>
+        </div>
     </div>
 </div>
 <div class="form-group">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <label>Bathroom <span class="text-danger">*</span>
             </label>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-8">
             <div class="switch-field">
-                <input type="radio" id="inlineRadio1" name="bathroom" value="1" @if(old('bathroom') == "1") checked @endif/>
-                <label for="inlineRadio1">1</label>
-                <input type="radio" id="inlineRadio2" name="bathroom" value="2" @if(old('bathroom') == "2") checked @endif/>
-                <label for="inlineRadio2">2</label>
-                <input type="radio" id="inlineRadio3" name="bathroom" value="3" @if(old('bathroom') == "3") checked @endif/>
-                <label for="inlineRadio3">3</label>
-                <input type="radio" id="inlineRadio4" name="bathroom" value="4" @if(old('bathroom') == "4") checked @endif/>
-                <label for="inlineRadio4">4</label>
-                <input type="radio" id="inlineRadio5" name="bathroom" value="5" @if(old('bathroom') == "5") checked @endif/>
-                <label for="inlineRadio5">5</label>
+                @for($i=1; $i<=15; $i++)
+                <input type="radio" id="inlineRadio{{ $i }}" name="bathroom" value="{{ $i }}" @if(old('bathroom') == $i) checked @endif/>
+                <label for="inlineRadio{{ $i }}">{{ $i }}</label>
+                @endfor
             </div>
         </div>
     </div>
@@ -85,7 +66,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="floor">Property Floor No.<span  style="color:red" id="floor_err"> </span></label>
-                <select name="property_floor_no" class="form-control sel-status @error('property_floor_no') is-invalid @enderror" id="property_floor_no" style="width:100%">
+                <select name="property_floor_no" class="form-control @error('property_floor_no') is-invalid @enderror" id="property_floor_no" style="width:100%">
                     <option value="">-Choose-</option>
                     <option value="Lower Basement">Lower Basement</option>
                     <option value="Upper Basement">Upper Basement</option>
@@ -99,7 +80,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="floor">No. of Floor<span  style="color:red" id="total_floor_err"> </span></label>
-                <select name="total_floor" id="no_of_floor" class="form-control sel-status @error('total_floor') is-invalid @enderror" style="width:100%;">
+                <select name="total_floor" id="no_of_floor" class="form-control @error('total_floor') is-invalid @enderror" style="width:100%;">
                     <option value="">Choose..</option>
                     <option value="Lower Basement">Lower Basement</option>
                     <option value="Upper Basement">Upper Basement</option>
@@ -114,11 +95,11 @@
 </div>
 <div class="form-group">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-5">
             <label>Furnishing<span class="text-danger">*</span><span  style="color:red" id="furnishing_err"> </span>
             </label>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-7">
             <div class="switch-field">
                 <input type="radio" id="Furnished" name="furnishing" value="Furnished" @if(old('furnishing') == "Furnished") checked @endif/>
                 <label for="Furnished">Furnished</label>
@@ -312,6 +293,7 @@
         </select>
     </div>
 </div>
+<hr>
 <div class="form-row">
     <div class="form-group col-md-5">
         <label for="">Plot Area<span class="text-danger">*</span><span  style="color:red" id="plot_err"> </span></label>
@@ -404,7 +386,7 @@
             <label class="form-check-label" style="display:-webkit-inline-box">
             <input type="radio" class="form-check-input" name="available_from" value="Select Date">Select Date &nbsp;
             <div class="hidden" id="showDateDiv">
-                <input class="form-control datepicker" placeholder="DD/MM/YYYY" name="available_date" width="175px">
+                <input class="form-control datepicker" placeholder="DD/MM/YYYY" name="available_date" width="175px" onfocus="(this.type='date')">
             </div>
         </label>
         </div>
@@ -451,7 +433,7 @@
         <div class="form-group col-md-3">
         <div class="form-check-inline">
             <label class="form-check-label">
-            <input type="radio" class="form-check-input" id="show_rent1" name="show_rent_as" value="">
+            <input type="radio" class="form-check-input" id="show_rent1" name="show_rent_as" value="" checked>
             <span id="rent_1"></span>
             </label>
         </div>
@@ -619,7 +601,7 @@
 <button type="button" id="showButton1" class="btn btn-primary">Continue & Next</button>
 <div class="hidden" id="showDiv1">
     <div class="form-group">
-        <h6>Tenants Tou Prefer</h6>
+        <h6>Tenants You Prefer</h6>
     </div>
     <div class="form-group">
         <label for="">Tenants who are Bachelors</label>
@@ -731,7 +713,7 @@
     <div class="form-group">
         <label for="">Additional Rooms</label>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-4">
             <div class="form-check-inline">
                 <label class="form-check-label">
@@ -768,9 +750,9 @@
             </div>
         </div>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
-            <label for="">Facing <span class="text-danger">*</span></label>
+            <h6>Facing </h6>
             <select name="facing" id="facing" class="form-control @error('facing') invalid-feedback @enderror">
                 <option value="">-Select Facing-</option>
                 <option value="East" @if(old('facing') == "East") Selected @endif>East</option>
@@ -784,7 +766,7 @@
             </select>
         </div>
         <div class="form-group col-md-6">
-            <label for="">Lifts in the Tower </label>
+            <h6>Lifts in the Tower </h6>
             <select name="lift_in_tower" id="lift_in_tower" class="form-control @error('lift_tower') invalid-feedback @enderror">
                 <option value="">-Select-</option>
                 <option value="None" @if(old('lift_tower') == "None") Selected @endif>None</option>
@@ -801,7 +783,7 @@
     <div class="form-group">
         <h6>Overlooking</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
             <div class="form-check-inline">
                 <label class="form-check-label">
@@ -834,7 +816,7 @@
     <div class="form-group">
         <h6>Car Parking</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
             <div class="form-check-inline">
                 <label class="form-check-label" style="display:-webkit-inline-box">
@@ -863,7 +845,7 @@
             </div>
         </div>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
             <label for="">Multiple Units Available</label>
         </div>
@@ -883,7 +865,7 @@
     <div class="form-group">
         <h6>Status of Water & Electricity</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
             <label for="">Status of Water</label>
             <select name="status_of_water" id="status_of_water" class="form-control @error('status_of_water') invalid-feedback @enderror">
@@ -910,7 +892,7 @@
     <div class="form-group">
         <h6>Flooring</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-4">
             <div class="form-check-inline">
                 <label class="form-check-label">
@@ -978,18 +960,11 @@
     <div class="form-group">
         <h6>Amenities</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-4">
             <div class="form-check-inline">
                 <label class="form-check-label">
                     <input type="checkbox" class="form-check-input" name="aminities[]" value="Gymnasium">Gymnasium
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Jogging & Strolling Track">Jogging & Strolling Track
                 </label>
             </div>
         </div>
@@ -1010,7 +985,7 @@
         <div class="form-group col-md-4">
             <div class="form-check-inline">
                 <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Reserve Parking Security">Reserve Parking Security
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Reserve Parking">Reserve Parking
                 </label>
             </div>
         </div>
@@ -1035,13 +1010,20 @@
                 </label>
             </div>
         </div>
+        <div class="form-group col-md-8">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Jogging & Strolling Track">Jogging & Strolling Track
+                </label>
+            </div>
+        </div>
     </div>
     <div class="form-group">
         <h6>Description & Landmarks</h6>
     </div>
     <div class="form-group">
         <label for="">Description<span  style="color:red" id="description_err"> </span></label>
-        <textarea name="description" id="description" class="form-control ckeditor"></textarea>
+        <textarea name="description" id="description" class="form-control"></textarea>
     </div>
     <div class="form-group">
         <label for="">Landmark</label>
@@ -1134,16 +1116,13 @@
     <button type="button" id="submitForm" class="btn btn-primary">Post Your Add</button>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 <script src="{{ asset('js/common.js') }}"></script>
 
 <script>
 $(function() {
   $(".sel-status").select2();
 });
-$(document).ready(function () {
-    $('.ckeditor').ckeditor();
-});
+
 $('body').on('click', '#showButton1', function () {
   var listed_by = $('input[name="listed_by"]:checked').val();
   var city = $('#search-box').val();
