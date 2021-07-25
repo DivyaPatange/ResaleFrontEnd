@@ -96,7 +96,7 @@
   font-size: 14px;
   line-height: 1;
   text-align: center;
-  padding: 8px 16px;
+  padding: 8px 15px;
   margin-right: -1px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   /*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);*/
@@ -348,7 +348,7 @@ function selectLocality(val) {
                   <label>Property Type<span class="text-danger">*<span></label>
                 </div>
                 <div class="form-group col-md-8">
-                  <select id="property_type" class="form-control sel-status @error('property_type') is-invalid @enderror" name="property_type">
+                  <select id="property_type" class="form-control @error('property_type') is-invalid @enderror" name="property_type">
                     <option value="">Choose...</option>
                     <optgroup label="All Residential Property"> 
                     @foreach($type as $t)
@@ -375,25 +375,29 @@ function selectLocality(val) {
                 </div>
               </div>
               <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                   <label>City<span class="text-danger">*<span><span  style="color:red" id="city_err"> </span></label>
+                </div>
+                <div class="form-group col-md-8">
                   <input class="form-control" type="text" id="search-box" name="city">
                   <div id="suggesstion-box"></div>
                 </div>
-                <div class="form-group col-md-6">
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
                   <label for="inputLocality">Locality<span class="text-danger">*</span><span  style="color:red" id="locality_err"> </span></label>
+                </div>
+                <div class="form-group col-md-8">
                   <input type="text" class="form-control @error('locality') is-invalid @enderror" id="locality" name="locality">
                   <div id="suggesstion-locality"></div>
                 </div>
               </div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-4">
-                    <label>Address</label><span class="text-danger">*</span><span  style="color:red" id="address_err"> </span></label>
-                  </div>
-                  <div class="col-md-8">
-                    <input class="form-control @error('address') is-invalid @enderror" id="address" name="address">
-                  </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label>Address</label><span class="text-danger">*</span><span  style="color:red" id="address_err"> </span></label>
+                </div>
+                <div class="form-group col-md-8">
+                  <input class="form-control @error('address') is-invalid @enderror" id="address" name="address">
                 </div>
               </div>
               <div class="pageloader hidden"></div>

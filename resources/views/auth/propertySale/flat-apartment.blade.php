@@ -3,20 +3,16 @@
         <label>Name of Society<span class="text-danger">*<span><span style="color:red" id="society_err"></span></label>
         <input  type="text" id="name_of_society" class="form-control @error('project_name') is-invalid @enderror" name="project_name">
     </div>
-    <div class="form-group col-md-6">
-        <label>Rera ID<span class="text-danger">*<span><span style="color:red" id="society_err"></span></label>
-        <input  type="text" id="rera_id" class="form-control @error('rera_id') is-invalid @enderror" name="rera_id">
-    </div>
 </div>
 <div class="form-group">
     <h6>Property Feature</h6>
 </div>
 <div class="form-group">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <label>Bedroom <span class="text-danger">*</span><span style="color:red" id="bedroom_err"></span></label>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-8">
             <div class="switch-field">
                 @for($i=1; $i < 16; $i++)
                 <input type="radio"  name="bedroom" id="{{ $i }}" value="{{ $i }}" @if(old('bedroom') == $i) checked @endif>
@@ -28,10 +24,10 @@
 </div>
 <div class="form-group">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <label>Balcony <span class="text-danger">*</span></label>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-8">
             <div class="switch-field">
                 @for($i=1; $i < 16; $i++)
                 <input type="radio"  name="balcony" id="balcony{{ $i }}" value="{{ $i }}" @if(old('balcony') == $i) checked @endif>
@@ -43,10 +39,10 @@
 </div>
 <div class="form-group">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <label>Bathroom <span class="text-danger">*</span></label>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-8">
             <div class="switch-field">
                 @for($i=1; $i < 16; $i++)
                 <input type="radio"  name="bathroom" id="bathroom{{ $i }}" value="{{ $i }}" @if(old('bathroom') == $i) checked @endif>
@@ -65,12 +61,12 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="floor">Floor No.<span class="text-danger">*</span><span style="color:red" id="floor_err"></span></label>
-                <select name="floor_no" id="floor_no" class="form-control sel-status @error('floor_no') is-invalid @enderror">
+                <select name="floor_no" id="floor_no" class="form-control @error('floor_no') is-invalid @enderror">
                     <option value="">Choose..</option>
                     <option value="Lower Basement">Lower Basement</option>
                     <option value="Upper Basement">Upper Basement</option>
                     <option value="Ground">Ground</option>
-                    @for($i=1; $i <= 200; $i++)
+                    @for($i=1; $i <= 20; $i++)
                     <option value="{{ $i }}">{{ $i }}</option>
                     @endfor
                 </select>
@@ -79,9 +75,9 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="floor">Total Floor<span class="text-danger">*</span><span style="color:red" id="total_floor_err"></span></label>
-                <select name="total_floor" id="total_floor" class="form-control sel-status @error('no_of_floor') is-invalid @enderror">
+                <select name="total_floor" id="total_floor" class="form-control @error('no_of_floor') is-invalid @enderror">
                     <option value="">-Select-</option>
-                    @for($i=1; $i <= 200; $i++)
+                    @for($i=1; $i <= 20; $i++)
                     <option value="{{ $i }}">{{ $i }}</option>
                     @endfor
                 </select>
@@ -91,10 +87,10 @@
 </div>
 <div class="form-group">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-5">
             <label>Furnished Status <span class="text-danger">*</span><span style="color:red" id="furnished_err"></span></label>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-7">
             <div class="switch-field">
                 <input type="radio"  name="furnishing" id="Furnished" value="Furnished" @if(old('furnishing') == "Furnished") checked @endif>
                 <label for="Furnished">Furnished</label>
@@ -211,7 +207,7 @@
         <input type="text" class="form-control Stylednumber @error('super_build_up_area') invalid-feedback @enderror" name="super_build_up_area" id="super_build_up_area" value="{{ old('super_build_up_area') }}">
     </div>
     <div class="form-group col-md-3">
-        <select name="super_area_unit" id="super_area_unit" class="form-control sel-status">
+        <select name="super_area_unit" id="super_area_unit" class="form-control">
             <option value="Sq-ft">Sq-ft</option>
             <option value="Sq-yrd">Sq-yrd</option>
             <option value="Sq-m">Sq-m</option>
@@ -237,7 +233,7 @@
         <input type="text" id="build_up_area" class="form-control Stylednumber @error('build_up_area') invalid-feedback @enderror" name="build_up_area" value="{{ old('build_up_area') }}">
     </div>
     <div class="form-group col-md-3">
-        <select name="build_unit" id="build_unit" class="form-control sel-status">
+        <select name="build_unit" id="build_unit" class="form-control">
             <option value="Sq-ft">Sq-ft</option>
             <option value="Sq-yrd">Sq-yrd</option>
             <option value="Sq-m">Sq-m</option>
@@ -263,7 +259,7 @@
         <input type="text" id="carpet_area" class="form-control Stylednumber @error('carpet_area') invalid-feedback @enderror" name="carpet_area" value="{{ old('carpet_area') }}">
     </div>
     <div class="form-group col-md-3">
-        <select name="carpet_unit" id="carpet_unit" class="form-control sel-status">
+        <select name="carpet_unit" id="carpet_unit" class="form-control">
             <option value="Sq-ft">Sq-ft</option>
             <option value="Sq-yrd">Sq-yrd</option>
             <option value="Sq-m">Sq-m</option>
@@ -288,10 +284,10 @@
     <h6>Transaction Type/ Property Availability</h6>
 </div>
 <div class="form-row">
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-5">
         <label for="">Transaction Type<span class="text-danger">*</span><span style="color:red" id="trans_type_err"></label>
     </div>
-    <div class="form-group col-md-8">
+    <div class="form-group col-md-7">
         <div class="form-check-inline">
             <label class="form-check-label">
                 <input type="radio" class="form-check-input" name="transaction_type" value="New Property">New Property
@@ -305,10 +301,10 @@
     </div>
 </div>
 <div class="form-row">
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-5">
         <label for="">Possession Status</label>
     </div>
-    <div class="form-group col-md-8">
+    <div class="form-group col-md-7">
         <div class="form-check-inline">
             <label class="form-check-label">
                 <input type="radio" class="form-check-input" name="posses_status" value="Under Construction">Under Construction
@@ -328,7 +324,7 @@
     </div>
     <div class="form-group col-md-6 hidden" id="possesDiv2">
         <label>Age of Construction <span class="text-danger">*</span></label>
-        <select class="form-control sel-status @error('age_of_construction') is-invalid @enderror" id="age_of_construction" name="age_of_construction">
+        <select class="form-control @error('age_of_construction') is-invalid @enderror" id="age_of_construction" name="age_of_construction">
             <option value="">-Select-</option>
             <option value="New Construction">New Construction</option>
             <option value="Less than 5 years">Less than 5 years</option>
@@ -361,7 +357,7 @@
         <div class="form-group col-md-3">
             <div class="form-check-inline">
                 <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="show_price_as" id="show_rent1" value="">
+                    <input type="radio" class="form-check-input" name="show_price_as" id="show_rent1" value="" checked>
                     <span id="rent_1"></span>
                 </label>
             </div>
@@ -395,10 +391,10 @@
 </div>
 <div id="otherChargesDiv" class="hidden">
     <div class="form-row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-5">
             <label for="">Other Charges</label>
         </div>
-        <div class="form-group col-md-8">
+        <div class="form-group col-md-7">
             <input type="text" class="form-control" name="other_charges">
         </div>
     </div>
@@ -412,10 +408,10 @@
 </div>
 <div class="form-group">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <label for="">Price Include</label>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="price_include" value="Car Parking">
                 <label class="form-check-label" for="inlineCheckbox1">Car Parking</label>
@@ -432,9 +428,21 @@
         <label for="">Booking Token Amount</label>
         <input type="text" name="booking_token_amount" class="form-control Stylednumber @error('booking_token_amount') invalid-feedback @enderror" value="{{ old('booking_token_amount') }}">
     </div>
+</div>
+<div class="form-row">
     <div class="form-group col-md-6">
         <label for="">Maintenance Charges</label>
-        <input type="text" name="maintenance_charges" class="form-control Stylednumber @error('maintenance_charges') invalid-feedback @enderror" value="{{ old('maintenance_charges') }}">
+        <input type="text" name="maintenance_charge" class="form-control Stylednumber">
+    </div>
+    <div class="form-group col-md-6">
+        <label for="">Per</label>
+        <select name="m_charges_per" id="m_charges_per" class="form-control">
+            <option value="Monthly">Monthly</option>
+            <option value="Quarterly">Quarterly</option>
+            <option value="Yearly">Yearly</option>
+            <option value="One-Time">One-Time</option>
+            <option value="Per Sq. Unit Monthly">Per Sq. Unit Monthly</option>
+        </select>
     </div>
 </div>
 <div class="form-row" id="brokerageDiv">
@@ -442,7 +450,7 @@
         <label for="">Brokerage (Brokers Only)</label>
     </div>
     <div class="form-group col-md-6">
-        <select name="brokerage" id="brokerage" class="form-control sel-status">
+        <select name="brokerage" id="brokerage" class="form-control">
             <option value="">-Select Brokerage-</option>
             <option value="No Brokerage">No Brokerage</option>
             <option value="0.25 %">0.25 %</option>
@@ -536,7 +544,7 @@
     <div class="form-group">
         <label for="">Additional Rooms</label>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-4">
             <div class="form-check-inline">
                 <label class="form-check-label">
@@ -573,10 +581,10 @@
             </div>
         </div>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
-            <label for="">Facing <span class="text-danger">*</span></label>
-            <select name="facing" id="facing" class="form-control sel-status @error('facing') invalid-feedback @enderror">
+            <h6>Facing <span class="text-danger">*</span></h6>
+            <select name="facing" id="facing" class="form-control @error('facing') invalid-feedback @enderror">
                 <option value="">-Select Facing-</option>
                 <option value="East" @if(old('facing') == "East") Selected @endif>East</option>
                 <option value="West" @if(old('facing') == "West") Selected @endif>West</option>
@@ -589,8 +597,8 @@
             </select>
         </div>
         <div class="form-group col-md-6">
-            <label for="">Lifts in the Tower </label>
-            <select name="lift_in_tower" id="lift_in_tower" class="form-control sel-status @error('lift_tower') invalid-feedback @enderror">
+            <h6>Lifts in the Tower </h6>
+            <select name="lift_in_tower" id="lift_in_tower" class="form-control @error('lift_tower') invalid-feedback @enderror">
                 <option value="">-Select-</option>
                 <option value="None" @if(old('lift_tower') == "None") Selected @endif>None</option>
                 <option value="1" @if(old('lift_tower') == "1") Selected @endif>1</option>
@@ -606,7 +614,7 @@
     <div class="form-group">
         <h6>Overlooking</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
             <div class="form-check-inline">
                 <label class="form-check-label">
@@ -639,7 +647,7 @@
     <div class="form-group">
         <h6>Car Parking</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
             <div class="form-check-inline">
                 <label class="form-check-label" style="display:-webkit-inline-box">
@@ -668,23 +676,26 @@
             </div>
         </div>
     </div>
-    <div class="form-group">
-        <h6>Flats on Floor</h6>
+    <div class="form-row mb-3">
+        <div class="form-group col-md-6">
+            <label for="">Flats on the Floor</label>
+        </div>
+        <div class="form-group col-md-6">
+            <input type="number" class="form-control" name="office_floor">
+        </div>
     </div>
-    <div class="form-group">
-        <div class="row">
-            <div class="col-md-6">
-                <label for="">Multiple Flat Available</label>
+    <div class="form-row mb-3">
+        <div class="form-group col-md-6">
+            <label for="">Multiple Flat Available</label>
+        </div>
+        <div class="form-group col-md-6">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="" name="mul_flat_available" value="Yes">
+                <label class="form-check-label" for="">Yes</label>
             </div>
-            <div class="col-md-6">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="" name="mul_flat_available" value="Yes">
-                    <label class="form-check-label" for="">Yes</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="" name="mul_flat_available" value="No">
-                    <label class="form-check-label" for="">No</label>
-                </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="" name="mul_flat_available" value="No">
+                <label class="form-check-label" for="">No</label>
             </div>
         </div>
     </div>
@@ -692,10 +703,10 @@
         <label for="">Rera Registration No. (Optional)</label>
         <input type="text" name="rera_regis_no" class="form-control @error('rera_regis_no') invalid-feedback @enderror" value="{{ old('rera_regis_no') }}">
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
             <label for="">Status of Water</label>
-            <select name="status_of_water" id="status_of_water" class="form-control sel-status @error('status_of_water') invalid-feedback @enderror">
+            <select name="status_of_water" id="status_of_water" class="form-control @error('status_of_water') invalid-feedback @enderror">
                 <option value="">-Select Status of Water-</option>
                 <option value="24 HOURS Available" @if(old('status_of_water') == "24 HOURS Available") Selected @endif>24 HOURS Available</option>
                 <option value="12 HOURS Available" @if(old('status_of_water') == "12 HOURS Available") Selected @endif>12 HOURS Available</option>
@@ -706,7 +717,7 @@
         </div>
         <div class="form-group col-md-6">
             <label for="">Status of Electricity</label>
-            <select name="status_of_electricity" id="status_of_electricity" class="form-control sel-status @error('status_of_electricity') invalid-feedback @enderror">
+            <select name="status_of_electricity" id="status_of_electricity" class="form-control @error('status_of_electricity') invalid-feedback @enderror">
                 <option value="">-Select Status of Electricity-</option>
                 <option value="No Power Cut" @if(old('status_of_electricity') == "No Power Cut") Selected @endif>No Power Cut</option>
                 <option value="less than 3 hrs" @if(old('status_of_electricity') == "less than 3 hrs") Selected @endif>less than 3 hrs</option>
@@ -716,11 +727,34 @@
             </select>
         </div>
     </div>
+    <div class="form-row mb-3">
+        <div class="form-group col-md-6">
+            <label for="">Ownership Approval</label>
+            <select name="ownership_approval" class="form-control" id="">
+                <option value="">-Select-</option>
+                <option value="Freehold">Freehold</option>
+                <option value="Leasehold">Leasehold</option>
+                <option value="Power of Attorney">Power of Attorney</option>
+                <option value="Co-Operative Society">Co-Operative Society</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="">Approved By</label>
+            <select name="approved_by" class="form-control" id="">
+                <option value="">-Select-</option>
+                <option value="Metropolitan Region">Metropolitan Region</option>
+                <option value="Development Authority">Development Authority</option>
+                <option value="Developer">Developer</option>
+                <option value="RWA/Co-Operative Housing Society">RWA/Co-Operative Housing Society</option>
+                <option value="City Muncipal Corporation">City Muncipal Corporation</option>
+            </select>
+        </div>
+    </div> 
     <hr>
     <div class="form-group">
         <h6>Flooring</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-4">
             <div class="form-check-inline">
                 <label class="form-check-label">
@@ -781,7 +815,7 @@
     <div class="form-group">
         <h6>Aminities</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-4">
             <div class="form-check-inline">
                 <label class="form-check-label">
@@ -849,13 +883,6 @@
             <div class="form-check-inline">
                 <label class="form-check-label">
                     <input type="checkbox" class="form-check-input" name="aminities[]" value="Internet Wi-Fi Facility">Internet Wi-Fi Facility
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Jogging & Strolling Track">Jogging & Strolling Track
                 </label>
             </div>
         </div>
@@ -939,7 +966,14 @@
         <div class="form-group col-md-4">
             <div class="form-check-inline">
                 <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Reserve Parking Security">Reserve Parking Security
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Reserve Parking">Reserve Parking
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Security">Security
                 </label>
             </div>
         </div>
@@ -985,34 +1019,18 @@
                 </label>
             </div>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="">Ownership Approval</label>
-            <select name="ownership_approval" class="form-control sel-status" id="">
-                <option value="">-Select-</option>
-                <option value="Freehold">Freehold</option>
-                <option value="Leasehold">Leasehold</option>
-                <option value="Power of Attorney">Power of Attorney</option>
-                <option value="Co-Operative Society">Co-Operative Society</option>
-            </select>
+        <div class="form-group col-md-8">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Jogging & Strolling Track">Jogging & Strolling Track
+                </label>
+            </div>
         </div>
-        <div class="form-group col-md-6">
-            <label for="">Approved By</label>
-            <select name="approved_by" class="form-control sel-status" id="">
-                <option value="">-Select-</option>
-                <option value="Metropolitan Region">Metropolitan Region</option>
-                <option value="Development Authority">Development Authority</option>
-                <option value="Developer">Developer</option>
-                <option value="RWA/Co-Operative Housing Society">RWA/Co-Operative Housing Society</option>
-                <option value="City Muncipal Corporation">City Muncipal Corporation</option>
-            </select>
-        </div>
-    </div>  
+    </div> 
     <hr>
     <div class="form-group">
-        <label>Description <span class="text-danger">*</span><span  style="color:red; display:block" id="description_err"> </span></label>
-        <textarea class="form-control ckeditor @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
+        <label>Description <span class="text-danger">*</span><span  style="color:red;" id="description_err"> </span></label>
+        <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
     </div>
     <div class="form-group">
         <label>Land Mark  <span class="text-danger">*</span></label>

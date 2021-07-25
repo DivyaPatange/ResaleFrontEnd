@@ -5,7 +5,7 @@
     </div>
     <div class="form-group col-md-6">
         <label for="">Land Zone</label>
-        <select name="land_zone" id="land_zone" class="form-control sel-status @error('land_zone') invalid-feedback @enderror">
+        <select name="land_zone" id="land_zone" class="form-control @error('land_zone') invalid-feedback @enderror">
             <option value="">-Select Land Zone-</option>
             <option value="Industrial" @if(old('land_zone') == "Industrial") Selected @endif>Industrial</option>
             <option value="Commercial" @if(old('land_zone') == "Commercial") Selected @endif>Commercial</option>
@@ -27,7 +27,7 @@
 <div class="form-row">
     <div class="form-group col-md-6">
         <label for="">Floors Allowed for construction</label>
-        <select name="floor_constru" id="floor_constru" class="form-control sel-status @error('floor_constru') invalid-feedback @enderror">
+        <select name="floor_constru" id="floor_constru" class="form-control @error('floor_constru') invalid-feedback @enderror">
             <option value="">-Select floors Allowed for construction-</option>
             @for($i=1; $i <= 20 ;$i++)
             <option value="{{$i}}">{{$i}}</option>
@@ -36,7 +36,7 @@
     </div>
     <div class="form-group col-md-6">
         <label for="">No. of Open Side</label>
-        <select name="no_of_open_side" id="no_of_open_side" class="form-control sel-status @error('no_of_open_side') invalid-feedback @enderror">
+        <select name="no_of_open_side" id="no_of_open_side" class="form-control @error('no_of_open_side') invalid-feedback @enderror">
             <option value="">-Select No. of Open Side-</option>
             <option value="1" @if(old('no_of_open_side') == "1") Selected @endif>1</option>
             <option value="2" @if(old('no_of_open_side') == "2") Selected @endif>2</option>
@@ -50,10 +50,10 @@
         <label for="">Width of Road facing the Plot</label>
     </div>
     <div class="form-group col-md-4">
-        <input type="text" class="form-control Stylednumber @error('width_of_road') invalid-feedback @enderror" name="width_of_road" value="{{ old('width_of_road') }}" placeholder="Meters">
+        <input type="text" class="form-control Stylednumber @error('width_of_road') invalid-feedback @enderror" name="width_of_road" value="{{ old('width_of_road') }}">
     </div>
     <div class="form-group col-md-3">
-        <select name="road_facing_unit" id="road_facing_unit" class="form-control sel-status @error('road_facing_unit') invalid-feedback @enderror">
+        <select name="road_facing_unit" id="road_facing_unit" class="form-control @error('road_facing_unit') invalid-feedback @enderror">
             <option value="Sq-ft">Sq-ft</option>
             <option value="Sq-yrd">Sq-yrd</option>
             <option value="Sq-m">Sq-m</option>
@@ -81,12 +81,12 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="">Floor No. <span class="text-danger">*</span><span class="text-danger" id="floor_err"></span></label>
-                <select name="floor_no" id="floor_no" class="form-control sel-status @error('floor_no') is-invalid @enderror" value="{{ old('floor_no') }}">
+                <select name="floor_no" id="floor_no" class="form-control @error('floor_no') is-invalid @enderror" value="{{ old('floor_no') }}">
                     <option value="">Choose..</option>
                     <option value="Lower Basement">Lower Basement</option>
                     <option value="Upper Basement">Upper Basement</option>
                     <option value="Ground">Ground</option>
-                    @for($i=1; $i < 20; $i++)
+                    @for($i=1; $i <= 20; $i++)
                     <option value="{{ $i }}">{{ $i }}</option>
                     @endfor
                 </select>
@@ -95,7 +95,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="floor">Total Floors <span class="text-danger">*</span><span class="text-danger" id="total_floor_err"></span></label>
-                <select name="total_floor" id="total_floor" class="form-control sel-status @error('total_floor') is-invalid @enderror">
+                <select name="total_floor" id="total_floor" class="form-control @error('total_floor') is-invalid @enderror">
                     <option value="">Choose..</option>
                     @for($i=1; $i < 20; $i++)
                     <option value="{{ $i }}">{{ $i }}</option>
@@ -105,46 +105,42 @@
         </div>
     </div>
 </div>
-<div class="form-group">
-    <div class="row">
-        <div class="col-md-4">
-            <label>Furnished Status<span class="text-danger">*</span><span class="text-danger" id="furnished_err"></span></label>
-        </div>
-        <div class="col-md-8">
-            <div class="switch-field">
-                <input type="radio"  name="furnishing" id="Furnished1" value="Furnished" @if(old('furnishing') == "Furnished") checked @endif>
-                <label for="Furnished1">Furnished</label>
-                <input type="radio" name="furnishing" id="Semi-Furnished1" value="Semi-Furnished" @if(old('furnishing') == "Semi-Furnished") checked @endif>
-                <label for="Semi-Furnished1">Semi-Furnished</label>
-                <input type="radio" name="furnishing" id="Unfurnished" value="Unfurnished" @if(old('furnishing') == "Unfurnished") checked @endif>
-                <label for="Unfurnished">Unfurnished</label>
-            </div>
+<div class="form-row">
+    <div class="col-md-5 form-group">
+        <label>Furnished Status<span class="text-danger">*</span><span class="text-danger" id="furnished_err"></span></label>
+    </div>
+    <div class="col-md-7 form-group">
+        <div class="switch-field">
+            <input type="radio"  name="furnishing" id="Furnished1" value="Furnished" @if(old('furnishing') == "Furnished") checked @endif>
+            <label for="Furnished1">Furnished</label>
+            <input type="radio" name="furnishing" id="Semi-Furnished1" value="Semi-Furnished" @if(old('furnishing') == "Semi-Furnished") checked @endif>
+            <label for="Semi-Furnished1">Semi-Furnished</label>
+            <input type="radio" name="furnishing" id="Unfurnished" value="Unfurnished" @if(old('furnishing') == "Unfurnished") checked @endif>
+            <label for="Unfurnished">Unfurnished</label>
         </div>
     </div>
 </div>
-<div class="form-group">
-    <div class="row">
-        <div class="col-md-4">
-            <label>Washroom<span class="text-danger">*</span><span class="text-danger" id="bathroom_err"></span>
-            </label>
-        </div>
-        <div class="col-md-8">
-            <div class="switch-field">
-                <input type="radio"  name="bathroom" id="bath15" value="1" @if(old('bathroom') == "1") checked @endif>
-                <label for="bath15">1</label>
-                <input type="radio"  name="bathroom" id="bath16" value="2" @if(old('bathroom') == "2") checked @endif>
-                <label for="bath16">2</label>
-                <input type="radio" type="radio" name="bathroom" id="bath17" value="3" @if(old('bathroom') == "3") checked @endif>
-                <label for="bath17">3</label>
-                <input type="radio" type="radio" name="bathroom" id="bath18" value="4" @if(old('bathroom') == "4") checked @endif>
-                <label for="bath18">4</label>
-                <input type="radio" type="radio" name="bathroom" id="bath19" value="5" @if(old('bathroom') == "5") checked @endif>
-                <label for="bath19">5</label>
-                <input type="radio" type="radio" name="bathroom" id="bath20" value="6" @if(old('bathroom') == "6") checked @endif>
-                <label for="bath20">6</label>
-                <input type="radio" type="radio" name="bathroom" id="bath21" value="6+" @if(old('bathroom') == "6+") checked @endif>
-                <label for="bath21">6+</label>
-            </div>
+<div class="form-row">
+    <div class="col-md-4 form-group">
+        <label>Washroom<span class="text-danger">*</span><span class="text-danger" id="bathroom_err"></span>
+        </label>
+    </div>
+    <div class="col-md-8 form-group">
+        <div class="switch-field">
+            <input type="radio"  name="bathroom" id="bath15" value="1" @if(old('bathroom') == "1") checked @endif>
+            <label for="bath15">1</label>
+            <input type="radio"  name="bathroom" id="bath16" value="2" @if(old('bathroom') == "2") checked @endif>
+            <label for="bath16">2</label>
+            <input type="radio" type="radio" name="bathroom" id="bath17" value="3" @if(old('bathroom') == "3") checked @endif>
+            <label for="bath17">3</label>
+            <input type="radio" type="radio" name="bathroom" id="bath18" value="4" @if(old('bathroom') == "4") checked @endif>
+            <label for="bath18">4</label>
+            <input type="radio" type="radio" name="bathroom" id="bath19" value="5" @if(old('bathroom') == "5") checked @endif>
+            <label for="bath19">5</label>
+            <input type="radio" type="radio" name="bathroom" id="bath20" value="6" @if(old('bathroom') == "6") checked @endif>
+            <label for="bath20">6</label>
+            <input type="radio" type="radio" name="bathroom" id="bath21" value="6+" @if(old('bathroom') == "6+") checked @endif>
+            <label for="bath21">6+</label>
         </div>
     </div>
 </div>
@@ -204,6 +200,9 @@
             <option value="Cent">Cent</option>
         </select>
     </div>
+</div>
+<hr>
+<div class="form-row">
     <div class="col-md-5 form-group">
         <label for="">Plot Area <span class="text-danger">*</span><span class="text-danger" id="plot_err"></span></label>
     </div>
@@ -285,6 +284,7 @@
         </select>
     </div>
 </div>
+<hr>
 <div class="form-row">
     <div class="col-md-5 form-group">
         <label for="">Width of Entrance</label>
@@ -304,10 +304,10 @@
     <h6>Transaction Type/ Property Availability</h6>
 </div>
 <div class="form-row">
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-5">
         <label for="">Transaction Type<span class="text-danger">*</span><span class="text-danger" id="trans_type_err"></span></label>
     </div>
-    <div class="form-group col-md-8">
+    <div class="form-group col-md-7">
         <div class="form-check-inline">
             <label class="form-check-label">
                 <input type="radio" class="form-check-input" name="transaction_type" value="New Property">New Property
@@ -321,10 +321,10 @@
     </div>
 </div>
 <div class="form-row">
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-5">
         <label for="">Possession Status</label>
     </div>
-    <div class="form-group col-md-8">
+    <div class="form-group col-md-7">
         <div class="form-check-inline">
             <label class="form-check-label">
                 <input type="radio" class="form-check-input" name="posses_status" value="Under Construction">Under Construction
@@ -357,10 +357,10 @@
 </div>
 <hr>
 <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-5">
         <label for="">Current Lease Out</label>
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-7">
         <div class="form-check-inline">
             <label class="form-check-label">
                 <input type="radio" class="form-check-input" name="lease_out" value="Yes">Yes
@@ -374,10 +374,10 @@
     </div>
 </div>
 <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-5">
         <label for="">Assured Return</label>
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-7">
         <div class="form-check-inline">
             <label class="form-check-label">
                 <input type="radio" class="form-check-input" name="assure_return" value="Yes">Yes

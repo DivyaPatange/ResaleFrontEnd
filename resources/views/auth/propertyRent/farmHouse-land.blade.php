@@ -849,7 +849,12 @@
             <label for="">Approved By</label>
             <select name="approved_by" id="approved_by" class="form-control @error('approved_by') invalid-feedback @enderror">
                 <option value="">-Select Approved By-</option>
-                <option value="NMRDA" @if(old('approved_by') == "NMRDA") Selected @endif>NMRDA</option>
+                <option value="NMRDA">NMRDA</option>
+                <option value="Metropolitan Region">Metropolitan Region</option>
+                <option value="Development Authority">Development Authority</option>
+                <option value="Developer">Developer</option>
+                <option value="RWA/Co-Operative Housing Society">RWA/Co-Operative Housing Society</option>
+                <option value="City Muncipal Corporation">City Muncipal Corporation</option>
             </select>
         </div>
     </div>
