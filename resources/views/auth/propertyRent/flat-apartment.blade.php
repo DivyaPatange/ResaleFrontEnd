@@ -93,21 +93,19 @@
         </div>
     </div>
 </div>
-<div class="form-group">
-    <div class="row">
-        <div class="col-md-5">
-            <label>Furnishing<span class="text-danger">*</span><span  style="color:red" id="furnishing_err"> </span>
-            </label>
-        </div>
-        <div class="col-md-7">
-            <div class="switch-field">
-                <input type="radio" id="Furnished" name="furnishing" value="Furnished" @if(old('furnishing') == "Furnished") checked @endif/>
-                <label for="Furnished">Furnished</label>
-                <input type="radio" id="Semi-Furnished" name="furnishing" value="Semi-Furnished" @if(old('furnishing') == "Semi-Furnished") checked @endif/>
-                <label for="Semi-Furnished">Semi-Furnished</label>
-                <input type="radio" id="Unfurnished" name="furnishing" value="Unfurnished" @if(old('furnishing') == "Unfurnished") checked @endif/>
-                <label for="Unfurnished">Unfurnished</label>
-            </div>
+<div class="form-row">
+    <div class="col-md-5 form-group">
+        <label>Furnishing<span class="text-danger">*</span><span  style="color:red" id="furnishing_err"> </span>
+        </label>
+    </div>
+    <div class="col-md-7 form-group">
+        <div class="switch-field">
+            <input type="radio" id="Furnished" name="furnishing" value="Furnished" @if(old('furnishing') == "Furnished") checked @endif/>
+            <label for="Furnished">Furnished</label>
+            <input type="radio" id="Semi-Furnished" name="furnishing" value="Semi-Furnished" @if(old('furnishing') == "Semi-Furnished") checked @endif/>
+            <label for="Semi-Furnished">Semi-Furnished</label>
+            <input type="radio" id="Unfurnished" name="furnishing" value="Unfurnished" @if(old('furnishing') == "Unfurnished") checked @endif/>
+            <label for="Unfurnished">Unfurnished</label>
         </div>
     </div>
 </div>

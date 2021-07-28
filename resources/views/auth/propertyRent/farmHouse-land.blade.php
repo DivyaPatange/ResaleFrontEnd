@@ -22,195 +22,6 @@
         </select>
     </div>
 </div>
-<div class="form-group">
-    <div class="row">
-        <div class="col-md-4">
-            <label>Bedroom<span class="text-danger">*</span><span  style="color:red" id="bedroom_err"> </span>
-            </label>
-        </div>
-        <div class="col-md-8">
-            <div class="switch-field">
-                @for($i=1; $i<=15; $i++)
-                <input type="radio" id="{{ $i }}" name="bedroom" value="{{ $i }}" @if(old('bedroom') == $i) checked @endif/>
-                <label for="{{ $i }}">{{ $i }}</label>
-                @endfor
-            </div>
-        </div>
-    </div>
-</div>
-<div class="form-group">
-    <div class="row">
-        <div class="col-md-4">
-            <label>Balcony <span class="text-danger">*</span></label>
-        </div>
-        <div class="col-md-8">
-            <div class="switch-field">
-                @for($i=1; $i<=15; $i++)
-                <input type="radio" id="balcony{{ $i }}" name="balcony" value="{{ $i }}" @if(old('balcony') == $i) checked @endif/>
-                <label for="balcony{{ $i }}">{{ $i }}</label>
-                @endfor
-            </div>
-        </div>
-    </div>
-</div>
-<div class="form-group">
-    <div class="row">
-        <div class="col-md-4">
-            <label>Bathroom <span class="text-danger">*</span>
-            </label>
-        </div>
-        <div class="col-md-8">
-            <div class="switch-field">
-                @for($i=1; $i<=15; $i++)
-                <input type="radio" id="inlineRadio{{ $i }}" name="bathroom" value="{{ $i }}" @if(old('bathroom') == $i) checked @endif/>
-                <label for="inlineRadio{{ $i }}">{{ $i }}</label>
-                @endfor
-            </div>
-        </div>
-    </div>
-</div>
-<div class="form-group">
-    <div class="row">
-        <div class="col-md-4">
-            <label>Furnishing<span class="text-danger">*</span><span  style="color:red" id="furnishing_err"> </span>
-            </label>
-        </div>
-        <div class="col-md-8">
-            <div class="switch-field">
-                <input type="radio" id="Furnished" name="furnishing" value="Furnished" @if(old('furnishing') == "Furnished") checked @endif/>
-                <label for="Furnished">Furnished</label>
-                <input type="radio" id="Semi-Furnished" name="furnishing" value="Semi-Furnished" @if(old('furnishing') == "Semi-Furnished") checked @endif/>
-                <label for="Semi-Furnished">Semi-Furnished</label>
-                <input type="radio" id="Unfurnished" name="furnishing" value="Unfurnished" @if(old('furnishing') == "Unfurnished") checked @endif/>
-                <label for="Unfurnished">Unfurnished</label>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="form-row hidden" id="showFurnishedDiv">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>AC</label>
-                <select name="ac" class="form-control" id="ac">
-                    <option value="">-Select-</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="3+">3+</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>Bed</label>
-                <select name="bed" class="form-control" id="bed">
-                    <option value="">-Select-</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="3+">3+</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>Wardrobe</label>
-                <select name="wardrobe" class="form-control" id="wardrobe">
-                    <option value="">-Select-</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="3+">3+</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>TV</label>
-                <select name="tv" class="form-control" id="tv">
-                    <option value="">-Select-</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="3+">3+</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-check-inline mb-3">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Fridge">Fridge
-                </label>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-check-inline mb-3">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Sofa">Sofa
-                </label>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-check-inline mb-3">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Washing Machine">Washing Machine
-                </label>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-check-inline mb-3">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Dining Table">Dining Table
-                </label>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-check-inline mb-3">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Microwave">Microwave
-                </label>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-check-inline mb-3">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="furnished_detail[]" value="Gas Connection">Gas Connection
-                </label>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="form-group">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="floor">Property Floor No.<span  style="color:red" id="floor_err"> </span></label>
-                <select name="property_floor_no" class="form-control @error('property_floor_no') is-invalid @enderror" id="property_floor_no" style="width:100%">
-                    <option value="">-Choose-</option>
-                    <option value="Lower Basement">Lower Basement</option>
-                    <option value="Upper Basement">Upper Basement</option>
-                    <option value="Ground">Ground</option>
-                    @for($i=1; $i <= 10; $i++)
-                    <option value="{{ $i }}">{{ $i }}</option>
-                    @endfor
-                </select>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="floor">No. of Floor<span  style="color:red" id="total_floor_err"> </span></label>
-                <select name="total_floor" id="no_of_floor" class="form-control @error('total_floor') is-invalid @enderror" style="width:100%;">
-                    <option value="">Choose..</option>
-                    <option value="Ground">Ground</option>
-                    @for($i=1; $i <= 10; $i++)
-                    <option value="{{ $i }}">{{ $i }}</option>
-                    @endfor
-                </select>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="form-row">
     <div class="form-group col-md-5">
         <label for="">Width of Road facing the Plot</label>
@@ -242,41 +53,37 @@
         </select>
     </div>
 </div>  
-<div class="form-group">
-    <div class="row">
-        <div class="col-md-5">
-            <label for="">Any construction Done <span class="text-danger">*</span><span class="text-danger" id="construct_err"></span></label>
+<div class="form-row">
+    <div class="col-md-5 form-group">
+        <label for="">Any construction Done <span class="text-danger">*</span><span class="text-danger" id="construct_err"></span></label>
+    </div>
+    <div class="col-md-7 form-group">
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="any_construc" value="Yes">Yes
+            </label>
         </div>
-        <div class="col-md-7">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="any_construc" value="Yes">Yes
-                </label>
-            </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="any_construc" value="No">No
-                </label>
-            </div>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="any_construc" value="No">No
+            </label>
         </div>
     </div>
 </div>
-<div class="form-group">
-    <div class="row">
-        <div class="col-md-5">
-            <label for="">Bondary wall Made<span class="text-danger">*</span><span class="text-danger" id="wall_err"></span></label>
+<div class="form-row">
+    <div class="col-md-5 form-group">
+        <label for="">Bondary wall Made<span class="text-danger">*</span><span class="text-danger" id="wall_err"></span></label>
+    </div>
+    <div class="col-md-7 form-group">
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="boundry_wall" value="Yes">Yes
+            </label>
         </div>
-        <div class="col-md-7">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="boundry_wall" value="Yes">Yes
-                </label>
-            </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="boundry_wall" value="No">No
-                </label>
-            </div>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="boundry_wall" value="No">No
+            </label>
         </div>
     </div>
 </div>
@@ -297,88 +104,6 @@
 <div class="form-group">
     <h6>Area</h6>
 </div>
-<div class="form-row">
-    <div class="form-group col-md-5">
-        <label for="">Super Build Up Area<span class="text-danger">*</span><span  style="color:red" id="super_area_err"> </span></label>
-    </div>
-    <div class="form-group col-md-4">
-        <input type="text" class="form-control Stylednumber @error('super_build_up_area') invalid-feedback @enderror" name="super_build_up_area" id="super_build_up_area" value="{{ old('super_build_up_area') }}">
-    </div>
-    <div class="form-group col-md-3">
-        <select name="super_area_unit" id="super_area_unit" class="form-control">
-            <option value="Sq-ft">Sq-ft</option>
-            <option value="Sq-yrd">Sq-yrd</option>
-            <option value="Sq-m">Sq-m</option>
-            <option value="Acre">Acre</option>
-            <option value="Bigha">Bigha</option>
-            <option value="Hectare">Hectare</option>
-            <option value="Marla">Marla</option>
-            <option value="Kanal">Kanal</option>
-            <option value="Biswa1">Biswa1</option>
-            <option value="Biswa2">Biswa2</option>
-            <option value="Ground">Ground</option>
-            <option value="Aankadam">Aankadam</option>
-            <option value="Rood">Rood</option>
-            <option value="Chatak">Chatak</option>
-            <option value="Kottah">Kottah</option>
-            <option value="Cent">Cent</option>
-        </select>
-    </div>
-    <div class="col-md-5 form-group">
-        <label for="">Build Up Area <small>(Sq.ft.)</small></label>
-    </div>
-    <div class="form-group col-md-4">
-        <input type="text" id="build_up_area" class="form-control Stylednumber @error('build_up_area') invalid-feedback @enderror" name="build_up_area" value="{{ old('build_up_area') }}">
-    </div>
-    <div class="form-group col-md-3">
-        <select name="build_unit" id="build_unit" class="form-control">
-            <option value="Sq-ft">Sq-ft</option>
-            <option value="Sq-yrd">Sq-yrd</option>
-            <option value="Sq-m">Sq-m</option>
-            <option value="Acre">Acre</option>
-            <option value="Bigha">Bigha</option>
-            <option value="Hectare">Hectare</option>
-            <option value="Marla">Marla</option>
-            <option value="Kanal">Kanal</option>
-            <option value="Biswa1">Biswa1</option>
-            <option value="Biswa2">Biswa2</option>
-            <option value="Ground">Ground</option>
-            <option value="Aankadam">Aankadam</option>
-            <option value="Rood">Rood</option>
-            <option value="Chatak">Chatak</option>
-            <option value="Kottah">Kottah</option>
-            <option value="Cent">Cent</option>
-        </select>
-    </div>
-    
-    <div class="col-md-5 form-group">
-        <label for="">Carpet Area <small>(Sq.ft.)</small></label>
-    </div>
-    <div class="form-group col-md-4">
-        <input type="text" id="carpet_area" class="form-control Stylednumber @error('carpet_area') invalid-feedback @enderror" name="carpet_area" value="{{ old('carpet_area') }}">
-    </div>
-    <div class="form-group col-md-3">
-        <select name="carpet_unit" id="carpet_unit" class="form-control">
-            <option value="Sq-ft">Sq-ft</option>
-            <option value="Sq-yrd">Sq-yrd</option>
-            <option value="Sq-m">Sq-m</option>
-            <option value="Acre">Acre</option>
-            <option value="Bigha">Bigha</option>
-            <option value="Hectare">Hectare</option>
-            <option value="Marla">Marla</option>
-            <option value="Kanal">Kanal</option>
-            <option value="Biswa1">Biswa1</option>
-            <option value="Biswa2">Biswa2</option>
-            <option value="Ground">Ground</option>
-            <option value="Aankadam">Aankadam</option>
-            <option value="Rood">Rood</option>
-            <option value="Chatak">Chatak</option>
-            <option value="Kottah">Kottah</option>
-            <option value="Cent">Cent</option>
-        </select>
-    </div>
-</div>
-<hr>
 <div class="form-row">
     <div class="col-md-5">
         <label for="">Plot Area<span class="text-danger">*</span><span class="text-danger" id="plot_err"></span></label>
@@ -680,46 +405,6 @@
     <div class="form-group">
         <h6>Additional Features</h6>
     </div>
-    <div class="form-group">
-        <label for="">Additional Rooms</label>
-    </div>
-    <div class="form-row mb-3">
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="add_room[]" value="Pooja Room">Pooja Room
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="add_room[]" value="Study">Study
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="add_room[]" value="Store">Store
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="add_room[]" value="Servant Room">Servant Room
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="add_room[]" value="None of these">None of these
-                </label>
-            </div>
-        </div>
-    </div>
     <div class="form-row mb-3">
         <div class="form-group col-md-4">
             <label for="">Facing <span class="text-danger">*</span></label>
@@ -859,130 +544,27 @@
         </div>
     </div>
     <div class="form-group">
-        <h6>Flooring</h6>
-    </div>
-    <div class="form-row mb-3">
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="flooring[]" value="Ceramic Tiles">Ceramic Tiles
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="flooring[]" value="Marble">Marble
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="flooring[]" value="Mosaic">Mosaic
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="flooring[]" value="Vetrified">Vetrified
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="flooring[]" value="Granite">Granite
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="flooring[]" value="Marbonite">Marbonite
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="flooring[]" value="Normal Tiles">Normal Tiles
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="flooring[]" value="Kota Stone">Kota Stone
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="flooring[]" value="Wooden">Wooden
-                </label>
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
         <h6>Amenities</h6>
     </div>
     <div class="form-row mb-3">
         <div class="form-group col-md-4">
             <div class="form-check-inline">
                 <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Gymnasium">Gymnasium
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Jogging & Strolling Track">Jogging & Strolling Track
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Pipe Gas">Pipe Gas
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Power Back Up">Power Back Up
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Reserve Parking Security">Reserve Parking Security
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Swimming Pool">Swimming Pool
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Lift">Lift
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
                     <input type="checkbox" class="form-check-input" name="aminities[]" value="Security">Security
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Reserve Parking">Reserve Parking
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Power Backup">Power Backup
                 </label>
             </div>
         </div>

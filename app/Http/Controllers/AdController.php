@@ -1791,6 +1791,13 @@ class AdController extends Controller
         return view('auth.propertyRent.flat-apartment', compact('cities', 'state'));
     }
 
+    public function studioApartmentRentForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertyRent.studio-apartment', compact('cities', 'state'));
+    }
+
     public function residentialHouseForm()
     {
         $cities = City::where('status', 1)->get();
@@ -1873,6 +1880,13 @@ class AdController extends Controller
         $cities = City::where('status', 1)->get();
         $state = State::where('status', 1)->get();
         return view('auth.propertyRent.farmHouse-land', compact('cities', 'state'));
+    }
+
+    public function farmHouseRentForm()
+    {
+        $cities = City::where('status', 1)->get();
+        $state = State::where('status', 1)->get();
+        return view('auth.propertyRent.farmHouse', compact('cities', 'state'));
     }
 
     public function flatSaleForm()

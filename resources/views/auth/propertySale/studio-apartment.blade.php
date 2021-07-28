@@ -1,7 +1,9 @@
 <hr>
 <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
         <label for="">Name of Project/ Office Complex <span class="text-danger">*</span><span class="text-danger" id="project_err"></span></label>
+    </div>
+    <div class="form-group col-md-8">
         <input type="text" class="form-control @error('project_name') is-invalid @enderror" id="name_of_project"  name="project_name" >
     </div>
 </div>
@@ -368,8 +370,8 @@
 </div>
 <div class="form-group">
     <div class="plus-minus">
-        <input type="checkbox" name="" id="a1" class="a css-checkbox">
-        <label for="a1" class="css-label">
+        <input type="checkbox" name="" id="a" class="a css-checkbox">
+        <label for="a" class="css-label">
             <span class="fa fa-plus"></span>
             <span class="fa fa-minus"></span>
             Add Other Charges

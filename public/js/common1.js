@@ -31,8 +31,8 @@ function inrFormat(val) {
     return res;
 }
 
-$('body').on('click', '.a', function () {
-    $("#otherChargesDiv").fadeToggle(1000);  
+$('body').on('click', '#a', function () {
+    $("#otherChargesDiv").fadeToggle();  
 })
 
 $("input[name='posses_status']").change(function(){

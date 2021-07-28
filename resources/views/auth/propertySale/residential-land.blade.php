@@ -506,6 +506,7 @@
 $(function() {
     $(".sel-status").select2();
 });
+
 $(document).on("change keyup blur", "#total_price", function() {
     var plot_area = $('#plot_area').val();
     var total_price = $('#total_price').val();

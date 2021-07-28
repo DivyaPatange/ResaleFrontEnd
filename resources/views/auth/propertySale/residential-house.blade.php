@@ -1,6 +1,8 @@
 <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
         <label>Name of Society<span class="text-danger">*<span><span style="color:red" id="society_err"></span></label>
+    </div>
+    <div class="form-group col-md-8">
         <input  type="text" id="name_of_society" class="form-control @error('project_name') is-invalid @enderror" name="project_name">
     </div>
 </div>
@@ -507,10 +509,10 @@
 </div>
 <div id="otherChargesDiv" class="hidden">
     <div class="form-row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-5">
             <label for="">Other Charges</label>
         </div>
-        <div class="form-group col-md-8">
+        <div class="form-group col-md-7">
             <input type="text" class="form-control" name="other_charges">
         </div>
     </div>

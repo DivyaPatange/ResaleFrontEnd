@@ -262,7 +262,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="price_per_sq_ft">Price per Sq.Ft.</label>
-                <input type="text" name="price_per_sq_ft" id="price_per_sq_ft" class="form-control @error('price_per_sq') is-invalid @enderror" value="{{ old('price_per_sq') }}">
+                <input type="text" readonly name="price_per_sq_ft" id="price_per_sq_ft" class="form-control @error('price_per_sq') is-invalid @enderror" value="{{ old('price_per_sq') }}">
             </div>
         </div>
     </div>

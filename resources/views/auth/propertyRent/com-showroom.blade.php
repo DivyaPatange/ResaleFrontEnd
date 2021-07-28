@@ -83,20 +83,6 @@
         </select>
     </div>
 </div>
-<div class="form-row">
-    <div class="form-group col-md-4">
-        <label for="">Width of Facing Road</label>
-    </div>
-    <div class="form-group col-md-5">
-        <input type="text" class="form-control Stylednumber" name="facing_width">
-    </div>
-    <div class="form-group col-md-3">
-        <select name="width_facing_road_unit" class="form-control" id="">
-            <option value="meters">meters</option>
-            <option value="ft">ft</option>
-        </select>
-    </div>
-</div>
 <div class="form-group">
     <h6>Property Feature</h6>
 </div>
@@ -130,20 +116,18 @@
         </div>
     </div>
 </div>
-<div class="form-group">
-    <div class="row">
-        <div class="col-md-5">
-            <label>Furnished Status<span class="text-danger">*</span><span  style="color:red" id="furnishing_err"> </span></label>
-        </div>
-        <div class="col-md-7">
-            <div class="switch-field">
-                <input type="radio" id="Furnished" name="furnishing" value="Furnished" @if(old('furnishing') == "Furnished") checked @endif/>
-                <label for="Furnished">Furnished</label>
-                <input type="radio" id="Semi-Furnished" name="furnishing" value="Semi-Furnished" @if(old('furnishing') == "Semi-Furnished") checked @endif/>
-                <label for="Semi-Furnished">Semi-Furnished</label>
-                <input type="radio" id="Unfurnished" name="furnishing" value="Unfurnished" @if(old('furnishing') == "Unfurnished") checked @endif/>
-                <label for="Unfurnished">Unfurnished</label>
-            </div>
+<div class="form-row">
+    <div class="col-md-5 form-group">
+        <label>Furnished Status<span class="text-danger">*</span><span  style="color:red" id="furnishing_err"> </span></label>
+    </div>
+    <div class="col-md-7 form-group">
+        <div class="switch-field">
+            <input type="radio" id="Furnished" name="furnishing" value="Furnished" @if(old('furnishing') == "Furnished") checked @endif/>
+            <label for="Furnished">Furnished</label>
+            <input type="radio" id="Semi-Furnished" name="furnishing" value="Semi-Furnished" @if(old('furnishing') == "Semi-Furnished") checked @endif/>
+            <label for="Semi-Furnished">Semi-Furnished</label>
+            <input type="radio" id="Unfurnished" name="furnishing" value="Unfurnished" @if(old('furnishing') == "Unfurnished") checked @endif/>
+            <label for="Unfurnished">Unfurnished</label>
         </div>
     </div>
 </div>
@@ -346,6 +330,20 @@
 <hr>
 <div class="form-row">
     <div class="form-group col-md-5">
+        <label for="">Width of Facing Road</label>
+    </div>
+    <div class="form-group col-md-4">
+        <input type="text" class="form-control Stylednumber" name="facing_width">
+    </div>
+    <div class="form-group col-md-3">
+        <select name="width_facing_road_unit" class="form-control" id="">
+            <option value="meters">meters</option>
+            <option value="ft">ft</option>
+        </select>
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-5">
         <label for="">Width of Entrance</label>
     </div>
     <div class="form-group col-md-4">
@@ -398,10 +396,10 @@
     </div>
 </div>
 <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-5">
         <label for="">Currently Rent Out</label>
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-7">
         <div class="form-check-inline">
             <label class="form-check-label">
                 <input type="radio" class="form-check-input" name="rent_out" value="Yes">Yes
@@ -419,10 +417,10 @@
     <h6>Rent/Lease Detail</h6>
 </div>
 <div class="form-row">
-    <div class="col-md-4">
+    <div class="col-md-5">
         <label for="">Monthly Rent<span  style="color:red" id="monthly_rent_err"> </span></label>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-7">
         <input type="text" class="form-control Stylednumber" id="monthly_rent" name="monthly_rent" onkeyup="convertNumberToWords(this.value)">
         <span id="show_price" class="text-muted"></span>
     </div>
@@ -459,8 +457,8 @@
 </div>
 <div class="form-group">
     <div class="plus-minus">
-        <input type="checkbox" name="" id="a2" class="a css-checkbox">
-        <label for="a2" class="css-label">
+        <input type="checkbox" name="" id="a" class="a css-checkbox">
+        <label for="a" class="css-label">
             <span class="fa fa-plus"></span>
             <span class="fa fa-minus"></span>
             Add Other Charges
@@ -469,10 +467,10 @@
 </div>
 <div id="otherChargesDiv" class="hidden">
     <div class="form-row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-5">
             <label for="">Other Charges</label>
         </div>
-        <div class="form-group col-md-8">
+        <div class="form-group col-md-7">
             <input type="text" class="form-control" name="other_charges">
         </div>
     </div>

@@ -328,17 +328,13 @@ function selectLocality(val) {
                   <label for="">I am <span class="text-danger">*<span><span class="text-danger" id="listed_err"><span></label>
                 </div>
                 <div class="form-group col-md-8">
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="" name="listed_by" value="Builder">
-                    <label class="form-check-label" for="">Builder</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="" name="listed_by" value="Owner">
-                    <label class="form-check-label" for="">Owner</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="" name="listed_by" value="Agent">
-                    <label class="form-check-label" for="">Agent</label>
+                  <div class="switch-field">
+                    <input class="form-check-input" type="radio" id="Builder" name="listed_by" value="Builder">
+                    <label class="form-check-label" for="Builder">Builder</label>
+                    <input class="form-check-input" type="radio" id="Owner" name="listed_by" value="Owner">
+                    <label class="form-check-label" for="Owner">Owner</label>
+                    <input class="form-check-input" type="radio" id="Agent" name="listed_by" value="Agent">
+                    <label class="form-check-label" for="Agent">Agent</label>
                   </div>
                 </div>
               </div>

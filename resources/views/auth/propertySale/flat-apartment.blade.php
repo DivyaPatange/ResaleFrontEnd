@@ -1,6 +1,8 @@
 <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
         <label>Name of Society<span class="text-danger">*<span><span style="color:red" id="society_err"></span></label>
+    </div>
+    <div class="form-group col-md-8">
         <input  type="text" id="name_of_society" class="form-control @error('project_name') is-invalid @enderror" name="project_name">
     </div>
 </div>
@@ -85,20 +87,18 @@
         </div>
     </div>
 </div>
-<div class="form-group">
-    <div class="row">
-        <div class="col-md-5">
-            <label>Furnished Status <span class="text-danger">*</span><span style="color:red" id="furnished_err"></span></label>
-        </div>
-        <div class="col-md-7">
-            <div class="switch-field">
-                <input type="radio"  name="furnishing" id="Furnished" value="Furnished" @if(old('furnishing') == "Furnished") checked @endif>
-                <label for="Furnished">Furnished</label>
-                <input type="radio" type="radio" name="furnishing" id="Semi-Furnished" value="Semi-Furnished" @if(old('furnishing') == "Semi-Furnished") checked @endif>
-                <label for="Semi-Furnished">Semi-Furnished</label>
-                <input type="radio" type="radio" name="furnishing" id="Unfurnished" value="Unfurnished" @if(old('furnishing') == "Unfurnished") checked @endif>
-                <label for="Unfurnished">Unfurnished</label>
-            </div>
+<div class="form-row">
+    <div class="col-md-5 form-group">
+        <label>Furnished Status <span class="text-danger">*</span><span style="color:red" id="furnished_err"></span></label>
+    </div>
+    <div class="col-md-7 form-group">
+        <div class="switch-field">
+            <input type="radio"  name="furnishing" id="Furnished" value="Furnished" @if(old('furnishing') == "Furnished") checked @endif>
+            <label for="Furnished">Furnished</label>
+            <input type="radio" type="radio" name="furnishing" id="Semi-Furnished" value="Semi-Furnished" @if(old('furnishing') == "Semi-Furnished") checked @endif>
+            <label for="Semi-Furnished">Semi-Furnished</label>
+            <input type="radio" type="radio" name="furnishing" id="Unfurnished" value="Unfurnished" @if(old('furnishing') == "Unfurnished") checked @endif>
+            <label for="Unfurnished">Unfurnished</label>
         </div>
     </div>
 </div>

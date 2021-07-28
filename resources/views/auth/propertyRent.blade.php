@@ -294,7 +294,7 @@ function selectLocality(val) {
     <div class="row">
       <div class="col-md-12">
         <div class="title-single-box">
-          <h1 class="title-single">The Best Way To Sell Your {{ $subCategory->sub_category }}</h1>
+          <h1 class="title-single">The Best Way To Rent/Lease Your Property</h1>
         </div>
       </div>
     </div>
@@ -332,17 +332,13 @@ function selectLocality(val) {
                   <label for="">I am <span class="text-danger">*<span><span class="text-danger" id="listed_err"><span></label>
                 </div>
                 <div class="form-group col-md-8">
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="" name="listed_by" value="Builder">
-                    <label class="form-check-label" for="">Builder</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="" name="listed_by" value="Owner">
-                    <label class="form-check-label" for="">Owner</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="" name="listed_by" value="Agent">
-                    <label class="form-check-label" for="">Agent</label>
+                  <div class="switch-field">
+                    <input class="form-check-input" type="radio" id="Builder" name="listed_by" value="Builder">
+                    <label class="form-check-label" for="Builder">Builder</label>
+                    <input class="form-check-input" type="radio" id="Owner" name="listed_by" value="Owner">
+                    <label class="form-check-label" for="Owner">Owner</label>
+                    <input class="form-check-input" type="radio" id="Agent" name="listed_by" value="Agent">
+                    <label class="form-check-label" for="Agent">Agent</label>
                   </div>
                 </div>
               </div>
@@ -526,9 +522,13 @@ $('body').on('change', '#property_type', function () {
   showDiv.show();
   setTimeout(function() {
     showDiv.hide();
-    if((query == 34) || (query == 37) || (query == 38) || (query == 39) || (query == 40))
+    if((query == 34) || (query == 37) || (query == 38) || (query == 39))
     {
       $('#container').load('/flat-apartment-form');
+    }
+    else if(query == 40)
+    {
+      $('#container').load('/studio-apartment-rent-form');
     }
     else if((query == 35) || (query == 36))
     {
@@ -574,9 +574,13 @@ $('body').on('change', '#property_type', function () {
     {
       $('#container').load('/agricultural-land-form');
     }
-    else if((query == 53) || (query == 54))
+    else if(query == 53)
     {
       $('#container').load('/farmHouse-land-form');
+    }
+    else if(query == 54)
+    {
+      $('#container').load('/farmHouse-rent-form');
     }
   }, 2500);
   if(listed_by == "Owner")

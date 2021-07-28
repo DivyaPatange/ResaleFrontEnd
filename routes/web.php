@@ -91,6 +91,7 @@ Route::get('/my-ads', [AdController::class, 'myAds'])->name('my-ad');
 Auth::routes();
 
 Route::get('/flat-apartment-form', [AdController::class, 'flatApartmentForm']);
+Route::get('/studio-apartment-rent-form', [AdController::class, 'studioApartmentRentForm']);
 Route::get('/residential-house-form', [AdController::class, 'residentialHouseForm']);
 Route::get('/com-office-form', [AdController::class, 'comOfficeForm']);
 Route::get('/it-office-form', [AdController::class, 'itOfficeForm']);
@@ -103,6 +104,7 @@ Route::get('/industrial-building-form', [AdController::class, 'industrialBuildin
 Route::get('/industrial-shed-form', [AdController::class, 'industrialShedForm']);
 Route::get('/agricultural-land-form', [AdController::class, 'agriculturalLandForm']);
 Route::get('/farmHouse-land-form', [AdController::class, 'farmHouseLandForm']);
+Route::get('/farmHouse-rent-form', [AdController::class, 'farmHouseRentForm']);
 
 Route::get('/flat-sale-form', [AdController::class, 'flatSaleForm']);
 Route::get('/residential-penthouse-form', [AdController::class, 'residentialPenthouseForm']);

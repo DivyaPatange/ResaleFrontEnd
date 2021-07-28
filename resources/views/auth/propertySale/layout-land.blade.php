@@ -5,7 +5,7 @@
 <div class="form-row">
     <div class="form-group col-md-6">
         <label for="">No. of Open Side</label>
-        <select name="no_of_open_side" id="no_of_open_side" class="form-control sel-status @error('no_of_open_side') invalid-feedback @enderror">
+        <select name="no_of_open_side" id="no_of_open_side" class="form-control @error('no_of_open_side') invalid-feedback @enderror">
             <option value="">-Select No. of Open Side-</option>
             <option value="1" @if(old('no_of_open_side') == "1") Selected @endif>1</option>
             <option value="2" @if(old('no_of_open_side') == "2") Selected @endif>2</option>
@@ -19,10 +19,10 @@
         <label for="">Width of Road facing the Plot</label>
     </div>
     <div class="form-group col-md-4">
-        <input type="text" class="form-control Stylednumber @error('width_of_road') invalid-feedback @enderror" name="width_of_road" value="{{ old('width_of_road') }}" placeholder="Meters">
+        <input type="text" class="form-control Stylednumber @error('width_of_road') invalid-feedback @enderror" name="width_of_road" value="{{ old('width_of_road') }}">
     </div>
     <div class="form-group col-md-3">
-        <select name="road_facing_unit" id="road_facing_unit" class="form-control sel-status @error('road_facing_unit') invalid-feedback @enderror">
+        <select name="road_facing_unit" id="road_facing_unit" class="form-control @error('road_facing_unit') invalid-feedback @enderror">
             <option value="Meter">Meter</option>
             <option value="Feet">Feet</option>
         </select>
@@ -154,7 +154,7 @@
         <input type="number" id="plot_area" class="form-control @error('plot_area') invalid-feedback @enderror" name="plot_area" value="{{ old('plot_area') }}">
     </div>
     <div class="form-group col-md-3">
-        <select name="plot_unit" id="plot_unit" class="form-control sel-status @error('plot_unit') invalid-feedback @enderror">
+        <select name="plot_unit" id="plot_unit" class="form-control @error('plot_unit') invalid-feedback @enderror">
             <option value="Sq-ft">Sq-ft</option>
             <option value="Sq-yrd">Sq-yrd</option>
             <option value="Sq-m">Sq-m</option>
@@ -185,7 +185,7 @@
         <input type="number" class="form-control @error('plot_length') invalid-feedback @enderror" name="plot_length" id="plot_length" value="{{ old('plot_length') }}">
     </div>
     <div class="form-group col-md-3">
-        <select name="plot_length_unit" id="plot_length_unit" class="form-control sel-status">
+        <select name="plot_length_unit" id="plot_length_unit" class="form-control">
             <option value="Sq-ft">Sq-ft</option>
             <option value="Sq-yrd">Sq-yrd</option>
             <option value="Sq-m">Sq-m</option>
@@ -211,7 +211,7 @@
         <input type="text" readonly class="form-control @error('plot_width') invalid-feedback @enderror" name="plot_width" id="plot_width" value="{{ old('plot_width') }}">
     </div>
     <div class="form-group col-md-3">
-        <select name="plot_width_unit" id="plot_width_unit" class="form-control sel-status">
+        <select name="plot_width_unit" id="plot_width_unit" class="form-control">
             <option value="Sq-ft">Sq-ft</option>
             <option value="Sq-yrd">Sq-yrd</option>
             <option value="Sq-m">Sq-m</option>
@@ -244,10 +244,10 @@
     <h6>Transaction Type/ Property Availability</h6>
 </div>
 <div class="form-row">
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-5">
         <label for="">Transaction Type <span class="text-danger">*</span><span class="text-danger" id="trans_err"></span></label>
     </div>
-    <div class="form-group col-md-8">
+    <div class="form-group col-md-7">
         <div class="form-check-inline">
             <label class="form-check-label">
                 <input type="radio" class="form-check-input" name="transaction_type" value="New Property">New Property
@@ -322,10 +322,10 @@
 </div>
 <div id="otherChargesDiv" class="hidden">
     <div class="form-row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-5">
             <label for="">Other Charges</label>
         </div>
-        <div class="form-group col-md-8">
+        <div class="form-group col-md-7">
             <input type="text" class="form-control" name="other_charges">
         </div>
     </div>
@@ -351,7 +351,7 @@
         <label for="">Brokerage (Brokers Only)</label>
     </div>
     <div class="form-group col-md-6">
-        <select name="brokerage" id="brokerage" class="form-control sel-status">
+        <select name="brokerage" id="brokerage" class="form-control">
             <option value="">-Select Brokerage-</option>
             <option value="No Brokerage">No Brokerage</option>
             <option value="0.25 %">0.25 %</option>
@@ -437,7 +437,7 @@
     <div class="form-group">
         <h6>Additional Features</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-4">
             <label>Overlooking</label>
         </div>
@@ -457,10 +457,10 @@
     <div class="form-group">
         <h6>Ownership & Approvals</h6>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3">
         <div class="form-group col-md-6">
             <label for="">Ownership Status</label>
-            <select name="ownership_approval" id="ownership_approval" class="form-control sel-status @error('ownership_approval') invalid-feedback @enderror">
+            <select name="ownership_approval" id="ownership_approval" class="form-control @error('ownership_approval') invalid-feedback @enderror">
                 <option value="">-Select Ownership Approval-</option>
                 <option value="Freehold" @if(old('ownership_approval') == "Freehold") Selected @endif>Freehold</option>
                 <option value="Leasehold" @if(old('ownership_approval') == "Leasehold") Selected @endif>Leasehold</option>
@@ -470,15 +470,20 @@
         </div>
         <div class="form-group col-md-6">
             <label for="">Approved By</label>
-            <select name="approved_by" id="approved_by" class="form-control sel-status @error('approved_by') invalid-feedback @enderror">
+            <select name="approved_by" id="approved_by" class="form-control @error('approved_by') invalid-feedback @enderror">
                 <option value="">-Select Approved By-</option>
-                <option value="NMRDA" @if(old('approved_by') == "NMRDA") Selected @endif>NMRDA</option>
+                <option value="NMRDA">NMRDA</option>
+                <option value="Metropolitan Region">Metropolitan Region</option>
+                <option value="Development Authority">Development Authority</option>
+                <option value="Developer">Developer</option>
+                <option value="RWA/Co-Operative Housing Society">RWA/Co-Operative Housing Society</option>
+                <option value="City Muncipal Corporation">City Muncipal Corporation</option>
             </select>
         </div>
     </div>
     <div class="form-group">
         <label>Description <span class="text-danger">*</span><span class="text-danger" id="description_err"></span></label>
-        <textarea class="form-control ckeditor @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
+        <textarea class="form-control @error('description') is-invalid @enderror" id="description"  name="description">{{ old('description') }}</textarea>
     </div>
     <div class="form-group">
         <label>Land Mark</label>
