@@ -188,16 +188,23 @@ class AdController extends Controller
 
     public function getCarVarient(Request $request)
     {
-        $carVarient = DB::table('car_varients')->where("model_id", $request->model_id)
+        $carVarient = DB::table('car_varients')->where("model_id", $request->model_id)->where('sub_category_id', $request->sub_category_id)
         ->pluck("car_varient","id");
         return response()->json($carVarient);
     }
 
     public function getBrandList(Request $request)
     {
-        $brand = DB::table('type_brands')->where('type_id', $request->type_id)->where('status', 1)
+        $brand = DB::table('type_brands')->where('type_id', $request->type_id)->where('sub_category_id', $request->sub_category_id)->where('status', 1)
         ->pluck("type_brand_name", "id");
         return response()->json($brand);
+    }
+
+    public function getCommercialModelList(Request $request)
+    {
+        $model = DB::table('brand_models')->where('type_brand_id', $request->brand_id)->where('status', 1)
+        ->pluck("model_name", "id");
+        return response()->json($model);
     }
 
     public function saveCarPost(Request $request)

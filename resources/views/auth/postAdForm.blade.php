@@ -789,10 +789,11 @@ function removeField(){
   $('#model_name').change(function(){
   var modelID = $(this).val();  
 //   alert(brandID);
+var sub_category_id = "{{ $subCategory->id }}";
   if(modelID){
     $.ajax({
       type:"GET",
-      url:"{{url('/get-car-varient-list')}}?model_id="+modelID,
+      url:"{{url('/get-car-varient-list')}}?model_id="+modelID+"&sub_category_id="+sub_category_id,
       success:function(res){        
       if(res){
         $("#car_varient").empty();

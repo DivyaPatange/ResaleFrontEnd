@@ -175,19 +175,36 @@
                 </div>
               </div>
               <div class="form-row hidden" id="showDiv">
-                <div class="row">
-                  <div class="form-group col-md-4">
-                    <label for="">GST No.<span class="text-danger">*<span><span class="text-danger" id="gst_err"><span></label>
-                  </div>
-                  <div class="form-group col-md-8">
-                    <input type="text" name="gst_no" id="gst_no" class="form-control @error('gst_no') invalid-feedback @enderror" value="{{ old('gst_no') }}">
-                    @error('gst_no')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
+                <div class="form-group col-md-4">
+                  <label for="">GST No.<span class="text-danger">*<span><span class="text-danger" id="gst_err"><span></label>
                 </div>
+                <div class="form-group col-md-8">
+                  <input type="text" name="gst_no" id="gst_no" class="form-control @error('gst_no') invalid-feedback @enderror" value="{{ old('gst_no') }}">
+                  @error('gst_no')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </div>
+              </div>           
+              <div class="form-row">
+                <div class="col-md-4 form-group">
+                  <label>Vehicle Type <span class="text-danger">*</span>
+                  </label>
+                </div>
+                <div class="col-md-8 form-group">
+                  <select name="vehicle_type" id="vehicle_type" class="form-control">
+                    <option value="">-Select Type-</option>
+                    @foreach($type as $t)
+                    <option value="{{ $t->id }}">{{ $t->type_name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                @error('body_type')
+                <span class="text-danger" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
               </div>
               <hr>
               <div class="form-row">
@@ -195,9 +212,7 @@
                   <label>Brand Name<span class="text-danger">*<span></label>
                   <select id="brand_name" class="form-control sel-status @error('brand_name') is-invalid @enderror" name="brand_name">
                     <option value="">Choose...</option>
-                    @foreach($brand as $b)
-                    <option value="{{ $b->id }}" @if (old('brand_name') == $b->id) selected="selected" @endif>{{ $b->brand_name }}</option>
-                    @endforeach
+                    
                   </select>
                   @error('brand_name')
                   <span class="invalid-feedback" role="alert">
@@ -295,45 +310,6 @@
                   </div>
                 </div>
                 @error('no_of_owners')
-                <span class="text-danger" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-              </div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-3">
-                    <label>Vehicle Type <span class="text-danger">*</span>
-                    </label>
-                  </div>
-                  <div class="col-md-9">
-                    <div class="switch-field">
-                      <input type="radio" name="vehicle_type" id="inlineRadio6" value="Auto" @if(old('vehicle_type') == "Auto") checked @endif>
-                      <label for="inlineRadio6">Auto</label>
-                      <input type="radio" name="vehicle_type" id="inlineRadio7" value="Bus" @if(old('vehicle_type') == "Bus") checked @endif>
-                      <label for="inlineRadio7">Bus</label>
-                      <input type="radio" name="vehicle_type" id="inlineRadio8" value="Car" @if(old('vehicle_type') == "Car") checked @endif>
-                      <label for="inlineRadio8">Car</label>
-                      <input type="radio" name="vehicle_type" id="inlineRadio9" value="Caravan" @if(old('vehicle_type') == "Caravan") checked @endif>
-                      <label for="inlineRadio9">Caravan</label>
-                      <input type="radio" name="vehicle_type" id="inlineRadio10" value="Van" @if(old('vehicle_type') == "Van") checked @endif>
-                      <label for="inlineRadio10">Van</label>
-                      <input type="radio" name="vehicle_type" id="inlineRadio11" value="Ambulance" @if(old('vehicle_type') == "Ambulance") checked @endif>
-                      <label for="inlineRadio11">Ambulance</label>
-                      <input type="radio" name="vehicle_type" id="inlineRadio12" value="Tractor" @if(old('vehicle_type') == "Tractor") checked @endif>
-                      <label for="inlineRadio12">Tractor</label>
-                      <input type="radio" name="vehicle_type" id="inlineRadio13" value="Truck" @if(old('vehicle_type') == "Truck") checked @endif>
-                      <label for="inlineRadio13">Truck</label>
-                      <input type="radio" name="vehicle_type" id="inlineRadio14" value="Pickup" @if(old('vehicle_type') == "Pickup") checked @endif>
-                      <label for="inlineRadio14">Pickup</label>
-                      <input type="radio" name="vehicle_type" id="inlineRadio15" value="Tempo Truck" @if(old('vehicle_type') == "Tempo Truck") checked @endif>
-                      <label for="inlineRadio15">Tempo Truck</label>
-                      <input type="radio" name="vehicle_type" id="inlineRadio16" value="Others" @if(old('vehicle_type') == "Others") checked @endif>
-                      <label for="inlineRadio16">Others</label>
-                    </div>
-                  </div>
-                </div>
-                @error('body_type')
                 <span class="text-danger" role="alert">
                   <strong>{{ $message }}</strong>
                 </span>
@@ -747,13 +723,40 @@ function removeField(){
 </script>
 
 <script type=text/javascript>
-  $('#brand_name').change(function(){
+$('#vehicle_type').change(function(){
+  var typeID = $(this).val();  
+  var sub_category_id = "{{ $subCategory->id }}"; 
+  //   alert(brandID);
+  if(typeID){
+    $.ajax({
+      type:"GET",
+      url:"{{url('/get-brand-list')}}?type_id="+typeID+"&sub_category_id="+sub_category_id,
+      success:function(res){    
+        // alert(res);    
+      if(res){
+        $("#brand_name").empty();
+        $("#brand_name").append('<option value="">Select Brand Name</option>');
+        $.each(res,function(key,value){
+          $("#brand_name").append('<option value="'+key+'">'+value+'</option>');
+        });
+      
+      }else{
+        $("#brand_name").empty();
+      }
+      }
+    });
+  }else{
+    $("#brand_name").empty();
+  }   
+});
+
+$('#brand_name').change(function(){
   var brandID = $(this).val();  
-//   alert(brandID);
+  //   alert(brandID);
   if(brandID){
     $.ajax({
       type:"GET",
-      url:"{{url('/get-model-list')}}?brand_id="+brandID,
+      url:"{{url('/get-commercial-model-list')}}?brand_id="+brandID,
       success:function(res){        
       if(res){
         $("#model_name").empty();
@@ -770,16 +773,17 @@ function removeField(){
   }else{
     $("#model_name").empty();
   }   
-  });
+});
 
 
   $('#model_name').change(function(){
-  var modelID = $(this).val();  
+  var modelID = $(this).val(); 
 //   alert(brandID);
+var sub_category_id = "{{ $subCategory->id }}";
   if(modelID){
     $.ajax({
       type:"GET",
-      url:"{{url('/get-car-varient-list')}}?model_id="+modelID,
+      url:"{{url('/get-car-varient-list')}}?model_id="+modelID+"&sub_category_id="+sub_category_id,
       success:function(res){        
       if(res){
         $("#car_varient").empty();
@@ -865,41 +869,7 @@ function removeField(){
   $(document).ready(function() {
     $(".sel-status").select2();
   });
-  // $(function(){
-  //   $(".select2").select2({
-  //     matcher: matchCustom,
-  //     templateResult: formatCustom
-  //   });
-  //   function stringMatch(term, candidate) {
-  //     return candidate && candidate.toLowerCase().indexOf(term.toLowerCase()) >= 0;
-  //   }
-
-  //   function matchCustom(params, data) {
-  //     // If there are no search terms, return all of the data
-  //     if ($.trim(params.term) === '') {
-  //       return data;
-  //     }
-  //     // Do not display the item if there is no 'text' property
-  //     // if (typeof data.text === 'undefined') {
-  //     //   return null;
-  //     // }
-  //     // Match text of option
-  //     if (stringMatch(params.term, data.text)) {
-  //       return data;
-  //     }
-  //     // Match attribute "data-foo" of option
-  //     if (stringMatch(params.term, $(data.element).attr('data-foo'))) {
-  //       return data;
-  //     }
-  //     // return null;
-  //   }
-
-  //   function formatCustom(state) {
-  //     return $(
-  //       '<div><div>' + state.text + '</div><div class="foo">'+ $(state.element).attr('data-foo')+ '</div></div>'
-  //     );
-  //   }
-  // })
+ 
   $('body').on('click', '#submitButton', function () {
     var user_type = $('input[name="user_type"]:checked').val();
     var gst_no = $('#gst_no').val();

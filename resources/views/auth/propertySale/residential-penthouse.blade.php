@@ -477,7 +477,7 @@
                 <label class="filelabel p_file">
                     <div class="icon">X</div>
                     <i class="fa fa-paperclip" id="icon1"></i>
-                    <span class="title1">Add File</span>
+                    <span class="title1">Add Photo</span>
                     <input class="FileUpload1" id="FileInput" name="exterior_photos[]" type="file"/>
                     <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                 </label>
@@ -488,7 +488,7 @@
                 <label class="filelabel p_file">
                     <div class="icon">X</div>
                     <i class="fa fa-paperclip" id="icon1"></i>    
-                    <span class="title1">Add File</span>
+                    <span class="title1">Add Photo</span>
                     <input class="FileUpload1" id="FileInput" name="living_photos[]" type="file"/>
                     <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                 </label>
@@ -499,7 +499,7 @@
                 <label class="filelabel p_file">
                     <div class="icon">X</div>
                     <i class="fa fa-paperclip" id="icon1"></i>
-                    <span class="title1">Add File</span>
+                    <span class="title1">Add Photo</span>
                     <input class="FileUpload1" id="FileInput" name="bedroom_photos[]" type="file"/>
                     <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                 </label>
@@ -510,7 +510,7 @@
                 <label class="filelabel p_file">
                     <div class="icon">X</div>
                     <i class="fa fa-paperclip" id="icon1"></i>
-                    <span class="title1">Add File</span>
+                    <span class="title1">Add Photo</span>
                     <input class="FileUpload1" id="FileInput" name="bathroom_photos[]" type="file"/>
                     <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                 </label>
@@ -521,7 +521,7 @@
                 <label class="filelabel p_file">
                     <div class="icon">X</div>
                     <i class="fa fa-paperclip" id="icon1"></i>
-                    <span class="title1">Add File</span>
+                    <span class="title1">Add Photo</span>
                     <input class="FileUpload1" id="FileInput" name="kitchen_photos[]" type="file"/>
                     <img  id="frame1" style="max-width: 90px; max-height: 70px;" class="hidden">
                 </label>
