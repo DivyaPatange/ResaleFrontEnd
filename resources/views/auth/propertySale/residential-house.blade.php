@@ -497,7 +497,7 @@
         </div>
     </div>
 </div>
-<div class="form-group">
+<!-- <div class="form-group">
     <div class="plus-minus">
         <input type="checkbox" name="" id="a" class="a css-checkbox">
         <label for="a" class="css-label">
@@ -516,7 +516,7 @@
             <input type="text" class="form-control" name="other_charges">
         </div>
     </div>
-</div>
+</div> -->
 <div class="form-group">
     <div class="form-check-inline">
         <label class="form-check-label">
@@ -790,14 +790,6 @@
                     <input type="checkbox" class="form-check-input" name="car_parking[]" value="None">None
                 </label>
             </div>
-        </div>
-    </div>
-    <div class="form-row mb-3">
-        <div class="form-group col-md-6">
-            <label for="">Flats on the Floor</label>
-        </div>
-        <div class="form-group col-md-6">
-            <input type="number" class="form-control" name="office_floor">
         </div>
     </div>
     <div class="form-group">

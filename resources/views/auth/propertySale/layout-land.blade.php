@@ -288,7 +288,7 @@
         <div class="form-group col-md-3">
             <div class="form-check-inline">
                 <label class="form-check-label">
-                    <input type="radio" class="form-check-input" id="show_rent1" name="show_price_as" value="">
+                    <input type="radio" class="form-check-input" id="show_rent1" name="show_price_as" value="" checked>
                     <span id="rent_1"></span>
                 </label>
             </div>
@@ -310,7 +310,7 @@
         </div>
     </div>
 </div>
-<div class="form-group">
+<!-- <div class="form-group">
     <div class="plus-minus">
         <input type="checkbox" name="" id="a" class="a css-checkbox">
         <label for="a" class="css-label">
@@ -329,7 +329,7 @@
             <input type="text" class="form-control" name="other_charges">
         </div>
     </div>
-</div>
+</div> -->
 <div class="form-group">
     <div class="form-check-inline">
         <label class="form-check-label">

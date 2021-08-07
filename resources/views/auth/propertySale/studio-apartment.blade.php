@@ -1,7 +1,7 @@
 <hr>
 <div class="form-row">
     <div class="form-group col-md-4">
-        <label for="">Name of Project/ Office Complex <span class="text-danger">*</span><span class="text-danger" id="project_err"></span></label>
+        <label for="">Name of Project/ Society <span class="text-danger">*</span><span class="text-danger" id="project_err"></span></label>
     </div>
     <div class="form-group col-md-8">
         <input type="text" class="form-control @error('project_name') is-invalid @enderror" id="name_of_project"  name="project_name" >
@@ -151,7 +151,7 @@
     </div>
     <div class="col-md-8 form-group">
         <div class="switch-field">
-            @for($i=1; $i <= 15; $i++)
+            @for($i=1; $i <= 5; $i++)
             <input type="radio"  name="balcony" id="balcony{{ $i }}" value="{{ $i }}" @if(old('balcony') == $i) checked @endif>
             <label for="balcony{{ $i }}">{{ $i }}</label>
             @endfor
@@ -164,7 +164,7 @@
     </div>
     <div class="col-md-8 form-group">
         <div class="switch-field">
-            @for($i=1; $i <= 15; $i++)
+            @for($i=1; $i <= 5; $i++)
             <input type="radio"  name="bathroom" id="bathroom{{ $i }}" value="{{ $i }}" @if(old('bathroom') == $i) checked @endif>
             <label for="bathroom{{ $i }}">{{ $i }}</label>
             @endfor
@@ -368,7 +368,7 @@
         </div>
     </div>
 </div>
-<div class="form-group">
+<!-- <div class="form-group">
     <div class="plus-minus">
         <input type="checkbox" name="" id="a" class="a css-checkbox">
         <label for="a" class="css-label">
@@ -387,7 +387,7 @@
             <input type="text" class="form-control" name="other_charges">
         </div>
     </div>
-</div>
+</div> -->
 <div class="form-group">
     <div class="form-check-inline">
         <label class="form-check-label">
@@ -672,21 +672,6 @@
         </div>
     </div>
     <div class="form-row mb-3">
-        <div class="col-md-6 form-group">
-            <label for="">Multiple Flat Available</label>
-        </div>
-        <div class="col-md-6 form-group">
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" id="" name="mul_flat_available" value="Yes">
-                <label class="form-check-label" for="">Yes</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" id="" name="mul_flat_available" value="No">
-                <label class="form-check-label" for="">No</label>
-            </div>
-        </div>
-    </div>
-    <div class="form-row mb-3">
         <div class="form-group col-md-6">
             <label for="">Multiple Units Available</label>
         </div>
@@ -860,97 +845,6 @@
         <div class="form-group col-md-4">
             <div class="form-check-inline">
                 <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Air Condition">Air Condition
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="CCTV Camera">CCTV Camera
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Cafeteria">Cafeteria
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Food Court">Food Court
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Conference Room">Conference Room
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Fire Sprinkler">Fire Sprinkler
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Intercom Facility">Intercom Facility
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Internet Wi-Fi Connectivity">Internet Wi-Fi Connectivity
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Lift">Lift
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Power Backup">Power Backup
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Printer">Printer
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Projector">Projector
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="RO Water System">RO Water System
-                </label>
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
                     <input type="checkbox" class="form-check-input" name="aminities[]" value="Reserve Parking">Reserve Parking
                 </label>
             </div>
@@ -964,34 +858,34 @@
         <div class="form-group col-md-4">
             <div class="form-check-inline">
                 <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Service Goods Lift">Service Goods Lift
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Pipe Gas">Pipe Gas
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Garden">Garden
                 </label>
             </div>
         </div>
         <div class="form-group col-md-4">
             <div class="form-check-inline">
                 <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Tea/Coffee">Tea/Coffee
+                    <input type="checkbox" class="form-check-input" name="aminities" value="Vastu Compliance">Vastu Compliance
                 </label>
             </div>
         </div>
         <div class="form-group col-md-4">
             <div class="form-check-inline">
                 <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Visitor Parking">Visitor Parking
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities[]" value="Wheel Chair Accessibility">Wheel Chair Accessibility
+                    <input type="checkbox" class="form-check-input" name="aminities" value="Waste Disposal">Waste Disposal
                 </label>
             </div>
         </div>
         <div class="form-group col-md-4">
             <div class="form-check-inline">
                 <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="aminities" value="Whiteboard">Whiteboard
+                    <input type="checkbox" class="form-check-input" name="aminities" value="Water Storage">Water Storage
                 </label>
             </div>
         </div>

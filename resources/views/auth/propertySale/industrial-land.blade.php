@@ -1,3 +1,11 @@
+<div class="form-row">
+    <div class="form-group col-md-4">
+        <label>Name of Project/Office Complex<span class="text-danger">*<span><span style="color:red" id="society_err"></span></label>
+    </div>
+    <div class="form-group col-md-8">
+        <input  type="text" id="name_of_society" class="form-control @error('project_name') is-invalid @enderror" name="project_name">
+    </div>
+</div>
 <hr>
 <div class="form-group">
     <h6>Property Feature</h6>
@@ -32,25 +40,8 @@
     </div>
     <div class="form-group col-md-3">
         <select name="road_facing_unit" id="road_facing_unit" class="form-control @error('road_facing_unit') invalid-feedback @enderror">
-            <option value="Sq-ft">Sq-ft</option>
-            <option value="Sq-yrd">Sq-yrd</option>
-            <option value="Sq-m">Sq-m</option>
-            <option value="Acre">Acre</option>
-            <option value="Bigha">Bigha</option>
-            <option value="Hectare">Hectare</option>
-            <option value="Marla">Marla</option>
-            <option value="Kanal">Kanal</option>
-            <option value="Biswa1">Biswa1</option>
-            <option value="Biswa2">Biswa2</option>
-            <option value="Ground">Ground</option>
-            <option value="Aankadam">Aankadam</option>
-            <option value="Rood">Rood</option>
-            <option value="Chatak">Chatak</option>
-            <option value="Kottah">Kottah</option>
-            <option value="Cent">Cent</option>
-            <option value="Perch">Perch</option>
-            <option value="Guntha">Guntha</option>
-            <option value="Are">Are</option>
+        <option value="Meter">Meter</option>
+            <option value="Feet">Feet</option>
         </select>
     </div>
 </div>   
@@ -255,7 +246,7 @@
         </div>
     </div>
 </div>
-<div class="form-group">
+<!-- <div class="form-group">
     <div class="plus-minus">
         <input type="checkbox" name="" id="a" class="a css-checkbox">
         <label for="a" class="css-label">
@@ -274,7 +265,7 @@
             <input type="text" class="form-control" name="other_charges">
         </div>
     </div>
-</div>
+</div> -->
 <div class="form-group">
     <div class="form-check-inline">
     <label class="form-check-label">

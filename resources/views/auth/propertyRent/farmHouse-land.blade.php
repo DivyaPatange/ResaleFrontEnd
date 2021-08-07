@@ -266,7 +266,7 @@
         </div>
     </div>
 </div>
-<div class="form-group">
+<!-- <div class="form-group">
     <div class="plus-minus">
         <input type="checkbox" name="" id="a" class="a css-checkbox">
         <label for="a" class="css-label">
@@ -285,7 +285,7 @@
             <input type="text" class="form-control" name="other_charges">
         </div>
     </div>
-</div>
+</div> -->
 <div class="form-group">
     <div class="form-check-inline">
         <label class="form-check-label">

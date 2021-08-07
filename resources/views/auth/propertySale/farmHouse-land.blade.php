@@ -87,9 +87,25 @@
     </div>
     <div class="form-group col-md-3">
         <select name="land_length_unit" id="land_length_unit" class="form-control">
+            <option value="Sq-ft">Sq-ft</option>
+            <option value="Sq-yrd">Sq-yrd</option>
+            <option value="Sq-m">Sq-m</option>
             <option value="Acre">Acre</option>
             <option value="Bigha">Bigha</option>
+            <option value="Hectare">Hectare</option>
+            <option value="Marla">Marla</option>
+            <option value="Kanal">Kanal</option>
+            <option value="Biswa1">Biswa1</option>
+            <option value="Biswa2">Biswa2</option>
+            <option value="Ground">Ground</option>
+            <option value="Aankadam">Aankadam</option>
+            <option value="Rood">Rood</option>
+            <option value="Chatak">Chatak</option>
+            <option value="Kottah">Kottah</option>
+            <option value="Cent">Cent</option>
+            <option value="Perch">Perch</option>
             <option value="Guntha">Guntha</option>
+            <option value="Are">Are</option>
         </select>
     </div>
     <div class="col-md-5 form-group">
@@ -100,9 +116,25 @@
     </div>
     <div class="form-group col-md-3">
         <select name="land_breadth_unit" id="land_breadth_unit" class="form-control">
+            <option value="Sq-ft">Sq-ft</option>
+            <option value="Sq-yrd">Sq-yrd</option>
+            <option value="Sq-m">Sq-m</option>
             <option value="Acre">Acre</option>
             <option value="Bigha">Bigha</option>
+            <option value="Hectare">Hectare</option>
+            <option value="Marla">Marla</option>
+            <option value="Kanal">Kanal</option>
+            <option value="Biswa1">Biswa1</option>
+            <option value="Biswa2">Biswa2</option>
+            <option value="Ground">Ground</option>
+            <option value="Aankadam">Aankadam</option>
+            <option value="Rood">Rood</option>
+            <option value="Chatak">Chatak</option>
+            <option value="Kottah">Kottah</option>
+            <option value="Cent">Cent</option>
+            <option value="Perch">Perch</option>
             <option value="Guntha">Guntha</option>
+            <option value="Are">Are</option>
         </select>
     </div>
 </div>
@@ -193,7 +225,7 @@
         </div>
     </div>
 </div>
-<div class="form-group">
+<!-- <div class="form-group">
     <div class="plus-minus">
         <input type="checkbox" name="" id="a" class="a css-checkbox">
         <label for="a" class="css-label">
@@ -219,7 +251,7 @@
         <input type="checkbox" name="stamp_duty" class="form-check-input" value="1" checked>Stamp Duty & Registration Charges Excluded.
     </label>
     </div>
-</div>
+</div> -->
 <div class="form-row">
     <div class="form-group col-md-6">
         <label for="">Booking Token Amount</label>
@@ -415,6 +447,33 @@
         </div>
     </div>
     <div class="form-group">
+        <h6>Ownership & Approvals</h6>
+    </div>
+    <div class="form-row mb-3">
+        <div class="form-group col-md-6">
+            <label for="">Ownership Status</label>
+            <select name="ownership_approval" id="ownership_approval" class="form-control @error('ownership_approval') invalid-feedback @enderror">
+                <option value="">-Select Ownership Approval-</option>
+                <option value="Freehold" @if(old('ownership_approval') == "Freehold") Selected @endif>Freehold</option>
+                <option value="Leasehold" @if(old('ownership_approval') == "Leasehold") Selected @endif>Leasehold</option>
+                <option value="Power of Attorney" @if(old('ownership_approval') == "Power of Attorney") Selected @endif>Power of Attorney</option>
+                <option value="Co-Operative Society" @if(old('ownership_approval') == "Co-Operative Society") Selected @endif>Co-Operative Society</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="">Approved By</label>
+            <select name="approved_by" id="approved_by" class="form-control @error('approved_by') invalid-feedback @enderror">
+                <option value="">-Select Approved By-</option>
+                <option value="NMRDA">NMRDA</option>
+                <option value="Metropolitan Region">Metropolitan Region</option>
+                <option value="Development Authority">Development Authority</option>
+                <option value="Developer">Developer</option>
+                <option value="RWA/Co-Operative Housing Society">RWA/Co-Operative Housing Society</option>
+                <option value="City Muncipal Corporation">City Muncipal Corporation</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
         <h6>Aminities</h6>
     </div>
     <div class="form-row mb-3">
@@ -557,33 +616,6 @@
                     <input type="checkbox" class="form-check-input" name="aminities[]" value="Wheel Chair Accessibility">Wheel Chair Accessibility
                 </label>
             </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <h6>Ownership & Approvals</h6>
-    </div>
-    <div class="form-row mb-3">
-        <div class="form-group col-md-6">
-            <label for="">Ownership Status</label>
-            <select name="ownership_approval" id="ownership_approval" class="form-control @error('ownership_approval') invalid-feedback @enderror">
-                <option value="">-Select Ownership Approval-</option>
-                <option value="Freehold" @if(old('ownership_approval') == "Freehold") Selected @endif>Freehold</option>
-                <option value="Leasehold" @if(old('ownership_approval') == "Leasehold") Selected @endif>Leasehold</option>
-                <option value="Power of Attorney" @if(old('ownership_approval') == "Power of Attorney") Selected @endif>Power of Attorney</option>
-                <option value="Co-Operative Society" @if(old('ownership_approval') == "Co-Operative Society") Selected @endif>Co-Operative Society</option>
-            </select>
-        </div>
-        <div class="form-group col-md-6">
-            <label for="">Approved By</label>
-            <select name="approved_by" id="approved_by" class="form-control @error('approved_by') invalid-feedback @enderror">
-                <option value="">-Select Approved By-</option>
-                <option value="NMRDA">NMRDA</option>
-                <option value="Metropolitan Region">Metropolitan Region</option>
-                <option value="Development Authority">Development Authority</option>
-                <option value="Developer">Developer</option>
-                <option value="RWA/Co-Operative Housing Society">RWA/Co-Operative Housing Society</option>
-                <option value="City Muncipal Corporation">City Muncipal Corporation</option>
-            </select>
         </div>
     </div>
     <div class="form-group">

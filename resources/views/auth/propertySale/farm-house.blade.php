@@ -418,7 +418,7 @@
         </div>
     </div>
 </div>
-<div class="form-group">
+<!-- <div class="form-group">
     <div class="plus-minus">
         <input type="checkbox" name="" id="a" class="a css-checkbox">
         <label for="a" class="css-label">
@@ -437,7 +437,7 @@
             <input type="text" class="form-control" name="other_charges">
         </div>
     </div>
-</div>
+</div> -->
 <div class="form-group">
     <div class="form-check-inline">
         <label class="form-check-label">
@@ -452,6 +452,22 @@
     <div class="form-group col-md-6">
         <input type="text" name="booking_token_amount" id="booking_token_amount" class="Stylednumber form-control @error('booking_token_amount') invalid-feedback @enderror" value="{{ old('booking_token_amount') }}" onkeyup="convertNumberToWords1(this.value)">
         <span id="show_price1" class="text-muted"></span>
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="">Maintenance Charges</label>
+        <input type="text" name="maintenance_charges" class="form-control Stylednumber">
+    </div>
+    <div class="form-group col-md-6">
+        <label for="">Per</label>
+        <select name="m_charges_per" id="m_charges_per" class="form-control">
+            <option value="Monthly">Monthly</option>
+            <option value="Quarterly">Quarterly</option>
+            <option value="Yearly">Yearly</option>
+            <option value="One-Time">One-Time</option>
+            <option value="Per Sq. Unit Monthly">Per Sq. Unit Monthly</option>
+        </select>
     </div>
 </div>
 <div class="form-row" id="brokerageDiv">
@@ -471,22 +487,6 @@
             <option value="3 %">3 %</option>
             <option value="4 %">4 %</option>
             <option value="5 %">5 %</option>
-        </select>
-    </div>
-</div>
-<div class="form-row">
-    <div class="form-group col-md-6">
-        <label for="">Maintenance Charges</label>
-        <input type="text" name="maintenance_charges" class="form-control Stylednumber">
-    </div>
-    <div class="form-group col-md-6">
-        <label for="">Per</label>
-        <select name="m_charges_per" id="m_charges_per" class="form-control">
-            <option value="Monthly">Monthly</option>
-            <option value="Quarterly">Quarterly</option>
-            <option value="Yearly">Yearly</option>
-            <option value="One-Time">One-Time</option>
-            <option value="Per Sq. Unit Monthly">Per Sq. Unit Monthly</option>
         </select>
     </div>
 </div>
@@ -658,14 +658,6 @@
                     <input type="checkbox" class="form-check-input" name="car_parking[]" value="None">None
                 </label>
             </div>
-        </div>
-    </div>
-    <div class="form-row mb-3">
-        <div class="form-group col-md-6">
-            <label for="">Flats on the Floor</label>
-        </div>
-        <div class="form-group col-md-6">
-            <input type="number" class="form-control" name="office_floor">
         </div>
     </div>
     <div class="form-row mb-3">
