@@ -31,25 +31,8 @@
     </div>
     <div class="form-group col-md-3">
         <select name="road_facing_unit" id="road_facing_unit" class="form-control @error('road_facing_unit') invalid-feedback @enderror">
-            <option value="Sq-ft">Sq-ft</option>
-            <option value="Sq-yrd">Sq-yrd</option>
-            <option value="Sq-m">Sq-m</option>
-            <option value="Acre">Acre</option>
-            <option value="Bigha">Bigha</option>
-            <option value="Hectare">Hectare</option>
-            <option value="Marla">Marla</option>
-            <option value="Kanal">Kanal</option>
-            <option value="Biswa1">Biswa1</option>
-            <option value="Biswa2">Biswa2</option>
-            <option value="Ground">Ground</option>
-            <option value="Aankadam">Aankadam</option>
-            <option value="Rood">Rood</option>
-            <option value="Chatak">Chatak</option>
-            <option value="Kottah">Kottah</option>
-            <option value="Cent">Cent</option>
-            <option value="Perch">Perch</option>
-            <option value="Guntha">Guntha</option>
-            <option value="Are">Are</option>
+            <option value="Meter">Meter</option>
+            <option value="Feet">Feet</option>
         </select>
     </div>
 </div>  
@@ -148,22 +131,7 @@
     </div>
     <div class="form-group col-md-3">
         <select name="plot_length_unit" id="plot_length_unit" class="form-control">
-            <option value="Sq-ft">Sq-ft</option>
-            <option value="Sq-yrd">Sq-yrd</option>
-            <option value="Sq-m">Sq-m</option>
-            <option value="Acre">Acre</option>
-            <option value="Bigha">Bigha</option>
-            <option value="Hectare">Hectare</option>
-            <option value="Marla">Marla</option>
-            <option value="Kanal">Kanal</option>
-            <option value="Biswa1">Biswa1</option>
-            <option value="Biswa2">Biswa2</option>
-            <option value="Ground">Ground</option>
-            <option value="Aankadam">Aankadam</option>
-            <option value="Rood">Rood</option>
-            <option value="Chatak">Chatak</option>
-            <option value="Kottah">Kottah</option>
-            <option value="Cent">Cent</option>
+            <option value="ft">ft</option>
         </select>
     </div>
     <div class="form-group col-md-5">
@@ -174,22 +142,7 @@
     </div>
     <div class="form-group col-md-3">
         <select name="plot_width_unit" id="plot_width_unit" class="form-control">
-            <option value="Sq-ft">Sq-ft</option>
-            <option value="Sq-yrd">Sq-yrd</option>
-            <option value="Sq-m">Sq-m</option>
-            <option value="Acre">Acre</option>
-            <option value="Bigha">Bigha</option>
-            <option value="Hectare">Hectare</option>
-            <option value="Marla">Marla</option>
-            <option value="Kanal">Kanal</option>
-            <option value="Biswa1">Biswa1</option>
-            <option value="Biswa2">Biswa2</option>
-            <option value="Ground">Ground</option>
-            <option value="Aankadam">Aankadam</option>
-            <option value="Rood">Rood</option>
-            <option value="Chatak">Chatak</option>
-            <option value="Kottah">Kottah</option>
-            <option value="Cent">Cent</option>
+            <option value="ft">ft</option>
         </select>
     </div>
 </div>
@@ -542,6 +495,38 @@
 $(function() {
   $(".sel-status").select2();
 });
+
+$(document).on("change", "#plot_unit", function() {
+    var query = $(this).val();
+    if(query == "Sq-ft")
+    {
+        $("#plot_length_unit").empty();
+        $("#plot_length_unit").append('<option value="ft">ft</option>');
+        $("#plot_width_unit").empty();
+        $("#plot_width_unit").append('<option value="ft">ft</option>');
+    }
+    else if(query == "Sq-yrd")
+    {
+        $("#plot_length_unit").empty();
+        $("#plot_length_unit").append('<option value="yrd">yrd</option>');
+        $("#plot_width_unit").empty();
+        $("#plot_width_unit").append('<option value="yrd">yrd</option>');
+    }
+    else if(query == "Sq-m")
+    {
+        $("#plot_length_unit").empty();
+        $("#plot_length_unit").append('<option value="m">m</option>');
+        $("#plot_width_unit").empty();
+        $("#plot_width_unit").append('<option value="m">m</option>');
+    }
+    else{
+        $("#plot_length_unit").empty();
+        $("#plot_length_unit").append('<option value="'+query+'">'+query+'</option>');
+        $("#plot_width_unit").empty();
+        $("#plot_width_unit").append('<option value="'+query+'">'+query+'</option>');
+    }
+});
+
 $('body').on('click', '#showButton4', function () {
   var listed_by = $('input[name="listed_by"]:checked').val();
   var city = $('#search-box').val();

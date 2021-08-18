@@ -21,13 +21,14 @@
         </select>
     </div>
 </div>
+<hr>
 <div class="form-row">
     <div class="form-group col-md-4">
         <label for="">Nearby Business</label>
     </div>
     <div class="form-group col-md-8">
         <select name="ideal_business[]" class="form-control mul-select" multiple="true">
-            <option value="">-Choose-</option>
+            <option value="">-Select Multiple Option-</option>
             <option value="Call Centre/ BPO">Call Centre/ BPO</option>
             <option value="Coaching Centre">Coaching Centre</option>
             <option value="Private Consultancy">Private Consultancy</option>
@@ -333,12 +334,12 @@
         <label for="">Width of Facing Road</label>
     </div>
     <div class="form-group col-md-4">
-        <input type="text" class="form-control Stylednumber" name="facing_width">
+        <input type="text" class="form-control Stylednumber" name="width_of_road">
     </div>
     <div class="form-group col-md-3">
-        <select name="width_facing_road_unit" class="form-control" id="">
-            <option value="meters">meters</option>
-            <option value="ft">ft</option>
+        <select name="road_facing_unit" id="road_facing_unit" class="form-control @error('road_facing_unit') invalid-feedback @enderror">
+            <option value="Meter">Meter</option>
+            <option value="Feet">Feet</option>
         </select>
     </div>
 </div>
@@ -351,8 +352,8 @@
     </div>
     <div class="form-group col-md-3">
         <select name="entrance_unit" class="form-control" id="">
-            <option value="meters">meters</option>
-            <option value="ft">ft</option>
+            <option value="Meter">Meter</option>
+            <option value="Feet">Feet</option>
         </select>
     </div>
 </div>

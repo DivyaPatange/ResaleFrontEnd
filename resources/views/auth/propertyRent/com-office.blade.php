@@ -21,13 +21,14 @@
         </select>
     </div>
 </div>
+<hr>
 <div class="form-row">
     <div class="form-group col-md-4">
         <label for="">Ideal For Businesses</label>
     </div>
     <div class="form-group col-md-8">
         <select name="ideal_business[]" class="form-control mul-select" multiple="true">
-            <option value="">-Choose-</option>
+            <option value="">-Select Multiple Option-</option>
             <option value="Call Centre/ BPO">Call Centre/ BPO</option>
             <option value="Coaching Centre">Coaching Centre</option>
             <option value="Private Consultancy">Private Consultancy</option>
@@ -118,21 +119,19 @@
         </div>
     </div>
 </div>
-<div class="form-group">
-    <div class="row">
-        <div class="col-md-5">
-            <label>Furnished Status<span class="text-danger">*</span><span  style="color:red" id="furnishing_err"> </span>
-            </label>
-        </div>
-        <div class="col-md-7">
-            <div class="switch-field">
-                <input type="radio" id="Furnished" name="furnishing" value="Furnished"/>
-                <label for="Furnished">Furnished</label>
-                <input type="radio" id="Semi-Furnished" name="furnishing" value="Semi-Furnished"/>
-                <label for="Semi-Furnished">Semi-Furnished</label>
-                <input type="radio" id="Unfurnished" name="furnishing" value="Unfurnished"/>
-                <label for="Unfurnished">Unfurnished</label>
-            </div>
+<div class="form-row">
+    <div class="col-md-5 form-group">
+        <label>Furnished Status<span class="text-danger">*</span><span  style="color:red" id="furnishing_err"> </span>
+        </label>
+    </div>
+    <div class="col-md-7 form-group">
+        <div class="switch-field">
+            <input type="radio" id="Furnished" name="furnishing" value="Furnished"/>
+            <label for="Furnished">Furnished</label>
+            <input type="radio" id="Semi-Furnished" name="furnishing" value="Semi-Furnished"/>
+            <label for="Semi-Furnished">Semi-Furnished</label>
+            <input type="radio" id="Unfurnished" name="furnishing" value="Unfurnished"/>
+            <label for="Unfurnished">Unfurnished</label>
         </div>
     </div>
 </div>

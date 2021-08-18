@@ -27,7 +27,7 @@
     <div class="form-group col-md-6">
         <label>Ideal For business</label>
         <select name="ideal_business[]" class="form-control mul-select" multiple="true">
-            <option value="">-Choose-</option>
+            <option value="">-Select Multiple Option-</option>
             <option value="Call Centre/ BPO">Call Centre/ BPO</option>
             <option value="Coaching Centre">Coaching Centre</option>
             <option value="Private Consultancy">Private Consultancy</option>
@@ -314,8 +314,8 @@
     </div>
     <div class="form-group col-md-3">
         <select name="entrance_unit" id="entrance_unit" class="form-control">
-            <option value="meters">meters</option>
-            <option value="ft">ft</option>
+            <option value="Meter">Meter</option>
+            <option value="Feet">Feet</option>
         </select>
     </div>
 </div>

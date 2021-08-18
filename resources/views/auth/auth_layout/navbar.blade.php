@@ -1,3 +1,5 @@
+
+
 <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
     <div class="container-fluid">
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +26,7 @@
           <li class="nav-item">
             <form action="" method="post">
               <div class="input-group">
-                <input type="text" class="form-control" id="location" placeholder="Locaton" style="font-size:12px">
+                <input type="text" class="form-control" id="auto" name="auto" placeholder="Locaton" style="font-size:12px">
                 <!--<div class="input-group-prepend">-->
                 <!--  <div class="input-group-text"><i class="fa fa-search"></i></div>-->
                 <!--</div>-->

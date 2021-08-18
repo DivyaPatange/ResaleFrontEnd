@@ -56,21 +56,19 @@
         </div>
     </div>
 </div>
-<div class="form-group">
-    <div class="row">
-        <div class="col-md-5">
-            <label>Furnished Status<span class="text-danger">*</span><span  style="color:red" id="furnishing_err"> </span>
-            </label>
-        </div>
-        <div class="col-md-7">
-            <div class="switch-field">
-                <input type="radio" id="Furnished" name="furnishing" value="Furnished"/>
-                <label for="Furnished">Furnished</label>
-                <input type="radio" id="SemiFurnished" name="furnishing" value="Semi-Furnisehd"/>
-                <label for="SemiFurnished">Semi-Furnisehd</label>
-                <input type="radio" id="Unfurnished1" name="furnishing" value="Unfurnished"/>
-                <label for="Unfurnished1">Unfurnished</label>
-            </div>
+<div class="form-row">
+    <div class="col-md-5 form-group">
+        <label>Furnished Status<span class="text-danger">*</span><span  style="color:red" id="furnishing_err"> </span>
+        </label>
+    </div>
+    <div class="col-md-7 form-group">
+        <div class="switch-field">
+            <input type="radio" id="Furnished" name="furnishing" value="Furnished"/>
+            <label for="Furnished">Furnished</label>
+            <input type="radio" id="SemiFurnished" name="furnishing" value="Semi-Furnisehd"/>
+            <label for="SemiFurnished">Semi-Furnisehd</label>
+            <input type="radio" id="Unfurnished1" name="furnishing" value="Unfurnished"/>
+            <label for="Unfurnished1">Unfurnished</label>
         </div>
     </div>
 </div>

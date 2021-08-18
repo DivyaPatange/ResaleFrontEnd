@@ -1,6 +1,9 @@
 @extends('auth.auth_layout.main')
 @section('title', 'Free Classified Ads in India, Post Ads Online | Buy & Sale free in All over India, Resale99 Free Classified Advertising')
 @section('customcss')
+<script src="https://apis.mapmyindia.com/advancedmaps/v1/ddc94031bf9b9f6b7020d2027132e130/map_load?v=1.3"></script>
+<!-- <script src="https://apis.mapmyindia.com/advancedmaps/api/ddc94031bf9b9f6b7020d2027132e130/map_sdk_plugins"></script> -->
+
 <style>
 #body-row {
     margin-left:0;
@@ -82,10 +85,75 @@
   text-align: right;
   padding-left: 10px;
 }
+#map {
+    position: absolute;
+    left: 312px; top: 46px; 
+    right: 2px; bottom: 2px; 
+    border: 1px solid #cccccc; }
 
+  
 </style>
+
+
 @endsection
 @section('content')
+
+<div id="map"></div>
+
+<script>
+    /*Map Initialization*/
+    var map = new MapmyIndia.Map('map', {center: [28.09, 78.3], zoom: 5, search: false});
+          
+    /*Search plugin initialization*/
+    var optional_config={
+        location:[28.61, 77.23],
+        /* pod:'City',
+        bridge:true,
+        tokenizeAddress:true,*
+        filter:'cop:9QGXAM',
+        distance:true,
+        width:300,
+        height:300*/
+    };
+            
+    // search = null;
+    new MapmyIndia.search(document.getElementById("auto"),optional_config,callback);
+            
+    /*CALL for fix text - LIKE THIS
+    * 
+    new MapmyIndia.search("agra",optional_config,callback);
+    * 
+    * */
+
+    var marker;
+    function callback(data) { 
+        if(data)
+        {
+            if(data.error)
+            {
+                if(data.error.indexOf('responsecode:401')!==-1){
+                /*TOKEN EXPIRED, set new Token ie. 
+                    * MapmyIndia.setToken(newToken);
+                    */
+                }
+                console.warn(data.error);                       
+            }
+            else
+            {
+                var dt=data[0];
+                if(!dt) return false;
+                var eloc=dt.eLoc;
+                var lat=dt.latitude,lng=dt.longitude;
+                
+                var place=dt.placeName+(dt.placeAddress?", "+dt.placeAddress:"");
+                /*Use elocMarker Plugin to add marker*/
+                if(marker) marker.remove();
+                marker=new MapmyIndia.elocMarker({map:map,eloc:lat?lat+","+lng:eloc,popupHtml:place,popupOptions:{openPopup:true}}).fitbounds();
+            }
+        }
+    }    
+</script>
+
 <section class="section-property pt-md-4 section-t8">
     <div class="container-fluid p-0">
         <div class="row myrow" id="body-row">
@@ -480,4 +548,6 @@ function SidebarCollapse () {
     $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
 }
 </script>
+
+
 @endsection

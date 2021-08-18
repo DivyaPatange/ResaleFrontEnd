@@ -73,21 +73,19 @@
         </div>
     </div>
 </div>
-<div class="form-group">
-    <div class="row">
-        <div class="col-md-5">
-            <label>Furnishing<span class="text-danger">*</span><span  style="color:red" id="furnishing_err"> </span>
-            </label>
-        </div>
-        <div class="col-md-7">
-            <div class="switch-field">
-                <input type="radio" id="Furnished" name="furnishing" value="Furnished" @if(old('furnishing') == "Furnished") checked @endif/>
-                <label for="Furnished">Furnished</label>
-                <input type="radio" id="Semi-Furnished" name="furnishing" value="Semi-Furnished" @if(old('furnishing') == "Semi-Furnished") checked @endif/>
-                <label for="Semi-Furnished">Semi-Furnished</label>
-                <input type="radio" id="Unfurnished" name="furnishing" value="Unfurnished" @if(old('furnishing') == "Unfurnished") checked @endif/>
-                <label for="Unfurnished">Unfurnished</label>
-            </div>
+<div class="form-row">
+    <div class="col-md-5 form-group">
+        <label>Furnishing<span class="text-danger">*</span><span  style="color:red" id="furnishing_err"> </span>
+        </label>
+    </div>
+    <div class="col-md-7 form-group">
+        <div class="switch-field">
+            <input type="radio" id="Furnished" name="furnishing" value="Furnished" @if(old('furnishing') == "Furnished") checked @endif/>
+            <label for="Furnished">Furnished</label>
+            <input type="radio" id="Semi-Furnished" name="furnishing" value="Semi-Furnished" @if(old('furnishing') == "Semi-Furnished") checked @endif/>
+            <label for="Semi-Furnished">Semi-Furnished</label>
+            <input type="radio" id="Unfurnished" name="furnishing" value="Unfurnished" @if(old('furnishing') == "Unfurnished") checked @endif/>
+            <label for="Unfurnished">Unfurnished</label>
         </div>
     </div>
 </div>
@@ -1038,7 +1036,6 @@ $('body').on('click', '#showButton1', function () {
   var locality = $('#locality').val();
   var address = $('#address').val();
   var project_name = $('#project_name').val();
-  var bedroom = $("input[name='bedroom']:checked").val();
   var property_floor_no = $('#property_floor_no').val();
   var no_of_floor = $('#no_of_floor').val();
   var furnishing = $("input[name='furnishing']:checked").val();
@@ -1078,13 +1075,6 @@ $('body').on('click', '#showButton1', function () {
     $("#project_name_err").fadeIn().html("Required");
     setTimeout(function(){ $("#project_name_err").fadeOut(); }, 3000);
     $("#project_name").focus();
-    return false;
-  }
-  if(bedroom == null)
-  {
-    $("#bedroom_err").fadeIn().html("Required");
-    setTimeout(function(){ $("#bedroom_err").fadeOut(); }, 3000);
-    $("input[name='bedroom']").focus();
     return false;
   }
   if(property_floor_no == '')

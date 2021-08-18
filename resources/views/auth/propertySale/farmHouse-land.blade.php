@@ -87,25 +87,7 @@
     </div>
     <div class="form-group col-md-3">
         <select name="land_length_unit" id="land_length_unit" class="form-control">
-            <option value="Sq-ft">Sq-ft</option>
-            <option value="Sq-yrd">Sq-yrd</option>
-            <option value="Sq-m">Sq-m</option>
-            <option value="Acre">Acre</option>
-            <option value="Bigha">Bigha</option>
-            <option value="Hectare">Hectare</option>
-            <option value="Marla">Marla</option>
-            <option value="Kanal">Kanal</option>
-            <option value="Biswa1">Biswa1</option>
-            <option value="Biswa2">Biswa2</option>
-            <option value="Ground">Ground</option>
-            <option value="Aankadam">Aankadam</option>
-            <option value="Rood">Rood</option>
-            <option value="Chatak">Chatak</option>
-            <option value="Kottah">Kottah</option>
-            <option value="Cent">Cent</option>
-            <option value="Perch">Perch</option>
-            <option value="Guntha">Guntha</option>
-            <option value="Are">Are</option>
+            <option value="ft">ft</option>
         </select>
     </div>
     <div class="col-md-5 form-group">
@@ -116,25 +98,7 @@
     </div>
     <div class="form-group col-md-3">
         <select name="land_breadth_unit" id="land_breadth_unit" class="form-control">
-            <option value="Sq-ft">Sq-ft</option>
-            <option value="Sq-yrd">Sq-yrd</option>
-            <option value="Sq-m">Sq-m</option>
-            <option value="Acre">Acre</option>
-            <option value="Bigha">Bigha</option>
-            <option value="Hectare">Hectare</option>
-            <option value="Marla">Marla</option>
-            <option value="Kanal">Kanal</option>
-            <option value="Biswa1">Biswa1</option>
-            <option value="Biswa2">Biswa2</option>
-            <option value="Ground">Ground</option>
-            <option value="Aankadam">Aankadam</option>
-            <option value="Rood">Rood</option>
-            <option value="Chatak">Chatak</option>
-            <option value="Kottah">Kottah</option>
-            <option value="Cent">Cent</option>
-            <option value="Perch">Perch</option>
-            <option value="Guntha">Guntha</option>
-            <option value="Are">Are</option>
+            <option value="ft">ft</option>
         </select>
     </div>
 </div>
@@ -703,6 +667,38 @@ $(document).on("change keyup blur", "#total_price", function() {
         $('#price_per_sq_ft').val(dec);
     }
 });
+
+$(document).on("change", "#plot_unit", function() {
+    var query = $(this).val();
+    if(query == "Sq-ft")
+    {
+        $("#land_length_unit").empty();
+        $("#land_length_unit").append('<option value="ft">ft</option>');
+        $("#land_breadth_unit").empty();
+        $("#land_breadth_unit").append('<option value="ft">ft</option>');
+    }
+    else if(query == "Sq-yrd")
+    {
+        $("#land_length_unit").empty();
+        $("#land_length_unit").append('<option value="yrd">yrd</option>');
+        $("#land_breadth_unit").empty();
+        $("#land_breadth_unit").append('<option value="yrd">yrd</option>');
+    }
+    else if(query == "Sq-m")
+    {
+        $("#land_length_unit").empty();
+        $("#land_length_unit").append('<option value="m">m</option>');
+        $("#land_breadth_unit").empty();
+        $("#land_breadth_unit").append('<option value="m">m</option>');
+    }
+    else{
+        $("#land_length_unit").empty();
+        $("#land_length_unit").append('<option value="'+query+'">'+query+'</option>');
+        $("#land_breadth_unit").empty();
+        $("#land_breadth_unit").append('<option value="'+query+'">'+query+'</option>');
+    }
+});
+
 $('body').on('click', '#showButton', function () {
     var listed_by = $('input[name="listed_by"]:checked').val();
     var city = $('#search-box').val();

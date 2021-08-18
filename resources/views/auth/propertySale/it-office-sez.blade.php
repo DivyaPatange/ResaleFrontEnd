@@ -30,7 +30,7 @@
   <div class="form-group col-md-6">
     <label>Ideal For business</label>
     <select name="ideal_business[]" class="form-control mul-select" multiple="true">
-      <option value="">-Choose-</option>
+      <option value="">-Select Multiple Option-</option>
       <option value="Call Centre/ BPO">Call Centre/ BPO</option>
       <option value="Coaching Centre">Coaching Centre</option>
       <option value="Private Consultancy">Private Consultancy</option>
