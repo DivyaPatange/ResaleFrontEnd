@@ -27,9 +27,11 @@ class MobileController extends Controller
         else{
             $newUser = User::where('mobile_no', $request->mobile_no)->update(["name" => $request->name, "status" => 0, "otp" => $otp]);
         }
-        $message = "Dear+Customer,+please+use+the+code+".$otp."+to+verify+your+resale99+account.";
+        $message = "Dear+Customer,+"."%0ause+OTP+".$otp."+to+login+your+Resale99+account.+do+not+share+your+OTP+with+others.+"."%0aRegards,+Resale99.com";
+        // dd($message);
+                    
         $number = $request->mobile_no;
-        // dd($this->sendSms($message,$number));
+    
         $this->sendSms($message,$number);
         $output = '';
         $output .= '<input type="hidden" name="hidden_no" id="hidden_no" value="'.$number.'">'. 
@@ -39,8 +41,7 @@ class MobileController extends Controller
 
     public function sendSms($message,$number)
     {
-        $url = 'http://sms.bulksmsind.in/sendSMS?username=iceico&message='.$message.'&sendername=ICEICO&smstype=TRANS&numbers='.$number.'&apikey=24ae8ae0-b514-499b-8baf-51d55808a2c4';
-
+        $url = 'http://sms.bulksmsind.in/sendSMS?username=resale99&message='.$message.'&sendername=PRSALE&smstype=TRANS&numbers='.$number.'&apikey=fb483325-87dc-4b51-9b61-ac7ed036df71&peid=1201162789069396037&templateid=1207162825793956851';
         $ch = curl_init();  
         
     

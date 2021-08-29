@@ -1,8 +1,7 @@
 @extends('auth.auth_layout.main')
 @section('title', 'Free Classified Ads in India, Post Ads Online | Buy & Sale free in All over India, Resale99 Free Classified Advertising')
 @section('customcss')
-<script src="https://apis.mapmyindia.com/advancedmaps/v1/ddc94031bf9b9f6b7020d2027132e130/map_load?v=1.3"></script>
-<!-- <script src="https://apis.mapmyindia.com/advancedmaps/api/ddc94031bf9b9f6b7020d2027132e130/map_sdk_plugins"></script> -->
+
 
 <style>
 #body-row {
@@ -93,14 +92,13 @@
 
   
 </style>
-
-
+<!-- <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script> -->
 @endsection
 @section('content')
 
-<div id="map"></div>
+<!-- <div id="map"></div> -->
 
-<script>
+<!-- <script>
     /*Map Initialization*/
     var map = new MapmyIndia.Map('map', {center: [28.09, 78.3], zoom: 5, search: false});
           
@@ -152,7 +150,7 @@
             }
         }
     }    
-</script>
+</script> -->
 
 <section class="section-property pt-md-4 section-t8">
     <div class="container-fluid p-0">

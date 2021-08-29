@@ -11,6 +11,9 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   @include('auth.auth_layout.stylesheet')
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="https://apis.mapmyindia.com/advancedmaps/v1/7fc5c195-bd4a-41f7-a973-7451a744564b/map_load?v=1.5"></script>
+  <script src="https://apis.mapmyindia.com/advancedmaps/api/7fc5c195-bd4a-41f7-a973-7451a744564b/map_sdk_plugins"></script>
   @yield('customcss')
   <style type="text/css">
 /*    .myimg*/
@@ -194,6 +197,51 @@ function openCity(evt, cityName) {
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
   </script>
+  <script>
+            /*Map Initialization*/
+            var map = new MapmyIndia.Map('map', {center: [28.09, 78.3], zoom: 5, search: false, zoomControl: true, location: true, fullscreen: false, traffic: false});
+            MapmyIndia.geo(map);
+            /*Search plugin initialization*/
+            var config_optional={
+                location1:[28.61, 77.23],
+               /* pod:'City',
+                bridge:true,
+                tokenizeAddress:true,
+                filter:'cop:9QGXAM',*/
+                width:300,
+                height:300
+            };
+            new MapmyIndia.search(document.getElementById("auto"),config_optional,callback);
+            
+            var marker;
+            function callback(data) {
+                if(data)
+                {
+                    if(data.error)
+                    {
+                        if(data.error.indexOf('responsecode:401')!==-1){
+                        /*TOKEN EXPIRED, set new Token ie. 
+                         * MapmyIndia.setToken(newToken);
+                         */
+                        }
+                        console.warn(data.error);
+                        
+                    }
+                    else
+                    {
+                        var dt=data[0];
+                        if(!dt) return false;
+                        var eloc=dt.eLoc;
+                        var place=dt.placeName+(dt.placeAddress?", "+dt.placeAddress:"");
+                        /*Use getEloc Plugin to add marker*/
+                        if(marker) marker.remove();
+                        marker=new MapmyIndia.elocMarker({map:map,eloc:[eloc],popupHtml:[place],popupOptions:{openPopup:true}}).fitbounds();
+                    }
+                }
+                console.log(data[0]);
+             }        
+                    
+        </script>
 </body>
 
 </html>
